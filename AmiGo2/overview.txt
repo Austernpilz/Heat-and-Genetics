@@ -1,0 +1,30 @@
+Accession
+    GO:0009408
+Name
+    response to heat
+Ontology
+    biological_process
+Synonyms
+    response to heat shock
+Alternate IDs
+    GO:0006951
+Definition
+    Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a heat stimulus, a temperature stimulus above the optimal temperature for that organism. Source: GOC:lr 
+#
+Accession
+    GO:1900034
+Name
+    regulation of cellular response to heat
+Ontology
+    biological_process
+Synonyms
+    regulation of cellular response to heat stress
+Alternate IDs
+    None
+Definition
+    Any process that modulates the frequency, rate or extent of cellular response to heat. Source: GOC:yaf, GOC:TermGenie
+#
+      
+
+
+      
