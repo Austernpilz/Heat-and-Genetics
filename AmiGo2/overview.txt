@@ -1,7 +1,271 @@
+##probably_interesting
+#
+Accession
+    GO:0034605
+Name
+    cellular_response_to_heat
+Ontology
+    biological_process
+Synonyms
+    cellular response to heat stress
+Alternate IDs
+    None
+Definition
+    Any process that results in a change in state or activity of a cell (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a heat stimulus, a temperature stimulus above the optimal temperature for that organism. Source: GOC:mah 
+#
+Accession
+    GO:0035080
+Name
+    heat_shock-mediated_polytene_chromosome_puffing
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The decondensing (loosening) and swelling of the chromosomal sites of heat shock genes on polytene chromosomes in response to a heat shock stimulus. Source: GOC:bf, PMID:12543962 
+#
+Accession
+    GO:0031990
+Name
+    mRNA_export_from_nucleus_in_response_to_heat_stress
+Ontology
+    biological_process
+Synonyms
+    mRNA export from cell nucleus during heat stress, mRNA export from nucleus during heat stress
+Alternate IDs
+    None
+Definition
+    The directed movement of mRNA from the nucleus to the cytoplasm during a heat stimulus, a temperature stimulus above the optimal temperature for the organism; in particular, a process that enables an organism withstand exposure to temperatures that would otherwise lethally impair poly(A)+ mRNA-nucleus export. Source: GOC:vw, GOC:mah 
+#
+Accession
+    GO:0031651
+Name
+    negative_regulation_of_heat_generation
+Ontology
+    biological_process
+Synonyms
+    down regulation of heat generation, down-regulation of heat generation, downregulation of heat generation, inhibition of heat generation
+Alternate IDs
+    None
+Definition
+    Any process that stops, prevents, or reduces the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
+#
+Accession
+    GO:0031651
+Name
+    negative regulation of heat generation
+Ontology
+    biological_process
+Synonyms
+    down regulation of heat generation, down-regulation of heat generation, downregulation of heat generation, inhibition of heat generation
+Alternate IDs
+    None
+Definition
+    Any process that stops, prevents, or reduces the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
+#
+Accession
+    GO:1900036
+Name
+    positive_regulation_of_cellular_response_to_heat
+Ontology
+    biological_process
+Synonyms
+    activation of cellular response to heat stress, positive regulation of cellular response to heat stress, up regulation of cellular response to heat stress, up-regulation of cellular response to heat stress, upregulation of cellular response to heat stress, activation of cellular response to heat, up regulation of cellular response to heat, up-regulation of cellular response to heat, upregulation of cellular response to heat 
+Alternate IDs
+    None
+Definition
+    Any process that activates or increases the frequency, rate or extent of cellular response to heat. Source: GOC:yaf, GOC:TermGenie 
+#
+Accession
+    GO:0160269
+Name
+    sweat_secretion
+Ontology
+    biological_process
+Synonyms
+    perspiration, perspiring, sweating
+Alternate IDs
+    None
+Definition
+    The regulated release of sweat from the sweat glands. Source: PMID:1778649 
+#
+Accession
+    GO:0070370
+Name
+    cellular_heat_acclimation
+Ontology
+    biological_process
+Synonyms
+    cellular thermotolerance
+Alternate IDs
+    None
+Definition
+    Any process that increases heat tolerance of a cell in response to high temperatures. Source: GOC:jp 
+#
+Accession
+    GO:0060792
+Name
+    sweat_gland_development
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The progression of the sweat gland over time, from its formation to the mature structure. Sweat glands secrete an aqueous solution that is used in thermoregulation. Source: GOC:dph, GOC:tb, GOC:sdb_2009 
+#
+Accession
+    GO:0010286
+Name
+    heat_acclimation
+Ontology
+    biological_process
+Synonyms
+    thermotolerance
+Alternate IDs
+    None
+Definition
+    Any process that increases heat tolerance of an organism in response to high temperatures. Source: GOC:tair_curators 
+#
+Accession
+    GO:0140455
+Name
+    cytoplasm_protein_quality_control
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The chemical reactions and pathways resulting in the breakdown of misfolded proteins in the cytoplasm, which are either targeted to cytoplasmic proteasomes for degradation or protected by chaperones to shield thermosensitive proteins from degradation until conditions allow disaggregation and refolding. Source: PMID:32075773 
+#
+Accession
+    GO:0050873
+Name
+    brown_fat_cell_differentiation
+Ontology
+    biological_process
+Synonyms
+    brown adipocyte cell differentiation, brown adipocyte differentiation
+Alternate IDs
+    None
+Definition
+    The process in which a relatively unspecialized cell acquires specialized features of a brown adipocyte, an animal connective tissue cell involved in adaptive thermogenesis. Brown adipocytes contain multiple small droplets of triglycerides and a high number of mitochondria. Source: PMID:12588810 
+#
+
+#
+Accession
+    GO:0050951
+Name
+    sensory_perception_of_temperature_stimulus
+Ontology
+    biological_process
+Synonyms
+    sensory perception of thermal stimulus
+Alternate IDs
+    None
+Definition
+    The series of events required for an organism to receive a sensory temperature stimulus, convert it to a molecular signal, and recognize and characterize the signal. This is a neurological process. Source: GOC:ai 
+#
+Accession
+    GO:0050960
+Name
+    detection_of_temperature_stimulus_involved_in_thermoception
+Ontology
+    biological_process
+Synonyms
+    sensory detection of temperature stimulus during thermoception, sensory detection of thermal stim... 
+Alternate IDs
+    None
+Definition
+    The series of events in which a temperature stimulus is received and converted into a molecular signal as part of thermoception. Source: GOC:ai, GOC:dos 
+#
+Accession
+    GO:0001659
+Name
+    temperature_homeostasis
+Ontology
+    biological_process
+Synonyms
+    thermoregulation
+Alternate IDs
+    None
+Definition
+    A homeostatic process in which an organism modulates its internal body temperature. Source: GOC:jl 
+#
+Accession
+    GO:0071502
+Name
+    cellular_response_to_temperature_stimulus
+Ontology
+    biological_process
+Synonyms
+    cellular response to thermal stimulus
+Alternate IDs
+    None
+Definition
+    Any process that results in a change in state or activity of a cell (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a temperature stimulus. Source: GOC:mah 
+#
+Accession
+    GO:0009266
+Name
+    response_to_temperature_stimulus
+Ontology
+    biological_process
+Synonyms
+    response to thermal stimulus
+Alternate IDs
+    None
+Definition
+    Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a temperature stimulus. Source: GOC:hb
+#
+Accession
+    GO:0016048
+Name
+    detection_of_temperature_stimulus
+Ontology
+    biological_process
+Synonyms
+    detection of temperature, detection of thermal stimulus, perception of temperature
+Alternate IDs
+    None
+Definition
+    The series of events in which a temperature stimulus (hot or cold) is received and converted into a molecular signal. Source: GOC:hb 
+#
+Accession
+    GO:0043052
+Name
+    thermotaxis
+Ontology
+    biological_process
+Synonyms
+    taxis in response to temperature stimulus
+Alternate IDs
+    None
+Definition
+    The directed movement of a motile cell or organism in response to a temperature gradient. Movement may be towards either a higher or lower temperature. Source: GOC:cab1, WB_REF:cgc467 
+#
+Accession
+    GO:0040040
+Name
+    thermosensory_behavior
+Ontology
+    biological_process
+Synonyms
+    behavioral response to temperature stimulus, behavioural response to temperature stimulus, thermosensory behaviour
+Alternate IDs
+    None
+Definition
+    Behavior that is dependent upon the sensation of temperature. Source: GOC:ems 
+#
 Accession
     GO:0009408
 Name
-    response to heat
+    response_to_heat
 Ontology
     biological_process
 Synonyms
@@ -12,9 +276,22 @@ Definition
     Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a heat stimulus, a temperature stimulus above the optimal temperature for that organism. Source: GOC:lr 
 #
 Accession
+    GO:0050961
+Name
+    detection_of_temperature_stimulus_involved_in_sensory_perception
+Ontology
+    biological_process
+Synonyms
+    sensory detection of temperature stimulus, sensory detection of temperature stimulus during sensory perception, sensory detection of thermal stimulus during sensory perception, sensory perception, sensory detection of temperature stimulus, sensory perception, sensory detection of thermal stimulus, sensory perception, sensory transduction of temperature stimulus, sensory perception, sensory transduction of thermal stimulus, sensory transduction of temperature stimulus, sensory transduction of temperature stimulus during sensory perception, sensory transduction of thermal stimulus during sensory perception, sensory detection of heat stimulus during sensory perception, sensory perception, sensory detection of heat stimulus, sensory perception, sensory transduction of heat stimulus, sensory transduction of heat stimulus during sensory perception 
+Alternate IDs
+    None
+Definition
+    The series of events in which a temperature stimulus is received and converted into a molecular signal as part of sensory perception. Source: GOC:ai, GOC:dos 
+#
+Accession
     GO:1900034
 Name
-    regulation of cellular response to heat
+    regulation_of_cellular_response_to_heat
 Ontology
     biological_process
 Synonyms
@@ -24,7 +301,307 @@ Alternate IDs
 Definition
     Any process that modulates the frequency, rate or extent of cellular response to heat. Source: GOC:yaf, GOC:TermGenie
 #
-      
+Accession
+    GO:0120168
+Name
+    detection_of_hot_stimulus_involved_in_thermoception
+Ontology
+    biological_process
+Synonyms
+    sensory detection of heat stimulus during thermoception, sensory detection of hot stimulus during... 
+Alternate IDs
+    None
+Definition
+    The series of events in which a hot stimulus is received and converted into a molecular signal as part of thermoception. Source: PMID:21335241 
+#
+Accession
+    GO:0050955
+Name
+    thermoception
+Ontology
+    biological_process
+Synonyms
+    thermoreception
+Alternate IDs
+    None
+Definition
+    The series of events required for an organism to receive a temperature stimulus, convert it to a molecular signal, and recognize and characterize the signal. Thermoception in larger animals is mainly done in the skin; mammals have at least two types of sensor, for detecting heat (temperatures above body temperature) and cold (temperatures below body temperature). Source: Wikipedia:Thermoception, GOC:ai 
 
 
-      
+
+
+####################################################
+################ maybe coregulating ################
+####################################################
+Accession
+    GO:0097604
+Name
+    temperature-gated_cation_channel_activity
+Ontology
+    molecular_function
+Synonyms
+    temperature gated cation channel activity, temperature-activated cation channel activity, temperature-dependent cation channel activity, heat-activated cation channel activity
+Alternate IDs
+    None
+Definition
+    Enables the transmembrane transfer of a cation by a channel that opens in response to a temperature stimulus (e.g. exposure to a temperature range different than the optimal temperature for that organism). Source: GOC:pr, GOC:ha, PMID:23027824 
+#
+Accession
+    GO:0097603
+Name
+    temperature-gated ion channel activity
+Ontology
+    molecular_function
+Synonyms
+    temperature gated ion channel activity, temperature-activated ion channel activity, temperature-dependent ion channel activity, heat-activated ion channel activity
+Alternate IDs
+    None
+Definition
+    Enables the transmembrane transfer of an ion by a channel that opens in response to a temperature stimulus (e.g. exposure to a temperature range different than the optimal temperature for that organism). Source: GOC:pr, GOC:ha, PMID:23027824 
+#
+    GO:0030544
+Name
+    Hsp70_protein_binding
+Ontology
+    molecular_function
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Binding to a Hsp70 protein, heat shock proteins around 70kDa in size. Source: ISBN:0198506732 
+#
+Accession
+    GO:1990845
+Name
+    adaptive_thermogenesis
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The regulated production of heat in response to short term environmental changes, such as stress, diet or reduced temperature. Source: PMID:17260010, PMID:20363363       
+#
+
+Accession
+    GO:0140454
+Name
+    protein_aggregate_center_assembly
+Ontology
+    biological_process
+Synonyms
+    protein aggregate center formation, protein aggregate centre assembly, PAC assembly
+Alternate IDs
+    None
+Definition
+    The reversible aggregation of misfolded proteins and chaperones, formed to shield thermosensitive proteins from degradation until conditions allow disaggregation and refolding. Source: PMID:32075773 
+#
+Accession
+    GO:0140455
+Name
+    cytoplasm_protein_quality_control
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The chemical reactions and pathways resulting in the breakdown of misfolded proteins in the cytoplasm, which are either targeted to cytoplasmic proteasomes for degradation or protected by chaperones to shield thermosensitive proteins from degradation until conditions allow disaggregation and refolding. Source: PMID:32075773 
+#
+Accession
+    GO:0001660
+Name
+    fever_generation
+Ontology
+    biological_process
+Synonyms
+    pyrexia
+Alternate IDs
+    None
+Definition
+    The heat generation process that results in a rise in body temperature above the normal, often as a response to infection. Source: GOC:dph, GOC:jl 
+#
+Accession
+    GO:0051008
+Name
+    Hsp27_protein_binding
+Ontology
+    molecular_function
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Binding to Hsp27 proteins, a lightweight heat shock protein. Source: GOC:ai 
+#
+Accession
+    GO:0051879
+Name
+    Hsp90_protein_binding
+Ontology
+    molecular_function
+Synonyms
+    Hsp90 binding, Hsp90 class protein binding
+Alternate IDs
+    None
+Definition
+    Binding to Hsp90 proteins, any of a group of heat shock proteins around 90kDa in size. Source: GOC:ai 
+#
+Accession
+    GO:0060086
+Name
+    circadian_temperature_homeostasis
+Ontology
+    biological_process
+Synonyms
+    circadian thermoregulation, circadian regulation of body temperature
+Alternate IDs
+    None
+Definition
+    Any homeostatic process in which an organism modulates its internal body temperature at different values with a regularity of approximately 24 hours. Source: GOC:dph, GOC:tb 
+#
+Accession
+    GO:0042026
+Name
+    protein_refolding
+Ontology
+    biological_process
+Synonyms
+    heat shock protein activity
+Alternate IDs
+    None
+Definition
+    The process carried out by a cell that restores the biological activity of an unfolded or misfolded protein, using helper proteins such as chaperones. Source: GOC:mb 
+#
+Accession
+    GO:0120161
+Name
+    regulation_of_cold-induced_thermogenesis
+Ontology
+    biological_process
+Synonyms
+    regulation of CIT
+Alternate IDs
+    None
+Definition
+    Any process that modulates the frequency, rate or extent of cold-induced thermogenesis. Source: PMID:27876809 
+#
+Accession
+    GO:0120162
+Name
+    positive_regulation_of_cold-induced_thermogenesis
+Ontology
+    biological_process
+Synonyms
+    positive regulation of CIT
+Alternate IDs
+    None
+Definition
+    Any process that activates or increases the frequency, rate or extent of cold-induced thermogenesis. Source: PMID:27876809 
+#
+Accession
+    GO:0120163
+Name
+    negative_regulation_of_cold-induced_thermogenesis
+Ontology
+    biological_process
+Synonyms
+    negative regulation of CIT
+Alternate IDs
+    None
+Definition
+    Any process that stops, prevents, or reduces the rate of cold-induced thermogenesis. Source: PMID:27876809 
+#
+Accession
+    GO:0120169
+Name
+    detection_of_cold_stimulus_involved_in_thermoception
+Ontology
+    biological_process
+Synonyms
+    sensory detection of cold stimulus during thermoception, sensory transduction of cold stimulus du... 
+Alternate IDs
+    None
+Definition
+    The series of events in which a cold stimulus is received and converted into a molecular signal as part of thermoception. Source: PMID:21335241 
+#
+Accession
+    GO:0090336
+Name
+    positive_regulation_of_brown_fat_cell_differentiation
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Any process that increases the rate, frequency, or extent of brown fat cell differentiation. Brown fat cell differentiation is the process in which a relatively unspecialized cell acquires specialized features of a brown adipocyte, an animal connective tissue cell involved in adaptive thermogenesis. Brown adipocytes contain multiple small droplets of triglycerides and a high number of mitochondria. Source: GOC:BHF 
+#
+Accession
+    GO:0031072
+Name
+    heat_shock_protein_binding
+Ontology
+    molecular_function
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Binding to a heat shock protein, a protein synthesized or activated in response to heat shock. Source: GOC:vw, GOC:mah 
+#
+Accession
+    GO:0090335
+Name
+    regulation_of_brown_fat_cell_differentiation
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Any process that modulates the rate, frequency, or extent of brown fat cell differentiation. Brown fat cell differentiation is the process in which a relatively unspecialized cell acquires specialized features of a brown adipocyte, an animal connective tissue cell involved in adaptive thermogenesis. Brown adipocytes contain multiple small droplets of triglycerides and a high number of mitochondria. Source: GOC:tb 
+#
+Accession
+    GO:0031649
+Name
+    heat_generation
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Any homeostatic process in which an organism produces heat, thereby raising its internal temperature. Source: GOC:mah 
+#
+Accession
+    GO:0031650
+Name
+    regulation_of_heat_generation
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Any process that modulates the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
+#
+Accession
+    GO:0031652
+Name
+    positive_regulation_of_heat_generation
+Ontology
+    biological_process
+Synonyms
+    up regulation of heat generation, up-regulation of heat generation, upregulation of heat generation, activation of heat generation, stimulation of heat generation
+Alternate IDs
+    None
+Definition
+    Any process that activates or increases the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 

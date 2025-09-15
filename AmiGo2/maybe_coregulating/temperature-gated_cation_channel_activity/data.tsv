@@ -1,0 +1,4 @@
+UniProtKB:Q9NYG8	Potassium channel subfamily K member 4		GO:0097604		UniProt	NCBITaxon:9606	ISS	UniProtKB:G3V8V5	PANTHER:PTHR11003	protein	UniProtKB:Q9NYG8	GO_REF:0000024	20150213
+UniProtKB:Q9NYG8	Potassium channel subfamily K member 4		GO:0097604		Ensembl	NCBITaxon:9606	IEA	UniProtKB:G3V8V5|ensembl:ENSRNOP00000028704	PANTHER:PTHR11003	protein	UniProtKB:Q9NYG8	GO_REF:0000107	20250313
+UniProtKB:O75762	Transient receptor potential cation channel subfamily A member 1		GO:0097604		UniProt	NCBITaxon:9606	IDA		PANTHER:PTHR24123	protein	UniProtKB:O75762	PMID:20547126	20150414
+
