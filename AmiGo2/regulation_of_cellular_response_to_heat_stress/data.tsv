@@ -1,0 +1,19 @@
+UniProtKB:Q99543	DnaJ homolog subfamily C member 2		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR43999	protein	UniProtKB:Q99543	Reactome:R-HSA-3371453	20241117
+UniProtKB:Q92793	CREB-binding protein		GO:1900034		UniProt	NCBITaxon:9606	IEA	ARBA:ARBA00092510	PANTHER:PTHR13808	protein	UniProtKB:Q92793	GO_REF:0000117	20250428
+UniProtKB:Q92793	CREB-binding protein		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR13808	protein	UniProtKB:Q92793	Reactome:R-HSA-3371571	20241117
+UniProtKB:Q13315	Serine-protein kinase ATM		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR11139	protein	UniProtKB:Q13315	Reactome:R-HSA-3371453	20230308
+UniProtKB:Q13535	Serine/threonine-protein kinase ATR		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR11139	protein	UniProtKB:Q13535	Reactome:R-HSA-3371453	20230308
+UniProtKB:O75190	DnaJ homolog subfamily B member 6		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR43948	protein	UniProtKB:O75190	Reactome:R-HSA-3371453	20241117
+UniProtKB:P49841	Glycogen synthase kinase-3 beta		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR24057	protein	UniProtKB:P49841	Reactome:R-HSA-3371453	20241117
+UniProtKB:Q5VY09	Immediate early response gene 5 protein		GO:1900036		UniProt	NCBITaxon:9606	IMP		PANTHER:PTHR15895	protein	UniProtKB:Q5VY09	PMID:26496226	20170106
+UniProtKB:Q9UHD1	Cysteine and histidine-rich domain-containing protein 1		GO:1900034		UniProt	NCBITaxon:9606	ISS	UniProtKB:Q9D1P4	PANTHER:PTHR12621	protein	UniProtKB:Q9UHD1	GO_REF:0000024	20130702
+UniProtKB:Q9UHD1	Cysteine and histidine-rich domain-containing protein 1		GO:1900034		Ensembl	NCBITaxon:9606	IEA	UniProtKB:Q9D1P4|ensembl:ENSMUSP00000001825	PANTHER:PTHR12621	protein	UniProtKB:Q9UHD1	GO_REF:0000107	20250313
+UniProtKB:Q96EB6	NAD-dependent protein deacetylase sirtuin-1		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR11085	protein	UniProtKB:Q96EB6	Reactome:R-HSA-3371453	20241117
+UniProtKB:P10636	Microtubule-associated protein tau		GO:1900034	"{""relationship"": {""relation"": [{""id"": ""BFO:0000066"", ""label"": ""occurs in""}], ""id"": ""CL:0000540"", ""label"": ""neuron""}}"	ParkinsonsUK-UCL	NCBITaxon:9606	IMP		PANTHER:PTHR11501	protein	UniProtKB:P10636	PMID:21131359	20161118
+UniProtKB:Q09472	Histone acetyltransferase p300		GO:1900034		UniProt	NCBITaxon:9606	IEA	ARBA:ARBA00092510	PANTHER:PTHR13808	protein	UniProtKB:Q09472	GO_REF:0000117	20250428
+UniProtKB:Q09472	Histone acetyltransferase p300		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR13808	protein	UniProtKB:Q09472	Reactome:R-HSA-3371571	20241117
+UniProtKB:Q00613	Heat shock factor protein 1		GO:1900034		UniProt	NCBITaxon:9606	IDA		PANTHER:PTHR10015	protein	UniProtKB:Q00613	PMID:11583998	20161130
+UniProtKB:P25685	DnaJ homolog subfamily B member 1		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR24078	protein	UniProtKB:P25685	Reactome:R-HSA-3371453	20241117
+UniProtKB:P49137	MAP kinase-activated protein kinase 2		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR24349	protein	UniProtKB:P49137	Reactome:R-HSA-3371453	20241117
+UniProtKB:P42345	Serine/threonine-protein kinase mTOR		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR11139	protein	UniProtKB:P42345	Reactome:R-HSA-3371571	20241117
+UniProtKB:Q99615	DnaJ homolog subfamily C member 7		GO:1900034		Reactome	NCBITaxon:9606	TAS		PANTHER:PTHR45188	protein	UniProtKB:Q99615	Reactome:R-HSA-3371453	20241117
