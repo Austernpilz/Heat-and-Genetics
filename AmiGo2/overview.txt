@@ -1,6 +1,58 @@
 ##probably_interesting
 #
 Accession
+    GO:1990845
+Name
+    adaptive_thermogenesis
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The regulated production of heat in response to short term environmental changes, such as stress, diet or reduced temperature. Source: PMID:17260010, PMID:20363363       
+#
+Accession
+    GO:0060086
+Name
+    circadian_temperature_homeostasis
+Ontology
+    biological_process
+Synonyms
+    circadian thermoregulation, circadian regulation of body temperature
+Alternate IDs
+    None
+Definition
+    Any homeostatic process in which an organism modulates its internal body temperature at different values with a regularity of approximately 24 hours. Source: GOC:dph, GOC:tb 
+#
+Accession
+    GO:0031652
+Name
+    positive_regulation_of_heat_generation
+Ontology
+    biological_process
+Synonyms
+    up regulation of heat generation, up-regulation of heat generation, upregulation of heat generation, activation of heat generation, stimulation of heat generation
+Alternate IDs
+    None
+Definition
+    Any process that activates or increases the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
+#
+Accession
+    GO:0031650
+Name
+    regulation_of_heat_generation
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Any process that modulates the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
+#
+Accession
     GO:0034605
 Name
     cellular_response_to_heat
@@ -372,20 +424,6 @@ Definition
     Binding to a Hsp70 protein, heat shock proteins around 70kDa in size. Source: ISBN:0198506732 
 #
 Accession
-    GO:1990845
-Name
-    adaptive_thermogenesis
-Ontology
-    biological_process
-Synonyms
-    None
-Alternate IDs
-    None
-Definition
-    The regulated production of heat in response to short term environmental changes, such as stress, diet or reduced temperature. Source: PMID:17260010, PMID:20363363       
-#
-
-Accession
     GO:0140454
 Name
     protein_aggregate_center_assembly
@@ -449,19 +487,6 @@ Alternate IDs
     None
 Definition
     Binding to Hsp90 proteins, any of a group of heat shock proteins around 90kDa in size. Source: GOC:ai 
-#
-Accession
-    GO:0060086
-Name
-    circadian_temperature_homeostasis
-Ontology
-    biological_process
-Synonyms
-    circadian thermoregulation, circadian regulation of body temperature
-Alternate IDs
-    None
-Definition
-    Any homeostatic process in which an organism modulates its internal body temperature at different values with a regularity of approximately 24 hours. Source: GOC:dph, GOC:tb 
 #
 Accession
     GO:0042026
@@ -579,29 +604,3 @@ Alternate IDs
     None
 Definition
     Any homeostatic process in which an organism produces heat, thereby raising its internal temperature. Source: GOC:mah 
-#
-Accession
-    GO:0031650
-Name
-    regulation_of_heat_generation
-Ontology
-    biological_process
-Synonyms
-    None
-Alternate IDs
-    None
-Definition
-    Any process that modulates the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
-#
-Accession
-    GO:0031652
-Name
-    positive_regulation_of_heat_generation
-Ontology
-    biological_process
-Synonyms
-    up regulation of heat generation, up-regulation of heat generation, upregulation of heat generation, activation of heat generation, stimulation of heat generation
-Alternate IDs
-    None
-Definition
-    Any process that activates or increases the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
