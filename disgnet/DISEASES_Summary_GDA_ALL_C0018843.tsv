@@ -1,0 +1,31 @@
+ei	numCTs	gene_symbol	numVariantsAssociatedToGene	pli	geneDescription	year_initial	year_final	num_pmids_evid	numDiseasesAssociatedToGene	num_pmid_assoc	score	number_chem_evidence	dsi	dpi	num_var_dis
+1.0	1	TNF	36	0.85687	tumor necrosis factor	1997	2013	3	4034	7	0.75	11	0.23	1.0	0
+0.8333333333333334	1	IL6	41	0.19935	interleukin 6	2012	2022	2	3998	6	0.75	6	0.23	1.0	0
+0.8	1	IL1B	27	0.48761	interleukin 1 beta	2000	2013	2	2307	5	0.75	6	0.28	0.96	0
+1.0	0	IL10	54	0.48334	interleukin 10	2007	2013	0	2779	4	0.65	0	0.26	1.0	0
+1.0	0	IL1A	36	0.060574	interleukin 1 alpha	2009	2013	0	921	2	0.45	0	0.36	0.91	0
+1.0	0	NFKB2	170	1.0	nuclear factor kappa B subunit 2	2013	2013	0	445	1	0.4	0	0.44	0.87	0
+1.0	0	IL6R	99	6.7914E-8	interleukin 6 receptor	2013	2013	0	972	1	0.4	0	0.36	0.96	0
+1.0	0	REL	47	0.99917	REL proto-oncogene, NF-kB subunit	2013	2013	0	240	1	0.4	0	0.5	0.91	0
+1.0	0	FOS	5	0.8667	Fos proto-oncogene, AP-1 transcription factor subunit	2013	2013	0	897	1	0.4	0	0.37	0.91	0
+1.0	0	IL11RA	32	9.2375E-15	interleukin 11 receptor subunit alpha	2013	2013	0	181	1	0.4	0	0.54	0.87	0
+1.0	0	JUN	5	0.46638	Jun proto-oncogene, AP-1 transcription factor subunit	2013	2013	0	717	1	0.4	0	0.39	0.96	0
+1.0	0	NFKB1	212	1.0	nuclear factor kappa B subunit 1	2013	2013	0	1163	1	0.4	0	0.34	0.96	0
+1.0	0	RELA	38	0.99992	RELA proto-oncogene, NF-kB subunit	2013	2013	0	732	1	0.4	0	0.39	0.91	0
+1.0	0	ALPL	450	1.666E-11	alkaline phosphatase, biomineralization associated	2006	2006	0	1644	1	0.4	0	0.32	0.96	0
+1.0	0	RELB	94	0.9693	RELB proto-oncogene, NF-kB subunit	2013	2013	0	198	1	0.4	0	0.51	0.83	0
+1.0	0	THBD	94	0.049647	thrombomodulin	2010	2022	0	675	4	0.3	0	0.4	0.91	0
+1.0	0	HSPD1	75	1.0	heat shock protein family D (Hsp60) member 1	2006	2013	0	594	2	0.25	0	0.41	0.96	0
+1.0	0	HMGB1	18	0.99972	high mobility group box 1	2010	2023	0	1041	2	0.25	0	0.35	0.96	0
+1.0	0	CASQ1	19	1.0188E-5	calsequestrin 1	2014	2022	1	102	2	0.25	1	0.6	0.7	0
+1.0	0	HSPA1A	23	0.27696	heat shock protein family A (Hsp70) member 1A	2006	2019	1	900	2	0.25	1	0.37	0.91	0
+1.0	0	HSPA1L	45	2.4815E-7	heat shock protein family A (Hsp70) member 1 like	2006	2012	0	625	2	0.25	0	0.4	0.91	0
+1.0	0	VWF	742	4.5035E-27	von Willebrand factor	2014	2022	0	1112	2	0.25	0	0.35	0.96	0
+1.0	0	CAT	29	1.6098E-8	catalase	2006	2022	1	1038	2	0.25	2	0.36	1.0	0
+1.0	0	CD34	9	1.0605E-10	CD34 molecule	2007	2008	0	1370	2	0.25	0	0.32	0.91	0
+1.0	0	MB	4		myoglobin	2010	2022	1	533	4	0.2	1	0.42	0.91	0
+1.0	0	HSPA4	97	1.0	heat shock protein family A (Hsp70) member 4	2012	2019	0	682	2	0.2	0	0.39	0.91	0
+1.0	0	FABP1	4	5.1621E-4	fatty acid binding protein 1	2023	2025	0	247	2	0.2	0	0.49	0.78	0
+1.0	0	RYR1	1732	1.7594E-56	ryanodine receptor 1	2004	2021	1	683	2	0.2	1	0.43	0.91	0
+1.0	1	GPT	9	2.171E-26	glutamic--pyruvic transaminase	1999	1999	0	1595	1	0.2	0	0.32	0.96	0
+1.0	0	NOS1	45	1.0	nitric oxide synthase 1	2007	2007	1	457	1	0.2	3	0.44	0.91	0
