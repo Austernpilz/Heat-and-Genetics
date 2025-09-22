@@ -188,6 +188,34 @@ def down_load_all(BASE_URL_DB, REQUEST_ARG, filter_fq, list_of_GO_IDs, columns)
 
     download_data_to(this_folder, list_of_full_url, list_of_GO_IDs)
 
+def get_overview_path(path):
+    path = os.getcwd() if path is None else path
+    dir_to_look_next = []
+    for entry in os.scandir(path):
+        if entry.is_file():
+            if entry.name is "overview.txt":
+                return os.path.join(path, filename)
+        if entry.is_dir():
+            dir_to_look_next.append(os.path.join(path, entry.name))
+
+    for dirpath in dir_to_look_next:
+        found_or_not = get_overview_path(dirpath)
+        if found_or_not is not None:
+            return found_or_not
+
+    return None
+
+def get_list_of_GO_ids_from_overview(path=None):
+    over_view_txt = get_overview_path(path)
+    if over_view_txt is None:
+        print("no path to go_ids found")
+        return
+    else:
+        list_of_GO_ids = []
+        
+
+    
+    
 
 filter_fq = { #these : are pseudo headers
     "genes" : "document_category:%22annotation%22", 
@@ -195,7 +223,6 @@ filter_fq = { #these : are pseudo headers
     "GO_NR" : lambda GO : "isa_partof_closure:%22GO%3A{GO}%22"
 }
 list_of_GO_IDs = ["0016048"]
-
-# standard + extension_for_this_purpose
+columns = standard + extension_for_this_purpose
 
 # https://golr-aux.geneontology.io/solr/select?defType=edismax&qt=standard&indent=on&wt=csv&rows=100000&start=0&fl=bioentity%2Cbioentity_name%2Cqualifier%2Cannotation_class%2Cannotation_extension_json%2Cassigned_by%2Ctaxon%2Cevidence_type%2Cevidence_with%2Cpanther_family%2Ctype%2Cbioentity_isoform%2Creference%2Cdate%2Cbioentity_label%2Ctaxon_label%2Ctaxon_subset_closure_label%2Cisa_partof_closure_label%2Cregulates_closure_label%2Cannotation_class_label%2Cannotation_extension_class_closure_label%2Chas_participant_closure_label%2Cpanther_family_label&facet=true&facet.mincount=1&facet.sort=count&json.nl=arrarr&facet.limit=25&hl=true&hl.simple.pre=%3Cem+%22class%22+%3D+%22hilite%22+%3E+&hl.snippets=1000&csv.encapsulator=&csv.separator=+&csv.header=true&csv.mv.separator=%2C&fq=document_category%3A%22annotation%22&fq=taxon_subset_closure_label%3A%22Homo+sapiens%22&fq=isa_partof_closure%3A%22GO%3A%7BGO%7D%22&facet.field=aspect&facet.field=type&facet.field=evidence_subset_closure_label&facet.field=regulates_closure_label&facet.field=isa_partof_closure_label&facet.field=annotation_class_label&facet.field=qualifier&facet.field=annotation_extension_class_closure_label&facet.field=assigned_by&facet.field=panther_family_label&q=%2A%3A%2A
