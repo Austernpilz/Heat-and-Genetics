@@ -341,6 +341,19 @@ Definition
     The series of events in which a temperature stimulus is received and converted into a molecular signal as part of sensory perception. Source: GOC:ai, GOC:dos 
 #
 Accession
+    GO:0007589
+Name
+    body_fluid_secretion
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The controlled release of a fluid by a cell or tissue in an animal. Source: GOC:dph, GOC:tb, GOC:mah, GOC:ai 
+#
+Accession
     GO:1900034
 Name
     regulation_of_cellular_response_to_heat
@@ -352,6 +365,175 @@ Alternate IDs
     None
 Definition
     Any process that modulates the frequency, rate or extent of cellular response to heat. Source: GOC:yaf, GOC:TermGenie
+#
+Accession
+    GO:0001977
+Name
+    renal_system_process_involved_in_regulation_of_blood_volume
+Ontology
+    biological_process
+Synonyms
+    renal blood volume control of blood pressure, renal regulation of blood volume
+Alternate IDs
+    None
+Definition
+    A slow mechanism of blood pressure regulation that responds to changes in pressure resulting from fluid and salt intake by modulating the quantity of blood in the circulatory system. Source: GOC:dph, GOC:tb, ISBN:0721643949 
+#
+Accession
+    GO:0042045
+Name
+    epithelial_fluid_transport
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The directed movement of fluid across epithelia. Source: PMID:11390830, GOC:jl 
+#
+Accession
+    GO:0042044
+Name
+    fluid_transport
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    The directed movement of substances that are in liquid form in normal living conditions into, out of or within a cell, or between cells, by means of some agent such as a transporter or pore. Source: GOC:ai 
+#
+Accession
+    GO:0090660
+Name
+    cerebrospinal_fluid_circulation
+Ontology
+    biological_process
+Synonyms
+    CSF circulation, CSF flow, cerebrospinal fluid flow
+Alternate IDs
+    None
+Definition
+    The neurological system process driven by motile cilia on ependymal cells of the brain by which cerebrospinal fluid circulates from the sites of secretion to the sites of absorption. In ventricular cavities, the flow is unidirectional and rostrocaudal, in subarachnoid spaces, the flow is multi-directional. Source: GOC:mgi_curators, PMID:22100360, PMID:24229449 
+#
+Accession
+    GO:0050878
+Name
+    regulation_of_body_fluid_levels
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Any process that modulates the levels of body fluids. Source: GOC:dph, GOC:tb, GOC:ai 
+#
+Accession
+    GO:0033326
+Name
+    cerebrospinal_fluid_secretion
+Ontology
+    biological_process
+Synonyms
+    CSF secretion
+Alternate IDs
+    None
+Definition
+    The regulated release of cerebrospinal fluid (CSF) from the choroid plexus of the lateral, third and fourth ventricles. The cerebrospinal fluid is a clear liquid that located within the ventricles, spinal canal, and subarachnoid spaces. Source: GOC:ln, PMID:10716451 
+#
+Accession
+    GO:0002543
+Name
+    activation_of_blood_coagulation_via_clotting_cascade
+Ontology
+    biological_process
+Synonyms
+    activation of clotting cascade
+Alternate IDs
+    None
+Definition
+    Any process that initiates the clotting cascade of blood coagulation, a cascade of plasma enzymes that is triggered following damage to blood vessels, leading to formation of a clot. Source: ISBN:0781735149, GOC:jal 
+#
+Accession
+    GO:0007596
+Name
+    blood_coagulation
+Ontology
+    biological_process
+Synonyms
+    blood clotting
+Alternate IDs
+    None
+Definition
+    The sequential process in which the multiple coagulation factors of the blood interact, ultimately resulting in the formation of an insoluble fibrin clot; it may be divided into three stages: stage 1, the formation of intrinsic and extrinsic prothrombin converting principle; stage 2, the formation of thrombin; stage 3, the formation of stable fibrin polymers. Source: PMID:30700128 
+#
+Accession
+    GO:0050817
+Name
+    coagulation
+Ontology
+    biological_process
+Synonyms
+    clotting
+Alternate IDs
+    None
+Definition
+    The process in which a fluid solution, or part of it, changes into a solid or semisolid mass. Source: ISBN:0198506732 
+#
+Accession
+    GO:0050819
+Name
+    negative_regulation_of_coagulation
+Ontology
+    biological_process
+Synonyms
+    down regulation of coagulation, down-regulation of coagulation, downregulation of coagulation, negative regulation of clotting, anticoagulant activity, inhibition of coagulation
+Alternate IDs
+    None
+Definition
+    Any process that stops, prevents, or reduces the frequency, rate or extent of coagulation. Source: GOC:ai 
+#
+Accession
+    GO:0050818
+Name
+    regulation_of_coagulation
+Ontology
+    biological_process
+Synonyms
+    regulation of clotting
+Alternate IDs
+    None
+Definition
+    Any process that modulates the frequency, rate or extent of coagulation, the process in which a fluid solution, or part of it, changes into a solid or semisolid mass. Source: GOC:ai 
+#
+Accession
+    GO:0050820
+Name
+    positive_regulation_of_coagulation
+Ontology
+    biological_process
+Synonyms
+    positive regulation of clotting, up regulation of coagulation, up-regulation of coagulation, upregulation of coagulation, activation of coagulation, stimulation of coagulation
+Alternate IDs
+    None
+Definition
+    Any process that activates or increases the frequency, rate or extent of coagulation. Source: GOC:ai 
+#
+Accession
+    GO:0034405
+Name
+    response_to_fluid_shear_stress
+Ontology
+    biological_process
+Synonyms
+    None
+Alternate IDs
+    None
+Definition
+    Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a fluid shear stress stimulus. Fluid shear stress is the force acting on an object in a system where the fluid is moving across a solid surface. Source: GOC:sl 
 #
 Accession
     GO:0120168
@@ -378,10 +560,6 @@ Alternate IDs
     None
 Definition
     The series of events required for an organism to receive a temperature stimulus, convert it to a molecular signal, and recognize and characterize the signal. Thermoception in larger animals is mainly done in the skin; mammals have at least two types of sensor, for detecting heat (temperatures above body temperature) and cold (temperatures below body temperature). Source: Wikipedia:Thermoception, GOC:ai 
-
-
-
-
 ####################################################
 ################ maybe coregulating ################
 ####################################################
@@ -411,6 +589,7 @@ Alternate IDs
 Definition
     Enables the transmembrane transfer of an ion by a channel that opens in response to a temperature stimulus (e.g. exposure to a temperature range different than the optimal temperature for that organism). Source: GOC:pr, GOC:ha, PMID:23027824 
 #
+Accession
     GO:0030544
 Name
     Hsp70_protein_binding

@@ -1,0 +1,26 @@
+SEARCH INFORMATION
+==================
+
+Download Date:       7.10.2025, 15:24:03
+
+SEARCH DETAILS
+--------------
+Search Terms:        
+      name: Cerebral Edema
+      symbol: N/A
+      ID: C0006114
+Analysis Type:       DISEASES
+Data Type:           Summary
+Source:              CURATED
+Tab:                 GDA
+Total Results:       1
+
+FILTERS APPLIED
+---------------
+
+
+DISPLAY SETTINGS
+----------------
+Visible Columns:     diseaseName, numGenesAssociatedToDisease, numVariantsAssociatedToDisease, geneSymbol, diseaseUMLSCUI, geneNcbiID, geneDescription, numDiseasesAssociatedToGene, numVariantsAssociatedToGene, score, numPMIDsupportingAssociation, numberChemsIncludedInEvidence, numberPmidsWithChemsIncludedInEvidence, numDBSNPsupportingAssociation, yearInitial, yearFinal, EI, EL, geneDSI, geneDPI, genepLI, geneEnsemblIDs, geneProteinStrIDs, geneProteinClassNames, geneNcbiType, pathwayName, pathwayID, numCTs, diseaseType, diseaseClassName_MSH, diseaseClassName_UMLS, diseaseClassName_DO, diseaseClassName_HPO, disease_prevalence_class, disease_prevalence_type, disease_prevalence_geo_area, disease_inheritance
+
+==================

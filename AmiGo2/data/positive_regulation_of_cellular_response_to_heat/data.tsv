@@ -1,0 +1,2 @@
+bioentity	bioentity_name	qualifier	annotation_class	annotation_extension_json	assigned_by	taxon	evidence_type	evidence_with	panther_family	type	bioentity_isoform	reference	date	bioentity_label	taxon_label	annotation_class_label	annotation_extension_class_label	term
+UniProtKB:Q5VY09	Immediate early response gene 5 protein		GO:1900036		UniProt	NCBITaxon:9606	IMP		PANTHER:PTHR15895	protein	UniProtKB:Q5VY09	PMID:26496226	20170106	IER5	Homo sapiens	positive regulation of cellular response to heat		positive_regulation_of_cellular_response_to_heat
