@@ -1,0 +1,84 @@
+# ++ <- to look at seperatly
+# -- to exclude from the data set
+# <0..A..Z> start of grouping 
+
+
+<HeatSchockProteins and their Tasks>
+heat_shock_protein_binding
+Hsp27_protein_binding
+Hsp90_protein_binding
+Hsp70_protein_binding
+-- protein_refolding
+-- protein_aggregate_center_assembly
+++ cytoplasm_protein_quality_control
+heat_shock-mediated_polytene_chromosome_puffing
+
+
+<Perception of Temperature>
+sensory_perception_of_temperature_stimulus
+detection_of_temperature_stimulus_involved_in_thermoception
+detection_of_temperature_stimulus
+detection_of_temperature_stimulus_involved_in_sensory_perception
+detection_of_hot_stimulus_involved_in_thermoception
+thermoception
+++ detection_of_cold_stimulus_involved_in_thermoception
+
+
+<Thermogenesis>
+adaptive_thermogenesis
+positive_regulation_of_heat_generation
+regulation_of_heat_generation
+negative_regulation_of_heat_generation
+++ brown_fat_cell_differentiation
+fever_generation
+heat_generation
+++ positive_regulation_of_fat_cell_differentiation
+++ regulation_of_brown_fat_cell_differentiation
+++ regulation_of_cold-induced_thermogenesis
+++ positive_regulation_of_cold-induced_thermogenesis
+++ negative_regulation_of_cold-induced_thermogenesis
+
+
+<Temperatur Homeostasis>
+circadian_temperature_homeostasis
+cellular_heat_acclimation
+heat_acclimation
+temperature_homeostasis
+
+<Reactions to Temperatur - cellular>
+cellular_response_to_heat
+positive_regulation_of_cellular_response_to_heat
+cellular_response_to_temperature_stimulus
+regulation_of_cellular_response_to_heat
+temperature-gated_cation_channel_activity
+temperature-gated ion channel activity
+mRNA_export_from_nucleus_in_response_to_heat_stress
+
+
+<Reactions to Temperatur - general>
+response_to_temperature_stimulus
+thermotaxis
+thermosensory_behavior
+response_to_heat
+
+
+<Sweat and Body Fluids w/o Blood>
+sweat_secretion
+sweat_gland_development
+body_fluid_secretion
+epithelial_fluid_transport
+-- fluid_transport
+-- cerebrospinal_fluid_circulation
+regulation_of_body_fluid_levels
+-- cerebrospinal_fluid_secretion
+-- response_to_fluid_shear_stress
+
+
+<Blood>
+++ renal_system_process_involved_in_regulation_of_blood_volume
+-- activation_of_blood_coagulation_via_clotting_cascade
+-- blood_coagulation
+-- coagulation
+-- negative_regulation_of_coagulation
+-- regulation_of_coagulation
+-- positive_regulation_of_coagulation

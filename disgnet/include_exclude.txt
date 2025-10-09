@@ -1,0 +1,72 @@
+# ++ <- to look at seperatly
+# -- to exclude from the data set
+# <0..A..Z> start of grouping 
+
+
+<HeatSchockProteins and their Tasks>
+DnaJ heat shock protein family (Hsp40) member B2-related Charcot-Marie-Tooth disease type 2 (disorder)
+
+
+<Temperatur Sensory and Dysregulation>
+Abnormality of temperature regulation
+Impaired temperature sensation
+++ ESTROGEN RECEPTOR MUTANT,TEMPERATURE-SENSITIVE
+NEURODEVELOPMENTAL DISORDER WITH HYPOTONIA,NEONATAL RESPIRATORY INSUFFICIENCY,AND THERMODYSREGULATION
+
+
+<Hyperthermia>
+Exercise-induced malignant hyperthermia
+Hyperthermia
+MALIGNANT HYPERTHERMIA,SUSCEPTIBILITY TO,5
+Genetic susceptibility to malignant hyperthermia (finding)
+Malignant hyperthermia susceptibility type 1
+++ Fever
+++ Hypothermia,natural
+
+
+<Pulmonary>
+++ PULMONARY DISEASE,CHRONIC OBSTRUCTIVE,SEVERE EARLY-ONSET
+++ Chronic Obstructive Airway Disease
+++ Pulmonary Emphysema
+
+
+<Myocardial>
+++ Myocardial Infarction
+Acute myocardial infarction
+++ Myocardial Stunning
+++ Stable angina
+++ Angina Pectoris
+++ Angina,Unstable
+
+
+<Cerebral>
+++ Cerebral Edema
+++ Cerebral embolism
+++ Cerebral Infarction
+++ Cerebral Thrombosis
+++ Ischemic stroke
+
+
+<Blood>
+-- DEHYDRATED HEREDITARY STOMATOCYTOSIS 1 WITH OR WITHOUT PSEUDOHYPERKALEMIA AND/OR PERINATAL EDEMA
+-- DEHYDRATED HEREDITARY STOMATOCYTOSIS 2
+-- Xerocytosis
+++ Increased mean platelet volume
+-- Hyperphenylalaninemia due to DNAJC12 deficiency
+++ Thrombotic Stroke
+
+
+<Classic Heat Disorders>
+Heat Stress Disorders
+Heat Stroke
+Exertional heat stroke (disorder)
+Dehydration
+
+
+<Sweat and Body Fluids w/o Blood>
+-- Water Intoxication
+Sweat Gland Neoplasms
+
+
+
+

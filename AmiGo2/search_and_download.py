@@ -105,12 +105,12 @@ extension_for_this_purpose = [
     "bioentity_label",
     "taxon_label",
     #"taxon_subset_closure_label",
-    #"isa_partof_closure_label" ,
-    #"regulates_closure_label" , 
+    "isa_partof_closure_label" ,
+    "regulates_closure_label" , 
     "annotation_class_label" ,
     "annotation_extension_class_label"
-    #"annotation_extension_class_closure_label" ,
-    #"has_participant_closure_label" , #for future reference
+    "annotation_extension_class_closure_label" ,
+    "has_participant_closure_label" , #for future reference
     #"panther_family_label"
     ]
 

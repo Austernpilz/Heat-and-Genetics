@@ -105,19 +105,6 @@ Definition
     Any process that stops, prevents, or reduces the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
 #
 Accession
-    GO:0031651
-Name
-    negative regulation of heat generation
-Ontology
-    biological_process
-Synonyms
-    down regulation of heat generation, down-regulation of heat generation, downregulation of heat generation, inhibition of heat generation
-Alternate IDs
-    None
-Definition
-    Any process that stops, prevents, or reduces the rate or extent of heat generation. Source: GOC:dph, GOC:tb, GOC:mah 
-#
-Accession
     GO:1900036
 Name
     positive_regulation_of_cellular_response_to_heat
