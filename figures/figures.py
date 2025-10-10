@@ -24,6 +24,7 @@ def save_plotly(fig, name):
     html_path = unique_fname(name, "html")
     pio.write_html(fig, file=html_path, include_plotlyjs='cdn', auto_open=True)
     print("Saved:", html_path)
+    
 
 
 # # plt.figure() ... plotting code ...
@@ -31,6 +32,7 @@ def save_matplotlib(plt, name):
     png_path = unique_fname(name, "png")
     plt.savefig(png_path, dpi=150, bbox_inches="tight")
     print("Saved:", png_path)
+    
 
 
 def show_simple_barplot(df, x_name, cut_off, name=False, save=True):
@@ -55,7 +57,7 @@ def show_better_barplot(df, x_name, cut_off, name=False, save=True):
     fig = px.bar(data, x=x_name, y='count', orientation='h',
                 title=f'genes with count > {cut_off}', height=600)
     fig.update_layout(yaxis={'categoryorder':'total ascending'})
-    fig.show()
+    #fig.show()
     if save:
         name = name if name else f"barplot_cutoff_{cut_off}"
         save_plotly(fig, name)
@@ -113,7 +115,7 @@ def plot_bipartite_network(df, gene_col, group_col, gene_cutoff=10, max_genes=20
         G.add_edge(('g', row[gene_col]), ('t', row[group_col]))
 
     
-    pos = nx.spring_layout(G, k=0.5, seed=42)
+    pos = nx.spring_layout(G, k=1, seed=42)
     edge_x, edge_y = [], []
     for u,v in G.edges():
         x0,y0 = pos[u]; x1,y1 = pos[v]
@@ -135,45 +137,45 @@ def plot_bipartite_network(df, gene_col, group_col, gene_cutoff=10, max_genes=20
 
     fig = go.Figure(data=[edge_trace, node_trace])
     fig.update_layout(showlegend=False, title='Gene-Group bipartite network')
-    fig.show()
+    #fig.show()
     if save:
         name = name if name else f"network_bipartit_graph_{gene_cutoff}_{max_genes}_{max_groups}"
         save_plotly(fig, name)
 
 
 
-def sankey_genes_groups(df, gene_cutoff=50, top_genes=100, top_general=50, top_specific=50, name=False, save=True):
+def sankey_genes_groups(df, gen_column, terme_general, terme_specific, gene_cutoff=10, top_genes=100, top_general=50, top_specific=50, name=False, save=True):
     print("samley groups")
 
     #here i already want a renamed dataset
-    df_sub = df[['genes', 'terme_general', 'terme_specific']]
-    genes_keep = dut.cut_off(df_sub, gene_cutoff, 'genes', True).index.tolist()[:top_genes]
-    df_sub = df_sub[df_sub['genes'].isin(genes_keep)]
+    df_sub = df[[gen_column, terme_general, terme_specific]]
+    genes_keep = dut.cut_off(df_sub, gene_cutoff, gen_column, True).index.tolist()[:top_genes]
+    df_sub = df_sub[df_sub[gen_column].isin(genes_keep)]
 
-    general_top = df_sub['terme_general'].value_counts().index[:top_general].tolist()
-    specific_top = df_sub['terme_specific'].value_counts().index[:top_specific].tolist()
-    df_sub = df_sub[df_sub['terme_general'].isin(general_top) & df_sub['terme_specific'].isin(specific_top)]
+    general_top = df_sub[terme_general].value_counts().index[:top_general].tolist()
+    specific_top = df_sub[terme_specific].value_counts().index[:top_specific].tolist()
+    df_sub = df_sub[df_sub[terme_general].isin(general_top) & df_sub[terme_specific].isin(specific_top)]
 
     # build nodes
     nodes = genes_keep + general_top + specific_top
     node_idx = {n:i for i,n in enumerate(nodes)}
 
     # links genes -> general
-    df_g = df_sub.drop_duplicates(['genes','terme_general']).groupby(['genes','terme_general']).size().reset_index(name='count')
+    df_g = df_sub.drop_duplicates([gen_column,terme_general]).groupby([gen_column,terme_general]).size().reset_index(name='count')
     # links general -> specific
-    df_s = df_sub.drop_duplicates(['terme_general','terme_specific']).groupby(['terme_general','terme_specific']).size().reset_index(name='count')
+    df_s = df_sub.drop_duplicates([terme_general,terme_specific]).groupby([terme_general,terme_specific]).size().reset_index(name='count')
 
     source, target, value = [], [], []
     for _,r in df_g.iterrows():
-        source.append(node_idx[r['genes']]); target.append(node_idx[r['terme_general']]); value.append(r['count'])
+        source.append(node_idx[r[gen_column]]); target.append(node_idx[r[terme_general]]); value.append(r['count'])
     for _,r in df_s.iterrows():
-        source.append(node_idx[r['terme_general']]); target.append(node_idx[r['terme_specific']]); value.append(r['count'])
+        source.append(node_idx[r[terme_general]]); target.append(node_idx[r[terme_specific]]); value.append(r['count'])
 
     fig = go.Figure(go.Sankey(node=dict(label=nodes), link=dict(source=source, target=target, value=value)))
     fig.update_layout(title_text="Sankey: genes → general → specific", font_size=10)
-    fig.show()
+    #fig.show()
     if save:
-        name = name if name else f"network_bipartit_graph_{gene_cutoff}_{max_genes}_{max_groups}"
+        name = name if name else f"sankey_{gene_cutoff}_{top_genes}_{top_general}_{top_specific}"
         save_plotly(fig, name)
 # usage
 
@@ -195,9 +197,9 @@ def sankey_genes_groups(df, gene_cutoff=50, top_genes=100, top_general=50, top_s
 # import scipy.cluster.hierarchy as sch
 # def gene_overlap_clustering(df, group_col='terme_specific', gene_cutoff=20, top_n_genes=60):
 #     print("cluster")
-#     counts = df['genes'].value_counts()
+#     counts = df[gen_column].value_counts()
 #     genes_keep = counts[counts >= gene_cutoff].index[:top_n_genes].tolist()
-#     incidence = pd.crosstab(df[df['genes'].isin(genes_keep)]['genes'], df[group_col]).clip(upper=1)
+#     incidence = pd.crosstab(df[df[gen_column].isin(genes_keep)][gen_column], df[group_col]).clip(upper=1)
 #     # compute Jaccard distance matrix
 #     M = 1 - (incidence.dot(incidence.T) / (incidence.sum(axis=1).values[:,None] + incidence.sum(axis=1).values[None,:] - incidence.dot(incidence.T))).fillna(0)
 #     # hierarchical clustering dendrogram

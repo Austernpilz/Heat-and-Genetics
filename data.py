@@ -1,43 +1,53 @@
 from AmiGo2 import search_and_download as sad
 from disgnet import get_tables as dis
+from figures import figures as fig
+import data_utility as dut
 
 import os
 import pandas as pd
 
 
 this_folder = os.getcwd()
-path_to_overview = os.path.join(this_folder, "AmiGo2")
-download_path_amigo = os.path.join(path_to_overview, "data")
+path_to_amigo = os.path.join(this_folder, "AmiGo2")
+download_path_amigo = os.path.join(path_to_amigo, "data")
+amigo_in_out = os.path.join(path_to_amigo, "include_exclude.txt")
 
-df_amigo, df_overview = sad.get_data(download_path_amigo, path_to_overview, True)
+path_to_disgnet = os.path.join(this_folder, "disgnet")
+disgnet_in_out = os.path.join(path_to_disgnet, "include_exclude.txt")
+
+df_amigo, df_overview = sad.get_data(download_path_amigo, path_to_amigo, True)
+df_disgnet = dis.build_tables(path_to_disgnet)
+
+df_amigo_reduced, df_amigo_plusplus = dut.apply_include_exclude_txt(amigo_in_out, df_amigo, "term")
+df_disgnet_reduced, df_disgnet_plusplus = dut.apply_include_exclude_txt(disgnet_in_out, df_disgnet, "disease_name")
+
+# i want to rund every data_set in 3 figures heatmap, sankey_plot, network (maybe 3 times)
+
+for dataset_to_plot in [df_disgnet_reduced, df_disgnet_plusplus]:
+    term_general = "group_term"
+    term_specific = "disease_name"
+    gen_term = "gene_symbol"
+
+    fig.sankey_genes_groups(dataset_to_plot, gen_term, term_specific, term_general, gene_cutoff=0)
+
+    #fig.plot_incidence_heatmap(dataset_to_plot, gen_term, term_general)
+    #fig.plot_incidence_heatmap(dataset_to_plot, gen_term, term_specific)
+
+    fig.plot_bipartite_network(dataset_to_plot, gen_term, term_general, gene_cutoff=0)
+    fig.plot_bipartite_network(dataset_to_plot, gen_term, term_general, gene_cutoff=0)
+
+
+# df_disgnet_reduced, df_disgnet_plusplus
+    
+    
+#     term_general = "group_term"
+#     term_specific = "disease_name"
 # print(df_overview.head(10))
 # print(df_overview["Name"].unique().tolist())
 #print(df_amigo.head(10))
 
-path_to_disgnet = os.path.join(this_folder, "disgnet")
-df_disgnet = dis.build_tables(path_to_disgnet)
 # print(df_disgnet.head(10))
-print(df_disgnet["disease_name"].unique().tolist())
-
-exlude_amigo = [
-
-]
-
-plusplus_amigo = [
-    "cytoplasm_protein_quality_control",
-    "brown_fat_cell_differentiation",
-    "renal_system_process_involved_in_regulation_of_blood_volume",
-
-    ]
-
-exclude_disgnet = [
-
-]
-
-
-plusplus_disgnet = [
-
-]
+# print(df_disgnet["disease_name"].unique().tolist())
 
 
 
@@ -45,7 +55,7 @@ plusplus_disgnet = [
 
 
 
-df_amigo
+# df_amigo
 # print(len(df_general)) #4890 datapoints
 # print(get_col_as_unique_and_count(df_general, "genes"))
 # print(get_col_as_unique_and_count(df_general, "terme_general"))

@@ -188,9 +188,7 @@ def get_overview(path_to_overview):
     
     if not path_to_overview:
         raise FileNotFoundError("overview.txt not found")
-    
-    with open(path_to_overview, 'r') as f:
-        overviewtxt = {
+    overviewtxt = {
             "Accession" : [],
             "Name" : [],
             "Ontology" : [],
@@ -199,8 +197,9 @@ def get_overview(path_to_overview):
             "Definition" : [],
             "not_found" : []
         }
+    
+    with open(path_to_overview, 'r') as f:
         last_line = ""
-
         for line in f:
             #print(line)
             if line and line.startswith('#'):

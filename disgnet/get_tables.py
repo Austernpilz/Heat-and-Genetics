@@ -15,7 +15,7 @@ def get_paths_to_disgnet_data(path_disgnet = None):
         current = dir_to_visit.pop(0)
         try:
             for entry in os.scandir(current):
-                if entry.name in {"bin", "include", "lib", "overview.txt", "data.tsv"}:
+                if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt"]:
                     continue
                 elif entry.is_dir():
                     dir_to_visit.append(os.path.join(current, entry.name))
