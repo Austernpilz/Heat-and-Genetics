@@ -72,13 +72,12 @@ def apply_include_exclude_txt(path, df, colum):
             else:
                 in_out_txt["group"][line] = group
 
-    df = exclude_col(df, colum, in_out_txt["exclude"])
+    df = exclude_col(df, colum, in_out_txt["exclude"]).copy()
     df["group_term"] = df[colum].map(lambda x : in_out_txt["group"].get(x, "NO_GROUP_TERM"))
 
 
     # .copy() to make sure, we don't corrupt the original data, 
     # when performing later transformations
-    df_with_include = df.copy()
     df_reduced = exclude_col(df, colum, in_out_txt["plusplus"]).copy()
 
-    return df_reduced, df_with_include
+    return df_reduced, df

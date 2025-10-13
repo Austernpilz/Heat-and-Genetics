@@ -21,25 +21,25 @@ df_disgnet = dis.build_tables(path_to_disgnet)
 df_amigo_reduced, df_amigo_plusplus = dut.apply_include_exclude_txt(amigo_in_out, df_amigo, "term")
 df_disgnet_reduced, df_disgnet_plusplus = dut.apply_include_exclude_txt(disgnet_in_out, df_disgnet, "disease_name")
 
+path_to_HGNC = os.path.join(this_folder, "HGNC")
+
 # i want to rund every data_set in 3 figures heatmap, sankey_plot, network (maybe 3 times)
 
-for dataset_to_plot in [df_disgnet_reduced, df_disgnet_plusplus]:
-    term_general = "group_term"
-    term_specific = "disease_name"
-    gen_term = "gene_symbol"
+# for dataset_to_plot in [df_disgnet_reduced, df_disgnet_plusplus]:
+#     term_general = "group_term"
+#     term_specific = "disease_name"
+#     gen_term = "gene_symbol"
 
-    fig.sankey_genes_groups(dataset_to_plot, gen_term, term_specific, term_general, gene_cutoff=0)
+#     fig.sankey_genes_groups(dataset_to_plot, gen_term, term_specific, term_general, gene_cutoff=0)
 
-    #fig.plot_incidence_heatmap(dataset_to_plot, gen_term, term_general)
-    #fig.plot_incidence_heatmap(dataset_to_plot, gen_term, term_specific)
+#     #fig.plot_incidence_heatmap(dataset_to_plot, gen_term, term_general)
+#     #fig.plot_incidence_heatmap(dataset_to_plot, gen_term, term_specific)
 
-    fig.plot_bipartite_network(dataset_to_plot, gen_term, term_general, gene_cutoff=0)
-    fig.plot_bipartite_network(dataset_to_plot, gen_term, term_general, gene_cutoff=0)
+#     fig.plot_bipartite_network(dataset_to_plot, gen_term, term_general, gene_cutoff=0)
+#     fig.plot_bipartite_network(dataset_to_plot, gen_term, term_general, gene_cutoff=0)
 
 
-# df_disgnet_reduced, df_disgnet_plusplus
-    
-    
+
 #     term_general = "group_term"
 #     term_specific = "disease_name"
 # print(df_overview.head(10))
@@ -62,6 +62,7 @@ for dataset_to_plot in [df_disgnet_reduced, df_disgnet_plusplus]:
 # print(get_col_as_unique_and_count(df_general, "terme_specific"))
 # print(df_general.count()) #1280 gene
 
+
 # sinnvolle übergriffe suchen oder finden (neuer general term)
 # alter general term wird specific term
 # 
@@ -71,7 +72,7 @@ for dataset_to_plot in [df_disgnet_reduced, df_disgnet_plusplus]:
 # disgnet
 # disgnet ++
 # disgnet + amigo 
-# disgnet + amigo 
+# disgnet + amigo ++
 
 
 # heatmap -> kurz erzeugen
