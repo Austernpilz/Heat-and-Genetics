@@ -2,6 +2,7 @@ import requests
 import json 
 import os
 import pandas as pd
+from io import StringIO
 
 # 10/s is the rate at which i can shoot requests 
 
@@ -129,7 +130,21 @@ disgnet_HNGC = os.path.join(path_to_HGNC, "data/hgnc-symbol-check_disgnet.csv")
 
 df = load_simple_search_data(path_to_HGNC)
 sub = df[df["Match type"] == "Approved symbol"]
-print(sub["Approved symbol"].unique().tolist())
+# print(sub["Approved symbol"].unique().tolist())
+
+r = requests.get("https://rest.genenames.org/fetch/symbol/MED1")
+
+# override encoding by real educated guess as provided by chardet
+r.encoding = r.apparent_encoding
+# access the data
+df = StringIO(r.text)
+print(r.text)
+
+# df = pd.read_csv(StringIO(r.json), 
+#                          sep="\t", 
+#                          dtype=str)
+
+# print(df.head(10))
 # hgnc_check_amigo = pd.read_csv(amigo_HGNC)
 # hgnc_check_disgnet = pd.read_csv(disgnet_HNGC)
 # print(hgnc_check_disgnet[hgnc_check_disgnet["Match type"] != "Approved symbol"])

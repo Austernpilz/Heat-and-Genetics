@@ -122,7 +122,15 @@ path_to_HGNC = os.path.join(this_folder, "HGNC")
 # größten unterschiede finden
 
 
-# interessante gene -> HGNC ID approved symbol -> gprofiler -> biomart ensemble 
+# interessante gene -> HGNC ID approved symbol -> gprofiler -> biomart ensemble  -> gnomAD
 # README schritte schreiben
 
 #build_data_table(download_path)
+
+
+
+# network zusammen, sankey gen middle, zusammen
+# hgnc -> id 
+# ensemble -> http://www.ensembl.org/biomart/martview/ad4dbf2f9ae74dbf5b9cda391d970be9?VIRTUALSCHEMANAME=default&ATTRIBUTES=hsapiens_gene_ensembl.default.feature_page.ensembl_gene_id|hsapiens_gene_ensembl.default.feature_page.ensembl_gene_id_version|hsapiens_gene_ensembl.default.feature_page.description|hsapiens_gene_ensembl.default.feature_page.start_position|hsapiens_gene_ensembl.default.feature_page.end_position|hsapiens_gene_ensembl.default.feature_page.chromosome_name|hsapiens_gene_ensembl.default.feature_page.hgnc_id|hsapiens_gene_ensembl.default.feature_page.entrezgene_id|hsapiens_gene_ensembl.default.feature_page.uniprot_gn_id&FILTERS=hsapiens_gene_ensembl.default.filters.hgnc_id."HGNC:5970"&VISIBLEPANEL=resultspanel
+# gnomad chr:start-end -> vcf -> filtern nach allel frequency african//european >= 0.05 
+# ad4dbf2f9ae74dbf5b9cda391d970be9

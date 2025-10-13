@@ -1,0 +1,18 @@
+{
+    'source': 'ensembl_havana', 
+    'assembly_name': 'GRCh38', 
+    'display_name': 'MED1', 
+    'biotype': 'protein_coding', 
+    'object_type': 'Gene', 
+    'version': 13, 
+    'start': 39404285, 
+    'description': 'mediator complex subunit 1 [Source:HGNC Symbol;Acc:HGNC: 9234]', 
+    'canonical_transcript': 'ENST00000300651.11', 
+    'strand': -1, 
+    'logic_name': 'ensembl_havana_gene_homo_sapiens', 
+    'id': 'ENSG00000125686', 
+    'db_type': 'core', 
+    'end': 39451272, 
+    'seq_region_name': '17', 
+    'species': 'homo_sapiens'
+}
