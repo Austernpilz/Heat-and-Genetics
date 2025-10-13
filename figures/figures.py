@@ -24,15 +24,13 @@ def save_plotly(fig, name):
     html_path = unique_fname(name, "html")
     pio.write_html(fig, file=html_path, include_plotlyjs='cdn', auto_open=True)
     print("Saved:", html_path)
-    
-
 
 # # plt.figure() ... plotting code ...
 def save_matplotlib(plt, name):
     png_path = unique_fname(name, "png")
     plt.savefig(png_path, dpi=150, bbox_inches="tight")
+    plt.close()
     print("Saved:", png_path)
-    
 
 
 def show_simple_barplot(df, x_name, cut_off, name=False, save=True):
@@ -73,15 +71,15 @@ def plot_incidence_heatmap(df, gene_col, y_name, gene_cutoff=25, top_k_groups=50
     data = data[data[gene_col].isin(genes) & data[y_name].isin(topky)]
 
     # # pivot to incidence (binary)
-    # incidence = pd.crosstab(data[y_name], data[gene_col]).clip(upper=1)
+    incidence = pd.crosstab(data[y_name], data[gene_col]).clip(upper=1)
     # # optionally keep top groups by sum
-    # group_sums = incidence.sum(axis=0).sort_values(ascending=False)
-    # groups_keep = group_sums.index[:top_k_groups]
-    # incidence = incidence[groups_keep]
+    group_sums = incidence.sum(axis=0).sort_values(ascending=False)
+    groups_keep = group_sums.index[:top_k_groups]
+    incidence = incidence[groups_keep]
 
     # plot
     plt.figure(figsize=(60,40))
-    sns.heatmap(data, cmap='YlOrBr', cbar=False)
+    sns.heatmap(incidence, cmap='YlOrBr', cbar=False)
     plt.xlabel('genes ('+gene_col+')')
     plt.ylabel('groups ('+y_name+')')
     plt.title(f'heatmap genes with count > {gene_cutoff} and the top {top_k_groups} most named groups)')
@@ -114,7 +112,7 @@ def plot_bipartite_network(df, gene_col, group_col, gene_cutoff=10, max_genes=20
     for _, row in df_sub.iterrows():
         G.add_edge(('g', row[gene_col]), ('t', row[group_col]))
 
-    
+
     pos = nx.spring_layout(G, k=1, seed=42)
     edge_x, edge_y = [], []
     for u,v in G.edges():
@@ -147,7 +145,6 @@ def plot_bipartite_network(df, gene_col, group_col, gene_cutoff=10, max_genes=20
 def sankey_genes_groups(df, gen_column, terme_general, terme_specific, gene_cutoff=10, top_genes=100, top_general=50, top_specific=50, name=False, save=True):
     print("samley groups")
 
-    #here i already want a renamed dataset
     df_sub = df[[gen_column, terme_general, terme_specific]]
     genes_keep = dut.cut_off(df_sub, gene_cutoff, gen_column, True).index.tolist()[:top_genes]
     df_sub = df_sub[df_sub[gen_column].isin(genes_keep)]
@@ -160,27 +157,69 @@ def sankey_genes_groups(df, gen_column, terme_general, terme_specific, gene_cuto
     nodes = genes_keep + general_top + specific_top
     node_idx = {n:i for i,n in enumerate(nodes)}
 
+    # links specific -> genes
+    df_s = df_sub.drop_duplicates([terme_specific,gen_column]).groupby([terme_specific,gen_column]).size().reset_index(name='count')
+
     # links genes -> general
     df_g = df_sub.drop_duplicates([gen_column,terme_general]).groupby([gen_column,terme_general]).size().reset_index(name='count')
-    # links general -> specific
-    df_s = df_sub.drop_duplicates([terme_general,terme_specific]).groupby([terme_general,terme_specific]).size().reset_index(name='count')
 
     source, target, value = [], [], []
+    for _,r in df_s.iterrows():
+        source.append(node_idx[r[terme_specific]]); target.append(node_idx[r[gen_column]]); value.append(r['count'])
+
     for _,r in df_g.iterrows():
         source.append(node_idx[r[gen_column]]); target.append(node_idx[r[terme_general]]); value.append(r['count'])
-    for _,r in df_s.iterrows():
-        source.append(node_idx[r[terme_general]]); target.append(node_idx[r[terme_specific]]); value.append(r['count'])
 
     fig = go.Figure(go.Sankey(node=dict(label=nodes), link=dict(source=source, target=target, value=value)))
-    fig.update_layout(title_text="Sankey: genes → general → specific", font_size=10)
+    fig.update_layout(title_text="Sankey: specific → genes → general", font_size=20)
     #fig.show()
     if save:
         name = name if name else f"sankey_{gene_cutoff}_{top_genes}_{top_general}_{top_specific}"
         save_plotly(fig, name)
 # usage
 
+def generate_all(df, amigodf, gen_cut_off=0, top_genes=200, top_groups_general=100, top_groups_specific=100):
+    rename_dict = {"gene_symbol": "gene", "bioentity_label": "gene", 
+                   "group_term" : "term_general", 
+                   "term" : "term_specific", "disease_name": "term_specific"}
+    gen_names = "gene"
+    term_general = "term_general"
+    term_specific = "term_specific"
 
-#show_simple_barplot(threshold_genes)
+    #to make sure we don't accidentally break the table we copy here
+    sub_df = df.rename(mapper=rename_dict, axis=1) #implicit copy
+
+    # try:
+    #     show_better_barplot(sub_df, gen_names, gen_cut_off)
+    # except Exception as e:
+    #     print(str(e))
+
+    # try:
+    #     plot_incidence_heatmap(sub_df, gen_names, term_general, gen_cut_off, top_groups_general)
+    # except Exception as e:
+    #     print(str(e))
+
+    # try:
+    #     plot_incidence_heatmap(sub_df, gen_names, term_specific, gen_cut_off, top_groups_specific)
+    # except Exception as e:
+    #     print(str(e))
+
+    try:
+        plot_bipartite_network(sub_df, gen_names, term_general, 
+                               gene_cutoff=5, max_genes=top_genes, max_groups=20)
+    except Exception as e:
+        print(str(e))
+
+    try:
+        plot_bipartite_network(sub_df, gen_names, term_specific, gen_cut_off, top_genes, top_groups_specific)
+    except Exception as e:
+        print(str(e))
+
+    try:
+        sankey_genes_groups(sub_df, gen_names, term_general, term_specific, gen_cut_off, top_genes, top_groups_general, top_groups_specific)
+    except Exception as e:
+        print(str(e))
+
 #show_better_barplot(threshold_genes)
 #plot_incidence_heatmap(df_general, group_col='terme_specific', gene_cutoff=20, top_k_groups=40)
 #plot_incidence_heatmap(df_general, group_col='terme_general', gene_cutoff=20, top_k_groups=40)

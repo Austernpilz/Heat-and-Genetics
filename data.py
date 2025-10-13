@@ -1,6 +1,7 @@
 from AmiGo2 import search_and_download as sad
 from disgnet import get_tables as dis
 from figures import figures as fig
+
 import data_utility as dut
 
 import os
@@ -15,13 +16,30 @@ amigo_in_out = os.path.join(path_to_amigo, "include_exclude.txt")
 path_to_disgnet = os.path.join(this_folder, "disgnet")
 disgnet_in_out = os.path.join(path_to_disgnet, "include_exclude.txt")
 
+#True => Data is downloaded, False => Data needs to be downloaded
 df_amigo, df_overview = sad.get_data(download_path_amigo, path_to_amigo, True)
 df_disgnet = dis.build_tables(path_to_disgnet)
 
 df_amigo_reduced, df_amigo_plusplus = dut.apply_include_exclude_txt(amigo_in_out, df_amigo, "term")
 df_disgnet_reduced, df_disgnet_plusplus = dut.apply_include_exclude_txt(disgnet_in_out, df_disgnet, "disease_name")
 
-path_to_HGNC = os.path.join(this_folder, "HGNC")
+rename_dict = {"gene_symbol": "gene", "bioentity_label": "gene", 
+                   "group_term" : "term_general", 
+                   "term" : "term_specific", "disease_name": "term_specific"}
+df_combined_reduced = dut.make_new_table([df_amigo_reduced, df_disgnet_reduced], list(rename_dict.keys()), rename_dict)
+
+fig.sankey_genes_groups(df_amigo_reduced, "bioentity_label", "group_term", "term", gene_cutoff=10, top_genes=100, top_general=20, top_specific=50, name="amigo_sankey_reduced_top_100")
+fig.sankey_genes_groups(df_amigo_plusplus, "bioentity_label", "group_term", "term", gene_cutoff=20, top_genes=100, top_general=20, top_specific=50, name="amigo_sankey_plusplus_top_100")
+fig.sankey_genes_groups(df_disgnet_reduced, "gene_symbol", "group_term", "disease_name", gene_cutoff=0, top_genes=100, top_general=20, top_specific=30, name="disgnet_sankey_reduced_top_100")
+fig.sankey_genes_groups(df_combined_reduced, "gene", "term_general", "term_specific", gene_cutoff=10, top_genes=100, top_general=20, top_specific=50, name="combined_sankey_reduced_top_100")
+
+fig.plot_bipartite_network(df_amigo_reduced, "bioentity_label", "group_term", gene_cutoff=10, max_genes=100, max_groups=30, name="amigo_sankey_reduced_top_100")
+fig.plot_bipartite_network(df_amigo_plusplus, "bioentity_label", "group_term", gene_cutoff=20, max_genes=100, max_groups=30, name="amigo_sankey_plusplus_top_100")
+fig.plot_bipartite_network(df_disgnet_reduced, "gene_symbol", "group_term",  gene_cutoff=0, max_genes=100, max_groups=30, name="disgnet_sankey_reduced_top_100")
+fig.plot_bipartite_network(df_combined_reduced, "gene", "term_general", gene_cutoff=10, max_genes=100, max_groups=30, name="combined_sankey_reduced_top_100")
+
+
+#path_to_HGNC = os.path.join(this_folder, "HGNC")
 
 # i want to rund every data_set in 3 figures heatmap, sankey_plot, network (maybe 3 times)
 
@@ -54,15 +72,6 @@ path_to_HGNC = os.path.join(this_folder, "HGNC")
 # df_general = make_new_table(df_amigo, df_disgnet)
 
 
-
-# df_amigo
-# print(len(df_general)) #4890 datapoints
-# print(get_col_as_unique_and_count(df_general, "genes"))
-# print(get_col_as_unique_and_count(df_general, "terme_general"))
-# print(get_col_as_unique_and_count(df_general, "terme_specific"))
-# print(df_general.count()) #1280 gene
-
-
 # sinnvolle übergriffe suchen oder finden (neuer general term)
 # alter general term wird specific term
 # 
@@ -75,8 +84,6 @@ path_to_HGNC = os.path.join(this_folder, "HGNC")
 # disgnet + amigo ++
 
 
-# heatmap -> kurz erzeugen
-# sankeyplot -> html, #bipartit netzwerk -> html
 # table genname + ensamble ID + biomart
 # gefilterte daten GO nochmal einzeln
 # + 

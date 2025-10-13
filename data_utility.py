@@ -23,7 +23,7 @@ def exclude_col(df, col, exclude):
 
 def cut_off(df, cutoff, col, ascend=False):
     new_df = get_col_as_unique_and_count(df, col)
-    return new_df[new_df>cutoff].sort_values(ascending=ascend)
+    return new_df[new_df>=cutoff].sort_values(ascending=ascend)
 
 
 def top_cut(df, cutoff, col):
@@ -33,7 +33,7 @@ def top_cut(df, cutoff, col):
 
 def new_table(df, col_list, rename_dict):
     filtered_list = [col for col in col_list if col in df.columns]
-    return df[col_list].rename(columns=rename_dict)
+    return df[filtered_list].rename(mapper=rename_dict, axis=1, errors='ignore') #copy's by default
 
 def make_new_table(df_list, cols_list, rename_dict, axis=0):
     # axis=0 means I assume you condense your dict, 
@@ -44,7 +44,7 @@ def make_new_table(df_list, cols_list, rename_dict, axis=0):
     return_list = []
     for df in df_list:
         return_list.append(new_table(df, cols_list, rename_dict))
-    return pd.concat(return_list, axis, copy=False) #it always uses new_tabel, so copy=False is safe here
+    return pd.concat(return_list, axis=axis, copy=False) #it always uses new_tabel, so copy=False is safe here
 
 def apply_include_exclude_txt(path, df, colum):
     in_out_txt = {
