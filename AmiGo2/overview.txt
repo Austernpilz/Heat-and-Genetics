@@ -566,7 +566,7 @@ Definition
 Accession
     GO:0097603
 Name
-    temperature-gated ion channel activity
+    temperature-gated_ion_channel_activity
 Ontology
     molecular_function
 Synonyms

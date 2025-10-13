@@ -28,15 +28,15 @@ rename_dict = {"gene_symbol": "gene", "bioentity_label": "gene",
                    "term" : "term_specific", "disease_name": "term_specific"}
 df_combined_reduced = dut.make_new_table([df_amigo_reduced, df_disgnet_reduced], list(rename_dict.keys()), rename_dict)
 
-fig.sankey_genes_groups(df_amigo_reduced, "bioentity_label", "group_term", "term", gene_cutoff=10, top_genes=100, top_general=20, top_specific=50, name="amigo_sankey_reduced_top_100")
-fig.sankey_genes_groups(df_amigo_plusplus, "bioentity_label", "group_term", "term", gene_cutoff=20, top_genes=100, top_general=20, top_specific=50, name="amigo_sankey_plusplus_top_100")
-fig.sankey_genes_groups(df_disgnet_reduced, "gene_symbol", "group_term", "disease_name", gene_cutoff=0, top_genes=100, top_general=20, top_specific=30, name="disgnet_sankey_reduced_top_100")
-fig.sankey_genes_groups(df_combined_reduced, "gene", "term_general", "term_specific", gene_cutoff=10, top_genes=100, top_general=20, top_specific=50, name="combined_sankey_reduced_top_100")
+fig.sankey_genes_groups(df_amigo_reduced, "bioentity_label", "group_term", "term", gene_cutoff=5, top_genes=50, top_general=20, top_specific=30, name="amigo_sankey_reduced_top_50")
+fig.sankey_genes_groups(df_amigo_plusplus, "bioentity_label", "group_term", "term", gene_cutoff=10, top_genes=50, top_general=20, top_specific=30, name="amigo_sankey_plusplus_top_50")
+fig.sankey_genes_groups(df_disgnet_reduced, "gene_symbol", "group_term", "disease_name", gene_cutoff=0, top_genes=50, top_general=20, top_specific=30, name="disgnet_sankey_reduced_top_50")
+fig.sankey_genes_groups(df_combined_reduced, "gene", "term_general", "term_specific", gene_cutoff=7, top_genes=50, top_general=20, top_specific=30, name="combined_sankey_reduced_top_50")
 
-fig.plot_bipartite_network(df_amigo_reduced, "bioentity_label", "group_term", gene_cutoff=10, max_genes=100, max_groups=30, name="amigo_sankey_reduced_top_100")
-fig.plot_bipartite_network(df_amigo_plusplus, "bioentity_label", "group_term", gene_cutoff=20, max_genes=100, max_groups=30, name="amigo_sankey_plusplus_top_100")
-fig.plot_bipartite_network(df_disgnet_reduced, "gene_symbol", "group_term",  gene_cutoff=0, max_genes=100, max_groups=30, name="disgnet_sankey_reduced_top_100")
-fig.plot_bipartite_network(df_combined_reduced, "gene", "term_general", gene_cutoff=10, max_genes=100, max_groups=30, name="combined_sankey_reduced_top_100")
+fig.plot_bipartite_network(df_amigo_reduced, "bioentity_label", "group_term", gene_cutoff=5, max_genes=50, max_groups=20, name="amigo_network_reduced_top_50")
+fig.plot_bipartite_network(df_amigo_plusplus, "bioentity_label", "group_term", gene_cutoff=10, max_genes=50, max_groups=20, name="amigo_network_plusplus_top_50")
+fig.plot_bipartite_network(df_disgnet_reduced, "gene_symbol", "group_term",  gene_cutoff=0, max_genes=50, max_groups=20, name="disgnet_network_reduced_top_50")
+fig.plot_bipartite_network(df_combined_reduced, "gene", "term_general", gene_cutoff=7, max_genes=50, max_groups=20, name="combined_network_reduced_top_50")
 
 
 #path_to_HGNC = os.path.join(this_folder, "HGNC")

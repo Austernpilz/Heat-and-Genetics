@@ -74,7 +74,7 @@ def apply_include_exclude_txt(path, df, colum):
 
     df = exclude_col(df, colum, in_out_txt["exclude"]).copy()
     df["group_term"] = df[colum].map(lambda x : in_out_txt["group"].get(x, "NO_GROUP_TERM"))
-
+    print(df[df["group_term"] == "NO_GROUP_TERM"][colum].unique().tolist())
 
     # .copy() to make sure, we don't corrupt the original data, 
     # when performing later transformations

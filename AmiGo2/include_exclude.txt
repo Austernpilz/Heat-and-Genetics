@@ -34,6 +34,7 @@ fever_generation
 heat_generation
 ++ positive_regulation_of_fat_cell_differentiation
 ++ regulation_of_brown_fat_cell_differentiation
+++ positive_regulation_of_brown_fat_cell_differentiation
 ++ regulation_of_cold-induced_thermogenesis
 ++ positive_regulation_of_cold-induced_thermogenesis
 ++ negative_regulation_of_cold-induced_thermogenesis
@@ -51,7 +52,7 @@ positive_regulation_of_cellular_response_to_heat
 cellular_response_to_temperature_stimulus
 regulation_of_cellular_response_to_heat
 temperature-gated_cation_channel_activity
-temperature-gated ion channel activity
+temperature-gated_ion_channel_activity
 mRNA_export_from_nucleus_in_response_to_heat_stress
 
 
