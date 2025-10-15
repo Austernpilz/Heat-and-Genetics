@@ -3,7 +3,7 @@ import json
 import os
 import pandas as pd
 from io import StringIO
-
+from time import sleep
 
 
 # 10/s is the rate at which i can shoot requests 
@@ -96,6 +96,24 @@ storedFields = [
     "agr"
 ]
 
+def get_gene_symbols(list_of_df):
+    gene_symbols = ["bioentity_label", "gene", "gene_symbol"]
+    return_set = set()
+    for df in list_of_df:
+        filtered_list = [col for col in gene_symbols if col in df.columns]
+        return_set |= set(df[filtered_list[0]].unique())
+
+    return return_set
+
+
+def get_rename_dict(look_up_table):
+    rename_dict = {} 
+    inputs = look_up_table["Input"].unique().tolist()
+    names = look_up_table["Approved symbol"].unique().tolist()
+    for input, gene in zip(inputs, names):
+        rename_dict[input] = gene
+    return rename_dict
+
 def load_simple_search_data(path_to_HGNC):
     path_data = os.path.join(path_to_HGNC, "data")
     df_list = []
@@ -155,6 +173,12 @@ def fetch_hugo(fetch_by, to_be_fetched, path_to_download=False, download=False):
             return_df = pd.read_csv(file_path, sep="\t", dtype=str)
 
     return return_df
+
+
+
+def save_look_up(look_up_table, path_to_HGNC):
+    file_path = os.path.join(path_to_HGNC, "look_up_hugo.tsv")
+    look_up_table.to_csv(file_path, sep='\t', index=False)
 
 # path_to_HGNC = os.path.join(os.getcwd(), "HGNC")
 # hgnc_symbol_check = load_simple_search_data(path_to_HGNC)
@@ -248,26 +272,30 @@ def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     HGNC_data = []
     next_to_download = []
     for symbol in load_by_symbol:
+        sleep(0.1)
         df_hugo_symbol = fetch_hugo("symbol", symbol, path_to_HGNC, download=download)
-        if df_hugo_symbol.empty() or df_hugo_symbol is None:
+        #print(df_hugo_symbol)
+        if df_hugo_symbol is None:
+            next_to_download.append(symbol)
+        elif df_hugo_symbol.empty:
             next_to_download.append(symbol)
         else:
             HGNC_data.append(df_hugo_symbol)
 
-
     load_by_id = sub_look[sub_look["Approved symbol"].isin(next_to_download)]["HGNC ID"].str.replace("HGNC:", '')
     next_to_download = []
     for id in load_by_id["HGNC ID"].unique().tolist():
+        sleep(0.1)
         df_hugo_symbol = fetch_hugo("hgnc_id", id, path_to_HGNC, download=download)
         if df_hugo_symbol.empty() or df_hugo_symbol is None:
             next_to_download.append(symbol)
         else:
             HGNC_data.append(df_hugo_symbol)
 
-
     load_by_name = sub_look[sub_look["HGNC ID"].isin(next_to_download)]
     next_to_download = []
     for name in load_by_name["Approved name"].unique().tolist():
+        sleep(0.1)
         df_hugo_symbol = fetch_hugo("name", name, path_to_HGNC, download=download)
         if df_hugo_symbol.empty() or df_hugo_symbol is None:
             next_to_download.append(symbol)
@@ -296,17 +324,6 @@ def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
 #         set_of_identifiers.fillna()
 #     return
 
-def get_rename_dict(look_up_table):
-    rename_dict = {} 
-    inputs = look_up_table["Input"].unique().tolist()
-    names = look_up_table["Approved symbol"].unique().tolist()
-    for input, gene in zip(inputs, names):
-        rename_dict[input] = gene
-    return rename_dict
-
-def save_look_up(look_up_table, path_to_HGNC):
-    file_path = os.path.join(path_to_HGNC, "look_up_hugo.tsv")
-    look_up_table.to_csv(file_path, sep='\t', index=False)
 
 
 def clean_up(list_of_df, path_to_HGNC, save=True):
@@ -327,14 +344,6 @@ def clean_up(list_of_df, path_to_HGNC, save=True):
 
 
 
-def get_gene_symbols(list_of_df):
-    gene_symbols = ["bioentity_label", "gene", "gene_symbol"]
-    return_set = set()
-    for df in list_of_df:
-        filtered_list = [col for col in gene_symbols if col in df.columns]
-        return_set |= set(df[filtered_list[0]].unique())
-
-    return return_set
 #     HGNC_approved_symbol = ["Approved symbol", "symbol"]
 # def build_look_up_table(list_of_df, path_to_HGNC):
 #     
