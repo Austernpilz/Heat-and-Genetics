@@ -283,7 +283,8 @@ def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
         else:
             HGNC_data.append(df_hugo_symbol)
 
-    load_by_id = sub_look[sub_look["Approved symbol"].isin(next_to_download)]["HGNC ID"].str.replace("HGNC:", '')
+    load_by_id = sub_look[sub_look["Approved symbol"].isin(next_to_download)]
+    load_by_id["HGNC ID"] = load_by_id["HGNC ID"].str.replace("HGNC:", '')
     next_to_download = []
     for id in load_by_id["HGNC ID"].unique().tolist():
         sleep(0.1)
