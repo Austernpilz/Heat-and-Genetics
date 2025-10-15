@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 
-
 #utiliti_functions
 def get_col_as_unique_and_count(df, name):
     return df[name].value_counts()

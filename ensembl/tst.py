@@ -8,8 +8,8 @@ import os
  
 
 server = "https://rest.ensembl.org"
-ext = "/lookup/id/ENSG00000125686?expand=1"
- 
+ext = "/lookup/id/ENST00000300651?expand=1"
+
 r = requests.get(server+ext, headers={ "Content-Type" : "application/json"})
  
 # if not r.ok:

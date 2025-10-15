@@ -273,21 +273,20 @@ def get_single_table(path_to_download, url, col):
     return df
 
 
-def get_data(download_path = None, path_to_overview = None, is_downloaded = False):
+def get_data(path_to_Amigo, is_downloaded = False):
     base_url = "https://golr-aux.geneontology.io/solr/select?defType=edismax&"
 
     global REQUEST_ARG, standard, extension_for_this_purpose, filter_fq
     columns = standard + extension_for_this_purpose
-    overview_df = get_overview(path_to_overview)
-    download_path = os.getcwd() if download_path is None else download_path
+    overview_df = get_overview(path_to_Amigo)
 
     if is_downloaded:
-        return get_data_from_path(download_path, columns), overview_df
+        return get_data_from_path(path_to_Amigo, columns), overview_df
 
     go_ids = get_go_ids(overview_df)
     list_of_df = []
     for dir_name, url in zip(overview_df["Name"], build_full_url(base_url, REQUEST_ARG, columns, go_ids) ):
-        dir_path = os.path.join(download_path, dir_name)
+        dir_path = os.path.join(path_to_Amigo, "data", dir_name)
         df = get_single_table(dir_path, url, columns)
         if df is not None:
             print(f"got {dir_name}")
@@ -301,7 +300,7 @@ def get_data(download_path = None, path_to_overview = None, is_downloaded = Fals
     else:
         print("apperently it either wasn't downloaded or pandas has some feelings about the data")
         print("let's try and get the data if it was downloaded")
-        return get_data_from_path(download_path, columns), overview_df
+        return get_data_from_path(path_to_Amigo, columns), overview_df
 
 #print(get_data(os.path.join(os.getcwd(), "try_out_data")))
 
@@ -317,7 +316,7 @@ def get_paths_to_data(path_datatsv = None):
         current = dir_to_visit.pop(0)
         try:
             for entry in os.scandir(current):
-                if entry.name in {"bin", "include", "lib", "disgnet", "gnomAD"}:
+                if entry.name in {"bin", "include", "lib", "disgnet", "gnomAD", "figures", "HGNC"}:
                     continue
                 elif entry.is_dir():
                     dir_to_visit.append(os.path.join(current, entry.name))
@@ -325,7 +324,7 @@ def get_paths_to_data(path_datatsv = None):
                 elif not entry.is_file():
                     continue
 
-                if entry.name in ["data.tsv", "data.csv"]:
+                if entry.name in {"data.tsv", "data.csv"}:
                     datatsv.append(os.path.join(current, entry.name))
 
         except Exception as _:

@@ -91,7 +91,7 @@ def plot_incidence_heatmap(df, gene_col, y_name, gene_cutoff=25, top_k_groups=50
         save_matplotlib(plt, name)
 
 
-def plot_bipartite_network(df, gene_col, group_col, gene_cutoff=10, max_genes=200, max_groups=50, name=False, save=True):
+def plot_bipartite_network(df, gene_col, group_col, special_genes=[], gene_cutoff=0, max_genes=50, max_groups=50, name=False, save=True):
     print("network")
 
     df_sub = df[[gene_col, group_col]]
@@ -112,12 +112,20 @@ def plot_bipartite_network(df, gene_col, group_col, gene_cutoff=10, max_genes=20
     for _, row in df_sub.iterrows():
         G.add_edge(('g', row[gene_col]), ('t', row[group_col]))
 
+#, width=1, color='pink'
+#, width=0.5, color='#888'
 
-    pos = nx.spring_layout(G, k=1, seed=42)
-    edge_x, edge_y = [], []
+    pos = nx.spring_layout(G, k=0.3, seed=42)
+    edge_x, edge_y, edge_color, edge_width  = [], [], [], []
     for u,v in G.edges():
         x0,y0 = pos[u]; x1,y1 = pos[v]
         edge_x += [x0, x1]; edge_y += [y0, y1]
+        if u[1] in special_genes:
+            edge_color.append('pink')
+            edge_width.append(0.7)
+        else:
+            edge_color.append('#888')
+            edge_width.append(0.5)
 
     node_x, node_y, node_text, node_color, node_size = [], [], [], [], []
     for n,data in G.nodes(data=True):
@@ -125,9 +133,12 @@ def plot_bipartite_network(df, gene_col, group_col, gene_cutoff=10, max_genes=20
         node_x.append(x); node_y.append(y)
         node_text.append(data['label'])
         if data['bipartite']==0:
-            node_color.append('blue'); node_size.append(7)
+            if data['label'] in special_genes:
+                node_color.append('pink'); node_size.append(15)
+            else:
+                node_color.append('blue'); node_size.append(5)
         else:
-            node_color.append('red'); node_size.append(13)
+            node_color.append('red'); node_size.append(10)
 
     edge_trace = go.Scatter(x=edge_x, y=edge_y, mode='lines', line=dict(width=0.5, color='#888'), hoverinfo='none')
     node_trace = go.Scatter(x=node_x, y=node_y, mode='markers+text', text=node_text,
