@@ -164,17 +164,18 @@ def fetch_hugo(fetch_by, to_be_fetched, path_to_download=False, download=False):
             print(str(e))
 
     if path_to_download:
-        hugo_file = os.path.join(path_to_download, "data", to_be_fetched)
-        os.makedirs(hugo_file, exist_ok=True)
-        file_path = os.path.join(hugo_file, "hgnc_data.tsv")
-        if download:
-            return_df.to_csv(file_path ,sep='\t')
-        else:
-            return_df = pd.read_csv(file_path, sep="\t", dtype=str)
+        try:
+            hugo_file = os.path.join(path_to_download, "data", to_be_fetched)
+            os.makedirs(hugo_file, exist_ok=True)
+            file_path = os.path.join(hugo_file, "hgnc_data.tsv")
+            if download:
+                return_df.to_csv(file_path ,sep='\t')
+            else:
+                return_df = pd.read_csv(file_path, sep="\t", dtype=str)
+        except Exception as e:
+            print(str(e))
 
     return return_df
-
-
 
 def save_look_up(look_up_table, path_to_HGNC):
     file_path = os.path.join(path_to_HGNC, "look_up_hugo.tsv")

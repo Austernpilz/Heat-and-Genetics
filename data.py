@@ -2,6 +2,7 @@ from AmiGo2 import search_and_download as sad
 from disgnet import get_tables as dis
 from figures import figures as fig
 from HGNC import search_and_fetch as hugo
+from ensembl import getting_closer_to_variants as ense
 import data_utility as dut
 
 import os
@@ -80,7 +81,12 @@ load hgnc data
 load ensemble data
 """
 
-df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC)
+df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, False)
+print("couldn't be loaded:", '\n', rest)
+
+df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
+
+print(df_ensemble.head(10))
 # i want to rund every data_set in 3 figures heatmap, sankey_plot, network (maybe 3 times)
 
 # for dataset_to_plot in [df_disgnet_reduced, df_disgnet_plusplus]:
