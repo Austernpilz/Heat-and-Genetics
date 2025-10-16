@@ -7,21 +7,25 @@ from time import sleep
 
 # import requests, sys
  
-def fetch_from_ensembl(id, path_to_ensembl, download):
-    p = os.path.join(path_to_ensembl, "data", id, "ensemble_data.json")
+def fetch_from_ensembl(id, path_to_ensembl, download=True):
+    id_dir = os.path.join(path_to_ensembl, "data", id)
+    os.makedirs(id_dir, exist_ok=True)
     if download:
         try:
+            print('download ', id)
             server = "https://rest.ensembl.org"
             ext = f"/lookup/id/{id}?expand=1"
             r = requests.get(server+ext, headers={ "Content-Type" : "application/json"})
-    
+
             if not r.ok:
                 print(r.status_code, r.content)
 
             decoded = r.json()
+            p = os.path.join(id_dir, "ensemble_data.json")
             with open(p, 'w') as file:
                 json.dump(r.json(), file)
         # with open (pth, )json.dump(decoded, pth)
+            print("download succesfull")
             return pd.json_normalize(decoded)
         except Exception as e:
             print(str(e))
@@ -46,7 +50,7 @@ def get_data(hgnc_df, path_to_ensembl, download=True):
         else:
             ensemble_data.append(df)
 
-    return pd.concat(df)
+    return pd.concat(ensemble_data)
 #df = pd.DataFrame.from_dict(decoded, orient='columns', dtype="str")
 
 # print(d.head(10))

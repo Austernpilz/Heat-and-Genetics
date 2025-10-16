@@ -81,7 +81,7 @@ load hgnc data
 load ensemble data
 """
 
-df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, True)
+df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, False)
 print("couldn't be loaded:", '\n', rest)
 
 df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
