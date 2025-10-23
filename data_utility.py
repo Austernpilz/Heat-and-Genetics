@@ -82,6 +82,3 @@ def apply_include_exclude_txt(path, df, colum):
     return df_reduced, df
 
 
-
-def get_ensemble_id(df_top200, df_hgnc):
-    
