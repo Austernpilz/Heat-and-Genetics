@@ -5,6 +5,7 @@ from datetime import datetime
 import json
 from collections import deque
 import pandas as pd
+from time import sleep
 
 # broad_information
 GNOMAD_POPULATION_NAMES = {
@@ -301,6 +302,7 @@ def download_data(df: list, path_to_gnomAD):
         tasks.append(ensemble_id)
 
     while tasks:
+        start = datetime.now()
         ensemble_id = tasks.pop()
         path_gen = os.path.join(data_path, ensemble_id)
 
@@ -328,6 +330,9 @@ def download_data(df: list, path_to_gnomAD):
             result_dict[ensemble_id]["clinvar_variants"] = []
             result_dict[ensemble_id]["variants"] = []
             result_dict[ensemble_id]["genes"] = {}
+        end = 6 - (start - datetime.now()).total_seconds()
+        if end > 0:
+            sleep(end)
 
     return result_dict
 
