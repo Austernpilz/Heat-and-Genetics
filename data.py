@@ -32,7 +32,7 @@ build union and intersection
 """
 
 #True => Data is downloaded, False => Data needs to be downloaded
-df_amigo, df_overview = sad.get_data(path_to_amigo, True)
+df_amigo, df_overview = sad.get_data(path_to_amigo, False)
 df_disgnet = dis.build_tables(path_to_disgnet)
 
 df_amigo_reduced, df_amigo_plusplus = dut.apply_include_exclude_txt(amigo_in_out, df_amigo, "term")
@@ -86,10 +86,10 @@ load hgnc data
 load ensemble data
 """
 
-df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, False)
+df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, True)
 print("couldn't be loaded:", '\n', rest)
 
-df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, False)
+df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
 
 gnomad_dict = var.download_data(df_HGNC["ensembl_gene_id"].unique().tolist(), path_to_gnomAD)
 #print(df_ensemble.head(10))
