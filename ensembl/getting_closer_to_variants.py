@@ -10,6 +10,7 @@ from time import sleep
 def fetch_from_ensembl(id, path_to_ensembl, download=True):
     id_dir = os.path.join(path_to_ensembl, "data", id)
     os.makedirs(id_dir, exist_ok=True)
+    p = os.path.join(id_dir, "ensemble_data.json")
     if download:
         try:
             print('download ', id)
@@ -21,7 +22,6 @@ def fetch_from_ensembl(id, path_to_ensembl, download=True):
                 print(r.status_code, r.content)
 
             decoded = r.json()
-            p = os.path.join(id_dir, "ensemble_data.json")
             with open(p, 'w') as file:
                 json.dump(r.json(), file)
         # with open (pth, )json.dump(decoded, pth)

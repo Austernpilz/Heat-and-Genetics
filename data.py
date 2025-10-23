@@ -3,6 +3,7 @@ from disgnet import get_tables as dis
 from figures import figures as fig
 from HGNC import search_and_fetch as hugo
 from ensembl import getting_closer_to_variants as ense
+from gnomAD import variants as var
 import data_utility as dut
 
 import os
@@ -41,7 +42,8 @@ df_disgnet_reduced, df_disgnet_plusplus = dut.apply_include_exclude_txt(disgnet_
 rename_dict = {"gene_symbol": "gene", "bioentity_label": "gene", 
                    "group_term" : "term_general", 
                    "term" : "term_specific", "disease_name": "term_specific"}
-
+df_union = dut.make_new_table([df_amigo_plusplus, df_disgnet_plusplus], list(rename_dict.keys())+["HGNC ID"], rename_dict)
+print(len(df_union["gene"].unique()))
 
 unique_genes_amigo = df_amigo_reduced["bioentity_label"].unique()
 unique_genes_disgnet = df_disgnet_reduced["gene_symbol"].unique()
@@ -51,8 +53,10 @@ df_intersection = df_union[
     df_union["gene"].isin(unique_genes_disgnet)
     ]
 
+
+print(len(df_union["gene"].unique()))
 #all of disgnet and the rest from amigo
-#210 becuase 10 are weird
+#205 becuase 5 are weird
 top_amigo = df_amigo_reduced["bioentity_label"].value_counts().index[:(205 - len(unique_genes_disgnet))].tolist()
 top_200_dataset = df_union[
     df_union["gene"].isin(unique_genes_disgnet) | 
@@ -76,6 +80,7 @@ special = df_intersection["gene"].unique().tolist()
 # fig.plot_bipartite_network(top_200_dataset, "gene", "term_general", special_genes=special, gene_cutoff=0, max_genes=100, max_groups=20, name="combined_network_reduced_top_50")
 # fig.plot_bipartite_network(top_200_dataset, "gene", "term_specific", special_genes=special, gene_cutoff=0, max_genes=50, max_groups=30, name="combined_network_reduced_top_50")
 
+
 """
 load hgnc data
 load ensemble data
@@ -84,109 +89,6 @@ load ensemble data
 df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, False)
 print("couldn't be loaded:", '\n', rest)
 
-df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
+df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, False)
 
 print(df_ensemble.head(10))
-# i want to rund every data_set in 3 figures heatmap, sankey_plot, network (maybe 3 times)
-
-# for dataset_to_plot in [df_disgnet_reduced, df_disgnet_plusplus]:
-#     term_general = "group_term"
-#     term_specific = "disease_name"
-#     gen_term = "gene_symbol"
-
-#     fig.sankey_genes_groups(dataset_to_plot, gen_term, term_specific, term_general, gene_cutoff=0)
-
-#     #fig.plot_incidence_heatmap(dataset_to_plot, gen_term, term_general)
-#     #fig.plot_incidence_heatmap(dataset_to_plot, gen_term, term_specific)
-
-#     fig.plot_bipartite_network(dataset_to_plot, gen_term, term_general, gene_cutoff=0)
-#     fig.plot_bipartite_network(dataset_to_plot, gen_term, term_general, gene_cutoff=0)
-
-
-
-#     term_general = "group_term"
-#     term_specific = "disease_name"
-# print(df_overview.head(10))
-# print(df_overview["Name"].unique().tolist())
-#print(df_amigo.head(10))
-
-# print(df_disgnet.head(10))
-# print(df_disgnet["disease_name"].unique().tolist())
-
-
-
-# df_general = make_new_table(df_amigo, df_disgnet)
-
-
-# sinnvolle übergriffe suchen oder finden (neuer general term)
-# alter general term wird specific term
-# 
-# 4 daten tables
-# amigo
-# amigo ++
-# disgnet
-# disgnet ++
-# disgnet + amigo 
-# disgnet + amigo ++
-
-
-# table genname + ensamble ID + biomart
-# gefilterte daten GO nochmal einzeln
-# + 
-
-# unique_count_genes = get_col_as_unique_and_count(df_general, "genes")
-# unique_count_terme_general = get_col_as_unique_and_count(df_general, "terme_general")
-# unique_count_terme_specific = get_col_as_unique_and_count(df_general, "terme_specific")
-# print(unique_count_genes[unique_count_genes>9])
-
-
-    # genes_amigo = get_col_as_list(df_amigo, "bioentity_label")
-    # genes_disgnet = get_col_as_list(df_disgnet, "gene_symbol")
-
-    # term_amigo = get_col_as_list(df_amigo, "annotation_class_label")
-    # term_amigo_gen = get_col_as_list(df_amigo, "term")
-    # term_disgnet = get_col_as_list(df_disgnet, "disease_name")
-
-    # if (len(genes_amigo) != len(term_amigo) or 
-    #     len(genes_disgnet) != len(term_disgnet)):
-    #     print(len(genes_amigo), len(term_amigo), len(genes_disgnet), len(term_disgnet))
-    #     print("something is off")
-    #     return None
-    # else:
-    #     return pd.DataFrame(
-    #         {
-    #             "genes" : genes_amigo + genes_disgnet,
-    #             "terme_general" : term_amigo_gen + term_disgnet,
-    #             "terme_specific" : term_amigo + term_disgnet
-    #         }
-    #     )
-
-
-
-# print(unique_count_terme_general[unique_count_terme_general>9])
-# print(unique_count_terme_specific[unique_count_terme_specific>9])
-# amigo2 zu disgnet matchen
-
-# fragen für markus sammeln
-# gnom ad runterladen komplett auf curie (gen namen)
-# gnomad data genetic ancestry group mit laden 
-# gnom ad . vcf nach genetic ancestry group vorfiltern 
-# alls über 0.05 
-# größten unterschiede finden
-
-
-# interessante gene -> HGNC ID approved symbol -> gprofiler -> biomart ensemble  -> gnomAD
-# README schritte schreiben
-
-#build_data_table(download_path)
-
-
-
-# network zusammen, sankey gen middle, zusammen
-# hgnc -> id 
-# ensemble -> http://www.ensembl.org/biomart/martview/ad4dbf2f9ae74dbf5b9cda391d970be9?VIRTUALSCHEMANAME=default&ATTRIBUTES=hsapiens_gene_ensembl.default.feature_page.ensembl_gene_id|hsapiens_gene_ensembl.default.feature_page.ensembl_gene_id_version|hsapiens_gene_ensembl.default.feature_page.description|hsapiens_gene_ensembl.default.feature_page.start_position|hsapiens_gene_ensembl.default.feature_page.end_position|hsapiens_gene_ensembl.default.feature_page.chromosome_name|hsapiens_gene_ensembl.default.feature_page.hgnc_id|hsapiens_gene_ensembl.default.feature_page.entrezgene_id|hsapiens_gene_ensembl.default.feature_page.uniprot_gn_id&FILTERS=hsapiens_gene_ensembl.default.filters.hgnc_id."HGNC:5970"&VISIBLEPANEL=resultspanel
-# gnomad chr:start-end -> vcf -> filtern nach allel frequency african//european >= 0.05 
-# ad4dbf2f9ae74dbf5b9cda391d970be9
-
-
-# -> hgnc, ensemble runter laden, gnomad runterladen
