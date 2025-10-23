@@ -80,3 +80,8 @@ def apply_include_exclude_txt(path, df, colum):
     df_reduced = exclude_col(df, colum, in_out_txt["plusplus"]).copy()
 
     return df_reduced, df
+
+
+
+def get_ensemble_id(df_top200, df_hgnc):
+    

@@ -43,7 +43,7 @@ rename_dict = {"gene_symbol": "gene", "bioentity_label": "gene",
                    "group_term" : "term_general", 
                    "term" : "term_specific", "disease_name": "term_specific"}
 df_union = dut.make_new_table([df_amigo_plusplus, df_disgnet_plusplus], list(rename_dict.keys())+["HGNC ID"], rename_dict)
-print(len(df_union["gene"].unique()))
+#print(len(df_union["gene"].unique()))
 
 unique_genes_amigo = df_amigo_reduced["bioentity_label"].unique()
 unique_genes_disgnet = df_disgnet_reduced["gene_symbol"].unique()
@@ -54,7 +54,7 @@ df_intersection = df_union[
     ]
 
 
-print(len(df_union["gene"].unique()))
+#print(len(df_union["gene"].unique()))
 #all of disgnet and the rest from amigo
 #205 becuase 5 are weird
 top_amigo = df_amigo_reduced["bioentity_label"].value_counts().index[:(205 - len(unique_genes_disgnet))].tolist()
@@ -63,7 +63,7 @@ top_200_dataset = df_union[
     df_union["gene"].isin(top_amigo)
     ]
 
-print(top_200_dataset[top_200_dataset["gene"].isin(rest["Input"].unique())])
+#print(top_200_dataset[top_200_dataset["gene"].isin(rest["Input"].unique())])
 
 """
 plot data
@@ -91,4 +91,12 @@ print("couldn't be loaded:", '\n', rest)
 
 df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, False)
 
-print(df_ensemble.head(10))
+gnomad_dict = var.download_data(df_HGNC["ensembl_gene_id"].unique().tolist())
+#print(df_ensemble.head(10))
+print(
+len(gnomad_dict.keys()) == len(df_HGNC),
+len(df_HGNC) == len(top_200_dataset),
+len(gnomad_dict.keys()) == len(top_200_dataset)
+)
+
+
