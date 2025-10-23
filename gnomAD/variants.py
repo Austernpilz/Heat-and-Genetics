@@ -331,6 +331,7 @@ def download_data(df: list, path_to_gnomAD):
             result_dict[ensemble_id]["variants"] = []
             result_dict[ensemble_id]["genes"] = {}
         end = 6 - (start - datetime.now()).total_seconds()
+
         if end > 0:
             sleep(end)
 

@@ -117,13 +117,12 @@ extension_for_this_purpose = [
 
 def make_columns_to_string(columns):
     string_list = []
-    seperator_encoding = "%2C" #tab-symbol
-    #"%2C" original, but let's try it like this
+    seperator_encoding = "%2C"
     for item in columns:
         string_list.append(item + seperator_encoding)
 
-    return "".join(string_list)[:-3] #delete the last tab sign
-    
+    return "".join(string_list)[:-3] #delete the last sign
+
 #print(make_columns_to_string(standard))
 
 #this is an iterator object, that gives the urls
@@ -137,7 +136,7 @@ def build_full_url(base_url, param_dict, columns, go_ids):
 
     col = make_columns_to_string(columns)
     param_dict["fl"] = col
-    
+
     very_long_string = ""  
     # and_ = "&" # eq_ = "="
 
@@ -149,7 +148,7 @@ def build_full_url(base_url, param_dict, columns, go_ids):
                 very_long_string += f"&{key}={item}"
         else:
             very_long_string += f"&{key}={value}"
-    
+
     for go_id in go_ids:
         filter_list = [filter_fq["genes"], filter_fq["humans"], filter_fq["GO_NR"](go_id)]
         filter_string = "".join( f"&fq={item}" for item in filter_list )
@@ -185,7 +184,7 @@ def look_for_overview_GO(path_to_dir):
 def get_overview(path_to_overview):
     path_to_overview = os.getcwd() if path_to_overview is None else path_to_overview
     path_to_overview = look_for_overview_GO(path_to_overview)
-    
+
     if not path_to_overview:
         raise FileNotFoundError("overview.txt not found")
     overviewtxt = {
@@ -197,7 +196,7 @@ def get_overview(path_to_overview):
             "Definition" : [],
             "not_found" : []
         }
-    
+
     with open(path_to_overview, 'r') as f:
         last_line = ""
         for line in f:
@@ -245,7 +244,7 @@ def get_single_table(path_to_download, url, col):
     if r.status_code != 200:
         print("failed to download:", r)
         return None
-    
+
     text = r.text
     # print(text)
     # print(url)
