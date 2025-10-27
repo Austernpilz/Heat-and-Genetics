@@ -391,15 +391,19 @@ def get_relevant_variants(variant_list):
 
         save = False
         for data, name in [(exome, "exome"), (genome, "genome"), (joint, "joint")]:
-            found, relevant, population_list = get_ancestry_p(data.get("populations", []))
-            if found or relevant:
-                if id not in return_dict.keys():
-                    return_dict[id] = {}
-                    save = True
-                if "ancestry" not in return_dict[id].keys():
-                    return_dict[id]["ancestry"] = []
+            try:
+                found, relevant, population_list = get_ancestry_p(data.get("populations", []))
+                if found or relevant:
+                    if id not in return_dict.keys():
+                        return_dict[id] = {}
+                        save = True
+                    if "ancestry" not in return_dict[id].keys():
+                        return_dict[id]["ancestry"] = []
 
-                return_dict[id]["ancestry"].append((name+id, population_list))
+                    return_dict[id]["ancestry"].append((name+id, population_list))
+            except Exception as e:
+                print(str(e))
+                continue
 
         if save:
             if "info" not in return_dict[id].keys():
