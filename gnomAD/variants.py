@@ -356,7 +356,10 @@ def get_ancestry_p(population_list):
             an = pop_dict.get("an", 1.0)
             af = 0.0
             try:
-                af = float(ac) / float(an)
+                if an:
+                    af = float(ac) / float(an)
+                else:
+                    af = 0.0
             except Exception as e:
                 print(str(e))
                 af = 0.0
@@ -426,6 +429,7 @@ def big_loop(big_dict):
             return_dict.pop(gene_id)
             continue
 
+    print(len(return_dict))
     return return_dict
 
 
