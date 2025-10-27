@@ -382,11 +382,11 @@ def get_relevant_variants(variant_list):
             exome = {}
 
         genome = variant.get("genome", {})
-        if not isinstance(exome, dict):
+        if not isinstance(genome, dict):
             genome = {}
 
         joint = variant.get("joint", {})
-        if not isinstance(exome, dict):
+        if not isinstance(joint, dict):
             joint = {}
 
         save = False
