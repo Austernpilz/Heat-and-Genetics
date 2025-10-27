@@ -429,9 +429,11 @@ def big_loop(big_dict):
             return_dict.pop(gene_id)
             continue
 
-    print(len(return_dict))
+
     for gene_id, data in big_dict.items():
         print(gene_id, len(data))
+
+    print(len(return_dict))
     return return_dict
 
 
