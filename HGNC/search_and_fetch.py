@@ -264,13 +264,44 @@ def load_HGNC(top_200_dataset, path_to_HGNC, load=True):
     look_up = load_look_up(path_to_HGNC)
     return load_data([top_200_dataset], look_up, path_to_HGNC, download=load)
 
+def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
+    path_to_HGNC = os.path.join(path_to_HGNC, "data")
+    if not os.path.isdir(path_to_HGNC):
+        return [], []
+
+    offline_data = []
+    dir_to_visit = [path_to_HGNC]
+    while dir_to_visit:
+        current = dir_to_visit.pop(0)
+        try:
+            for entry in os.scandir(current):
+                if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt"]:
+                    continue
+                elif entry.is_dir():
+                    dir_to_visit.append(os.path.join(current, entry.name))
+                    continue
+                elif not entry.is_file():
+                    continue
+                if entry.name.endswith(".csv"):
+                    continue
+
+                if entry.name.endswith(".tsv"):
+                    offline_data.append(os.path.join(current, entry.name))
+
+        except Exception as _:
+            continue
+    return [], []
 
 def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     gene_symbols = get_gene_symbols(list_of_df)
     sub_look = look_up_table[look_up_table["Input"].isin(gene_symbols)]
     load_by_symbol = sub_look["Approved symbol"].unique().tolist()
 
+    if not download:
+        return fetch_offline(gene_symbols, sub_look, load_by_symbol, path_to_HGNC)
+
     HGNC_data = []
+
     next_to_download = []
     for symbol in load_by_symbol:
         sleep(0.1)
@@ -285,7 +316,7 @@ def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
 
     load_by_id = sub_look[sub_look["Approved symbol"].isin(next_to_download)]
     load_by_id["HGNC ID"] = load_by_id["HGNC ID"].str.replace("HGNC:", '')
-    next_to_download = []
+    # next_to_download = []
     for id in load_by_id["HGNC ID"].unique().tolist():
         sleep(0.1)
         df_hugo_symbol = fetch_hugo("hgnc_id", id, path_to_HGNC, download=download)
@@ -295,7 +326,7 @@ def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
             HGNC_data.append(df_hugo_symbol)
 
     load_by_name = sub_look[sub_look["HGNC ID"].isin(next_to_download)]
-    next_to_download = []
+    # next_to_download = []
     for name in load_by_name["Approved name"].unique().tolist():
         sleep(0.1)
         df_hugo_symbol = fetch_hugo("name", name, path_to_HGNC, download=download)

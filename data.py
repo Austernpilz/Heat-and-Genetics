@@ -86,17 +86,19 @@ load hgnc data
 load ensemble data
 """
 
-df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, True)
-print("couldn't be loaded:", '\n', rest)
+# df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, True)
+# print("couldn't be loaded:", '\n', rest)
 
-df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
+# df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
 
-gnomad_dict = var.download_data(df_HGNC["ensembl_gene_id"].unique().tolist(), path_to_gnomAD)
+# gnomad_dict = var.download_data(df_HGNC["ensembl_gene_id"].unique().tolist(), path_to_gnomAD)
+gnomad_dict = var.get_data(path_to_gnomAD)
+print(var.big_loop(gnomad_dict))
 #print(df_ensemble.head(10))
-print(
-len(gnomad_dict.keys()) == len(df_HGNC),
-len(df_HGNC) == len(top_200_dataset),
-len(gnomad_dict.keys()) == len(top_200_dataset)
-)
+# print(
+# len(gnomad_dict.keys()) == len(df_HGNC),
+# len(df_HGNC) == len(top_200_dataset),
+# len(gnomad_dict.keys()) == len(top_200_dataset)
+# )
 
 

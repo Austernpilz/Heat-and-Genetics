@@ -337,6 +337,143 @@ def download_data(df: list, path_to_gnomAD):
 
     return result_dict
 
+
+def get_ancestry_p(population_list):
+    return_pairs = []
+    found, relevant = False, False
+    for pop_dict in population_list:
+        id = pop_dict.get("id", "None")
+        if id in ['afr', 'African/African American', 
+                  'nfe', 'European (non-Finnish)', 
+                  'nfe_bgr', 'Bulgarian', 
+                  'nfe_est', 'Estonian', 
+                  'nfe_nwe', 'North-western European', 
+                  'nfe_onf', 'Other non-Finnish European', 
+                  'nfe_seu', 'Southern European', 
+                  'nfe_swe', 'Swedish']:
+
+            af = float(pop_dict.get("ac", 0.0)) / float(pop_dict.get("ac", 1.0))
+            return_pairs.append((id, af))
+
+    for _, af in return_pairs:
+        if af>= 0.005:
+            found = True
+        elif af != 0.0:
+            relevant = True
+
+    return found, relevant, return_pairs
+
+def get_relevant_variants(variant_list):
+    return_dict = {}
+    for variant in variant_list:
+        id = variant.get("variant_id", False)
+        if id == "None":
+            continue
+
+        exome = variant.get("exome", {})
+        if not isinstance(exome, dict):
+            exome = {}
+
+        genome = variant.get("genome", {})
+        if not isinstance(exome, dict):
+            genome = {}
+
+        joint = variant.get("joint", {})
+        if not isinstance(exome, dict):
+            joint = {}
+
+        save = False
+        for data, name in [(exome, "exome"), (genome, "genome"), (joint, "joint")]:
+            found, relevant, population_list = get_ancestry_p(data.get("populations", []))
+            if found or relevant:
+                if id not in return_dict.keys():
+                    return_dict[id] = {}
+                    save = True
+                if "ancestry" not in return_dict[id].keys():
+                    return_dict[id]["ancestry"] = []
+
+                return_dict[id]["ancestry"].append((name+id, population_list))
+
+        if save:
+            if "info" not in return_dict[id].keys():
+                return_dict[id]["info"] = {}
+            for key in ["gene_symbol", "reference_genome", "chrom", "pos", "ref", "alt", "gene_id", "gene_symbol", "hgvsc", "hgvsp"]:
+                return_dict[id]["info"][key] = variant.get(key, "")
+
+    return return_dict
+
+def big_loop(big_dict):
+    return_dict = {}
+    for gene_id, data in big_dict.items():
+        variants = data.get("variants", [])
+        if not variants:
+            continue
+
+        return_dict[gene_id] = get_relevant_variants(variants)
+
+        if not return_dict[gene_id]:
+            return_dict.pop(gene_id)
+            continue
+
+    return return_dict
+
+
+
+
+
+
+    return
+
+def get_data(path_to_gnomAD):
+    return_dict = {}
+    path_to_gnomAD = os.path.join(path_to_gnomAD, "data")
+    if not os.path.isdir(path_to_gnomAD):
+        return {}
+
+    dir_to_visit = deque()
+    dir_to_visit.append(path_to_gnomAD)
+    while dir_to_visit:
+        current = dir_to_visit.pop(0)
+
+        for entry in os.scandir(current):
+            if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt"]:
+                continue
+
+            if entry.is_dir():
+                dir_to_visit.append(os.path.join(current, entry.name))
+                continue
+
+            if not entry.is_file():
+                continue
+
+            if not entry.name.endswith(".json"):
+                continue
+
+            try:
+                data = {}
+                gene_name = os.path.basename(current)
+                file_path = os.path.join(current, entry.name)
+
+                if gene_name not in return_dict:
+                    return_dict[gene_name] = {}
+
+                with open(file_path, 'r') as f:
+                    data = json.load(f)
+
+                if "gene_ids" in entry.name:
+                    return_dict[gene_name]["gene_ids"] = data
+                elif "clinvar_variants" in entry.name:
+                    return_dict[gene_name]["clinvar_variants"] = data
+                elif "variants" in entry.name:
+                    return_dict[gene_name]["variants"] = data
+                else:
+                    return_dict[gene_name]["NO_NAME"] = data
+
+            except Exception as _:
+                continue
+
+    return return_dict
+
 # def download_data(df: pd.DataFrame, path_to_gnomAD):
 #     result_dict = {}
 #     tasks = deque()
