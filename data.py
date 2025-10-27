@@ -93,7 +93,7 @@ load ensemble data
 
 # gnomad_dict = var.download_data(df_HGNC["ensembl_gene_id"].unique().tolist(), path_to_gnomAD)
 gnomad_dict = var.get_data(path_to_gnomAD)
-print(var.big_loop(gnomad_dict))
+var.big_loop(gnomad_dict)
 #print(df_ensemble.head(10))
 # print(
 # len(gnomad_dict.keys()) == len(df_HGNC),
