@@ -408,7 +408,7 @@ def get_relevant_variants(variant_list):
                     if "ancestry" not in return_dict[id].keys():
                         return_dict[id]["ancestry"] = []
 
-                    return_dict[id]["ancestry"].append((name+id, population_list))
+                    return_dict[id]["ancestry"].append((name, population_list))
             except Exception as e:
                 print(str(e))
                 continue
@@ -416,7 +416,7 @@ def get_relevant_variants(variant_list):
         if save:
             if "info" not in return_dict[id].keys():
                 return_dict[id]["info"] = {}
-            for key in ["gene_symbol", "reference_genome", "chrom", "pos", "ref", "alt", "gene_id", "gene_symbol", "hgvsc", "hgvsp"]:
+            for key in ["gene_symbol", "reference_genome", "chrom", "pos", "ref", "alt", "gene_id", "hgvsc", "hgvsp"]:
                 return_dict[id]["info"][key] = variant.get(key, "")
 
     return return_dict, statsfound, statsrelevant
@@ -429,7 +429,6 @@ def big_loop(big_dict):
         if not variants:
             continue
 
-        
         d, f, r =  get_relevant_variants(variants)
         relevant += r
         found += f
@@ -438,7 +437,28 @@ def big_loop(big_dict):
             return_dict.pop(gene_id)
             continue
 
+        clinvar = data.get("clinvar_variants", [])
+        if not clinvar:
+            continue
 
+        for variant_id, values in return_dict[gene_id]:
+            for cvar in clinvar:
+                id = cvar.get("variant_id", "None")
+                if id == "None" or id != variant_id:
+                    continue
+                else:
+                    for item in ["reference_genome", "chrom", "pos", "ref", "alt", "clinical_significance", "clinvar_variation_id", "gold_stars", "hgvsc", "hgvsp", "major_consequence"]:
+                        key = cvar.get(item, "None")
+                        if key == "None":
+                            continue
+                        if item in return_dict[gene_id][variant_id]["info"].keys():
+                            if key == return_dict[gene_id][variant_id]["info"][item]:
+                                continue
+                            else:
+                                key2 = return_dict[gene_id][variant_id]["info"][item]
+                                return_dict[gene_id][variant_id]["info"][item] = [key, key2]
+                        else:
+                            return_dict[gene_id][variant_id]["info"][item] = key
     # for gene_id, data in big_dict.items():
     #     print(gene_id, len(data))
 
@@ -446,11 +466,113 @@ def big_loop(big_dict):
     return return_dict
 
 
+def clean(smaller_dict):
+    gene_id, gene_symbol, variant_id = [], [], []
+    clinical_significance, major_consequence = [], []
+    chrom, pos, ref, alt = [], [], [], []
+    hgvsc, hgvsp, reference_genome = [], [], []
+    ancestry_afr, ancestry_nfe = [], []
+
+    for g_id, gnomAD_data in smaller_dict:
+        for var_id, fields in gnomAD_data:
+            gene_id.append(g_id)
+            variant_id.append(var_id)
+
+            anc = fields.get("ancestry", [])
+            afr, nfe = 0.0, 0.0
+ 
+            for name, pop_list in anc:
+                if name != "exome":
+                    continue
+                for pop, af in pop_list:
+                    if pop in ['nfe', 'European (non-Finnish)', 
+                               'nfe_bgr', 'Bulgarian', 
+                               'nfe_est', 'Estonian', 
+                               'nfe_nwe', 'North-western European', 
+                               'nfe_onf', 'Other non-Finnish European', 
+                               'nfe_seu', 'Southern European', 
+                               'nfe_swe', 'Swedish']:
+                        nfe = af
+                        continue
+                    elif pop in ['afr', 'African/African American']: 
+                        afr = af
+                        continue
+            ancestry_afr.append(afr)
+            ancestry_nfe.append(nfe)
+
+            c, p, r, a = 0, 0, "", ""
+            rg, gs = "", ""
+            gs, cs, mc, hc, hp = "", "", "", "", ""
+            information = fields.get("info", {})
+            for key, value in information.items():
+                if isinstance(value, list):
+                    value = value[0]
+                
+                if key in ["reference_genome", "reference_genome"]:
+                    rg = value
+                    continue
+                
+                if key in ["chrom", "chr"]:
+                    c = value
+                    continue
+                if key == "pos":
+                    p = value
+                    continue
+                
+                if key == "ref":
+                    r = value
+                    continue
+                
+                if key =="alt":
+                    a = value
+                    continue
+
+                if key == "gene_symbol":
+                    gs = value
+                    continue
+
+                if key == "clinical_significance":
+                    cs = value
+                    continue
+
+                if key == "major_consequence":
+                    mc = value
+                    continue
+
+                if key == "hgvsc":
+                    hc = value
+                    continue
+
+                if key == "hgvsp":
+                    hp = value
+            gene_symbol.append(gs)
+            clinical_significance.append(cs)
+            major_consequence.append(mc)
+            chrom.append(c)
+            pos.append(p)
+            ref.append(r)
+            alt.append(a)
+            hgvsc.append(hc)
+            hgvsp.append(hp)
+            reference_genome.append(rg)
 
 
-
-
-    return
+    return pd.DataFrame({
+        "gene_id":gene_id, 
+        "gene_symbol":gene_symbol, 
+        "variant_id":variant_id, 
+        "clinical_significance":clinical_significance, 
+        "major_consequence":major_consequence ,
+        "chr":chrom, 
+        "pos":pos, 
+        "ref": ref,
+        "alt" : alt,
+        "hgvsc": hgvsc, 
+        "hgvsp": hgvsp,
+        "reference_genome": reference_genome,
+        "ancestry_afr" : ancestry_afr,
+        "ancestry_nfe" : ancestry_nfe
+    })
 
 def get_data(path_to_gnomAD):
     return_dict = {}
