@@ -375,6 +375,7 @@ def get_ancestry_p(population_list):
 
 def get_relevant_variants(variant_list):
     return_dict = {}
+    statsfound, statsrelevant = 0,0
     for variant in variant_list:
         id = variant.get("variant_id", False)
         if id == "None":
@@ -396,6 +397,10 @@ def get_relevant_variants(variant_list):
         for data, name in [(exome, "exome"), (genome, "genome"), (joint, "joint")]:
             try:
                 found, relevant, population_list = get_ancestry_p(data.get("populations", []))
+                if found: 
+                    statsfound +=1
+                if relevant:
+                    statsfound += 1
                 if found or relevant:
                     if id not in return_dict.keys():
                         return_dict[id] = {}
@@ -414,26 +419,30 @@ def get_relevant_variants(variant_list):
             for key in ["gene_symbol", "reference_genome", "chrom", "pos", "ref", "alt", "gene_id", "gene_symbol", "hgvsc", "hgvsp"]:
                 return_dict[id]["info"][key] = variant.get(key, "")
 
-    return return_dict
+    return return_dict, statsfound, statsrelevant
 
 def big_loop(big_dict):
     return_dict = {}
+    found, relevant = 0, 0
     for gene_id, data in big_dict.items():
         variants = data.get("variants", [])
         if not variants:
             continue
 
-        return_dict[gene_id] = get_relevant_variants(variants)
-
+        
+        d, f, r =  get_relevant_variants(variants)
+        relevant += r
+        found += f
+        return_dict[gene_id] = d
         if not return_dict[gene_id]:
             return_dict.pop(gene_id)
             continue
 
 
-    for gene_id, data in big_dict.items():
-        print(gene_id, len(data))
+    # for gene_id, data in big_dict.items():
+    #     print(gene_id, len(data))
 
-    print(len(return_dict))
+    print(len(return_dict), f, r)
     return return_dict
 
 
