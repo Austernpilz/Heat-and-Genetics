@@ -433,7 +433,7 @@ def get_data(path_to_gnomAD):
     dir_to_visit = deque()
     dir_to_visit.append(path_to_gnomAD)
     while dir_to_visit:
-        current = dir_to_visit.pop(0)
+        current = dir_to_visit.pop()
 
         for entry in os.scandir(current):
             if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt"]:
