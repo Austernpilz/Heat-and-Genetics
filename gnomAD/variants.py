@@ -351,7 +351,7 @@ def get_ancestry_p(population_list):
                   'nfe_onf', 'Other non-Finnish European', 
                   'nfe_seu', 'Southern European', 
                   'nfe_swe', 'Swedish']:
-            
+
             ac = pop_dict.get("ac", 0.0)
             an = pop_dict.get("an", 1.0)
             af = 0.0
