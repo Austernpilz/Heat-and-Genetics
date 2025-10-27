@@ -351,8 +351,15 @@ def get_ancestry_p(population_list):
                   'nfe_onf', 'Other non-Finnish European', 
                   'nfe_seu', 'Southern European', 
                   'nfe_swe', 'Swedish']:
-
-            af = float(pop_dict.get("ac", 0.0)) / float(pop_dict.get("ac", 1.0))
+            
+            ac = pop_dict.get("ac", 0.0)
+            an = pop_dict.get("an", 1.0)
+            af = 0.0
+            try:
+                af = float(ac) / float(an)
+            except Exception as e:
+                print(str(e))
+                af = 0.0
             return_pairs.append((id, af))
 
     for _, af in return_pairs:
