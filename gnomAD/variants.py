@@ -502,7 +502,14 @@ def get_ancestry_p_and_reduce(populations_in_gen, ancestry_list):
     return new_ac_an_af
 
 
-def filter_variants_by_ancestry(variant_list, ancestry_list, cut_off):
+def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off):
+    if variant_path is None:
+        return [], []
+
+    variant_list = []
+    with open(variant_path, 'r') as f:
+        variant_list = json.load(f)
+
     variants_to_keep = []
     variants_sorted_out = []
     ancestry_list = extend_and_validate_ancestry_names(ancestry_list)
@@ -516,7 +523,7 @@ def filter_variants_by_ancestry(variant_list, ancestry_list, cut_off):
             continue
 
         for item in ["joint", "genome", "exome"]:
-            population_data = variant.pop(item)
+            population_data = variant.pop(item, None)
             variant[item] = get_ancestry_p_and_reduce(population_data, ancestry_list)
 
         variants_to_keep.append(variant)
@@ -547,17 +554,9 @@ def get_gnomAD_datapaths_single(path_to_gene):
 def clean_and_filter(path_to_gene, ancestry_list, cutoff):
     gnomAD_data_dict = get_gnomAD_datapaths_single(path_to_gene)
 
-    data = []
-    if gnomAD_data_dict["gnomAD_variants"] is not None:
-        with open(gnomAD_data_dict["gnomAD_variants"], 'r') as f:
-            data = json.load(f)
-    variant_table, variants_sorted_out = filter_variants_by_ancestry(data, ancestry_list, cutoff)
+    variant_table, variants_sorted_out = filter_variants_by_ancestry(gnomAD_data_dict["gnomAD_variants"], ancestry_list, cutoff)
 
-    data = []
-    if gnomAD_data_dict["clinvar_variants"] is not None:
-        with open(gnomAD_data_dict["clinvar_variants"], 'r') as f:
-            data = json.load(f)
-    variant_table, clinvar_variants_sorted_out = match_variants_to_clinvar(variant_table, data)
+    variant_table, clinvar_variants_sorted_out = match_variants_to_clinvar(variant_table, gnomAD_data_dict["clinvar_variants"])
     variants_sorted_out = list(set(variants_sorted_out + clinvar_variants_sorted_out))
 
     data = {}
@@ -597,11 +596,13 @@ def build_entry(gv, cv):
             new_entry[item] = gnomad_variation
             continue
 
-        if gnomad_variation is None:
+        if (gnomad_variation is None or 
+            clinvar_variation and not gnomad_variation):
             new_entry[item] = clinvar_variation
             continue
 
-        if clinvar_variation is None:
+        if (clinvar_variation is None or
+            gnomad_variation and not clinvar_variation):
             new_entry[item] = gnomad_variation
             continue
 
@@ -611,17 +612,25 @@ def build_entry(gv, cv):
     if new_entry["no_match"]:
         return gv
 
-    for key in cv.keys():
-        if key not in new_entry.keys():
-            gv[key] = cv.pop(key)
+    for key in gv:
+        if key in new_entry.keys():
             continue
+        new_entry[key] = gv[key]
 
-        gv[key] = new_entry[key]
+    for key in cv.keys():
+        if key in new_entry.keys():
+            continue
+        new_entry[key] = cv[key]
 
-    return gv
+    return new_entry
 
 
-def match_variants_to_clinvar(variants, clinvars):
+def match_variants_to_clinvar(variants, path_to_clinvar_data):
+    clinvars = []
+    if path_to_clinvar_data is not None:
+        with open(path_to_clinvar_data, 'r') as f:
+            clinvars = json.load(f)
+
     if not variants and not clinvars:
         return pd.DataFrame(), []
 
