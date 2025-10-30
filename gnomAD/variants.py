@@ -563,12 +563,13 @@ def clean_and_filter(path_to_gene, ancestry_list, cutoff):
     if gnomAD_data_dict["gene_ids"] is not None:
         with open(gnomAD_data_dict["gene_ids"], 'r') as f:
             data = json.load(f)
-
+            data.pop("mane_select_transcript")
+    
     for key in data.keys():
         if key in ["reference_genome", "chrom", "gene_id"]:
             variant_table[f"{key}_general"] = data[key]
         else:
-            variant_table[key] =  data[key]
+            variant_table[key] = data[key]
 
     specifier = "".join( [f"{anc}_" for anc in ancestry_list] + [f"cutoff_{cutoff}.tsv"] )
     filename = os.path.join(path_to_gene, specifier)
