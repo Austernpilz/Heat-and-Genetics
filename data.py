@@ -12,6 +12,7 @@ import pandas as pd
 """
 Paths to the different folders
 """
+
 this_folder = os.getcwd() #this excpects you to start from the Heat_and_Genetics_Folder
 path_to_amigo = os.path.join(this_folder, "AmiGo2")
 amigo_in_out = os.path.join(path_to_amigo, "include_exclude.txt")
@@ -39,9 +40,12 @@ df_amigo_reduced, df_amigo_plusplus = dut.apply_include_exclude_txt(amigo_in_out
 df_disgnet_reduced, df_disgnet_plusplus = dut.apply_include_exclude_txt(disgnet_in_out, df_disgnet, "disease_name")
 
 [df_amigo_reduced, df_disgnet_reduced], rest = hugo.clean_up([df_amigo_reduced, df_disgnet_reduced], path_to_HGNC)
-rename_dict = {"gene_symbol": "gene", "bioentity_label": "gene", 
-                   "group_term" : "term_general", 
-                   "term" : "term_specific", "disease_name": "term_specific"}
+rename_dict = {
+    "gene_symbol": "gene", 
+    "bioentity_label": "gene", 
+    "group_term" : "term_general", 
+    "term" : "term_specific", 
+    "disease_name": "term_specific"}
 df_union = dut.make_new_table([df_amigo_plusplus, df_disgnet_plusplus], list(rename_dict.keys())+["HGNC ID"], rename_dict)
 #print(len(df_union["gene"].unique()))
 
@@ -86,16 +90,16 @@ load hgnc data
 load ensemble data
 """
 
-# df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, True)
-# print("couldn't be loaded:", '\n', rest)
+df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, True)
+print("couldn't be loaded:", '\n', rest)
 
 # df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
 
-# gnomad_dict = var.download_data(df_HGNC["ensembl_gene_id"].unique().tolist(), path_to_gnomAD)
-gnomad_dict = var.get_data(path_to_gnomAD)
-big_dict = var.big_loop(gnomad_dict)
-smaller_dict = var.clean(big_dict)
-smaller_dict.to_csv(os.path.join(path_to_gnomAD, "clean.tsv"), sep='\t')
+# gnomad_dict = var.download_data(, path_to_gnomAD)
+var.get_data(df_HGNC["ensembl_gene_id"].unique().tolist(), path_to_gnomAD, ["afr", "nfe"], 0.005, t=8,  download=True)
+# big_dict = var.big_loop(gnomad_dict)
+# smaller_dict = var.clean(big_dict)
+# smaller_dict.to_csv(os.path.join(path_to_gnomAD, "clean.tsv"), sep='\t')
 #print(df_ensemble.head(10))
 # print(
 # len(gnomad_dict.keys()) == len(df_HGNC),

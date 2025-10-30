@@ -114,6 +114,7 @@ def get_rename_dict(look_up_table):
         rename_dict[input] = gene
     return rename_dict
 
+
 def load_simple_search_data(path_to_HGNC):
     path_data = os.path.join(path_to_HGNC, "data")
     df_list = []
@@ -181,52 +182,16 @@ def save_look_up(look_up_table, path_to_HGNC):
     file_path = os.path.join(path_to_HGNC, "look_up_hugo.tsv")
     look_up_table.to_csv(file_path, sep='\t', index=False)
 
-# path_to_HGNC = os.path.join(os.getcwd(), "HGNC")
-# hgnc_symbol_check = load_simple_search_data(path_to_HGNC)
-# app = hgnc_symbol_check["Approved symbol"].unique().tolist()
-# inp = hgnc_symbol_check["Input"].unique().tolist()
-# print(hgnc_symbol_check[~hgnc_symbol_check["Approved symbol"].isin(inp)]["Approved symbol"].unique().tolist())
-# for item in hgnc_symbol_check["Approved symbol"].unique():
-#     print(type(item))
-# new_df = df["Input"].value_counts()
-# symbols_to_look_for = new_df[new_df>1].index.tolist()
-# # print(df[df["Input"].isin(symbols_to_look_for)].head(20))
+def test():
+    path_to_HGNC = os.path.join(os.getcwd(), "HGNC")
+    hgnc_symbol_check = load_simple_search_data(path_to_HGNC)
+    app = hgnc_symbol_check["Approved symbol"].unique().tolist()
+    inp = hgnc_symbol_check["Input"].unique().tolist()
+    print(hgnc_symbol_check[~hgnc_symbol_check["Approved symbol"].isin(inp)]["Approved symbol"].unique().tolist())
 
-# sub = df[df["Match type"] != "Approved symbol"]
-# subsub = sub["Approved symbol"].unique().tolist()
-# print(subsub)
-# print(len(subsub), len(sub))
-# r = requests.get("https://rest.genenames.org/fetch/symbol/MED1", headers={"Accept":"application/json"})
-# decoded = r.json()
-# pth = os.path.join(path_to_HGNC, "tet.json")
-# with open(pth, 'w') as file:
-#     json.dump(r.json(), file)
-# data = decoded.get("response", {}).get("docs", [])
-# d = pd.json_normalize(data)
-# print(d.head(10))
+def more_look_up_data():
+    return
 
-
-
-# data = r.content.decode('utf-8')
-# df = pd.read_csv(StringIO(data))
-# print(df.head(10))
-# override encoding by real educated guess as provided by chardet
-# r.encoding = r.apparent_encoding
-# path_to_HGNC = os.path.join(os.getcwd(), "HGNC")
-
-
-# # access the data
-# df = StringIO(r.text)
-# print(r.text)
-
-# df = pd.read_csv(StringIO(r.json), 
-#                          sep="\t", 
-#                          dtype=str)
-
-# print(df.head(10))
-# hgnc_check_amigo = pd.read_csv(amigo_HGNC)
-# hgnc_check_disgnet = pd.read_csv(disgnet_HNGC)
-# print(hgnc_check_disgnet[hgnc_check_disgnet["Match type"] != "Approved symbol"])
 def easy_clean_up(hgnc_symbol_check):
     #input is already approved_symbol
     simple = hgnc_symbol_check[hgnc_symbol_check["Input"] == hgnc_symbol_check["Approved symbol"]].drop_duplicates()
@@ -241,20 +206,18 @@ def easy_clean_up(hgnc_symbol_check):
     for _, row in rest.iterrows():
         input_r = row["Input"]
         if len(rest[rest["Input"] == input_r])>1:
-            # print(input_r, 2)
             complex_search.append(input_r)
         elif row["Match type"] == "Unmatched":
             complex_search.append(input_r)
         elif (row["Approved symbol"] == "NO SYMBOL" and 
               row["HGNC ID"] == "NO ID" and 
               row["Approved name"] =="NO NAME"):
-            # print(row)
             complex_search.append(input_r)
         else:
             simple.loc[len(simple)] = row
 
-    # print(complex_search)
-    return rest[rest["Input"].isin(complex_search)], simple
+    return more_look_up_data(rest[rest["Input"].isin(complex_search)]), simple
+
 
 def load_look_up(path_to_HGNC):
     file_path = os.path.join(path_to_HGNC, "look_up_hugo.tsv")
@@ -292,6 +255,7 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
             continue
     return [], []
 
+
 def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     gene_symbols = get_gene_symbols(list_of_df)
     sub_look = look_up_table[look_up_table["Input"].isin(gene_symbols)]
@@ -301,10 +265,8 @@ def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
         return fetch_offline(gene_symbols, sub_look, load_by_symbol, path_to_HGNC)
 
     HGNC_data = []
-
     next_to_download = []
     for symbol in load_by_symbol:
-        sleep(0.1)
         df_hugo_symbol = fetch_hugo("symbol", symbol, path_to_HGNC, download=download)
         #print(df_hugo_symbol)
         if df_hugo_symbol is None:
@@ -313,28 +275,27 @@ def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
             next_to_download.append(symbol)
         else:
             HGNC_data.append(df_hugo_symbol)
-
+        sleep(0.1)
     load_by_id = sub_look[sub_look["Approved symbol"].isin(next_to_download)]
     load_by_id["HGNC ID"] = load_by_id["HGNC ID"].str.replace("HGNC:", '')
     # next_to_download = []
+
     for id in load_by_id["HGNC ID"].unique().tolist():
-        sleep(0.1)
         df_hugo_symbol = fetch_hugo("hgnc_id", id, path_to_HGNC, download=download)
         if df_hugo_symbol.empty() or df_hugo_symbol is None:
             next_to_download.append(symbol)
         else:
             HGNC_data.append(df_hugo_symbol)
+        sleep(0.1)
 
     load_by_name = sub_look[sub_look["HGNC ID"].isin(next_to_download)]
-    # next_to_download = []
     for name in load_by_name["Approved name"].unique().tolist():
-        sleep(0.1)
         df_hugo_symbol = fetch_hugo("name", name, path_to_HGNC, download=download)
         if df_hugo_symbol.empty() or df_hugo_symbol is None:
             next_to_download.append(symbol)
         else:
             HGNC_data.append(df_hugo_symbol)
-
+        sleep(0.1)
     return pd.concat(HGNC_data), sub_look[sub_look["Approved name"].isin(next_to_download)].copy()
 
 
@@ -379,6 +340,6 @@ def clean_up(list_of_df, path_to_HGNC, save=True):
 
 #     HGNC_approved_symbol = ["Approved symbol", "symbol"]
 # def build_look_up_table(list_of_df, path_to_HGNC):
-#     
+
 
 

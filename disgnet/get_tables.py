@@ -8,7 +8,6 @@ def get_paths_to_disgnet_data(path_disgnet = None):
     if not os.path.isdir(path_disgnet):
         return []
 
-    #infotxt = []
     resulttsv = []
     dir_to_visit = [path_disgnet]
     while dir_to_visit:
@@ -40,11 +39,22 @@ def build_tables(path_to_disgnet = None):
 
     df_list = []
     for tsv in resulttsv:
-        df_list.append(
-            pd.read_csv(tsv, 
-                        sep="\t", 
-                        dtype=str))
+        df_list.append( pd.read_csv(tsv, sep="\t", dtype=str) )
 
-    return pd.concat(df_list)
+    return extend_data( pd.concat(df_list), path_to_disgnet)
 
 # print(build_tables(os.getcwd()))
+
+def look_for_extra_information(path_to_disgnet):
+    for path, _, files in os.walk(path_to_disgnet):
+        if "extend_data.txt" in files:
+            return os.path.join(path, "extend_data.txt")
+    return None
+
+def extend_data(df, path_to_disgnet):
+    extra = look_for_extra_information(path_to_disgnet)
+    if extra is None:
+        return df
+
+    
+    return df
