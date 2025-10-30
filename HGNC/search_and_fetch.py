@@ -263,7 +263,8 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
     approved_name = []
 
     for symbol in load_by_symbol:
-        if 
+        if True:
+            return
 
 def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     gene_symbols = get_gene_symbols(list_of_df)
