@@ -517,7 +517,7 @@ def filter_variants_by_ancestry(variant_list, ancestry_list, cut_off):
 
         for item in ["joint", "genome", "exome"]:
             population_data = variant.pop(item)
-            variant[item] = get_ancestry_p_and_reduce(population_data, ancestry_list, cut_off)
+            variant[item] = get_ancestry_p_and_reduce(population_data, ancestry_list)
 
         variants_to_keep.append(variant)
 
