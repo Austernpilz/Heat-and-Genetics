@@ -92,7 +92,7 @@ load ensemble data
 
 df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, False)
 print("couldn't be loaded:", '\n', rest)
-
+print(df_HGNC)
 # df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
 egid = df_HGNC["ensembl_gene_id"].unique().tolist()
 # gnomad_dict = var.download_data(, path_to_gnomAD)

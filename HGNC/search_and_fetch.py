@@ -229,6 +229,7 @@ def load_HGNC(top_200_dataset, path_to_HGNC, load=True):
 
 def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
     path_to_HGNC = os.path.join(path_to_HGNC, "data")
+    print(path_to_HGNC)
     if not os.path.isdir(path_to_HGNC):
         return [], []
 
@@ -236,6 +237,7 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
     dir_to_visit = [path_to_HGNC]
     while dir_to_visit:
         current = dir_to_visit.pop(0)
+        print(current)
         try:
             for entry in os.scandir(current):
                 if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt"]:
@@ -248,7 +250,7 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
                 if entry.name.endswith(".csv"):
                     continue
 
-                if entry.name.endswith(".tsv"):
+                if entry.name == "hgnc_data.tsv":
                     offline_data.append(os.path.join(current, entry.name))
 
         except Exception as _:
