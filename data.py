@@ -96,7 +96,7 @@ print("couldn't be loaded:", '\n', rest)
 # df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
 
 # gnomad_dict = var.download_data(, path_to_gnomAD)
-var.get_data(df_HGNC["ensembl_gene_id"].unique().tolist(), path_to_gnomAD, ["afr", "nfe"], 0.005, t=8,  download=False)
+var.get_data(df_HGNC["ensembl_gene_id"].unique().tolist(), path_to_gnomAD, ["afr", "nfe"], 0.005, 8,  False)
 # big_dict = var.big_loop(gnomad_dict)
 # smaller_dict = var.clean(big_dict)
 # smaller_dict.to_csv(os.path.join(path_to_gnomAD, "clean.tsv"), sep='\t')

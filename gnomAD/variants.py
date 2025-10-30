@@ -325,11 +325,11 @@ def chunks(lst, n):
 
 def get_data(ENSG_ids, path_to_gnomAD, ancestry_list, cutoff, t=1,  download=True):
     paths = []
+
     if download:
         paths = download_data(ENSG_ids, path_to_gnomAD)
     else: 
         paths = get_paths(path_to_gnomAD, ENSG_ids)
-
 
     for chunk in chunks(paths, t):
         threads = []
@@ -460,10 +460,12 @@ def get_an_ac_af(some_dict):
     ac = some_dict.get("ac", None)
     an = some_dict.get("an", None)
     af = None
+
     try:
         af = float(ac) / float(an)
     except Exception as _:
         af = None
+
     return ac, an, af
 
 def get_ancestry_p_and_reduce(populations_in_gen, ancestry_list):
