@@ -273,12 +273,26 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
     load_by_id = sub_look[sub_look["Approved symbol"].isin(next)]["HGNC ID"].unique().tolist()
     next = []
     while load_by_id:
-        id = next.pop()
+        id = load_by_id.pop()
         if id in df["hgnc_id"].values:
             hgnc_id.append(id)
         else:
             next.append(id)
 
+    load_by_name = sub_look[sub_look["HGNC ID"].isin(next)]["Approved name"].unique().tolist()
+    next = []
+    while load_by_name:
+        name = load_by_name.pop()
+        if name in df["name"].values:
+            approved_name.append(name)
+        else:
+            next.append(name)
+
+    return df[
+        df["symbol"].isin(symbol) |
+        df["hgnc_id"].isin(hgnc_id) |
+        df["name"].isin(approved_name)
+    ], sub_look[sub_look["Approved name"].isin(next)].copy()
 
 def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     gene_symbols = get_gene_symbols(list_of_df)
