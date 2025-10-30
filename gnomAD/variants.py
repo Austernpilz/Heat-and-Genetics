@@ -539,7 +539,7 @@ def get_gnomAD_datapaths_single(path_to_gene):
 
         for names in gnomAD_data.keys():
             if names in entry.name:
-                gnomAD_data[names] = os.path.join(path_to_gene, names)
+                gnomAD_data[names] = os.path.join(path_to_gene, entry.name)
 
     return gnomAD_data
 
