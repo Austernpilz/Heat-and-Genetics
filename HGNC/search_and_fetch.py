@@ -229,7 +229,7 @@ def load_HGNC(top_200_dataset, path_to_HGNC, load=True):
 
 def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
     path_to_HGNC = os.path.join(path_to_HGNC, "data")
-    print(path_to_HGNC)
+
     if not os.path.isdir(path_to_HGNC):
         return [], []
 
@@ -252,22 +252,25 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
                     continue
 
                 file_path = os.path.join(current, entry.name)
-
                 offline_data.append( pd.read_csv(file_path, sep='\t') )
 
         except Exception as _:
             continue
 
     df = pd.concat(offline_data)
-    # return df[]
+    # return df[
+    #     df["symbol"].isin(load_by_symbol) |
+    #     df[] |
+    #     df[] |
+    #     ]
 
 def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     gene_symbols = get_gene_symbols(list_of_df)
     sub_look = look_up_table[look_up_table["Input"].isin(gene_symbols)]
     load_by_symbol = sub_look["Approved symbol"].unique().tolist()
 
-    # if not download:
-    #     return fetch_offline(gene_symbols, sub_look, load_by_symbol, path_to_HGNC)
+    if not download:
+        return fetch_offline(gene_symbols, sub_look, load_by_symbol, path_to_HGNC)
 
     HGNC_data = []
     next_to_download = []
