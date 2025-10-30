@@ -237,7 +237,7 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
     dir_to_visit = [path_to_HGNC]
     while dir_to_visit:
         current = dir_to_visit.pop(0)
-        print(current)
+        # print(current)
         try:
             for entry in os.scandir(current):
 
@@ -258,11 +258,12 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
             continue
 
     df = pd.concat(offline_data)
-    # return df[
-    #     df["symbol"].isin(load_by_symbol) |
-    #     df[] |
-    #     df[] |
-    #     ]
+    symbol = []
+    hgnc_id = []
+    approved_name = []
+
+    for symbol in load_by_symbol:
+        if 
 
 def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     gene_symbols = get_gene_symbols(list_of_df)

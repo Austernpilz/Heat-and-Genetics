@@ -566,9 +566,9 @@ def clean_and_filter(path_to_gene, ancestry_list, cutoff):
 
     for key in data.keys():
         if key in ["reference_genome", "chrom", "gene_id"]:
-            variant_table[f"{key}_general"] = data.pop(key)
+            variant_table[f"{key}_general"] = data[key]
         else:
-            variant_table[key] = data.pop(key)
+            variant_table[key] =  data[key]
 
     specifier = "".join( [f"{anc}_" for anc in ancestry_list] + [f"cutoff_{cutoff}.tsv"] )
     filename = os.path.join(path_to_gene, specifier)
