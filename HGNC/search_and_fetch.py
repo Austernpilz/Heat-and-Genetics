@@ -166,9 +166,9 @@ def fetch_hugo(fetch_by, to_be_fetched, path_to_download=False, download=False):
 
     if path_to_download:
         try:
-            hugo_file = os.path.join(path_to_download, "data", to_be_fetched)
-            os.makedirs(hugo_file, exist_ok=True)
-            file_path = os.path.join(hugo_file, "hgnc_data.tsv")
+            hugo_gen_dir = os.path.join(path_to_download, "data", to_be_fetched)
+            os.makedirs(hugo_gen_dir, exist_ok=True)
+            file_path = os.path.join(hugo_gen_dir, "hgnc_data.tsv")
             if download:
                 return_df.to_csv(file_path ,sep='\t')
             else:
@@ -240,37 +240,40 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
         print(current)
         try:
             for entry in os.scandir(current):
-                if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt"]:
-                    continue
-                elif entry.is_dir():
-                    dir_to_visit.append(os.path.join(current, entry.name))
-                    continue
-                elif not entry.is_file():
-                    continue
-                if entry.name.endswith(".csv"):
+
+                if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt", "ensembl", "AmiGo2", "disgnet", "figures", "gnomAD"]:
                     continue
 
-                if entry.name == "hgnc_data.tsv":
-                    offline_data.append(os.path.join(current, entry.name))
+                if entry.is_dir():
+                    dir_to_visit.append(os.path.join(current, entry.name))
+                    continue
+
+                if entry.name != "hgnc_data.tsv":
+                    continue
+
+                file_path = os.path.join(current, entry.name)
+
+                offline_data.append( pd.read_csv(file_path, sep='\t') )
 
         except Exception as _:
             continue
-    return [], []
 
+    df = pd.concat(offline_data)
+    return df[]
 
 def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     gene_symbols = get_gene_symbols(list_of_df)
     sub_look = look_up_table[look_up_table["Input"].isin(gene_symbols)]
     load_by_symbol = sub_look["Approved symbol"].unique().tolist()
 
-    if not download:
-        return fetch_offline(gene_symbols, sub_look, load_by_symbol, path_to_HGNC)
+    # if not download:
+    #     return fetch_offline(gene_symbols, sub_look, load_by_symbol, path_to_HGNC)
 
     HGNC_data = []
     next_to_download = []
     for symbol in load_by_symbol:
         df_hugo_symbol = fetch_hugo("symbol", symbol, path_to_HGNC, download=download)
-        #print(df_hugo_symbol)
+
         if df_hugo_symbol is None:
             next_to_download.append(symbol)
         elif df_hugo_symbol.empty:
