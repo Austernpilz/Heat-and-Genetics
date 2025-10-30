@@ -1,187 +1,4 @@
-[
-    {
-        "name" : "LOC129391106",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "disgnet",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "LOC126862902",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "disgnet",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "LOC130064350",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "disgnet",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "LOC130064357",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "disgnet",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "LOC107063610",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "disgnet",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "SEPT5-GP1BB",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "disgnet",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "hpse_human-1",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "f9_human",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "fibrinogen_human",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "f8_human",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "f3_human",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "f4_human",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "f5_human",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {
-        "name" : "f6_human",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    },
-    {f3-f7_human
-        "name" : "f7_human",
-    	"symbol" : null,
-        "ensembl_id" : null,
-        "hgnc_id": null,
-        "chr" : null,
-        "pos0" : null,
-        "pos1" : null,
-        "origin" : "amigo",
-        "term_specific" : null,
-        "term_generel" : null
-    }
-]
-(
-"f3-f7_human","","","","",""
+"Input","Match type","Approved symbol","Approved name","HGNC ID"
 "gp1b-flna_human","Unmatched","","","",""
 "gp1b_human","Unmatched","","","",""
 "f8_human-1","Unmatched","","","",""
@@ -192,8 +9,32 @@
 "proc_human-1","Unmatched","","","",""
 "f2-thbd_human","Unmatched","","","",""
 "f2_human","Unmatched","","","",""
-"DGKA","Approved symbol","DGKA","diacylglycerol kinase alpha","HGNC:2849","12q13.2"
 "f7_human","Unmatched","","","",""
 "f12_human","Unmatched","","","",""
 "f11_human","Unmatched","","","",""
-"f8-f9_human","Unmatched","","","","")
+"f8-f9_human","Unmatched","","","",""
+"f5-f10_human","Unmatched","","","",""
+"emilin2_human","Unmatched","","","",""
+"f10_human","Unmatched","","","",""
+"f5_human","Unmatched","","","",""
+"tpa-pai-1_human","Unmatched","","","",""
+"upa-upar_human","Unmatched","","","",""
+"upa-pai-1_human","Unmatched","","","",""
+"vitronectin-pai-1_human","Unmatched","","","",""
+"emilin1_human","Unmatched","","","",""
+"URS000024A59E_9606","Unmatched","","","",""
+"f7_human","Unmatched","","","",""
+"f12_human","Unmatched","","","",""
+"f11_human","Unmatched","","","",""
+"f8-f9_human","Unmatched","","","",""
+"f3-f7_human","Unmatched","","","",""
+"f8_human","Unmatched","","","",""
+"hpse_human-1","Unmatched","","","",""
+"f9_human","Unmatched","","","",""
+"fibrinogen_human","Unmatched","","","",""
+"LOC129391106","Unmatched","","","",""
+"LOC126862902","Unmatched","","","",""
+"LOC130064350","Unmatched","","","",""
+"LOC130064357","Unmatched","","","",""
+"LOC107063610","Unmatched","","","",""
+"SEPT5-GP1BB","Unmatched","","","",""
