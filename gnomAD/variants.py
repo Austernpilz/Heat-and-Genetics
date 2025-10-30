@@ -330,7 +330,7 @@ def get_data(ENSG_ids, path_to_gnomAD, ancestry_list, cutoff, t=1,  download=Tru
         paths = download_data(ENSG_ids, path_to_gnomAD)
     else: 
         paths = get_paths(path_to_gnomAD, ENSG_ids)
-
+    print(paths)
     for chunk in chunks(paths, t):
         threads = []
         for ensg_id in chunk:
