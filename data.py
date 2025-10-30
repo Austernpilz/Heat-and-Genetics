@@ -33,7 +33,7 @@ build union and intersection
 """
 
 #True => Data is downloaded, False => Data needs to be downloaded
-df_amigo, df_overview = sad.get_data(path_to_amigo, True)
+df_amigo, df_overview = sad.get_data(path_to_amigo, False)
 df_disgnet = dis.build_tables(path_to_disgnet)
 
 df_amigo_reduced, df_amigo_plusplus = dut.apply_include_exclude_txt(amigo_in_out, df_amigo, "term")
