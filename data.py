@@ -33,7 +33,7 @@ build union and intersection
 """
 
 #True => Data is downloaded, False => Data needs to be downloaded
-df_amigo, df_overview = sad.get_data(path_to_amigo, False)
+df_amigo, df_overview = sad.get_data(path_to_amigo, True)
 df_disgnet = dis.build_tables(path_to_disgnet)
 
 df_amigo_reduced, df_amigo_plusplus = dut.apply_include_exclude_txt(amigo_in_out, df_amigo, "term")
@@ -61,7 +61,7 @@ df_intersection = df_union[
 #print(len(df_union["gene"].unique()))
 #all of disgnet and the rest from amigo
 #205 becuase 5 are weird
-top_amigo = df_amigo_reduced["bioentity_label"].value_counts().index[:(205 - len(unique_genes_disgnet))].tolist()
+top_amigo = df_amigo_reduced["bioentity_label"].value_counts().index[:(210 - len(unique_genes_disgnet))].tolist()
 top_200_dataset = df_union[
     df_union["gene"].isin(unique_genes_disgnet) | 
     df_union["gene"].isin(top_amigo)

@@ -189,8 +189,8 @@ def test():
     inp = hgnc_symbol_check["Input"].unique().tolist()
     print(hgnc_symbol_check[~hgnc_symbol_check["Approved symbol"].isin(inp)]["Approved symbol"].unique().tolist())
 
-def more_look_up_data():
-    return
+def more_look_up_data(df):
+    return df
 
 def easy_clean_up(hgnc_symbol_check):
     #input is already approved_symbol
