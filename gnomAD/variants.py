@@ -308,7 +308,7 @@ def get_paths(path_to_gnomAD, ENSG_ids):
             if not entry.is_dir():
                 continue
 
-            if entry.name in ["bin", "lib", "include", "share", "HGNC", "AmiGo2", "disgnet", "ensemble", "figures"]:
+            if entry.name in ["bin", "lib", "include", "share", "HGNC", "AmiGo2", "disgnet", "ensembl", "figures"]:
                 continue
 
             if entry.name in ENSG_ids:

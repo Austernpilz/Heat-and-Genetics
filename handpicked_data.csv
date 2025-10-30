@@ -1,0 +1,199 @@
+[
+    {
+        "name" : "LOC129391106",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "disgnet",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "LOC126862902",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "disgnet",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "LOC130064350",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "disgnet",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "LOC130064357",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "disgnet",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "LOC107063610",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "disgnet",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "SEPT5-GP1BB",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "disgnet",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "hpse_human-1",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "f9_human",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "fibrinogen_human",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "f8_human",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "f3_human",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "f4_human",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "f5_human",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {
+        "name" : "f6_human",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    },
+    {f3-f7_human
+        "name" : "f7_human",
+    	"symbol" : null,
+        "ensembl_id" : null,
+        "hgnc_id": null,
+        "chr" : null,
+        "pos0" : null,
+        "pos1" : null,
+        "origin" : "amigo",
+        "term_specific" : null,
+        "term_generel" : null
+    }
+]
+(
+"f3-f7_human","","","","",""
+"gp1b-flna_human","Unmatched","","","",""
+"gp1b_human","Unmatched","","","",""
+"f8_human-1","Unmatched","","","",""
+"klkb1_human-1","Unmatched","","","",""
+"f13_human","Unmatched","","","",""
+"fibrin-clot_human","Unmatched","","","",""
+"fibrin_human","Unmatched","","","",""
+"proc_human-1","Unmatched","","","",""
+"f2-thbd_human","Unmatched","","","",""
+"f2_human","Unmatched","","","",""
+"DGKA","Approved symbol","DGKA","diacylglycerol kinase alpha","HGNC:2849","12q13.2"
+"f7_human","Unmatched","","","",""
+"f12_human","Unmatched","","","",""
+"f11_human","Unmatched","","","",""
+"f8-f9_human","Unmatched","","","","")
