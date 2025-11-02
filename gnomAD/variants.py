@@ -42,13 +42,7 @@ GNOMAD_POPULATION_NAMES = {
     'nfe_swe': 'Swedish',
 }
 
-def query_from_ensemble_id(ensemble_id):
-    """
-    very long query string; 
-    look up https://gnomad.broadinstitute.org/api to test out querys Strings
-    there is also some aka little to none documentation
-    # <- mark comments
-    """
+def query_gen_ensemble(ensemble_id):
     return (f''' 
 query VariantsInGene {{
     # this is what we are looking for, in ref_g: GRCh38 look for ensemble_id
@@ -76,109 +70,146 @@ query VariantsInGene {{
             refseq_id
             refseq_version
         }}
+    }}
+}} ''')
 
-        variants(dataset: gnomad_r4) {{
-            variant_id
-            reference_genome
-            chrom
-            pos
-            ref
-            alt
-            rsids
-            gene_id
-            gene_symbol
-            transcript_id
-            transcript_version
-            lof
-            hgvsc
-            hgvsp
+def query_variant_ensemble(ensemble_id):
+    return (f''' query VariantsInGene {{
+        gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
+            variants(dataset: gnomad_r4) {{
+                variant_id
+                reference_genome
+                chrom
+                pos
+                ref
+                alt
+                rsids
+                gene_id
+                gene_symbol
+                transcript_id
+                transcript_version
+                lof
+                hgvsc
+                hgvsp
 
-            exome {{
-                ac
-                an
+                exome {{
+                    ac
+                    an
 
-                populations {{
+                    populations {{
+                        id
+                        ac
+                        an
+                        homozygote_count
+                        hemizygote_count
+                    }}
+                }}
+
+                genome {{
+                    ac
+                    an
+
+                    populations {{
                     id
                     ac
                     an
                     homozygote_count
                     hemizygote_count
+                    }}
                 }}
-            }}
 
-            genome {{
-                ac
-                an
-
-                populations {{
-                id
-                ac
-                an
-                homozygote_count
-                hemizygote_count
-                }}
-            }}
-
-            joint {{
-                ac
-                an
-
-                populations {{
-                    id
+                joint {{
                     ac
                     an
-                    homozygote_count
-                    hemizygote_count
+
+                    populations {{
+                        id
+                        ac
+                        an
+                        homozygote_count
+                        hemizygote_count
+                    }}
+                }}
+
+                lof_curation {{
+                    verdict
+                    flags
+                }}
+
+                in_silico_predictors {{
+                    id
+                    value
+                    flags
                 }}
             }}
+        }}
+    }} ''')
 
-            lof_curation {{
-                verdict
-                flags
-            }}
-
-            in_silico_predictors {{
-                id
-                value
-                flags
+def query_clinvar_ensemble(ensemble_id):
+    return (f''' query VariantsInGene {{
+        gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
+            clinvar_variants {{
+                variant_id
+                reference_genome
+                chrom
+                pos
+                ref
+                alt
+                clinical_significance
+                clinvar_variation_id
+                gold_stars
+                hgvsc
+                hgvsp
+                major_consequence
+                review_status
+                transcript_id
             }}
         }}
+    }} ''')
 
-        exons {{
-            feature_type
-            start
-            stop
-        }}
-
-        transcripts {{
-            transcript_id
-            start
-            stop
+def query_exons_ensemble(ensemble_id):
+    return (f''' query VariantsInGene {{
+        gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
             exons {{
                 feature_type
                 start
                 stop
-      	    }}
+            }}
         }}
+    }} ''')
 
-        clinvar_variants {{
-            variant_id
-            reference_genome
-            chrom
-            pos
-            ref
-            alt
-            clinical_significance
-            clinvar_variation_id
-            gold_stars
-            hgvsc
-            hgvsp
-            major_consequence
-            review_status
-            transcript_id
+def query_transcripts_ensemble(ensemble_id):
+    return (f''' query VariantsInGene {{
+        gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
+            transcripts {{
+                transcript_id
+                start
+                stop
+                exons {{
+                    feature_type
+                    start
+                    stop
+                }}
+            }}
         }}
-    }}
-}} ''')
+    }} ''')
+
+
+def query_from_ensemble_id(ensemble_id):
+    """
+    very long query string; 
+    look up https://gnomad.broadinstitute.org/api to test out querys Strings
+    there is also some aka little to none documentation
+    # <- mark comments
+    # too long, every now and then there are mistakes, so I split it in 5 querys
+    """
+    return [
+        query_gen_ensemble(ensemble_id), 
+        query_variant_ensemble(ensemble_id),
+        query_clinvar_ensemble(ensemble_id),
+        query_exons_ensemble(ensemble_id),
+        query_transcripts_ensemble(ensemble_id)
+    ]
 
 
 def query_by_region(chromosom, start, stop):
@@ -264,14 +295,15 @@ to overload the function, we use the same thing and let the python interpreter c
 """
 
 def fetch_data_as_json(ensemble_id : str):
-    try:
-        response = r.post("https://gnomad.broadinstitute.org/api",
-                        json={"query": query_from_ensemble_id(ensemble_id)}
-                        )
-        return response.json()
-    except Exception as e:
-        print(str(e))
-        return {}
+    for query in query_from_ensemble_id(ensemble_id):
+        try:
+            response = r.post("https://gnomad.broadinstitute.org/api",
+                            json={"query": query}
+                            )
+            yield response.json()
+        except Exception as e:
+            print(str(e))
+            yield {}
 
 # def fetch_data_as_json(chromosome : str, pos_start : int, pos_end : int):
 #     #chromosome = f'\"{chromosome}\"'
@@ -364,37 +396,39 @@ def download_data(ENSG_ids, path_to_gnomAD):
         start = datetime.now()
         ensemble_id = tasks.pop()
         path_gen = os.path.join(data_path, ensemble_id)
-
-        res = fetch_data_as_json(ensemble_id)
-        gene_ids = res.get("data", {}).get("gene", {})
-        variants = gene_ids.pop("variants", [])
-        clinvar_variants = gene_ids.pop("clinvar_variants", [])
-        exons = gene_ids.pop("exons", [])
-        transcripts = gene_ids.pop("transcripts", [])
-
+        first = True
         check_result = 0
+        for res in fetch_data_as_json(ensemble_id):
+            gene_ids = res.get("data", {}).get("gene", {})
+            variants = gene_ids.get("variants", [])
+            clinvar_variants = gene_ids.get("clinvar_variants", [])
+            exons = gene_ids.get("exons", [])
+            transcripts = gene_ids.pop("transcripts", [])
 
-        if save_json(gene_ids, path_gen, f"{ensemble_id}_gene_ids"):
-            check_result +=1
+            if first and save_json(gene_ids, path_gen, f"{ensemble_id}_gene_ids"):
+                check_result +=1
+            first = False
 
-        if save_json(variants, path_gen, f"{ensemble_id}_gnomAD_variants"):
-            check_result +=1
+            if save_json(variants, path_gen, f"{ensemble_id}_gnomAD_variants"):
+                check_result +=1
 
-        if save_json(clinvar_variants, path_gen, f"{ensemble_id}_clinvar_variants"):
-            check_result +=1
+            if save_json(clinvar_variants, path_gen, f"{ensemble_id}_clinvar_variants"):
+                check_result +=1
 
-        if save_json(exons, path_gen, f"{ensemble_id}_exons"):
-            check_result +=1
+            if save_json(exons, path_gen, f"{ensemble_id}_exons"):
+                check_result +=1
 
-        if save_json(transcripts, path_gen, f"{ensemble_id}_transcripts"):
-            check_result +=1
+            if save_json(transcripts, path_gen, f"{ensemble_id}_transcripts"):
+                check_result +=1
+
 
         if check_result < 5 or (path_gen in paths):
             tasks.append(ensemble_id)
 
-        paths.append(path_gen)
+        if check_result:
+            paths.append(path_gen)
 
-        end = 6.0 - (start - datetime.now()).total_seconds()
+        end = 40 - (start - datetime.now()).total_seconds()
 
         if end > 0:
             sleep(end)
