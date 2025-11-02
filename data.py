@@ -33,7 +33,7 @@ build union and intersection
 """
 
 #True => Data is downloaded, False => Data needs to be downloaded
-df_amigo, df_overview = sad.get_data(path_to_amigo, True)
+df_amigo, df_overview = sad.get_data(path_to_amigo, False)
 df_disgnet = dis.build_tables(path_to_disgnet)
 
 df_amigo_reduced, df_amigo_plusplus = dut.apply_include_exclude_txt(amigo_in_out, df_amigo, "term")
@@ -58,7 +58,7 @@ df_intersection = df_union[
     ]
 
 
-#print(len(df_union["gene"].unique()))
+print(len(df_union["gene"].unique()))
 #all of disgnet and the rest from amigo
 #205 becuase 5 are weird
 top_amigo = df_amigo_reduced["bioentity_label"].value_counts().index[:(210 - len(unique_genes_disgnet))].tolist()
@@ -67,7 +67,7 @@ top_200_dataset = df_union[
     df_union["gene"].isin(top_amigo)
     ]
 
-#print(top_200_dataset[top_200_dataset["gene"].isin(rest["Input"].unique())])
+print(top_200_dataset[top_200_dataset["gene"].isin(rest["Input"].unique())])
 
 """
 plot data
@@ -93,10 +93,10 @@ load ensemble data
 df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, True)
 print("couldn't be loaded:", '\n', rest)
 print(df_HGNC)
-# df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
+df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
 egid = df_HGNC["ensembl_gene_id"].unique().tolist()
 # gnomad_dict = var.download_data(, path_to_gnomAD)
-var.get_data(egid, path_to_gnomAD, ["afr", "nfe"], 0.005, 8,  False)
+var.get_data(egid, path_to_gnomAD, ["afr", "nfe"], 0.005, 8,  True)
 # big_dict = var.big_loop(gnomad_dict)
 # smaller_dict = var.clean(big_dict)
 # smaller_dict.to_csv(os.path.join(path_to_gnomAD, "clean.tsv"), sep='\t')

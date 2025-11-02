@@ -395,6 +395,7 @@ def download_data(ENSG_ids, path_to_gnomAD):
     while tasks:
         start = datetime.now()
         ensemble_id = tasks.pop()
+        print(f"getting {ensemble_id} data")
         path_gen = os.path.join(data_path, ensemble_id)
         first = True
         check_result = 0
@@ -421,10 +422,10 @@ def download_data(ENSG_ids, path_to_gnomAD):
             if save_json(transcripts, path_gen, f"{ensemble_id}_transcripts"):
                 check_result +=1
 
-
-        if check_result < 5 or (path_gen in paths):
+        if check_result < 5 or (path_gen not in paths):
             tasks.append(ensemble_id)
-
+        else:
+            print(f"succesfull downloaded {ensemble_id} data")
         if check_result:
             paths.append(path_gen)
 
