@@ -46,6 +46,7 @@ rename_dict = {
     "group_term" : "term_general", 
     "term" : "term_specific", 
     "disease_name": "term_specific"}
+print(rest["Input"].unique().tolist())
 df_union = dut.make_new_table([df_amigo_plusplus, df_disgnet_plusplus], list(rename_dict.keys())+["HGNC ID"], rename_dict)
 #print(len(df_union["gene"].unique()))
 
@@ -57,7 +58,6 @@ df_intersection = df_union[
     df_union["gene"].isin(unique_genes_disgnet)
     ]
 
-
 print(len(df_union["gene"].unique()))
 #all of disgnet and the rest from amigo
 #205 becuase 5 are weird
@@ -67,7 +67,7 @@ top_200_dataset = df_union[
     df_union["gene"].isin(top_amigo)
     ]
 
-print(top_200_dataset[top_200_dataset["gene"].isin(rest["Input"].unique())])
+print(top_200_dataset[top_200_dataset["gene"].isin(rest["Input"].unique())]["gene"].unique().tolist())
 
 """
 plot data
@@ -91,12 +91,13 @@ load ensemble data
 """
 
 df_HGNC, rest = hugo.load_HGNC(top_200_dataset, path_to_HGNC, True)
-print("couldn't be loaded:", '\n', rest)
-print(df_HGNC)
+if not rest.empty:
+    print("couldn't be loaded:", '\n', rest)
+# print(df_HGNC)
 df_ensemble = ense.get_data(df_HGNC, path_to_ensemble, True)
 egid = df_HGNC["ensembl_gene_id"].unique().tolist()
 # gnomad_dict = var.download_data(, path_to_gnomAD)
-var.get_data(egid, path_to_gnomAD, ["afr", "nfe"], 0.005, 8,  True)
+var.get_data(egid, path_to_gnomAD, ["afr", "nfe"], 0.05, 4,  True)
 # big_dict = var.big_loop(gnomad_dict)
 # smaller_dict = var.clean(big_dict)
 # smaller_dict.to_csv(os.path.join(path_to_gnomAD, "clean.tsv"), sep='\t')

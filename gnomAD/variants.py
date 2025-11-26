@@ -295,11 +295,15 @@ to overload the function, we use the same thing and let the python interpreter c
 """
 
 def fetch_data_as_json(ensemble_id : str):
+    i=0
     for query in query_from_ensemble_id(ensemble_id):
+        i+=1
         try:
             response = r.post("https://gnomad.broadinstitute.org/api",
                             json={"query": query}
                             )
+            if response.ok:
+                print(f"downloaded {ensemble_id} part {i}/5")
             yield response.json()
         except Exception as e:
             print(str(e))
@@ -323,9 +327,10 @@ def save_json(data, path_to_gnomAD_data, name=False):
         file_name = get_unique_name(path_to_gnomAD_data, name) if name else get_unique_name(path_to_gnomAD_data, "data")
         with open(file_name, 'w') as file:
             json.dump(data, file)
+        print(f"saved {file_name}")
         return True
     else:
-        print(f"data was empty, and so wasn't saved name was: {name if name else 'NO_NAME_GIVEN'}")
+        #print(f"data was empty, and so wasn't saved name was: {name if name else 'NO_NAME_GIVEN'}")
         return False
 
 def get_paths(path_to_gnomAD, ENSG_ids):
@@ -360,7 +365,7 @@ def get_data(ENSG_ids, path_to_gnomAD, ancestry_list, cutoff, t=1,  download=Tru
 
     if download:
         paths = download_data(ENSG_ids, path_to_gnomAD)
-    else: 
+    else:
         paths = get_paths(path_to_gnomAD, ENSG_ids)
     # print(paths)
     for chunk in chunks(paths, t):
@@ -383,6 +388,23 @@ def get_data(ENSG_ids, path_to_gnomAD, ancestry_list, cutoff, t=1,  download=Tru
         for t in threads:
             t.join()
 
+def check_for_offline(path_gen, ensemble_id):
+    if not os.path.isdir(path_gen):
+        return False
+
+    look_for = {
+        ensemble_id + names : 0
+        for names in ["_gene_ids", "_gnomAD_variants", "_clinvar_variants", "_exons", "_transcripts"]
+    }
+
+    for entry in os.scandir(path_gen):
+        if not entry.is_file():
+            continue
+        for key in look_for.keys():
+            if key in entry.name:
+                look_for[key] = 1
+
+    return (sum(look_for.values()) == 5)
 
 def download_data(ENSG_ids, path_to_gnomAD):
     paths = []
@@ -397,6 +419,10 @@ def download_data(ENSG_ids, path_to_gnomAD):
         ensemble_id = tasks.pop()
         print(f"getting {ensemble_id} data")
         path_gen = os.path.join(data_path, ensemble_id)
+        if check_for_offline(path_gen, ensemble_id):
+            paths.append(path_gen)
+            continue
+
         first = True
         check_result = 0
         for res in fetch_data_as_json(ensemble_id):
@@ -422,12 +448,13 @@ def download_data(ENSG_ids, path_to_gnomAD):
             if save_json(transcripts, path_gen, f"{ensemble_id}_transcripts"):
                 check_result +=1
 
+        if check_result > 2 and (path_gen not in paths):
+            paths.append(path_gen)
+
         if check_result < 5 or (path_gen not in paths):
             tasks.append(ensemble_id)
         else:
             print(f"succesfull downloaded {ensemble_id} data")
-        if check_result:
-            paths.append(path_gen)
 
         end = 40 - (start - datetime.now()).total_seconds()
 
@@ -537,7 +564,7 @@ def get_ancestry_p_and_reduce(populations_in_gen, ancestry_list):
     return new_ac_an_af
 
 
-def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off):
+def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off, gen_folder):
     if not variant_path:
         return [], [], "no_variant"
 
@@ -547,6 +574,7 @@ def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off):
             with open(variant_json, 'r') as f:
                 variant_list += json.load(f)
         except Exception as e:
+            print("filter_variants_by_ancestry1")
             print(str(e))
             continue
 
@@ -566,7 +594,7 @@ def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off):
 
         try:
             if not found(variant, ancestry_list, cut_off):
-                variants_sorted_out.add(variant.get("variant_id", "NO_ID"))
+                variants_sorted_out.add(id)
                 continue
 
             new = variant.copy()
@@ -578,6 +606,7 @@ def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off):
             check_for_doubles.append(id)
 
         except Exception as e:
+            print("filter_variants_by_ancestry2")
             print(str(e))
             continue
 
@@ -585,16 +614,22 @@ def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off):
         return [], list(variants_sorted_out), "no_variant"
 
     df = pd.concat(variants_to_keep)
-    if df.emtpy:
+    if df.empty:
         return check_for_doubles, list(variants_sorted_out), "no_variant"
 
-    gen_folder = os.path.commonpath(variant_path) if len(variant_path>1) else os.path.dirname(variant_path)
     anc_name = "".join( [f"_{anc}" for anc in ancestry_list] )
     file_name = os.path.join(gen_folder, f"variants{anc_name}_{cut_off}.tsv")
-    df.to_csv( file_name, sep='\t')
+    try:
+        df = pd.concat(variants_to_keep)
+        if not df.empty:
+            df.to_csv( file_name, sep='\t')
+            print(gen_folder, " successfull")
+            return check_for_doubles, list(variants_sorted_out), file_name
+    except Exception as e:
+        print("filter_variants_by_ancestry3")
+        print(str(e))
 
-    return check_for_doubles, list(variants_sorted_out), file_name
-
+    return check_for_doubles, list(variants_sorted_out), "no_variant"
 
 def get_gnomAD_datapaths_single(path_to_gene):
     gnomAD_data = {
@@ -609,79 +644,82 @@ def get_gnomAD_datapaths_single(path_to_gene):
         if not entry.is_file():
             continue
 
-        for names in gnomAD_data.keys():
-            if names in entry.name:
-                gnomAD_data[names].append(os.path.join(path_to_gene, entry.name))
+        for name in gnomAD_data.keys():
+            if name in entry.name:
+                gnomAD_data[name].append(os.path.join(path_to_gene, entry.name))
 
     return gnomAD_data
 
 
 def clean_and_filter(path_to_gene, ancestry_list, cutoff):
+    print(path_to_gene, "starting now")
     gnomAD_data_dict = get_gnomAD_datapaths_single(path_to_gene)
     ancestry_list = extend_and_validate_ancestry_names(ancestry_list)
-    variants_to_keep, variants_sorted_out, variant_tsv = filter_variants_by_ancestry(gnomAD_data_dict["gnomAD_variants"], ancestry_list, cutoff)
 
-    clinvar_found, clinvar_variants_sorted_out, clinvar_tsv = match_variants_to_clinvar(variants_to_keep, gnomAD_data_dict["clinvar_variants"])
+    variants_to_keep, variants_sorted_out, variant_tsv = filter_variants_by_ancestry(gnomAD_data_dict["gnomAD_variants"], ancestry_list, cutoff, path_to_gene)
+    clinvar_found, clinvar_variants_sorted_out, clinvar_tsv = match_variants_to_clinvar(variants_to_keep, gnomAD_data_dict["clinvar_variants"], path_to_gene)
+
     variants_sorted_out = list(set(variants_sorted_out + clinvar_variants_sorted_out))
 
     file_txt = os.path.join(path_to_gene, "overview.txt")
     file_tsv = os.path.join(path_to_gene, "gene_information.tsv")
     with open (file_txt, "w") as f:
-        f.write(f"> gene_information: {file_tsv}")
-        f.write(f"> variants_found: {variant_tsv}")
+        f.write(f"> gene_information: {str(file_tsv)}\n")
+        f.write(f"> variants_found: {str(variant_tsv)}\n")
         for var in variants_to_keep:
-            f.write(var)
-        f.write(f"> clinvar_variants_found: {clinvar_tsv}")
+            f.write(f"{str(var)}, ")
+        f.write(f"\n> clinvar_variants_found: {str(clinvar_tsv)}\n")
         for var in clinvar_found:
-            f.write(var)
-        f.write("> variants_sorted_out")
+            f.write(f"{str(var)}, ")
+        f.write("\n> variants_sorted_out\n")
         for var in variants_sorted_out:
-            f.write(var)
+            f.write(f"{str(var)}, ")
 
-    data = []
-    for path in gnomAD_data_dict["gene_ids"]:
-        try:
-            gene_id = {}
-            with open(gnomAD_data_dict["gene_ids"], 'r') as f:
-                gene_id = json.load(f)
-            data.append( pd.json_normalize(gene_id) )
-        except Exception as e:
-            print(str(e))
-            continue
+    return
+#     data = []
+#     for path in gnomAD_data_dict["gene_ids"]:
+#         try:
+#             gene_id = {}
+#             with open(gnomAD_data_dict["gene_ids"], 'r') as f:
+#                 gene_id = json.load(f)
+#             data.append( pd.json_normalize(gene_id) )
+#         except Exception as e:
+#             print(str(e))
+#             continue
 
-    if data:
-        df = pd.concat(data)
-        df.to_csv(file_tsv, sep='\t')
+#     if data:
+#         df = pd.concat(data)
+#         df.to_csv(file_tsv, sep='\t')
 
-# reference_genome
-# gene_id
-# gene_version
-# symbol
-# gencode_symbol
-# hgnc_id
-# ncbi_id
-# omim_id
-# name
-# chrom
-# start
-# stop
-# strand
-# canonical_transcript_id
-# mane_select_transcript
-#             ensembl_id
-#             ensembl_version
-#             refseq_id
-#             refseq_version
+# # reference_genome
+# # gene_id
+# # gene_version
+# # symbol
+# # gencode_symbol
+# # hgnc_id
+# # ncbi_id
+# # omim_id
+# # name
+# # chrom
+# # start
+# # stop
+# # strand
+# # canonical_transcript_id
+# # mane_select_transcript
+# #             ensembl_id
+# #             ensembl_version
+# #             refseq_id
+# #             refseq_version
 
-    for key in data.keys():
-        if key in ["reference_genome", "chrom", "gene_id"]:
-            variant_table[f"{key}_general"] = data.pop(key)
-        else:
-            variant_table[key] = data.pop(key)
+#     for key in data.keys():
+#         if key in ["reference_genome", "chrom", "gene_id"]:
+#             variant_table[f"{key}_general"] = data.pop(key)
+#         else:
+#             variant_table[key] = data.pop(key)
 
-    specifier = "".join( [f"{anc}_" for anc in ancestry_list] + [f"cutoff_{cutoff}.tsv"] )
-    filename = os.path.join(path_to_gene, specifier)
-    variant_table.to_csv(filename, index=False, sep="\t")
+#     specifier = "".join( [f"{anc}_" for anc in ancestry_list] + [f"cutoff_{cutoff}.tsv"] )
+#     filename = os.path.join(path_to_gene, specifier)
+#     variant_table.to_csv(filename, index=False, sep="\t")
 
 
 # def build_entry(gv, cv):
@@ -737,12 +775,9 @@ def clean_and_filter(path_to_gene, ancestry_list, cutoff):
 #     return gv
 
 
-def match_variants_to_clinvar(variants, path_to_clinvar_data):
+def match_variants_to_clinvar(gnomAD_variants, path_to_clinvar_data, gen_folder):
     if not path_to_clinvar_data:
         return [], [], "no clinvar variant"
-
-    if not variants:
-        return [], pd.json_normalize(clinvars)["variant_id"].unique().tolist(), None
 
     clinvars = []
     for p in path_to_clinvar_data:
@@ -750,8 +785,12 @@ def match_variants_to_clinvar(variants, path_to_clinvar_data):
             with open(p, 'r') as f:
                 clinvars += json.load(f)
         except Exception as e:
+            print("match_variants_to_clinvar1")
             print(str(e))
             continue
+
+    if not gnomAD_variants:
+        return [], pd.json_normalize(clinvars)["variant_id"].unique().tolist(), None
 
     clinvar_variants_to_keep = []
     clinvar_variants_sorted_out = set()
@@ -768,35 +807,43 @@ def match_variants_to_clinvar(variants, path_to_clinvar_data):
             var_id == "clinvar_var"):
             continue
 
-        not_found = True
-        for gnomAD_variant in variants:
-            if var_id == gnomAD_variant:
-                not_found = False
-                break
-
-        if not_found:
+        if var_id not in gnomAD_variants:
             clinvar_variants_sorted_out.add(var_id)
             continue
 
         try:
             clinvar_variants_to_keep.append(pd.json_normalize(variant))
-            doubles.append(id)
+            doubles.append(var_id)
         except Exception as e:
+            print("match_variants_to_clinvar2")
             print(str(e))
             continue
 
     if not doubles:
         return [], list(clinvar_variants_sorted_out), "no clinvar variant"
 
-    df = pd.concat(clinvar_variants_to_keep)
-    if df.empty:
-        return doubles, list(clinvar_variants_sorted_out), "no clinvar variant"
-
-    gen_folder = os.path.commonpath(path_to_clinvar_data) if len(path_to_clinvar_data>1) else os.path.dirname(path_to_clinvar_data)
     file_name = os.path.join(gen_folder, f"matched_clinvar_variants.tsv")
-    df.to_csv( file_name, sep='\t')
 
-    return doubles, list(clinvar_variants_sorted_out), file_name
+    try:
+        df = pd.concat(clinvar_variants_to_keep)
+        if df.empty:
+            return doubles, list(clinvar_variants_sorted_out), "no clinvar variant"
+        df.to_csv( file_name, sep='\t')
+        return doubles, list(clinvar_variants_sorted_out), file_name
+
+    except Exception as e:
+        print("match_variants_to_clinvar3")
+        print(str(e))
+
+    try:
+        with open(file_name, 'w') as file:
+            json.dump(clinvar_variants_to_keep, file)
+        return doubles, list(clinvar_variants_sorted_out), file_name
+    except Exception as e:
+        print("match_variants_to_clinvar4")
+        print(str(e))
+
+    return doubles, list(clinvar_variants_sorted_out), "no clinvar variant"
 
 
 

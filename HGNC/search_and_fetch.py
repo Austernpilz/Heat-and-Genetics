@@ -139,7 +139,7 @@ def load_simple_search_data(path_to_HGNC):
     return pd.concat(df_list)
 
 def search_hugo(search_by, to_be_searched):
-    return_df = None
+    return_df = pd.DataFrame()
 
     try:
         base_url = "https://rest.genenames.org/search/"
@@ -152,27 +152,25 @@ def search_hugo(search_by, to_be_searched):
 
     return return_df
 
-def fetch_hugo(fetch_by, to_be_fetched, path_to_download=False, download=False):
-    return_df = None
-    if download:
-        try:
-            base_url = "https://rest.genenames.org/fetch/"
-            r = requests.get(base_url+fetch_by+'/'+to_be_fetched, headers={"Accept":"application/json"}, timeout=60)
-            decoded = r.json()
-            data = decoded.get("response", {}).get("docs", [])
-            return_df = pd.json_normalize(data)
-        except Exception as e:
-            print(str(e))
+def fetch_hugo(fetch_by, to_be_fetched, path_to_download=False):
+    return_df = pd.DataFrame()
 
-    if path_to_download:
+    try:
+        base_url = "https://rest.genenames.org/fetch/"
+        r = requests.get(base_url+fetch_by+'/'+to_be_fetched, headers={"Accept":"application/json"}, timeout=120)
+        decoded = r.json()
+        data = decoded.get("response", {}).get("docs", [])
+        return_df = pd.json_normalize(data)
+        sleep(0.1)
+    except Exception as e:
+        print(str(e))
+
+    if path_to_download and not return_df.empty:
         try:
             hugo_gen_dir = os.path.join(path_to_download, "data", to_be_fetched)
             os.makedirs(hugo_gen_dir, exist_ok=True)
             file_path = os.path.join(hugo_gen_dir, "hgnc_data.tsv")
-            if download:
-                return_df.to_csv(file_path ,sep='\t')
-            else:
-                return_df = pd.read_csv(file_path, sep="\t", dtype=str)
+            return_df.to_csv(file_path ,sep='\t')
         except Exception as e:
             print(str(e))
 
@@ -227,11 +225,11 @@ def load_HGNC(top_200_dataset, path_to_HGNC, load=True):
     look_up = load_look_up(path_to_HGNC)
     return load_data([top_200_dataset], look_up, path_to_HGNC, download=load)
 
-def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
+def fetch_offline (path_to_HGNC, download=False):
     path_to_HGNC = os.path.join(path_to_HGNC, "data")
 
     if not os.path.isdir(path_to_HGNC):
-        return [], []
+        return pd.DataFrame()
 
     offline_data = []
     dir_to_visit = [path_to_HGNC]
@@ -241,7 +239,7 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
         try:
             for entry in os.scandir(current):
 
-                if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt", "ensembl", "AmiGo2", "disgnet", "figures", "gnomAD"]:
+                if entry.name in ["bin", "include", "lib", "ensembl", "AmiGo2", "disgnet", "figures", "gnomAD"]:
                     continue
 
                 if entry.is_dir():
@@ -257,84 +255,95 @@ def fetch_offline (gene_symbols, sub_look, load_by_symbol, path_to_HGNC):
         except Exception as _:
             continue
 
-    df = pd.concat(offline_data)
-    symbol = []
-    hgnc_id = []
-    approved_name = []
-    next = []
+    # df = pd.concat(
+    try:
+        return pd.concat(offline_data)
+    except Exception as e:
+        return pd.DataFrame()
+    # symbol = []
+    # hgnc_id = []
+    # approved_name = []
+    # next = []
 
-    while load_by_symbol:
-        s = load_by_symbol.pop()
-        if s in df["symbol"].values:
-            symbol.append(s)
-        else:
-            next.append(s)
+    # while load_by_symbol:
+    #     s = load_by_symbol.pop()
+    #     if s in df["symbol"].values:
+    #         symbol.append(s)
+    #     else:
+    #         next.append(s)
 
-    load_by_id = sub_look[sub_look["Approved symbol"].isin(next)]["HGNC ID"].unique().tolist()
-    next = []
-    while load_by_id:
-        id = load_by_id.pop()
-        if id in df["hgnc_id"].values:
-            hgnc_id.append(id)
-        else:
-            next.append(id)
+    # load_by_id = sub_look[sub_look["Approved symbol"].isin(next)]["HGNC ID"].unique().tolist()
+    # next = []
+    # while load_by_id:
+    #     id = load_by_id.pop()
+    #     if id in df["hgnc_id"].values:
+    #         hgnc_id.append(id)
+    #     else:
+    #         next.append(id)
 
-    load_by_name = sub_look[sub_look["HGNC ID"].isin(next)]["Approved name"].unique().tolist()
-    next = []
-    while load_by_name:
-        name = load_by_name.pop()
-        if name in df["name"].values:
-            approved_name.append(name)
-        else:
-            next.append(name)
+    # load_by_name = sub_look[sub_look["HGNC ID"].isin(next)]["Approved name"].unique().tolist()
+    # next = []
+    # while load_by_name:
+    #     name = load_by_name.pop()
+    #     if name in df["name"].values:
+    #         approved_name.append(name)
+    #     else:
+    #         next.append(name)
 
-    return df[
-        df["symbol"].isin(symbol) |
-        df["hgnc_id"].isin(hgnc_id) |
-        df["name"].isin(approved_name)
-    ], sub_look[sub_look["Approved name"].isin(next)].copy()
+    # return df[
+    #     df["symbol"].isin(symbol) |
+    #     df["hgnc_id"].isin(hgnc_id) |
+    #     df["name"].isin(approved_name)
+    # ], sub_look[sub_look["Approved name"].isin(next)].copy()
 
 def load_data(list_of_df, look_up_table, path_to_HGNC, download=True):
     gene_symbols = get_gene_symbols(list_of_df)
+    #for this to work you need to use the hgnc symbol checker by hand first
     sub_look = look_up_table[look_up_table["Input"].isin(gene_symbols)]
     load_by_symbol = sub_look["Approved symbol"].unique().tolist()
 
-    if not download:
-        return fetch_offline(gene_symbols, sub_look, load_by_symbol, path_to_HGNC)
+    offline_df = fetch_offline(path_to_HGNC, download)
 
     HGNC_data = []
     next_to_download = []
     for symbol in load_by_symbol:
-        df_hugo_symbol = fetch_hugo("symbol", symbol, path_to_HGNC, download=download)
-
-        if df_hugo_symbol is None:
-            next_to_download.append(symbol)
-        elif df_hugo_symbol.empty:
+        df_hugo_symbol = offline_df[offline_df["symbol"] == symbol]
+        if df_hugo_symbol.empty or len(df_hugo_symbol) > 1:
+            df_hugo_symbol = fetch_hugo("symbol", symbol, path_to_HGNC)
+ 
+        if df_hugo_symbol.empty:
             next_to_download.append(symbol)
         else:
             HGNC_data.append(df_hugo_symbol)
-        sleep(0.1)
+
     load_by_id = sub_look[sub_look["Approved symbol"].isin(next_to_download)]
-    load_by_id["HGNC ID"] = load_by_id["HGNC ID"].str.replace("HGNC:", '')
-    # next_to_download = []
+    next_to_download = []
 
     for id in load_by_id["HGNC ID"].unique().tolist():
-        df_hugo_symbol = fetch_hugo("hgnc_id", id, path_to_HGNC, download=download)
-        if df_hugo_symbol.empty() or df_hugo_symbol is None:
-            next_to_download.append(symbol)
+        df_hugo_hgnc_id = offline_df[offline_df["hgnc_id"] == id]
+        if df_hugo_hgnc_id.empty or len(df_hugo_hgnc_id) > 1:
+            df_hugo_hgnc_id = fetch_hugo("hgnc_id", id.replace("HGNC:", ''), path_to_HGNC)
+
+        if df_hugo_hgnc_id.empty():
+            next_to_download.append(id)
         else:
-            HGNC_data.append(df_hugo_symbol)
-        sleep(0.1)
+            HGNC_data.append(df_hugo_hgnc_id)
+
 
     load_by_name = sub_look[sub_look["HGNC ID"].isin(next_to_download)]
+    next_to_download = []
+
     for name in load_by_name["Approved name"].unique().tolist():
-        df_hugo_symbol = fetch_hugo("name", name, path_to_HGNC, download=download)
-        if df_hugo_symbol.empty() or df_hugo_symbol is None:
-            next_to_download.append(symbol)
+        df_hugo_name = offline_df[offline_df["name"] == name]
+        if df_hugo_name.empty or len(df_hugo_name) > 1:
+            df_hugo_name = fetch_hugo("name", name, path_to_HGNC)
+
+        if df_hugo_name.empty():
+            next_to_download.append(name)
         else:
-            HGNC_data.append(df_hugo_symbol)
-        sleep(0.1)
-    return pd.concat(HGNC_data), sub_look[sub_look["Approved name"].isin(next_to_download)].copy()
+            HGNC_data.append(df_hugo_name)
+
+    return pd.concat(HGNC_data), sub_look[sub_look["Approved name"].isin(next_to_download)]
 
 
 # def complex_search_offline(gene, list_of_df):

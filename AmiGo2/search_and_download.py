@@ -181,50 +181,68 @@ def look_for_overview_GO(path_to_dir):
 
 #print(look_for_overview_GO(os.getcwd())) 
 
-def get_overview(path_to_overview):
-    path_to_overview = os.getcwd() if path_to_overview is None else path_to_overview
-    path_to_overview = look_for_overview_GO(path_to_overview)
-
-    if not path_to_overview:
-        raise FileNotFoundError("overview.txt not found")
+def get_overview(path_to_overview, list_of_go_id):
     overviewtxt = {
-            "Accession" : [],
-            "Name" : [],
-            "Ontology" : [],
-            "Synonyms" : [], 
-            "Alternate IDs" : [],
-            "Definition" : [],
-            "not_found" : []
+        "Accession" : [],
+        "Name" : [],
+        "Ontology" : [],
+        "Synonyms" : [], 
+        "Alternate IDs" : [],
+        "Definition" : [],
+        "not_found" : []
+    }
+
+    if list_of_go_id is None:
+
+        path_to_overview = os.getcwd() if path_to_overview is None else path_to_overview
+        path_to_overview = look_for_overview_GO(path_to_overview)
+
+        if not path_to_overview:
+            raise FileNotFoundError("overview.txt not found")
+
+        overviewtxt = {
+                "Accession" : [],
+                "Name" : [],
+                "Ontology" : [],
+                "Synonyms" : [], 
+                "Alternate IDs" : [],
+                "Definition" : [],
+                "not_found" : []
+            }
+
+        with open(path_to_overview, 'r') as f:
+            last_line = ""
+            for line in f:
+                #print(line)
+                if line and line.startswith('#'):
+                    continue
+
+                elif last_line == "":
+                    last_line = line.strip()
+                    continue
+
+                elif last_line in overviewtxt:
+                    overviewtxt[last_line].append(line.strip())
+                    last_line = ""
+
+                else:
+                    print(last_line, line)
+                    overviewtxt["not_found"].append(line.strip())
+                    last_line = ""
+
+        # if overviewtxt["not_found"]:
+        #     print("couldn't match", overviewtxt["not_found"])
+
+        print(overviewtxt.pop("not_found"))
+        #print(overviewtxt)
+
+        norm_accession = [ go_id.replace("GO:", "").strip() for go_id in overviewtxt["Accession"] ]       
+        overviewtxt["Accession"] = norm_accession
+    else:
+        overviewtxt = {
+            "Accession" : list_of_go_id[1],
+            "Name" : list_of_go_id[0]
         }
-
-    with open(path_to_overview, 'r') as f:
-        last_line = ""
-        for line in f:
-            #print(line)
-            if line and line.startswith('#'):
-                continue
-
-            elif last_line == "":
-                last_line = line.strip()
-                continue
-
-            elif last_line in overviewtxt:
-                overviewtxt[last_line].append(line.strip())
-                last_line = ""
-
-            else:
-                print(last_line, line)
-                overviewtxt["not_found"].append(line.strip())
-                last_line = ""
-
-    # if overviewtxt["not_found"]:
-    #     print("couldn't match", overviewtxt["not_found"])
-
-    print(overviewtxt.pop("not_found"))
-    #print(overviewtxt)
-
-    norm_accession = [ go_id.replace("GO:", "").strip() for go_id in overviewtxt["Accession"] ]       
-    overviewtxt["Accession"] = norm_accession
 
     return pd.DataFrame.from_dict(overviewtxt)
 
@@ -272,14 +290,14 @@ def get_single_table(path_to_download, url, col):
     return df
 
 
-def get_data(path_to_Amigo, is_downloaded = False):
+def get_data(path_to_Amigo, download = True, list_of_go_id = None):
     base_url = "https://golr-aux.geneontology.io/solr/select?defType=edismax&"
 
     global REQUEST_ARG, standard, extension_for_this_purpose, filter_fq
     columns = standard + extension_for_this_purpose
-    overview_df = get_overview(path_to_Amigo)
+    overview_df = get_overview(path_to_Amigo, list_of_go_id)
 
-    if is_downloaded:
+    if not download:
         return get_data_from_path(path_to_Amigo, columns), overview_df
 
     go_ids = get_go_ids(overview_df)
@@ -343,4 +361,3 @@ def get_data_from_path(download_path, columns):
             print(str(e))
 
     return pd.concat(df_list)
-
