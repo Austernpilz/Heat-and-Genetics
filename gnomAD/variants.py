@@ -63,7 +63,6 @@ query VariantsInGene {{
         stop
         strand
         canonical_transcript_id
-
         mane_select_transcript {{
             ensembl_id
             ensembl_version
@@ -91,7 +90,8 @@ def query_variant_ensemble(ensemble_id):
                 lof
                 hgvsc
                 hgvsp
-
+                hgvs
+                va
                 exome {{
                     ac
                     an
@@ -540,6 +540,36 @@ def get_an_ac_af(some_dict):
 
     return ac, an, af
 
+def simplified_scores(in_silico_predictors):
+    scores = [
+        #scores of deleterious (higher number, more devestating effect)
+        "revel_max",  #0..1 high is bad
+        "cadd",       #0..99 ab 20 eher kritisch
+
+        #score for splice altering
+        "pangolin_largest_ds",    #0..1 high is splice altering
+        "spliceai_ds_max"         #0..1 same
+
+        #score for amino substitution
+        "sift_max",               #0..1 under 0.05 protein function is altered
+        "polyphen_max"            #0..1 high is bad
+    ]
+
+    isp_single = {
+            s: None
+            for s in scores
+        }
+
+    for score in in_silico_predictors:
+        id = score.get("id")
+        if id not in scores:
+            continue
+
+        isp_single[id] = score.get("value")
+
+    return isp_single
+
+
 def get_ancestry_p_and_reduce(populations_in_gen, ancestry_list):
     new_ac_an_af = {
         "ac" : None,
@@ -607,10 +637,14 @@ def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off, gen_folder
                 variants_sorted_out.add(id)
                 continue
 
+            #making the variant_new
             new = variant.copy()
             for item in ["joint", "genome", "exome"]:
                 population_data = variant.get(item, None)
                 new[item] = get_ancestry_p_and_reduce(population_data, ancestry_list)
+
+            #cleaning the scores, for what i need
+            new["in_silico_predictors"] = simplified_scores(variant.get("in_silico_predictors",[]))
 
             variants_to_keep.append( pd.json_normalize(new) )
             check_for_doubles.append(id)

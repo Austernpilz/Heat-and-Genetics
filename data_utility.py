@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-
+from figures import figures as fig
 #utiliti_functions
 def get_col_as_unique_and_count(df, name):
     return df[name].value_counts()
@@ -106,7 +106,6 @@ def build_table(input_path):
             try:
                 cleaned_variant_table = os.path.join(gene_folder, file.name)
                 df = pd.read_csv(cleaned_variant_table, sep='\t')
-                df["gene"] = gene_name
                 chromosomes += df["chrom"].unique().tolist()
                 returndf.append(df)
             except Exception as e:
@@ -201,6 +200,41 @@ def get_vcf(path_input, path_output):
             f.write("\n")
             f.write(line)
 
+def save_cute_dfs(path_input, path_output):
+    df, _ = build_table(path_input)
+    df.drop_duplicates(ignore_index= True, inplace=True)
+    print(df["lof"].unique())
+    print(df["lof_curation"].unique())
+
+    df.drop(columns=["reference_genome", "transcript_version", 
+                     "exome.ac", "exome.an", "exome.af", 
+                     "genome.ac", "genome.an", "genome.af"
+                     "joint.ac", "joint.an", "joint.af"],
+                     inplace=True, errors='ignore')
+
+    df.to_csv(path_output, sep='\t')
+    return df
+
+# def get_biggest_outliers(cute_df):
+
+
+# def get_cadd_sankey(cute_df):
+#     cute_df["cadd"].tolist()
+#     cute_df["gene_symbol"].tolist()
+#     cute_df["variant_id"].tolist()
+#     return
+
+"""
+potenztial gnomad scores
+'cadd_phred': {'Description': "Cadd Phred-like scores ('scaled C-scores') ranging from 1 to 99, based on the rank of each variant relative to all possible 8.6 billion substitutions in the human reference genome. Larger values are more deleterious.", 'Number': '1'}, 
+'cadd_raw_score': {'Description': "Raw CADD scores are interpretable as the extent to which the annotation profile for a given variant suggests that the variant is likely to be 'observed' (negative values) vs 'simulated' (positive values). Larger values are more deleterious.", 'Number': '1'}, 
+'pangolin_largest_ds': {'Description': "Pangolin's largest delta score across 2 splicing consequences, which reflects the probability of the variant being splice-altering", 'Number': '1'}, 
+'phylop': {'Description': 'Base-wise conservation score across the 241 placental mammals in the Zoonomia project. Score ranges from -20 to 9.28, and reflects acceleration (faster evolution than expected under neutral drift, assigned negative scores) as well as conservation (slower than expected evolution, assigned positive scores).', 'Number': '1'}, 
+'polyphen_max': {'Description': 'Score that predicts the possible impact of an amino acid substitution on the structure and function of a human protein, ranging from 0.0 (tolerated) to 1.0 (deleterious).  We prioritize max scores for MANE Select transcripts where possible and otherwise report a score for the canonical transcript.', 'Number': '1'}, 
+'revel_max': {'Description': "The maximum REVEL score at a site's MANE Select or canonical transcript. It's an ensemble score for predicting the pathogenicity of missense variants (based on 13 other variant predictors). Scores ranges from 0 to 1. Variants with higher scores are predicted to be more likely to be deleterious.", 'Number': '1'}, 
+'sift_max': {'Description': 'Score reflecting the scaled probability of the amino acid substitution being tolerated, ranging from 0 to 1. Scores below 0.05 are predicted to impact protein function. We prioritize max scores for MANE Select transcripts where possible and otherwise report a score for the canonical transcript.', 'Number': '1'}, 
+'spliceai_ds_max': {'Description': "Illumina's SpliceAI max delta score; interpreted as the probability of the variant being splice-altering.", 'Number': '1'}
+"""
 
 # ID = gnomAD ID or rsID
 # chrom, pos, ref, alt = take from db
@@ -211,8 +245,8 @@ def get_vcf(path_input, path_output):
 # CADD Score in bins 5er Schritte bis 20
 # CADD Score ab 10,15,20
 # Gene mit höchsten Score, 
-
-# Sankey Gene mit CADD Score Bin, Anzahl an Varianten
+# majoy consequence variant data, clinical_significance, 
+# Sankey Gene mit lof in silico predictors CADD Score Bin, Anzahl an Varianten
 
 # Die anderen Spalten (QUAL, FILTER, INFO, FORMAT) können alle einen "." (Punkt) haben und dann passt das.
 
