@@ -304,10 +304,11 @@ def fetch_data_as_json(ensemble_id : str):
                             )
             if response.ok:
                 print(f"downloaded {ensemble_id} part {i}/5")
-            yield response.json()
+
+            yield response.json(), i
         except Exception as e:
             print(str(e))
-            yield {}
+            yield {}, i
 
 # def fetch_data_as_json(chromosome : str, pos_start : int, pos_end : int):
 #     #chromosome = f'\"{chromosome}\"'
@@ -388,6 +389,8 @@ def get_data(ENSG_ids, path_to_gnomAD, ancestry_list, cutoff, t=1,  download=Tru
         for t in threads:
             t.join()
 
+    return os.path.join(path_to_gnomAD, "data")
+
 def check_for_offline(path_gen, ensemble_id):
     if not os.path.isdir(path_gen):
         return False
@@ -423,38 +426,45 @@ def download_data(ENSG_ids, path_to_gnomAD):
             paths.append(path_gen)
             continue
 
-        first = True
         check_result = 0
-        for res in fetch_data_as_json(ensemble_id):
+        for res, index in fetch_data_as_json(ensemble_id):
             gene_ids = res.get("data", {}).get("gene", {})
-            variants = gene_ids.get("variants", [])
-            clinvar_variants = gene_ids.get("clinvar_variants", [])
-            exons = gene_ids.get("exons", [])
-            transcripts = gene_ids.pop("transcripts", [])
 
-            if first and save_json(gene_ids, path_gen, f"{ensemble_id}_gene_ids"):
-                check_result +=1
-            first = False
+            if not gene_ids:
+                tasks.append(ensemble_id)
+                continue
 
-            if save_json(variants, path_gen, f"{ensemble_id}_gnomAD_variants"):
-                check_result +=1
+            match index:
+                case 1:
+                    if save_json(gene_ids, path_gen, f"{ensemble_id}_gene_ids"):
+                        check_result +=1
+                case 2:
+                    variants = gene_ids.get("variants", [])
+                    if save_json(variants, path_gen, f"{ensemble_id}_gnomAD_variants"):
+                        check_result +=1
+                case 3:
+                    clinvar_variants = gene_ids.get("clinvar_variants", [])
+                    if save_json(clinvar_variants, path_gen, f"{ensemble_id}_clinvar_variants"):
+                        check_result +=1
+                case 4:
+                    exons = gene_ids.get("exons", [])
+                    if save_json(exons, path_gen, f"{ensemble_id}_exons"):
+                        check_result +=1
+                case 5:
+                    transcripts = gene_ids.get("transcripts", [])
+                    if save_json(transcripts, path_gen, f"{ensemble_id}_transcripts"):
+                        check_result +=1
+                case _:
+                    raise("Something is wrong with the requests")
 
-            if save_json(clinvar_variants, path_gen, f"{ensemble_id}_clinvar_variants"):
-                check_result +=1
-
-            if save_json(exons, path_gen, f"{ensemble_id}_exons"):
-                check_result +=1
-
-            if save_json(transcripts, path_gen, f"{ensemble_id}_transcripts"):
-                check_result +=1
-
-        if check_result > 2 and (path_gen not in paths):
-            paths.append(path_gen)
-
-        if check_result < 5 or (path_gen not in paths):
+        if check_result < 5 and (path_gen not in paths):
             tasks.append(ensemble_id)
-        else:
+
+        if check_result == 5:
             print(f"succesfull downloaded {ensemble_id} data")
+
+        if check_result > 0:
+            paths.append(path_gen)
 
         end = 40 - (start - datetime.now()).total_seconds()
 
@@ -676,113 +686,15 @@ def clean_and_filter(path_to_gene, ancestry_list, cutoff):
             f.write(f"{str(var)}, ")
 
     return
-#     data = []
-#     for path in gnomAD_data_dict["gene_ids"]:
-#         try:
-#             gene_id = {}
-#             with open(gnomAD_data_dict["gene_ids"], 'r') as f:
-#                 gene_id = json.load(f)
-#             data.append( pd.json_normalize(gene_id) )
-#         except Exception as e:
-#             print(str(e))
-#             continue
-
-#     if data:
-#         df = pd.concat(data)
-#         df.to_csv(file_tsv, sep='\t')
-
-# # reference_genome
-# # gene_id
-# # gene_version
-# # symbol
-# # gencode_symbol
-# # hgnc_id
-# # ncbi_id
-# # omim_id
-# # name
-# # chrom
-# # start
-# # stop
-# # strand
-# # canonical_transcript_id
-# # mane_select_transcript
-# #             ensembl_id
-# #             ensembl_version
-# #             refseq_id
-# #             refseq_version
-
-#     for key in data.keys():
-#         if key in ["reference_genome", "chrom", "gene_id"]:
-#             variant_table[f"{key}_general"] = data.pop(key)
-#         else:
-#             variant_table[key] = data.pop(key)
-
-#     specifier = "".join( [f"{anc}_" for anc in ancestry_list] + [f"cutoff_{cutoff}.tsv"] )
-#     filename = os.path.join(path_to_gene, specifier)
-#     variant_table.to_csv(filename, index=False, sep="\t")
-
-
-# def build_entry(gv, cv):
-#     new_entry = {
-#         "variant_id" : None,
-#         "reference_genome" : None,
-#         "chrom" : None,
-#         "pos" : None,
-#         "ref" : None,
-#         "alt" : None,
-#         "transcript_id" : None,
-#         "hgvsc" : None,
-#         "hgvsp" : None,
-#         "no_match" : False
-#     }
-
-#     for item in new_entry.keys():
-#         gnomad_variation = gv.get(item, None)
-#         clinvar_variation = cv.get(item, None)
-#         if gnomad_variation == clinvar_variation:
-#             new_entry[item] = gnomad_variation
-#             continue
-
-#         if (
-#             gnomad_variation is None or 
-#             clinvar_variation and not gnomad_variation):
-#             new_entry[item] = clinvar_variation
-#             continue
-
-#         if (clinvar_variation is None or
-#             gnomad_variation and not clinvar_variation):
-#             new_entry[item] = gnomad_variation
-#             continue
-
-#         new_entry["no_match"] = True
-#         break
-
-#     if new_entry["no_match"]:
-#         return gv
-
-#     for key in gv:
-#         if key in new_entry.keys():
-#             continue
-#         new_entry[key] = gv[key]
-
-#     for key in cv.keys():
-#         if key not in new_entry.keys():
-#             gv[key] = cv.pop(key)
-#             continue
-
-#         gv[key] = new_entry[key]
-
-#     return gv
-
 
 def match_variants_to_clinvar(gnomAD_variants, path_to_clinvar_data, gen_folder):
     if not path_to_clinvar_data:
         return [], [], "no clinvar variant"
 
     clinvars = []
-    for p in path_to_clinvar_data:
+    for variant_json in path_to_clinvar_data:
         try:
-            with open(p, 'r') as f:
+            with open(variant_json, 'r') as f:
                 clinvars += json.load(f)
         except Exception as e:
             print("match_variants_to_clinvar1")
@@ -844,266 +756,6 @@ def match_variants_to_clinvar(gnomAD_variants, path_to_clinvar_data, gen_folder)
         print(str(e))
 
     return doubles, list(clinvar_variants_sorted_out), "no clinvar variant"
-
-
-
-# def big_loop(big_dict):
-#     return_dict = {}
-#     found, relevant = 0, 0
-#     for gene_id, data in big_dict.items():
-#         variants = data.get("variants", [])
-#         if not variants:
-#             continue
-
-#         d, f =  get_relevant_variants(variants)
-#         found += f
-#         return_dict[gene_id] = d
-#         if not return_dict[gene_id]:
-#             return_dict.pop(gene_id)
-#             continue
-
-#         clinvar = data.get("clinvar_variants", [])
-#         if not clinvar:
-#             continue
-
-#         for variant_id, values in return_dict[gene_id]:
-#             for cvar in clinvar:
-#                 id = cvar.get("variant_id", "None")
-#                 if id == "None" or id != variant_id:
-#                     continue
-#                 else:
-#                     for item in ["reference_genome", "chrom", "pos", "ref", "alt", "clinical_significance", "clinvar_variation_id", "gold_stars", "hgvsc", "hgvsp", "major_consequence"]:
-#                         key = cvar.get(item, "None")
-#                         if key == "None":
-#                             continue
-#                         if item in return_dict[gene_id][variant_id]["info"].keys():
-#                             if key == return_dict[gene_id][variant_id]["info"][item]:
-#                                 continue
-#                             else:
-#                                 key2 = return_dict[gene_id][variant_id]["info"][item]
-#                                 return_dict[gene_id][variant_id]["info"][item] = [key, key2]
-#                         else:
-#                             return_dict[gene_id][variant_id]["info"][item] = key
-#     # for gene_id, data in big_dict.items():
-#     #     print(gene_id, len(data))
-
-#     # print(len(return_dict), f, r)
-#     return return_dict
-
-# anzahl varianten pro gen, 
-# länge des gen, anzahl der variant
-# table VEP
-# get VEP
-# 
-
-# def clean(smaller_dict):
-#     gene_id, gene_symbol, variant_id = [], [], []
-#     clinical_significance, major_consequence = [], []
-#     chrom, pos, ref, alt = [], [], [], []
-#     hgvsc, hgvsp, reference_genome = [], [], []
-#     ancestry_afr, ancestry_nfe = [], []
-
-#     for g_id, gnomAD_data in smaller_dict:
-#         for var_id, fields in gnomAD_data:
-#             gene_id.append(g_id)
-#             variant_id.append(var_id)
-
-#             anc = fields.get("ancestry", [])
-#             afr, nfe = 0.0, 0.0
- 
-#             for name, pop_list in anc:
-#                 if name != "exome":
-#                     continue
-#                 for pop, af in pop_list:
-#                     if pop in ['nfe', 'European (non-Finnish)', 
-#                                'nfe_bgr', 'Bulgarian', 
-#                                'nfe_est', 'Estonian', 
-#                                'nfe_nwe', 'North-western European', 
-#                                'nfe_onf', 'Other non-Finnish European', 
-#                                'nfe_seu', 'Southern European', 
-#                                'nfe_swe', 'Swedish']:
-#                         nfe = af
-#                         continue
-#                     elif pop in ['afr', 'African/African American']: 
-#                         afr = af
-#                         continue
-#             ancestry_afr.append(afr)
-#             ancestry_nfe.append(nfe)
-
-#             c, p, r, a = 0, 0, "", ""
-#             rg, gs = "", ""
-#             gs, cs, mc, hc, hp = "", "", "", "", ""
-#             information = fields.get("info", {})
-#             for key, value in information.items():
-#                 if isinstance(value, list):
-#                     value = value[0]
-
-#                 if key in ["reference_genome", "reference_genome"]:
-#                     rg = value
-#                     continue
-
-#                 if key in ["chrom", "chr"]:
-#                     c = value
-#                     continue
-#                 if key == "pos":
-#                     p = value
-#                     continue
-
-#                 if key == "ref":
-#                     r = value
-#                     continue
-
-#                 if key =="alt":
-#                     a = value
-#                     continue
-
-#                 if key == "gene_symbol":
-#                     gs = value
-#                     continue
-
-#                 if key == "clinical_significance":
-#                     cs = value
-#                     continue
-
-#                 if key == "major_consequence":
-#                     mc = value
-#                     continue
-
-#                 if key == "hgvsc":
-#                     hc = value
-#                     continue
-
-#                 if key == "hgvsp":
-#                     hp = value
-#             gene_symbol.append(gs)
-#             clinical_significance.append(cs)
-#             major_consequence.append(mc)
-#             chrom.append(c)
-#             pos.append(p)
-#             ref.append(r)
-#             alt.append(a)
-#             hgvsc.append(hc)
-#             hgvsp.append(hp)
-#             reference_genome.append(rg)
-
-
-#     return pd.DataFrame({
-#         "gene_id":gene_id, 
-#         "gene_symbol":gene_symbol, 
-#         "variant_id":variant_id, 
-#         "clinical_significance":clinical_significance, 
-#         "major_consequence":major_consequence ,
-#         "chr":chrom, 
-#         "pos":pos, 
-#         "ref": ref,
-#         "alt" : alt,
-#         "hgvsc": hgvsc, 
-#         "hgvsp": hgvsp,
-#         "reference_genome": reference_genome,
-#         "ancestry_afr" : ancestry_afr,
-#         "ancestry_nfe" : ancestry_nfe
-#     })
-
-# def get_data(path_to_gnomAD):
-#     return_dict = {}
-#     path_to_gnomAD = os.path.join(path_to_gnomAD, "data")
-#     if not os.path.isdir(path_to_gnomAD):
-#         return {}
-
-#     dir_to_visit = deque()
-#     dir_to_visit.append(path_to_gnomAD)
-#     while dir_to_visit:
-#         current = dir_to_visit.pop()
-
-#         for entry in os.scandir(current):
-#             if entry.name in ["bin", "include", "lib", "overview.txt", "data.tsv", "include_exclude.txt"]:
-#                 continue
-
-#             if entry.is_dir():
-#                 dir_to_visit.append(os.path.join(current, entry.name))
-#                 continue
-
-#             if not entry.is_file():
-#                 continue
-
-#             if not entry.name.endswith(".json"):
-#                 continue
-
-#             try:
-#                 data = {}
-#                 gene_name = os.path.basename(current)
-#                 file_path = os.path.join(current, entry.name)
-
-#                 if gene_name not in return_dict:
-#                     return_dict[gene_name] = {}
-
-#                 with open(file_path, 'r') as f:
-#                     data = json.load(f)
-
-#                 if "gene_ids" in entry.name:
-#                     return_dict[gene_name]["gene_ids"] = data
-#                 elif "clinvar_variants" in entry.name:
-#                     return_dict[gene_name]["clinvar_variants"] = data
-#                 elif "variants" in entry.name:
-#                     return_dict[gene_name]["variants"] = data
-#                 else:
-#                     return_dict[gene_name]["NO_NAME"] = data
-
-#             except Exception as _:
-#                 continue
-
-#     return return_dict
-
-# def download_data(df: pd.DataFrame, path_to_gnomAD):
-#     result_dict = {}
-#     tasks = deque()
-
-#     for name, chromosom, start, end in zip(df['genes'].tolist(), df['chr'].tolist(), df['start'].tolist(), df['end'].tolist()):
-#         tasks.append((name, chromosom, start, end))
-
-#     data_path = os.path.join(path_to_gnomAD, "data")
-#     os.makedirs(data_path, exist_ok=True)
-
-#     while tasks:
-#         start = datetime.now()
-#         gen_symbol, c, b, e = tasks.pop()
-#         path_gen = os.path.join(data_path, gen_symbol)
-#         try:
-#             res = fetch_data_as_json(c,b,e)
-#             variants = res.get("data", {}).get("region", {}).get("variants", [])
-#             genes = res.get("data", {}).get("region", {}).get("genes", [])
-
-#             if gen_symbol not in result_dict:
-#                 result_dict[gen_symbol] = {}
-
-#             if save_json(variants, path_gen, f"{gen_symbol}_variants"):
-#                 result_dict[gen_symbol]["variants"] = variants
-
-#             if save_json(genes, path_gen, f"{gen_symbol}_genes"):
-#                 result_dict[gen_symbol]["genes"] = genes
-
-#         except Exception as e:
-#             print(str(e))
-#             if gen_symbol not in result_dict:
-#                 #await generate_task(n,c,b,e, tasks)
-#                 result_dict[gen_symbol] = {}
-#         # if datetime.now() - start:
-#     return result_dict
-
-# def test():
-#     gnomAD = os.path.join(os.getcwd(), "gnomAD")
-
-#     # df = pd.DataFrame({
-#     #     "genes" : ["ENST00000644486", "ATXN3", "PPP5C"],
-#     #     "chr" : ["14", "14","19"],
-#     #     "start": [92058552, 92044496, 46347108, ],
-#     #     "end": [92106582, 92106622, 46390852],
-#     #     })
-#     df = ["ENSG00000008869", "ENSG00000066427", "ENSG00000011485"]
-#     download_data(df, gnomAD)
-
-#never use print with gnomAD data :'(
-#test()
 
 """
 region(reference_genome: GRCh38, chrom: "19", start: 46347108, stop: 46390852) {
@@ -1176,7 +828,7 @@ region(reference_genome: GRCh38, chrom: "19", start: 46347108, stop: 46390852) {
        populations {
          id
          ac
-          an
+         an
          homozygote_count
          hemizygote_count
        }
@@ -1243,6 +895,7 @@ query VariantsInGene {
       transcript_id
       transcript_version
       lof
+      hgvs
       hgvsc
       hgvsp
       exome {
@@ -1306,3 +959,4 @@ query VariantsInGene {
   }
 }
 """
+

@@ -82,53 +82,137 @@ def apply_include_exclude_txt(path, df, colum):
     return df_reduced, df
 
 
+def build_table(input_path):
+    returndf = []
+    chromosomes = []
+    if not os.path.isdir(input_path):
+        return pd.DataFrame()
+
+    for entry in os.scandir(input_path):
+        if not entry.is_dir():
+            continue
+
+        if not entry.name.startswith("ENS"):
+            continue
+
+        gene_name = entry.name
+        gene_folder = os.path.join(input_path, entry.name)
+        for file in os.scandir(gene_folder):
+            if not file.is_file():
+                continue
+            if not file.name.startswith("variants_") and not file.name.endswith(".tsv"):
+                continue
+
+            try:
+                cleaned_variant_table = os.path.join(gene_folder, file.name)
+                df = pd.read_csv(cleaned_variant_table, sep='\t')
+                df["gene"] = gene_name
+                chromosomes += df["chrom"].unique().tolist()
+                returndf.append(df)
+            except Exception as e:
+                print(str(e))
+
+            break
+
+    return pd.concat(returndf, ignore_index=True), list(set(chromosomes))
+
 
 def build_header(contig_chr):
-    base = """
-    ##fileformat=VCFv4.1
-    ##INFO=<ID=gnomadID,Number=1,Type=String,Description="gnomAD_ID to find the variant in"
-    ##INFO=<ID=AF_afr,Number=1,Type=Float,Description="Allel Frequence of African Ancestry">
-    ##INFO=<ID=AF_nfe,Number=1,Type=Float,Description="Allel Frequence of European(non-finish) Ancestry">
-    """
-    contig_chr.sort(key=lambda x: x.isdigit())
+    base = """\
+##fileformat=VCFv4.1
+##INFO=<ID=gnomadID,Number=1,Type=String,Description="gnomAD_ID to find the variant in"
+##INFO=<ID=rsID,Number=1,Type=String,Description="rsID to identify the variant"
+##INFO=<ID=hgvsc,Number=1,Type=String,Description="">
+##INFO=<ID=AF_afr,Number=1,Type=String,Description="Allel Frequence of African Ancestry">
+##INFO=<ID=AF_nfe,Number=1,Type=String,Description="Allel Frequence of European(non-finish) Ancestry">\
+"""
+    help = {"X": 24, "x": 24, "Y": 25, "y":25}
+    contig_chr.sort(key=lambda x: int(x) if str(x).isdigit() else help[x])
     for chr in contig_chr:
         base += "\n##contig=<ID=%s>" % (chr,)
-    ##contig=<ID=1>
-    ##contig=<ID=2>
-    ##contig=<ID=3>
-    ##contig=<ID=4>
-    ##contig=<ID=5>
-    ##contig=<ID=6>
-    ##contig=<ID=7>
-    ##contig=<ID=8>
-    ##contig=<ID=9>
-    ##contig=<ID=10>
-    ##contig=<ID=11>
-    ##contig=<ID=12>
-    ##contig=<ID=13>
-    ##contig=<ID=14>
-    ##contig=<ID=15>
-    ##contig=<ID=16>
-    ##contig=<ID=17>
-    ##contig=<ID=18>
-    ##contig=<ID=19>
-    ##contig=<ID=20>
-    ##contig=<ID=21>
-    ##contig=<ID=22>
-    ##contig=<ID=X>
+    #"CHROM", 
+    columns = ["POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"]
+    base += "\n#CHROM"
+    for col in columns:
+        base += f"\t{col}"
 
-["CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"]
+    return base
+
+
+def float_with_x_precision(number, precision=4):
+    number = float(number)
+    return f"{number:.{precision}f}"
+
+
+def build_info(df):
+    info_list = []
+
+    gnomadID = df["variant_id"].tolist()
+    rsID = df["rsids"].tolist()
+    hgvcs = df["hgvsc"].tolist()
+    AF_afr_joint = df["joint.af_afr"].tolist()
+    #AF_afr_exome = df["exome.af_afr"].tolist()
+    # AF_nfe_genome = df["genome.af_afr"].tolist()
+    AF_nfe_joint = df["joint.af_nfe"].tolist()
+    #AF_nfe_exome = df["exome.af_nfe"].tolist()
+    #AF_nfe_genome = df["genome.af_nfe"].tolist()
+
+    for i in range(df.shape[0]):
+        af_afr = float_with_x_precision(AF_afr_joint[i],4)
+        af_nfe = float_with_x_precision(AF_nfe_joint[i],4)
+        line = f"\
+gnomadID={str(gnomadID[i])};\
+rsID={str(rsID[i])};\
+hgvcs={str(hgvcs[i])};\
+AF_afr={af_afr};\
+AF_nfe={af_nfe}\
+"
+        info_list.append(line)
+
+    return info_list
+
+
+def get_line(df):
+    chromosome = df["chrom"].tolist()
+    pos = df["pos"].tolist()
+    ref = df["ref"].tolist()
+    alt = df["alt"].tolist()
+    info = build_info(df)
+    for i in range(df.shape[0]):
+        line = f"{chromosome[i]}\t\
+{pos[i]}\t\
+.\t\
+{ref[i]}\t\
+{alt[i]}\t\
+.\t\
+.\t\
+{info[i]}\t\
+."
+        yield line
+
+
+def get_vcf(path_input, path_output):
+    df, chromosomes = build_table(path_input)
+    sub_df = df.drop_duplicates(ignore_index= True)
+    head = build_header(chromosomes)
+    with open (path_output, "w+") as f:
+        f.write(head)
+        for line in get_line(sub_df):
+            f.write("\n")
+            f.write(line)
+
+
 # ID = gnomAD ID or rsID
 # chrom, pos, ref, alt = take from db
 #qual, filter = .
 ##INFO=<ID=NS,Number=1,Type=Float,Description="Number of Samples With Data">
 # Info = AF_afr={af_afr};AF_nfe={af_nfe},
 
-# def get_line(var):
-    
+# CADD Score in bins 5er Schritte bis 20
+# CADD Score ab 10,15,20
+# Gene mit höchsten Score, 
 
-# Bei ID kannst Du gern die gnomAD ID nehmen, um da alles nachverfolgen zu können.
-
+# Sankey Gene mit CADD Score Bin, Anzahl an Varianten
 
 # Die anderen Spalten (QUAL, FILTER, INFO, FORMAT) können alle einen "." (Punkt) haben und dann passt das.
 
