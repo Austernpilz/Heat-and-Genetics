@@ -1,0 +1,14 @@
+[workspace]
+authors = ["Manuel Zschaebitz <manuez42@zedat.fu-berlin.de>"]
+channels = ["conda-forge"]
+name = "Heat_and_Genetics"
+platforms = ["osx-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = ">=3.14.5,<3.15"
+pandas = ">=3.0.3,<4"
+numpy = ">=2.4.6,<3"
+requests = ">=2.34.2,<3"

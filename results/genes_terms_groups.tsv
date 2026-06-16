@@ -1,0 +1,1405 @@
+symbol	name	term	group	hgnc_id	ensembl_gene_id
+UCP2	uncoupling protein 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12518	ENSG00000175567
+CIDEA	cell death inducing DFFA like effector a	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:1976	ENSG00000176194
+EIF2AK4	eukaryotic translation initiation factor 2 alpha kinase 4	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:19687	ENSG00000128829
+TOP1	DNA topoisomerase I	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:11986	ENSG00000198900
+DNAJA1	DnaJ heat shock protein family (Hsp40) member A1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5229	ENSG00000086061
+METRNL	meteorin like, glial cell differentiation regulator	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:27584	ENSG00000176845
+HSPB1	heat shock protein family B (small) member 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5246	ENSG00000106211
+CXCL12	C-X-C motif chemokine ligand 12	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:10672	ENSG00000107562
+EIF2B1	eukaryotic translation initiation factor 2B subunit alpha	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3257	ENSG00000111361
+HSF1	heat shock transcription factor 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5224	ENSG00000185122
+HSP90AB1	heat shock protein 90 alpha family class B member 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5258	ENSG00000096384
+VCP	valosin containing protein	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12666	ENSG00000165280
+YWHAE	tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein epsilon	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12851	ENSG00000108953
+DNAJB1	DnaJ heat shock protein family (Hsp40) member B1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5270	ENSG00000132002
+EIF2S1	eukaryotic translation initiation factor 2 subunit alpha	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3265	ENSG00000134001
+IER5	immediate early response 5	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5393	ENSG00000162783
+CRNN	cornulin	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:1230	ENSG00000143536
+MTOR	mechanistic target of rapamycin kinase	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3942	ENSG00000198793
+NFKBIA	NFKB inhibitor alpha	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:7797	ENSG00000100906
+HTRA2	HtrA serine peptidase 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:14348	ENSG00000115317
+SCRN3	secernin 3	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:30382	ENSG00000144306
+UCP1	uncoupling protein 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12517	ENSG00000109424
+EIF2B2	eukaryotic translation initiation factor 2B subunit beta	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3258	ENSG00000119718
+KCNK4	potassium two pore domain channel subfamily K member 4	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:6279	ENSG00000182450
+DNAJC3	DnaJ heat shock protein family (Hsp40) member C3	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:9439	ENSG00000102580
+LRP11	LDL receptor related protein 11	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:16936	ENSG00000120256
+EIF2AK3	eukaryotic translation initiation factor 2 alpha kinase 3	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3255	ENSG00000172071
+TAC4	tachykinin precursor 4	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:16641	ENSG00000176358
+AKT1	AKT serine/threonine kinase 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:391	ENSG00000142208
+TRPM8	transient receptor potential cation channel subfamily M member 8	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:17961	ENSG00000144481
+HSP90AA2P	heat shock protein 90 alpha family class A member 2, pseudogene	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5256	ENSG00000224411
+IRAK1	interleukin 1 receptor associated kinase 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:6112	ENSG00000184216
+FGF16	fibroblast growth factor 16	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3672	ENSG00000196468
+CIRBP	cold inducible RNA binding protein	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:1982	ENSG00000099622
+UCP3	uncoupling protein 3	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12519	ENSG00000175564
+TPR	translocated promoter region, nuclear basket protein	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12017	ENSG00000047410
+HSBP1L1	heat shock factor binding protein 1 like 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:37243	ENSG00000226742
+NTRK1	neurotrophic receptor tyrosine kinase 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:8031	ENSG00000198400
+EIF2B5	eukaryotic translation initiation factor 2B subunit epsilon	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3261	ENSG00000145191
+SCN9A	sodium voltage-gated channel alpha subunit 9	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:10597	ENSG00000169432
+MAP2K7	mitogen-activated protein kinase kinase 7	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:6847	ENSG00000076984
+ACOT11	acyl-CoA thioesterase 11	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:18156	ENSG00000162390
+ERO1A	endoplasmic reticulum oxidoreductase 1 alpha	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:13280	ENSG00000197930
+ATXN3	ataxin 3	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:7106	ENSG00000066427
+PSIP1	PC4 and SRSF1 interacting protein 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:9527	ENSG00000164985
+HSPB6	heat shock protein family B (small) member 6	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:26511	ENSG00000004776
+DNAJA4	DnaJ heat shock protein family (Hsp40) member A4	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:14885	ENSG00000140403
+MICA	MHC class I polypeptide-related sequence A	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:7090	ENSG00000204520
+MICB	MHC class I polypeptide-related sequence B	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:7091	ENSG00000204516
+ALDH18A1	aldehyde dehydrogenase 18 family member A1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:9722	ENSG00000059573
+HMGCS2	3-hydroxy-3-methylglutaryl-CoA synthase 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5008	ENSG00000134240
+HSPD1	heat shock protein family D (Hsp60) member 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5261	ENSG00000144381
+JUND	transcription factor jund	response_to_temperature_stimulus	Reactions to Temperatur - general		
+HSPA2	heat shock protein family A (Hsp70) member 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5235	ENSG00000126803
+GLRX2	glutaredoxin 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:16065	ENSG00000023572
+PRDM12	PR/SET domain 12	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:13997	ENSG00000130711
+FOXO1	forkhead box O1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3819	ENSG00000150907
+EIF2B3	eukaryotic translation initiation factor 2B subunit gamma	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3259	ENSG00000070785
+THBS1	thrombospondin 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:11785	ENSG00000137801
+LYN	LYN proto-oncogene, Src family tyrosine kinase	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:6735	ENSG00000254087
+HSP90AA1	heat shock protein 90 alpha family class A member 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5253	ENSG00000080824
+EPHB1	EPH receptor B1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3392	ENSG00000154928
+RBBP7	RB binding protein 7, chromatin remodeling factor	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:9890	ENSG00000102054
+CARTPT	cocaine- and amphetamine-regulated transcript protein	response_to_temperature_stimulus	Reactions to Temperatur - general		
+HSBP1	heat shock factor binding protein 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5203	ENSG00000230989
+PRKAA1	protein kinase AMP-activated catalytic subunit alpha 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:9376	ENSG00000132356
+TRPA1	transient receptor potential cation channel subfamily A member 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:497	ENSG00000104321
+HSP90AB2P	heat shock protein 90 alpha family class B member 2, pseudogene	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:32537	ENSG00000205940
+HSP90AB3P	heat shock protein 90 alpha family class B member 3, pseudogene	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5259	ENSG00000183199
+HSP90AB4P	heat shock protein 90 alpha family class B member 4, pseudogene	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:32538	ENSG00000282100
+ZNF516	zinc finger protein 516	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:28990	ENSG00000101493
+SUMO1	small ubiquitin like modifier 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12502	ENSG00000116030
+RNF34	ring finger protein 34	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:17297	ENSG00000170633
+HDAC6	histone deacetylase 6	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:14064	ENSG00000094631
+SOD1	superoxide dismutase 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:11179	ENSG00000142168
+SAXO1	stabilizer of axonemal microtubules 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:28566	ENSG00000155875
+APPL2	adaptor protein, phosphotyrosine interacting with PH domain and leucine zipper 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:18242	ENSG00000136044
+TRPV1	transient receptor potential cation channel subfamily V member 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12716	ENSG00000196689
+DNAJB4	DnaJ heat shock protein family (Hsp40) member B4	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:14886	ENSG00000162616
+MAPT	microtubule associated protein tau	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:6893	ENSG00000186868
+SLC25A27	solute carrier family 25 member 27	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:21065	ENSG00000153291
+PDCD6	programmed cell death 6	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:8765	ENSG00000249915
+BAG3	BAG cochaperone 3	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:939	ENSG00000151929
+CLPB	ClpB family mitochondrial disaggregase	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:30664	ENSG00000162129
+SCN11A	sodium voltage-gated channel alpha subunit 11	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:10583	ENSG00000168356
+EIF2B4	eukaryotic translation initiation factor 2B subunit delta	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3260	ENSG00000115211
+DNAJA3	DnaJ heat shock protein family (Hsp40) member A3	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:11808	ENSG00000103423
+NTSR1	neurotensin receptor 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:8039	ENSG00000101188
+SLU7	spliceosome associated SLU7	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:16939	ENSG00000164609
+TRPV2	transient receptor potential cation channel subfamily V member 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:18082	ENSG00000187688
+TAC1	tachykinin precursor 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:11517	ENSG00000006128
+MMP24	matrix metallopeptidase 24	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:7172	ENSG00000125966
+HSPA6	heat shock protein family A (Hsp70) member 6	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5239	ENSG00000173110
+HSPB2	heat shock protein family B (small) member 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5247	ENSG00000170276
+PRKACA	protein kinase cAMP-activated catalytic subunit alpha	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:9380	ENSG00000072062
+DHX36	DEAH-box helicase 36	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:14410	ENSG00000174953
+ANO1	anoctamin 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:21625	ENSG00000131620
+GRIK2	glutamate ionotropic receptor kainate type subunit 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:4580	ENSG00000164418
+IGF1	insulin like growth factor 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:5464	ENSG00000017427
+CXCL10	C-X-C motif chemokine ligand 10	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:10637	ENSG00000169245
+HIKESHI	heat shock protein nuclear import factor hikeshi	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:26938	ENSG00000149196
+TCIM	transcriptional and immune response regulator	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:1357	ENSG00000176907
+STUB1	STIP1 homology and U-box containing protein 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:11427	ENSG00000103266
+DAXX	death domain associated protein	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:2681	ENSG00000204209
+ZFAND1	zinc finger AN1-type containing 1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:25858	ENSG00000104231
+TRPM2	transient receptor potential cation channel subfamily M member 2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:12339	ENSG00000142185
+CRYAA	crystallin alpha A	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:2388	ENSG00000160202
+EEF1D	eukaryotic translation elongation factor 1 delta	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:3211	ENSG00000104529
+SLC9A1	solute carrier family 9 member A1	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:11071	ENSG00000090020
+CRYAB	crystallin alpha B	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:2389	ENSG00000109846
+ANO3	anoctamin 3	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:14004	ENSG00000134343
+DNAJA2	DnaJ heat shock protein family (Hsp40) member A2	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:14884	ENSG00000069345
+GMPR	guanosine monophosphate reductase	response_to_temperature_stimulus	Reactions to Temperatur - general	HGNC:4376	ENSG00000137198
+AQP1	aquaporin 1 (Colton blood group)	data.tsv	NO GROUP	HGNC:633	ENSG00000240583
+CXCL12	C-X-C motif chemokine ligand 12	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:10672	ENSG00000107562
+SCRN3	secernin 3	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:30382	ENSG00000144306
+TAC4	tachykinin precursor 4	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:16641	ENSG00000176358
+NTRK1	neurotrophic receptor tyrosine kinase 1	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:8031	ENSG00000198400
+SCN9A	sodium voltage-gated channel alpha subunit 9	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:10597	ENSG00000169432
+PRDM12	PR/SET domain 12	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:13997	ENSG00000130711
+EPHB1	EPH receptor B1	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:3392	ENSG00000154928
+CARTPT	cocaine- and amphetamine-regulated transcript protein	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature		
+TRPV1	transient receptor potential cation channel subfamily V member 1	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:12716	ENSG00000196689
+SCN11A	sodium voltage-gated channel alpha subunit 11	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:10583	ENSG00000168356
+NTSR1	neurotensin receptor 1	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:8039	ENSG00000101188
+TAC1	tachykinin precursor 1	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:11517	ENSG00000006128
+MMP24	matrix metallopeptidase 24	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:7172	ENSG00000125966
+ANO1	anoctamin 1	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:21625	ENSG00000131620
+GRIK2	glutamate ionotropic receptor kainate type subunit 2	detection_of_temperature_stimulus_involved_in_sensory_perception	Perception of Temperature	HGNC:4580	ENSG00000164418
+BMP7	bone morphogenetic protein 7	data.tsv	NO GROUP	HGNC:1074	ENSG00000101144
+PIM1	Pim-1 proto-oncogene, serine/threonine kinase	data.tsv	NO GROUP	HGNC:8986	ENSG00000137193
+METRNL	meteorin like, glial cell differentiation regulator	data.tsv	NO GROUP	HGNC:27584	ENSG00000176845
+INS	insulin	data.tsv	NO GROUP	HGNC:6081	ENSG00000254647
+ZBTB7B	zinc finger and BTB domain containing 7B	data.tsv	NO GROUP	HGNC:18668	ENSG00000160685
+FFAR4	free fatty acid receptor 4	data.tsv	NO GROUP	HGNC:19061	ENSG00000186188
+NAPEPLD	N-acyl phosphatidylethanolamine phospholipase D	data.tsv	NO GROUP	HGNC:21683	ENSG00000161048
+SOX13	SRY-box transcription factor 13	data.tsv	NO GROUP	HGNC:11192	ENSG00000143842
+SIX1	SIX homeobox 1	data.tsv	NO GROUP	HGNC:10887	ENSG00000126778
+RREB1	ras responsive element binding protein 1	data.tsv	NO GROUP	HGNC:10449	ENSG00000124782
+HNRNPU	heterogeneous nuclear ribonucleoprotein U	data.tsv	NO GROUP	HGNC:5048	ENSG00000153187
+FNDC5	fibronectin type III domain containing 5	data.tsv	NO GROUP	HGNC:20240	ENSG00000160097
+CBX4	e3 sumo-protein ligase cbx4	data.tsv	NO GROUP		
+OVOL2	ovo like zinc finger 2	data.tsv	NO GROUP	HGNC:15804	ENSG00000125850
+TFE3	transcription factor binding to IGHM enhancer 3	data.tsv	NO GROUP	HGNC:11752	ENSG00000068323
+VSTM2A	V-set and transmembrane domain containing 2A	data.tsv	NO GROUP	HGNC:28499	ENSG00000170419
+CXCL12	C-X-C motif chemokine ligand 12	detection_of_temperature_stimulus	Perception of Temperature	HGNC:10672	ENSG00000107562
+SCRN3	secernin 3	detection_of_temperature_stimulus	Perception of Temperature	HGNC:30382	ENSG00000144306
+TAC4	tachykinin precursor 4	detection_of_temperature_stimulus	Perception of Temperature	HGNC:16641	ENSG00000176358
+NTRK1	neurotrophic receptor tyrosine kinase 1	detection_of_temperature_stimulus	Perception of Temperature	HGNC:8031	ENSG00000198400
+SCN9A	sodium voltage-gated channel alpha subunit 9	detection_of_temperature_stimulus	Perception of Temperature	HGNC:10597	ENSG00000169432
+PRDM12	PR/SET domain 12	detection_of_temperature_stimulus	Perception of Temperature	HGNC:13997	ENSG00000130711
+EPHB1	EPH receptor B1	detection_of_temperature_stimulus	Perception of Temperature	HGNC:3392	ENSG00000154928
+CARTPT	cocaine- and amphetamine-regulated transcript protein	detection_of_temperature_stimulus	Perception of Temperature		
+TRPV1	transient receptor potential cation channel subfamily V member 1	detection_of_temperature_stimulus	Perception of Temperature	HGNC:12716	ENSG00000196689
+SCN11A	sodium voltage-gated channel alpha subunit 11	detection_of_temperature_stimulus	Perception of Temperature	HGNC:10583	ENSG00000168356
+NTSR1	neurotensin receptor 1	detection_of_temperature_stimulus	Perception of Temperature	HGNC:8039	ENSG00000101188
+TAC1	tachykinin precursor 1	detection_of_temperature_stimulus	Perception of Temperature	HGNC:11517	ENSG00000006128
+MMP24	matrix metallopeptidase 24	detection_of_temperature_stimulus	Perception of Temperature	HGNC:7172	ENSG00000125966
+ANO1	anoctamin 1	detection_of_temperature_stimulus	Perception of Temperature	HGNC:21625	ENSG00000131620
+GRIK2	glutamate ionotropic receptor kainate type subunit 2	detection_of_temperature_stimulus	Perception of Temperature	HGNC:4580	ENSG00000164418
+ANO3	anoctamin 3	detection_of_temperature_stimulus	Perception of Temperature	HGNC:14004	ENSG00000134343
+F2R	coagulation factor II thrombin receptor	data.tsv	NO GROUP	HGNC:3537	ENSG00000181104
+ADRA2A	adrenoceptor alpha 2A	data.tsv	NO GROUP	HGNC:281	ENSG00000150594
+F9_HUMAN	coagulation factor ixa complex	data.tsv	NO GROUP		
+FGA	fibrinogen alpha chain	data.tsv	NO GROUP	HGNC:3661	ENSG00000171560
+FGG	fibrinogen gamma chain	data.tsv	NO GROUP	HGNC:3694	ENSG00000171557
+ADRA2C	adrenoceptor alpha 2C	data.tsv	NO GROUP	HGNC:283	ENSG00000184160
+PAFAH2	platelet activating factor acetylhydrolase 2	data.tsv	NO GROUP	HGNC:8579	ENSG00000158006
+CSRP1	cysteine and glycine rich protein 1	data.tsv	NO GROUP	HGNC:2469	ENSG00000159176
+CD9	CD9 molecule	data.tsv	NO GROUP	HGNC:1709	ENSG00000010278
+DGKK	diacylglycerol kinase kappa	data.tsv	NO GROUP	HGNC:32395	ENSG00000274588
+HSPB1	heat shock protein family B (small) member 1	data.tsv	NO GROUP	HGNC:5246	ENSG00000106211
+DGKH	diacylglycerol kinase eta	data.tsv	NO GROUP	HGNC:2854	ENSG00000102780
+HNF4A	hepatocyte nuclear factor 4 alpha	data.tsv	NO GROUP	HGNC:5024	ENSG00000101076
+VAV2	vav guanine nucleotide exchange factor 2	data.tsv	NO GROUP	HGNC:12658	ENSG00000160293
+FIBP	FGF1 intracellular binding protein	data.tsv	NO GROUP	HGNC:3705	ENSG00000172500
+PPIA	peptidylprolyl isomerase A	data.tsv	NO GROUP	HGNC:9253	ENSG00000196262
+DGKQ	diacylglycerol kinase theta	data.tsv	NO GROUP	HGNC:2856	ENSG00000145214
+VAV1	vav guanine nucleotide exchange factor 1	data.tsv	NO GROUP	HGNC:12657	ENSG00000141968
+F13B	coagulation factor XIII B chain	data.tsv	NO GROUP	HGNC:3534	ENSG00000143278
+GATA1	GATA binding protein 1	data.tsv	NO GROUP	HGNC:4170	ENSG00000102145
+HGFAC	HGF activator	data.tsv	NO GROUP	HGNC:4894	ENSG00000109758
+FIBRINOGEN_HUMAN	fibrinogen complex	data.tsv	NO GROUP		
+PEAR1	platelet endothelial aggregation receptor 1	data.tsv	NO GROUP	HGNC:33631	ENSG00000187800
+WAS	WASP actin nucleation promoting factor	data.tsv	NO GROUP	HGNC:12731	ENSG00000015285
+CD40	CD40 molecule	data.tsv	NO GROUP	HGNC:11919	ENSG00000101017
+ITPK1	inositol-tetrakisphosphate 1-kinase	data.tsv	NO GROUP	HGNC:6177	ENSG00000100605
+SEMG1	semenogelin-1	data.tsv	NO GROUP		
+PLSCR1	phospholipid scramblase 1	data.tsv	NO GROUP	HGNC:9092	ENSG00000188313
+MMRN1	multimerin 1	data.tsv	NO GROUP	HGNC:7178	ENSG00000138722
+ANGPT2	angiopoietin 2	data.tsv	NO GROUP	HGNC:485	ENSG00000091879
+CYP4F11	cytochrome P450 family 4 subfamily F member 11	data.tsv	NO GROUP	HGNC:13265	ENSG00000171903
+RAP2B	RAP2B, member of RAS oncogene family	data.tsv	NO GROUP	HGNC:9862	ENSG00000181467
+HRG	histidine rich glycoprotein	data.tsv	NO GROUP	HGNC:5181	ENSG00000113905
+ILK	integrin linked kinase	data.tsv	NO GROUP	HGNC:6040	ENSG00000166333
+GNA12	G protein subunit alpha 12	data.tsv	NO GROUP	HGNC:4380	ENSG00000146535
+MYL9	myosin light chain 9	data.tsv	NO GROUP	HGNC:15754	ENSG00000101335
+ANO6	anoctamin 6	data.tsv	NO GROUP	HGNC:25240	ENSG00000177119
+PIK3CG	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit gamma	data.tsv	NO GROUP	HGNC:8978	ENSG00000105851
+GGCX	gamma-glutamyl carboxylase	data.tsv	NO GROUP	HGNC:4247	ENSG00000115486
+RASA3	RAS p21 protein activator 3	data.tsv	NO GROUP	HGNC:20331	ENSG00000185989
+LMAN1	lectin, mannose binding 1	data.tsv	NO GROUP	HGNC:6631	ENSG00000074695
+ITPR3	inositol 1,4,5-trisphosphate receptor type 3	data.tsv	NO GROUP	HGNC:6182	ENSG00000096433
+PDPN	podoplanin	data.tsv	NO GROUP	HGNC:29602	ENSG00000162493
+DGKE	diacylglycerol kinase epsilon	data.tsv	NO GROUP	HGNC:2852	ENSG00000153933
+PIK3CB	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit beta	data.tsv	NO GROUP	HGNC:8976	ENSG00000051382
+PIK3CA	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit alpha	data.tsv	NO GROUP	HGNC:8975	ENSG00000121879
+ADORA2A	adenosine A2a receptor	data.tsv	NO GROUP	HGNC:263	ENSG00000128271
+DGKG	diacylglycerol kinase gamma	data.tsv	NO GROUP	HGNC:2853	ENSG00000058866
+GP9	glycoprotein IX platelet	data.tsv	NO GROUP	HGNC:4444	ENSG00000169704
+METAP1	methionyl aminopeptidase 1	data.tsv	NO GROUP	HGNC:15789	ENSG00000164024
+FERMT3	FERM domain containing kindlin 3	data.tsv	NO GROUP	HGNC:23151	ENSG00000149781
+PLCG2	phospholipase C gamma 2	data.tsv	NO GROUP	HGNC:9066	ENSG00000197943
+PRSS56	serine protease 56	data.tsv	NO GROUP	HGNC:39433	ENSG00000237412
+GP1BB	glycoprotein Ib platelet subunit beta	data.tsv	NO GROUP	HGNC:4440	ENSG00000203618
+PABPC4	poly(A) binding protein cytoplasmic 4	data.tsv	NO GROUP	HGNC:8557	ENSG00000090621
+FBLN1	fibulin 1	data.tsv	NO GROUP	HGNC:3600	ENSG00000077942
+GP5	glycoprotein V platelet	data.tsv	NO GROUP	HGNC:4443	ENSG00000178732
+CD36	CD36 molecule (CD36 blood group)	data.tsv	NO GROUP	HGNC:1663	ENSG00000135218
+JMJD1C	jumonji domain containing 1C	data.tsv	NO GROUP	HGNC:12313	ENSG00000171988
+KLKB1	kallikrein B1	data.tsv	NO GROUP	HGNC:6371	ENSG00000164344
+F11	coagulation factor XI	data.tsv	NO GROUP	HGNC:3529	ENSG00000088926
+C4BPB	complement component 4 binding protein beta	data.tsv	NO GROUP	HGNC:1328	ENSG00000123843
+GNAQ	G protein subunit alpha q	data.tsv	NO GROUP	HGNC:4390	ENSG00000156052
+SEMG2	semenogelin-2	data.tsv	NO GROUP		
+GP1B-FLNA_HUMAN	glycoprotein ib-ix-v-filamin-a complex	data.tsv	NO GROUP		
+GP1B_HUMAN	glycoprotein ib-ix-v complex	data.tsv	NO GROUP		
+F8_HUMAN-1	coagulation factor viiia complex, heavy chain variant 2	data.tsv	NO GROUP		
+KLKB1_HUMAN-1	kallikrein complex	data.tsv	NO GROUP		
+F13_HUMAN	coagulation factor xiiia complex	data.tsv	NO GROUP		
+FIBRIN-CLOT_HUMAN	fibrin clot	data.tsv	NO GROUP		
+FIBRIN_HUMAN	fibrin complex	data.tsv	NO GROUP		
+F2-THBD_HUMAN	thrombin-thrombomodulin complex	data.tsv	NO GROUP		
+F2_HUMAN	alpha-thrombin complex	data.tsv	NO GROUP		
+DGKA	diacylglycerol kinase alpha	data.tsv	NO GROUP	HGNC:2849	ENSG00000065357
+F10_HUMAN	coagulation factor xa complex	data.tsv	NO GROUP		
+F7_HUMAN	coagulation factor viia complex	data.tsv	NO GROUP		
+F12_HUMAN	coagulation factor xiia complex	data.tsv	NO GROUP		
+F11_HUMAN	coagulation factor xia complex	data.tsv	NO GROUP		
+F8-F9_HUMAN	coagulation factor viiia-ixa complex	data.tsv	NO GROUP		
+CD59	CD59 molecule (CD59 blood group)	data.tsv	NO GROUP	HGNC:1689	ENSG00000085063
+VAV3	vav guanine nucleotide exchange factor 3	data.tsv	NO GROUP	HGNC:12659	ENSG00000134215
+ANGPTL2	angiopoietin like 2	data.tsv	NO GROUP	HGNC:490	ENSG00000136859
+STXBP1	syntaxin binding protein 1	data.tsv	NO GROUP	HGNC:11444	ENSG00000136854
+TUBB1	tubulin beta 1 class VI	data.tsv	NO GROUP	HGNC:16257	ENSG00000101162
+GNAS	GNAS complex locus	data.tsv	NO GROUP	HGNC:4392	ENSG00000087460
+DGKI	diacylglycerol kinase iota	data.tsv	NO GROUP	HGNC:2855	ENSG00000157680
+THBS1	thrombospondin 1	data.tsv	NO GROUP	HGNC:11785	ENSG00000137801
+PLAUR	plasminogen activator, urokinase receptor	data.tsv	NO GROUP	HGNC:9053	ENSG00000011422
+PRRG1	proline rich and Gla domain 1	data.tsv	NO GROUP	HGNC:9469	ENSG00000130962
+PRRG2	proline rich and Gla domain 2	data.tsv	NO GROUP	HGNC:9470	ENSG00000126460
+MAPK14	mitogen-activated protein kinase 14	data.tsv	NO GROUP	HGNC:6876	ENSG00000112062
+SERPINA10	serpin family A member 10	data.tsv	NO GROUP	HGNC:15996	ENSG00000140093
+F2RL3	F2R like thrombin or trypsin receptor 3	data.tsv	NO GROUP	HGNC:3540	ENSG00000127533
+PLG	plasminogen	data.tsv	NO GROUP	HGNC:9071	ENSG00000122194
+F10	coagulation factor X	data.tsv	NO GROUP	HGNC:3528	ENSG00000126218
+F9	coagulation factor IX	data.tsv	NO GROUP	HGNC:3551	ENSG00000101981
+SAA1	serum amyloid A1	data.tsv	NO GROUP	HGNC:10513	ENSG00000173432
+F8	coagulation factor VIII	data.tsv	NO GROUP	HGNC:3546	ENSG00000185010
+ACTG1	actin gamma 1	data.tsv	NO GROUP	HGNC:144	ENSG00000184009
+VCL	vinculin	data.tsv	NO GROUP	HGNC:12665	ENSG00000035403
+STXBP3	syntaxin binding protein 3	data.tsv	NO GROUP	HGNC:11446	ENSG00000116266
+F5_HUMAN	coagulation factor va complex	data.tsv	NO GROUP		
+SCUBE1	signal peptide, CUB domain and EGF like domain containing 1	data.tsv	NO GROUP	HGNC:13441	ENSG00000159307
+F5-F10_HUMAN	coagulation factor va-xa complex	data.tsv	NO GROUP		
+CLIC1	CLIC family member 1	data.tsv	NO GROUP	HGNC:2062	ENSG00000213719
+F3	coagulation factor III, tissue factor	data.tsv	NO GROUP	HGNC:3541	ENSG00000117525
+ANGPT4	angiopoietin 4	data.tsv	NO GROUP	HGNC:487	ENSG00000101280
+ANGPTL6	angiopoietin like 6	data.tsv	NO GROUP	HGNC:23140	ENSG00000130812
+F8_HUMAN	coagulation factor viiia complex, heavy chain variant 1	data.tsv	NO GROUP		
+F2RL2	coagulation factor II thrombin receptor like 2	data.tsv	NO GROUP	HGNC:3539	ENSG00000164220
+FLNA	filamin A	data.tsv	NO GROUP	HGNC:3754	ENSG00000196924
+PDGFRA	platelet derived growth factor receptor alpha	data.tsv	NO GROUP	HGNC:8803	ENSG00000134853
+GNAS	GNAS complex locus	data.tsv	NO GROUP	HGNC:4392	ENSG00000087460
+UBASH3B	ubiquitin associated and SH3 domain containing B	data.tsv	NO GROUP	HGNC:29884	ENSG00000154127
+F3-F7_HUMAN	coagulation factor viia - tissue factor complex	data.tsv	NO GROUP		
+BLOC1S3	biogenesis of lysosomal organelles complex 1 subunit 3	data.tsv	NO GROUP	HGNC:20914	ENSG00000189114
+AK3	adenylate kinase 3	data.tsv	NO GROUP	HGNC:17376	ENSG00000147853
+ANGPTL1	angiopoietin like 1	data.tsv	NO GROUP	HGNC:489	ENSG00000116194
+TREML1	triggering receptor expressed on myeloid cells like 1	data.tsv	NO GROUP	HGNC:20434	ENSG00000161911
+TLN1	talin 1	data.tsv	NO GROUP	HGNC:11845	ENSG00000137076
+MPIG6B	megakaryocyte and platelet inhibitory receptor G6b	data.tsv	NO GROUP	HGNC:13937	ENSG00000204420
+P2RY1	purinergic receptor P2Y1	data.tsv	NO GROUP	HGNC:8539	ENSG00000169860
+DGKB	diacylglycerol kinase beta	data.tsv	NO GROUP	HGNC:2850	ENSG00000136267
+GNAS	GNAS complex locus	data.tsv	NO GROUP	HGNC:4392	ENSG00000087460
+TYRO3	TYRO3 protein tyrosine kinase	data.tsv	NO GROUP	HGNC:12446	ENSG00000092445
+AXL	AXL receptor tyrosine kinase	data.tsv	NO GROUP	HGNC:905	ENSG00000167601
+ADAMTS13	ADAM metallopeptidase with thrombospondin type 1 motif 13	data.tsv	NO GROUP	HGNC:1366	ENSG00000160323
+ANGPTL7	angiopoietin like 7	data.tsv	NO GROUP	HGNC:24078	ENSG00000171819
+PLEK	pleckstrin	data.tsv	NO GROUP	HGNC:9070	ENSG00000115956
+FN1	fibronectin 1	data.tsv	NO GROUP	HGNC:3778	ENSG00000115414
+ANGPT1	angiopoietin 1	data.tsv	NO GROUP	HGNC:484	ENSG00000154188
+HBB	hemoglobin subunit beta	data.tsv	NO GROUP	HGNC:4827	ENSG00000244734
+DGKD	diacylglycerol kinase delta	data.tsv	NO GROUP	HGNC:2851	ENSG00000077044
+ACTB	actin beta	data.tsv	NO GROUP	HGNC:132	ENSG00000075624
+PF4	platelet factor 4	data.tsv	NO GROUP	HGNC:8861	ENSG00000163737
+CD40LG	CD40 ligand	data.tsv	NO GROUP	HGNC:11935	ENSG00000102245
+SRC	SRC proto-oncogene, non-receptor tyrosine kinase	data.tsv	NO GROUP	HGNC:11283	ENSG00000197122
+COL3A1	collagen type III alpha 1 chain	data.tsv	NO GROUP	HGNC:2201	ENSG00000168542
+PROZ	protein Z, vitamin K dependent plasma glycoprotein	data.tsv	NO GROUP	HGNC:9460	ENSG00000126231
+VKORC1	vitamin K epoxide reductase complex subunit 1	data.tsv	NO GROUP	HGNC:23663	ENSG00000167397
+ANGPTL4	angiopoietin like 4	data.tsv	NO GROUP	HGNC:16039	ENSG00000167772
+CTSG	cathepsin G	data.tsv	NO GROUP	HGNC:2532	ENSG00000100448
+ACTN1	actinin alpha 1	data.tsv	NO GROUP	HGNC:163	ENSG00000072110
+PRRG3	proline rich and Gla domain 3	data.tsv	NO GROUP	HGNC:30798	ENSG00000130032
+PRRG4	proline rich and Gla domain 4	data.tsv	NO GROUP	HGNC:30799	ENSG00000135378
+FGL1	fibrinogen like 1	data.tsv	NO GROUP	HGNC:3695	ENSG00000104760
+ENTPD1	ectonucleoside triphosphate diphosphohydrolase 1	data.tsv	NO GROUP	HGNC:3363	ENSG00000138185
+MYL12A	myosin light chain 12A	data.tsv	NO GROUP	HGNC:16701	ENSG00000101608
+CYP4F2	cytochrome P450 family 4 subfamily F member 2	data.tsv	NO GROUP	HGNC:2645	ENSG00000186115
+SYK	spleen associated tyrosine kinase	data.tsv	NO GROUP	HGNC:11491	ENSG00000165025
+LCK	LCK proto-oncogene, Src family tyrosine kinase	data.tsv	NO GROUP	HGNC:6524	ENSG00000182866
+TRAF3IP2	TRAF3 interacting protein 2	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:1343	ENSG00000056972
+VEGFA	vascular endothelial growth factor A	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:12680	ENSG00000112715
+MTX1	metaxin 1	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:7504	ENSG00000173171
+ZBTB7B	zinc finger and BTB domain containing 7B	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:18668	ENSG00000160685
+GPAT4	glycerol-3-phosphate acyltransferase 4	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:20880	ENSG00000158669
+HTR4	5-hydroxytryptamine receptor 4	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:5299	ENSG00000164270
+FGF10	fibroblast growth factor 10	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:3666	ENSG00000070193
+CHRM1	cholinergic receptor muscarinic 1	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:1950	ENSG00000168539
+VIP	vasoactive intestinal peptide	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:12693	ENSG00000146469
+FOXB1	forkhead box B1	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:3799	ENSG00000171956
+CSN2	casein beta	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:2447	ENSG00000135222
+COPA	coat protein complex I subunit alpha	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:2230	ENSG00000122218
+SLC4A9	solute carrier family 4 member 9	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:11035	ENSG00000113073
+AQP5	aquaporin 5	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:638	ENSG00000161798
+NCOA1	nuclear receptor coactivator 1	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:7668	ENSG00000084676
+CSN3	casein kappa	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:2446	ENSG00000171209
+MUC2	mucin 2, oligomeric mucus/gel-forming	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:7512	ENSG00000198788
+AGR2	anterior gradient 2, protein disulphide isomerase family member	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:328	ENSG00000106541
+SLC29A1	solute carrier family 29 member 1 (Augustine blood group)	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:11003	ENSG00000112759
+PRICKLE1	prickle planar cell polarity protein 1	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:17019	ENSG00000139174
+CDO1	cysteine dioxygenase type 1	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:1795	ENSG00000129596
+GUCA1B	guanylate cyclase activator 1B	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:4679	ENSG00000112599
+CAD	carbamoyl-phosphate synthetase 2, aspartate transcarbamylase, and dihydroorotase	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:1424	ENSG00000084774
+LACRT	lacritin	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:16430	ENSG00000135413
+APLN	apelin	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:16665	ENSG00000171388
+MT-CO2	mitochondrially encoded cytochrome c oxidase II	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:7421	ENSG00000198712
+ERBB4	erb-b2 receptor tyrosine kinase 4	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:3432	ENSG00000178568
+VAMP3	vesicle associated membrane protein 3	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:12644	ENSG00000049245
+UPRT	uracil phosphoribosyltransferase homolog	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:28334	ENSG00000094841
+SLC22A4	solute carrier family 22 member 4	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:10968	ENSG00000197208
+OXTR	oxytocin receptor	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:8529	ENSG00000180914
+NCOR2	nuclear receptor corepressor 2	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:7673	ENSG00000196498
+CHRM3	cholinergic receptor muscarinic 3	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:1952	ENSG00000133019
+ANO1	anoctamin 1	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:21625	ENSG00000131620
+PRLR	prolactin receptor	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:9446	ENSG00000113494
+VAMP2	vesicle associated membrane protein 2	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:12643	ENSG00000220205
+VAMP8	vesicle associated membrane protein 8	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:12647	ENSG00000118640
+AQP1	aquaporin 1 (Colton blood group)	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:633	ENSG00000240583
+SRC	SRC proto-oncogene, non-receptor tyrosine kinase	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:11283	ENSG00000197122
+SCT	secretin	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:10607	ENSG00000070031
+CEL	carboxyl ester lipase	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:1848	ENSG00000170835
+STATH	statherin	body_fluid_secretion	Sweat and Body Fluids w/o Blood	HGNC:11369	ENSG00000126549
+TNFSF11	TNF superfamily member 11	regulation_of_heat_generation	Thermogenesis	HGNC:11926	ENSG00000120659
+NMU	neuromedin U	regulation_of_heat_generation	Thermogenesis	HGNC:7859	ENSG00000109255
+PTGER3	prostaglandin E receptor 3	regulation_of_heat_generation	Thermogenesis	HGNC:9595	ENSG00000050628
+ABAT	4-aminobutyrate aminotransferase	regulation_of_heat_generation	Thermogenesis	HGNC:23	ENSG00000183044
+TNFRSF11A	TNF receptor superfamily member 11a	regulation_of_heat_generation	Thermogenesis	HGNC:11908	ENSG00000141655
+EDNRB	endothelin receptor type B	regulation_of_heat_generation	Thermogenesis	HGNC:3180	ENSG00000136160
+UCP2	uncoupling protein 2	data.tsv	NO GROUP	HGNC:12518	ENSG00000175567
+APC	APC regulator of Wnt signaling pathway	data.tsv	NO GROUP	HGNC:583	ENSG00000134982
+CIDEA	cell death inducing DFFA like effector a	data.tsv	NO GROUP	HGNC:1976	ENSG00000176194
+ATF4	activating transcription factor 4	data.tsv	NO GROUP	HGNC:786	ENSG00000128272
+ACADL	acyl-CoA dehydrogenase long chain	data.tsv	NO GROUP	HGNC:88	ENSG00000115361
+BMAL1	basic helix-loop-helix ARNT like 1	data.tsv	NO GROUP	HGNC:701	ENSG00000133794
+IGF1R	insulin like growth factor 1 receptor	data.tsv	NO GROUP	HGNC:5465	ENSG00000140443
+IL4R	interleukin 4 receptor	data.tsv	NO GROUP	HGNC:6015	ENSG00000077238
+NOVA1	NOVA alternative splicing regulator 1	data.tsv	NO GROUP	HGNC:7886	ENSG00000139910
+DYNC1H1	dynein cytoplasmic 1 heavy chain 1	data.tsv	NO GROUP	HGNC:2961	ENSG00000197102
+HSF1	heat shock transcription factor 1	data.tsv	NO GROUP	HGNC:5224	ENSG00000185122
+ADCYAP1	adenylate cyclase activating polypeptide 1	data.tsv	NO GROUP	HGNC:241	ENSG00000141433
+NR1H2	nuclear receptor subfamily 1 group H member 2	data.tsv	NO GROUP	HGNC:7965	ENSG00000131408
+MFAP2	microfibril associated protein 2	data.tsv	NO GROUP	HGNC:7033	ENSG00000117122
+PTH2R	parathyroid hormone 2 receptor	data.tsv	NO GROUP	HGNC:9609	ENSG00000144407
+IL4	interleukin 4	data.tsv	NO GROUP	HGNC:6014	ENSG00000113520
+MAP2K6	mitogen-activated protein kinase kinase 6	data.tsv	NO GROUP	HGNC:6846	ENSG00000108984
+TLE3	TLE family member 3, transcriptional corepressor	data.tsv	NO GROUP	HGNC:11839	ENSG00000140332
+STAT6	signal transducer and activator of transcription 6	data.tsv	NO GROUP	HGNC:11368	ENSG00000166888
+LETMD1	LETM1 domain containing 1	data.tsv	NO GROUP	HGNC:24241	ENSG00000050426
+ACHE	acetylcholinesterase (Yt blood group)	data.tsv	NO GROUP	HGNC:108	ENSG00000087085
+PRKAB2	protein kinase AMP-activated non-catalytic subunit beta 2	data.tsv	NO GROUP	HGNC:9379	ENSG00000131791
+VEGFA	vascular endothelial growth factor A	data.tsv	NO GROUP	HGNC:12680	ENSG00000112715
+LPIN1	lipin 1	data.tsv	NO GROUP	HGNC:13345	ENSG00000134324
+UCP1	uncoupling protein 1	data.tsv	NO GROUP	HGNC:12517	ENSG00000109424
+HOXC10	homeobox C10	data.tsv	NO GROUP	HGNC:5122	ENSG00000180818
+CXCR4	C-X-C motif chemokine receptor 4	data.tsv	NO GROUP	HGNC:2561	ENSG00000121966
+PRDM16	PR/SET domain 16	data.tsv	NO GROUP	HGNC:14000	ENSG00000142611
+ACSL1	acyl-CoA synthetase long chain family member 1	data.tsv	NO GROUP	HGNC:3569	ENSG00000151726
+ACVR2B	activin A receptor type 2B	data.tsv	NO GROUP	HGNC:174	ENSG00000114739
+ELOVL3	ELOVL fatty acid elongase 3	data.tsv	NO GROUP	HGNC:18047	ENSG00000119915
+STK11	serine/threonine kinase 11	data.tsv	NO GROUP	HGNC:11389	ENSG00000118046
+IL18R1	interleukin 18 receptor 1	data.tsv	NO GROUP	HGNC:5988	ENSG00000115604
+HDAC3	histone deacetylase 3	data.tsv	NO GROUP	HGNC:4854	ENSG00000171720
+CAV1	caveolin 1	data.tsv	NO GROUP	HGNC:1527	ENSG00000105974
+PLAC8	placenta associated 8	data.tsv	NO GROUP	HGNC:19254	ENSG00000145287
+EBF2	EBF transcription factor 2	data.tsv	NO GROUP	HGNC:19090	ENSG00000221818
+PWWP2B	PWWP domain containing 2B	data.tsv	NO GROUP	HGNC:25150	ENSG00000171813
+ACTN3	actinin alpha 3	data.tsv	NO GROUP	HGNC:165	ENSG00000248746
+TRPM8	transient receptor potential cation channel subfamily M member 8	data.tsv	NO GROUP	HGNC:17961	ENSG00000144481
+KSR2	kinase suppressor of ras 2	data.tsv	NO GROUP	HGNC:18610	ENSG00000171435
+NOTCH1	notch receptor 1	data.tsv	NO GROUP	HGNC:7881	ENSG00000148400
+PPARGC1B	PPARG coactivator 1 beta	data.tsv	NO GROUP	HGNC:30022	ENSG00000155846
+KDM3A	lysine demethylase 3A	data.tsv	NO GROUP	HGNC:20815	ENSG00000115548
+LCN2	lipocalin 2	data.tsv	NO GROUP	HGNC:6526	ENSG00000148346
+ELOVL6	ELOVL fatty acid elongase 6	data.tsv	NO GROUP	HGNC:15829	ENSG00000170522
+ESRRG	estrogen related receptor gamma	data.tsv	NO GROUP	HGNC:3474	ENSG00000196482
+IL18	interleukin 18	data.tsv	NO GROUP	HGNC:5986	ENSG00000150782
+FABP4	fatty acid binding protein 4	data.tsv	NO GROUP	HGNC:3559	ENSG00000170323
+UCP3	uncoupling protein 3	data.tsv	NO GROUP	HGNC:12519	ENSG00000175564
+NRDC	nardilysin convertase	data.tsv	NO GROUP	HGNC:7995	ENSG00000078618
+ADAM17	ADAM metallopeptidase domain 17	data.tsv	NO GROUP	HGNC:195	ENSG00000151694
+ADIPOR2	adiponectin receptor 2	data.tsv	NO GROUP	HGNC:24041	ENSG00000006831
+ID1	inhibitor of DNA binding 1	data.tsv	NO GROUP	HGNC:5360	ENSG00000125968
+OGT	O-linked N-acetylglucosamine (GlcNAc) transferase	data.tsv	NO GROUP	HGNC:8127	ENSG00000147162
+SIRT6	sirtuin 6	data.tsv	NO GROUP	HGNC:14934	ENSG00000077463
+GATM	glycine amidinotransferase	data.tsv	NO GROUP	HGNC:4175	ENSG00000171766
+ACOT11	acyl-CoA thioesterase 11	data.tsv	NO GROUP	HGNC:18156	ENSG00000162390
+RB1	RB transcriptional corepressor 1	data.tsv	NO GROUP	HGNC:9884	ENSG00000139687
+SLN	sarcolipin	data.tsv	NO GROUP	HGNC:11089	ENSG00000170290
+FOXC2	forkhead box C2	data.tsv	NO GROUP	HGNC:3801	ENSG00000176692
+ADIPOR1	adiponectin receptor 1	data.tsv	NO GROUP	HGNC:24040	ENSG00000159346
+GJA1	gap junction protein alpha 1	data.tsv	NO GROUP	HGNC:4274	ENSG00000152661
+GADD45G	growth arrest and DNA damage inducible gamma	data.tsv	NO GROUP	HGNC:4097	ENSG00000130222
+GHRL	ghrelin and obestatin prepropeptide	data.tsv	NO GROUP	HGNC:18129	ENSG00000157017
+CPT2	carnitine palmitoyltransferase 2	data.tsv	NO GROUP	HGNC:2330	ENSG00000157184
+BSCL2	BSCL2 lipid droplet biogenesis associated, seipin	data.tsv	NO GROUP	HGNC:15832	ENSG00000168000
+EPAS1	endothelial PAS domain protein 1	data.tsv	NO GROUP	HGNC:3374	ENSG00000116016
+ADRB3	adrenoceptor beta 3	data.tsv	NO GROUP	HGNC:288	ENSG00000188778
+QKI	QKI, KH domain containing RNA binding	data.tsv	NO GROUP	HGNC:21100	ENSG00000112531
+EHMT1	euchromatic histone lysine methyltransferase 1	data.tsv	NO GROUP	HGNC:24650	ENSG00000181090
+PCTP	phosphatidylcholine transfer protein	data.tsv	NO GROUP	HGNC:8752	ENSG00000141179
+RBPJ	recombination signal binding protein for immunoglobulin kappa J region	data.tsv	NO GROUP	HGNC:5724	ENSG00000168214
+PGAM5	PGAM family member 5, mitochondrial serine/threonine protein phosphatase	data.tsv	NO GROUP	HGNC:28763	ENSG00000247077
+PLCL2	phospholipase C like 2	data.tsv	NO GROUP	HGNC:9064	ENSG00000154822
+DOCK7	dedicator of cytokinesis 7	data.tsv	NO GROUP	HGNC:19190	ENSG00000116641
+FGF21	fibroblast growth factor 21	data.tsv	NO GROUP	HGNC:3678	ENSG00000105550
+ADAMTS5	ADAM metallopeptidase with thrombospondin type 1 motif 5	data.tsv	NO GROUP	HGNC:221	ENSG00000154736
+HADH	hydroxyacyl-CoA dehydrogenase	data.tsv	NO GROUP	HGNC:4799	ENSG00000138796
+ACOT13	acyl-CoA thioesterase 13	data.tsv	NO GROUP	HGNC:20999	ENSG00000112304
+PDGFC	platelet derived growth factor C	data.tsv	NO GROUP	HGNC:8801	ENSG00000145431
+NOVA2	NOVA alternative splicing regulator 2	data.tsv	NO GROUP	HGNC:7887	ENSG00000104967
+FH	fumarate hydratase	data.tsv	NO GROUP	HGNC:3700	ENSG00000091483
+PER2	period circadian regulator 2	data.tsv	NO GROUP	HGNC:8846	ENSG00000132326
+KDM6B	lysine demethylase 6B	data.tsv	NO GROUP	HGNC:29012	ENSG00000132510
+SMARCA4	SWI/SNF related BAF chromatin remodeling complex subunit ATPase 4	data.tsv	NO GROUP	HGNC:11100	ENSG00000127616
+SLC25A44	solute carrier family 25 member 44	data.tsv	NO GROUP	HGNC:29036	ENSG00000160785
+CMKLR1	chemerin chemokine-like receptor 1	data.tsv	NO GROUP	HGNC:2121	ENSG00000174600
+IP6K1	inositol hexakisphosphate kinase 1	data.tsv	NO GROUP	HGNC:18360	ENSG00000176095
+PHOX2B	paired like homeobox 2B	data.tsv	NO GROUP	HGNC:9143	ENSG00000109132
+PLCL1	phospholipase C like 1 (inactive)	data.tsv	NO GROUP	HGNC:9063	ENSG00000115896
+ALMS1	ALMS1 centrosome and basal body associated protein	data.tsv	NO GROUP	HGNC:428	ENSG00000116127
+ZNF516	zinc finger protein 516	data.tsv	NO GROUP	HGNC:28990	ENSG00000101493
+RHEB	Ras homolog, mTORC1 binding	data.tsv	NO GROUP	HGNC:10011	ENSG00000106615
+IRF4	interferon regulatory factor 4	data.tsv	NO GROUP	HGNC:6119	ENSG00000137265
+PEMT	phosphatidylethanolamine N-methyltransferase	data.tsv	NO GROUP	HGNC:8830	ENSG00000133027
+LAMA4	laminin subunit alpha 4	data.tsv	NO GROUP	HGNC:6484	ENSG00000112769
+MFN2	mitofusin 2	data.tsv	NO GROUP	HGNC:16877	ENSG00000116688
+DIO2	iodothyronine deiodinase 2	data.tsv	NO GROUP	HGNC:2884	ENSG00000211448
+ADIPOQ	adiponectin, C1Q and collagen domain containing	data.tsv	NO GROUP	HGNC:13633	ENSG00000181092
+SCD	stearoyl-CoA desaturase	data.tsv	NO GROUP	HGNC:10571	ENSG00000099194
+WNT10B	Wnt family member 10B	data.tsv	NO GROUP	HGNC:12775	ENSG00000169884
+APPL2	adaptor protein, phosphotyrosine interacting with PH domain and leucine zipper 2	data.tsv	NO GROUP	HGNC:18242	ENSG00000136044
+GNAS	GNAS complex locus	data.tsv	NO GROUP	HGNC:4392	ENSG00000087460
+IL15	interleukin 15	data.tsv	NO GROUP	HGNC:5977	ENSG00000164136
+YBX2	Y-box binding protein 2	data.tsv	NO GROUP	HGNC:17948	ENSG00000006047
+OMA1	OMA1 zinc metallopeptidase	data.tsv	NO GROUP	HGNC:29661	ENSG00000162600
+CNOT3	CCR4-NOT transcription complex subunit 3	data.tsv	NO GROUP	HGNC:7879	ENSG00000088038
+ARRDC3	arrestin domain containing 3	data.tsv	NO GROUP	HGNC:29263	ENSG00000113369
+LNPEP	leucyl and cystinyl aminopeptidase	data.tsv	NO GROUP	HGNC:6656	ENSG00000113441
+NPR3	natriuretic peptide receptor 3	data.tsv	NO GROUP	HGNC:7945	ENSG00000113389
+ALDH1A1	aldehyde dehydrogenase 1 family member A1	data.tsv	NO GROUP	HGNC:402	ENSG00000165092
+OXTR	oxytocin receptor	data.tsv	NO GROUP	HGNC:8529	ENSG00000180914
+NR1D1	nuclear receptor subfamily 1 group D member 1	data.tsv	NO GROUP	HGNC:7962	ENSG00000126368
+PRKAB1	protein kinase AMP-activated non-catalytic subunit beta 1	data.tsv	NO GROUP	HGNC:9378	ENSG00000111725
+TRPV2	transient receptor potential cation channel subfamily V member 2	data.tsv	NO GROUP	HGNC:18082	ENSG00000187688
+G0S2	G0/G1 switch 2	data.tsv	NO GROUP	HGNC:30229	ENSG00000123689
+CEBPB	CCAAT enhancer binding protein beta	data.tsv	NO GROUP	HGNC:1834	ENSG00000172216
+DECR1	2,4-dienoyl-CoA reductase 1	data.tsv	NO GROUP	HGNC:2753	ENSG00000104325
+THRA	thyroid hormone receptor alpha	data.tsv	NO GROUP	HGNC:11796	ENSG00000126351
+PRLR	prolactin receptor	data.tsv	NO GROUP	HGNC:9446	ENSG00000113494
+TSHR	thyroid stimulating hormone receptor	data.tsv	NO GROUP	HGNC:12373	ENSG00000165409
+GRB10	growth factor receptor bound protein 10	data.tsv	NO GROUP	HGNC:4564	ENSG00000106070
+FLCN	folliculin	data.tsv	NO GROUP	HGNC:27310	ENSG00000154803
+SFXN5	sideroflexin 5	data.tsv	NO GROUP	HGNC:16073	ENSG00000144040
+GPR3	G protein-coupled receptor 3	data.tsv	NO GROUP	HGNC:4484	ENSG00000181773
+ABHD6	abhydrolase domain containing 6, acylglycerol lipase	data.tsv	NO GROUP	HGNC:21398	ENSG00000163686
+JAK2	Janus kinase 2	data.tsv	NO GROUP	HGNC:6192	ENSG00000096968
+DBH	dopamine beta-hydroxylase	data.tsv	NO GROUP	HGNC:2689	ENSG00000123454
+FABP5	fatty acid binding protein 5	data.tsv	NO GROUP	HGNC:3560	ENSG00000164687
+KDM1A	lysine demethylase 1A	data.tsv	NO GROUP	HGNC:29079	ENSG00000004487
+LGR4	leucine rich repeat containing G protein-coupled receptor 4	data.tsv	NO GROUP	HGNC:13299	ENSG00000205213
+ZNF423	zinc finger protein 423	data.tsv	NO GROUP	HGNC:16762	ENSG00000102935
+AQP7B	putative aquaporin-7b	data.tsv	NO GROUP		
+SLC26A6	solute carrier family 26 member 6	data.tsv	NO GROUP	HGNC:14472	ENSG00000225697
+AQP4	aquaporin 4	data.tsv	NO GROUP	HGNC:637	ENSG00000171885
+AQP7P3	putative aquaporin-7-like protein 3	data.tsv	NO GROUP		
+AQP6	aquaporin 6	data.tsv	NO GROUP	HGNC:639	ENSG00000086159
+PKP1	plakophilin 1	data.tsv	NO GROUP	HGNC:9023	ENSG00000081277
+AQP2	aquaporin 2	data.tsv	NO GROUP	HGNC:634	ENSG00000167580
+CSF2	colony stimulating factor 2	data.tsv	NO GROUP	HGNC:2434	ENSG00000164400
+NHERF4	na(+)/h(+) exchange regulatory cofactor nhe-rf4	data.tsv	NO GROUP		
+ITPR1	inositol 1,4,5-trisphosphate receptor type 1	data.tsv	NO GROUP	HGNC:6180	ENSG00000150995
+AQP9	aquaporin-9	data.tsv	NO GROUP		
+AHCYL1	adenosylhomocysteinase like 1	data.tsv	NO GROUP	HGNC:344	ENSG00000168710
+AQP5	aquaporin 5	data.tsv	NO GROUP	HGNC:638	ENSG00000161798
+SLC14A1	urea transporter 1	data.tsv	NO GROUP		
+SLC5A1	solute carrier family 5 member 1	data.tsv	NO GROUP	HGNC:11036	ENSG00000100170
+HYAL2	hyaluronidase 2	data.tsv	NO GROUP	HGNC:5321	ENSG00000068001
+AQP7	aquaporin-7	data.tsv	NO GROUP		
+AQP10	aquaporin-10	data.tsv	NO GROUP		
+CLDN18	claudin 18	data.tsv	NO GROUP	HGNC:2039	ENSG00000066405
+AQP3	aquaporin 3 (Gill blood group)	data.tsv	NO GROUP	HGNC:636	ENSG00000165272
+AQP12A	putative aquaporin-12a	data.tsv	NO GROUP		
+SLC4A11	solute carrier family 4 member 11	data.tsv	NO GROUP		
+AQP11	aquaporin-11	data.tsv	NO GROUP		
+HAS2	hyaluronan synthase 2	data.tsv	NO GROUP	HGNC:4819	ENSG00000170961
+AVPR2	arginine vasopressin receptor 2	data.tsv	NO GROUP	HGNC:897	ENSG00000126895
+UPK3A	uroplakin-3a	data.tsv	NO GROUP		
+AQP12B	putative aquaporin-12b	data.tsv	NO GROUP		
+MIP	lens fiber major intrinsic protein	data.tsv	NO GROUP		
+EDNRB	endothelin receptor type B	data.tsv	NO GROUP	HGNC:3180	ENSG00000136160
+AQP8	aquaporin 8	data.tsv	NO GROUP	HGNC:642	ENSG00000103375
+ADRA2A	adrenoceptor alpha 2A	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:281	ENSG00000150594
+CXCL12	C-X-C motif chemokine ligand 12	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:10672	ENSG00000107562
+GRM5	metabotropic glutamate receptor 5	sensory_perception_of_temperature_stimulus	Perception of Temperature		
+SCRN3	secernin 3	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:30382	ENSG00000144306
+KCNK4	potassium two pore domain channel subfamily K member 4	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:6279	ENSG00000182450
+TAC4	tachykinin precursor 4	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:16641	ENSG00000176358
+TRPM8	transient receptor potential cation channel subfamily M member 8	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:17961	ENSG00000144481
+OPRK1	opioid receptor kappa 1	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:8154	ENSG00000082556
+NTRK1	neurotrophic receptor tyrosine kinase 1	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:8031	ENSG00000198400
+SCN9A	sodium voltage-gated channel alpha subunit 9	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:10597	ENSG00000169432
+PRDM12	PR/SET domain 12	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:13997	ENSG00000130711
+EPHB1	EPH receptor B1	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:3392	ENSG00000154928
+CARTPT	cocaine- and amphetamine-regulated transcript protein	sensory_perception_of_temperature_stimulus	Perception of Temperature		
+TRPA1	transient receptor potential cation channel subfamily A member 1	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:497	ENSG00000104321
+TRPV1	transient receptor potential cation channel subfamily V member 1	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:12716	ENSG00000196689
+SCN11A	sodium voltage-gated channel alpha subunit 11	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:10583	ENSG00000168356
+NTSR1	neurotensin receptor 1	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:8039	ENSG00000101188
+TAC1	tachykinin precursor 1	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:11517	ENSG00000006128
+MMP24	matrix metallopeptidase 24	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:7172	ENSG00000125966
+ANO1	anoctamin 1	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:21625	ENSG00000131620
+GRIK2	glutamate ionotropic receptor kainate type subunit 2	sensory_perception_of_temperature_stimulus	Perception of Temperature	HGNC:4580	ENSG00000164418
+UCP2	uncoupling protein 2	adaptive_thermogenesis	Thermogenesis	HGNC:12518	ENSG00000175567
+BMP8A	bone morphogenetic protein 8a	adaptive_thermogenesis	Thermogenesis	HGNC:21650	ENSG00000183682
+SLC25A5	solute carrier family 25 member 5	adaptive_thermogenesis	Thermogenesis	HGNC:10991	ENSG00000005022
+UCP1	uncoupling protein 1	adaptive_thermogenesis	Thermogenesis	HGNC:12517	ENSG00000109424
+PM20D1	peptidase M20 domain containing 1	adaptive_thermogenesis	Thermogenesis	HGNC:26518	ENSG00000162877
+ZBTB7B	zinc finger and BTB domain containing 7B	adaptive_thermogenesis	Thermogenesis	HGNC:18668	ENSG00000160685
+UCP3	uncoupling protein 3	adaptive_thermogenesis	Thermogenesis	HGNC:12519	ENSG00000175564
+SLC25A4	solute carrier family 25 member 4	adaptive_thermogenesis	Thermogenesis	HGNC:10990	ENSG00000151729
+FAM210A	protein fam210a	adaptive_thermogenesis	Thermogenesis		
+SORL1	sortilin related receptor 1	adaptive_thermogenesis	Thermogenesis	HGNC:11185	ENSG00000137642
+THADA	THADA armadillo repeat containing	adaptive_thermogenesis	Thermogenesis	HGNC:19217	ENSG00000115970
+APPL2	adaptor protein, phosphotyrosine interacting with PH domain and leucine zipper 2	adaptive_thermogenesis	Thermogenesis	HGNC:18242	ENSG00000136044
+SCTR	secretin receptor	adaptive_thermogenesis	Thermogenesis	HGNC:10608	ENSG00000080293
+OMA1	OMA1 zinc metallopeptidase	adaptive_thermogenesis	Thermogenesis	HGNC:29661	ENSG00000162600
+ADISSP	adipose secreted signaling protein	adaptive_thermogenesis	Thermogenesis	HGNC:15873	ENSG00000101220
+HNRNPU	heterogeneous nuclear ribonucleoprotein U	adaptive_thermogenesis	Thermogenesis	HGNC:5048	ENSG00000153187
+CLSTN3	calsyntenin 3	adaptive_thermogenesis	Thermogenesis	HGNC:18371	ENSG00000139182
+SCT	secretin	adaptive_thermogenesis	Thermogenesis	HGNC:10607	ENSG00000070031
+SCN11A	sodium voltage-gated channel alpha subunit 11	thermosensory_behavior	Reactions to Temperatur - general	HGNC:10583	ENSG00000168356
+SERPINF2	serpin family F member 2	data.tsv	NO GROUP	HGNC:9075	ENSG00000167711
+PDGFB	platelet derived growth factor subunit B	data.tsv	NO GROUP	HGNC:8800	ENSG00000100311
+ALOX12	arachidonate 12-lipoxygenase, 12S type	data.tsv	NO GROUP	HGNC:429	ENSG00000108839
+C1QTNF1	C1q and TNF related 1	data.tsv	NO GROUP	HGNC:14324	ENSG00000173918
+PDGFA	platelet derived growth factor subunit A	data.tsv	NO GROUP	HGNC:8799	ENSG00000197461
+SERPINB2	serpin family B member 2	data.tsv	NO GROUP	HGNC:8584	ENSG00000197632
+TSPAN8	tetraspanin 8	data.tsv	NO GROUP	HGNC:11855	ENSG00000127324
+KRT1	keratin 1	data.tsv	NO GROUP	HGNC:6412	ENSG00000167768
+HSA-MIR-19B-3P	homo sapiens (human) hsa-mir-19b-3p	data.tsv	NO GROUP		
+KNG1	kininogen 1	data.tsv	NO GROUP	HGNC:6383	ENSG00000113889
+PROC_HUMAN-1	active protein c complex	data.tsv	NO GROUP		
+TMX1	thioredoxin related transmembrane protein 1	data.tsv	NO GROUP	HGNC:15487	ENSG00000139921
+HS3ST5	heparan sulfate glucosamine 3-o-sulfotransferase 5	data.tsv	NO GROUP		
+ADAMTS18	ADAM metallopeptidase with thrombospondin type 1 motif 18	data.tsv	NO GROUP	HGNC:17110	ENSG00000140873
+PRKG1	protein kinase cGMP-dependent 1	data.tsv	NO GROUP	HGNC:9414	ENSG00000185532
+VTN	vitronectin	data.tsv	NO GROUP	HGNC:12724	ENSG00000109072
+SERPINE2	serpin family E member 2	data.tsv	NO GROUP	HGNC:8951	ENSG00000135919
+ADTRP	androgen dependent TFPI regulating protein	data.tsv	NO GROUP	HGNC:21214	ENSG00000111863
+CPB2	carboxypeptidase B2	data.tsv	NO GROUP	HGNC:2300	ENSG00000080618
+PROCR	protein C receptor	data.tsv	NO GROUP	HGNC:9452	ENSG00000101000
+CEACAM1	CEA cell adhesion molecule 1	data.tsv	NO GROUP	HGNC:1814	ENSG00000079385
+F2R	coagulation factor II thrombin receptor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3537	ENSG00000181104
+ADM	adrenomedullin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:259	ENSG00000148926
+ADRA2A	adrenoceptor alpha 2A	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:281	ENSG00000150594
+ADCY9	adenylate cyclase type 9	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F9_HUMAN	coagulation factor ixa complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+SERPINF2	serpin family F member 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9075	ENSG00000167711
+FGA	fibrinogen alpha chain	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3661	ENSG00000171560
+FGG	fibrinogen gamma chain	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3694	ENSG00000171557
+ADRA2C	adrenoceptor alpha 2C	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:283	ENSG00000184160
+PDGFB	platelet derived growth factor subunit B	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8800	ENSG00000100311
+ALOX12	arachidonate 12-lipoxygenase, 12S type	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:429	ENSG00000108839
+PAFAH2	platelet activating factor acetylhydrolase 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8579	ENSG00000158006
+CSRP1	cysteine and glycine rich protein 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2469	ENSG00000159176
+ADM2	protein adm2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+CD9	CD9 molecule	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1709	ENSG00000010278
+DGKK	diacylglycerol kinase kappa	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:32395	ENSG00000274588
+C1QTNF1	C1q and TNF related 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:14324	ENSG00000173918
+HSPB1	heat shock protein family B (small) member 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:5246	ENSG00000106211
+DGKH	diacylglycerol kinase eta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2854	ENSG00000102780
+HNF4A	hepatocyte nuclear factor 4 alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:5024	ENSG00000101076
+ADCY7	adenylate cyclase type 7	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+PRKAR2B	camp-dependent protein kinase type ii-beta regulatory subunit	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+PRKAR1B	camp-dependent protein kinase type i-beta regulatory subunit	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+USF1	upstream transcription factor 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12593	ENSG00000158773
+AQP4	aquaporin 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:637	ENSG00000171885
+PDGFA	platelet derived growth factor subunit A	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8799	ENSG00000197461
+VAV2	vav guanine nucleotide exchange factor 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12658	ENSG00000160293
+FIBP	FGF1 intracellular binding protein	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3705	ENSG00000172500
+PPIA	peptidylprolyl isomerase A	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9253	ENSG00000196262
+DGKQ	diacylglycerol kinase theta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2856	ENSG00000145214
+VAV1	vav guanine nucleotide exchange factor 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12657	ENSG00000141968
+F13B	coagulation factor XIII B chain	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3534	ENSG00000143278
+SERPINB2	serpin family B member 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8584	ENSG00000197632
+GATA1	GATA binding protein 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4170	ENSG00000102145
+HGFAC	HGF activator	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4894	ENSG00000109758
+FIBRINOGEN_HUMAN	fibrinogen complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+PEAR1	platelet endothelial aggregation receptor 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:33631	ENSG00000187800
+TRAF3IP2	TRAF3 interacting protein 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1343	ENSG00000056972
+WAS	WASP actin nucleation promoting factor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12731	ENSG00000015285
+CD40	CD40 molecule	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11919	ENSG00000101017
+VEGFA	vascular endothelial growth factor A	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12680	ENSG00000112715
+PRKACG	protein kinase cAMP-activated catalytic subunit gamma	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9382	ENSG00000165059
+EPHB2	EPH receptor B2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3393	ENSG00000133216
+CYP11B2	cytochrome P450 family 11 subfamily B member 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2592	ENSG00000179142
+TSPAN8	tetraspanin 8	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11855	ENSG00000127324
+ITPK1	inositol-tetrakisphosphate 1-kinase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6177	ENSG00000100605
+KRT1	keratin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6412	ENSG00000167768
+AQP6	aquaporin 6	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:639	ENSG00000086159
+MTX1	metaxin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7504	ENSG00000173171
+PTGER1	prostaglandin e2 receptor ep1 subtype	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+PLSCR1	phospholipid scramblase 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9092	ENSG00000188313
+ZBTB7B	zinc finger and BTB domain containing 7B	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:18668	ENSG00000160685
+MMRN1	multimerin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7178	ENSG00000138722
+ANGPT2	angiopoietin 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:485	ENSG00000091879
+CYP4F11	cytochrome P450 family 4 subfamily F member 11	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:13265	ENSG00000171903
+AQP2	aquaporin 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:634	ENSG00000167580
+RAP2B	RAP2B, member of RAS oncogene family	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9862	ENSG00000181467
+HRG	histidine rich glycoprotein	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:5181	ENSG00000113905
+ILK	integrin linked kinase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6040	ENSG00000166333
+CAV1	caveolin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1527	ENSG00000105974
+GNA12	G protein subunit alpha 12	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4380	ENSG00000146535
+GPAT4	glycerol-3-phosphate acyltransferase 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:20880	ENSG00000158669
+MYL9	myosin light chain 9	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:15754	ENSG00000101335
+HTR4	5-hydroxytryptamine receptor 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:5299	ENSG00000164270
+FGF10	fibroblast growth factor 10	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3666	ENSG00000070193
+ANO6	anoctamin 6	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:25240	ENSG00000177119
+WFS1	wolframin ER transmembrane glycoprotein	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12762	ENSG00000109501
+KNG1	kininogen 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6383	ENSG00000113889
+PIK3CG	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit gamma	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8978	ENSG00000105851
+CHRM1	cholinergic receptor muscarinic 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1950	ENSG00000168539
+GGCX	gamma-glutamyl carboxylase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4247	ENSG00000115486
+VIP	vasoactive intestinal peptide	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12693	ENSG00000146469
+TBXA2R	thromboxane A2 receptor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11608	ENSG00000006638
+RASA3	RAS p21 protein activator 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:20331	ENSG00000185989
+LMAN1	lectin, mannose binding 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6631	ENSG00000074695
+ITPR3	inositol 1,4,5-trisphosphate receptor type 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6182	ENSG00000096433
+GNAI2	G protein subunit alpha i2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4385	ENSG00000114353
+FOXB1	forkhead box B1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3799	ENSG00000171956
+PDPN	podoplanin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:29602	ENSG00000162493
+DGKE	diacylglycerol kinase epsilon	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2852	ENSG00000153933
+CSN2	casein beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2447	ENSG00000135222
+PRDX2	peroxiredoxin 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9353	ENSG00000167815
+ADCY6	adenylate cyclase 6	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:237	ENSG00000174233
+PIK3CB	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8976	ENSG00000051382
+PIK3CA	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8975	ENSG00000121879
+ADORA2A	adenosine A2a receptor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:263	ENSG00000128271
+APLNR	apelin receptor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:339	ENSG00000134817
+ST3GAL4	ST3 beta-galactoside alpha-2,3-sialyltransferase 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:10864	ENSG00000110080
+DGKG	diacylglycerol kinase gamma	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2853	ENSG00000058866
+SCNN1G	sodium channel epithelial 1 subunit gamma	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:10602	ENSG00000166828
+SCNN1B	sodium channel epithelial 1 subunit beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:10600	ENSG00000168447
+COPA	coat protein complex I subunit alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2230	ENSG00000122218
+GP9	glycoprotein IX platelet	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4444	ENSG00000169704
+GPI	glucose-6-phosphate isomerase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4458	ENSG00000105220
+METAP1	methionyl aminopeptidase 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:15789	ENSG00000164024
+OPRK1	opioid receptor kappa 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8154	ENSG00000082556
+FERMT3	FERM domain containing kindlin 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:23151	ENSG00000149781
+PLCG2	phospholipase C gamma 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9066	ENSG00000197943
+SLC4A9	solute carrier family 4 member 9	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11035	ENSG00000113073
+PRSS56	serine protease 56	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:39433	ENSG00000237412
+GP1BB	glycoprotein Ib platelet subunit beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4440	ENSG00000203618
+AQP5	aquaporin 5	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:638	ENSG00000161798
+PABPC4	poly(A) binding protein cytoplasmic 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8557	ENSG00000090621
+FBLN1	fibulin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3600	ENSG00000077942
+TPA-PAI-1_HUMAN	tpa-pai-1 complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+UPA-UPAR_HUMAN	upa-upar complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+UPA-PAI-1_HUMAN	upa-pai-1 complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+VITRONECTIN-PAI-1_HUMAN	vitronectin-pai-1 complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+PRKAR2A	camp-dependent protein kinase type ii-alpha regulatory subunit	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+EMILIN1_HUMAN	emilin-1 complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+GP5	glycoprotein V platelet	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4443	ENSG00000178732
+HYAL2	hyaluronidase 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:5321	ENSG00000068001
+FAP	fibroblast activation protein alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3590	ENSG00000078098
+ADCY8	adenylate cyclase type 8	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+CYP4F12	cytochrome P450 family 4 subfamily F member 12	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:18857	ENSG00000186204
+NCOA1	nuclear receptor coactivator 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7668	ENSG00000084676
+CD36	CD36 molecule (CD36 blood group)	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1663	ENSG00000135218
+JMJD1C	jumonji domain containing 1C	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12313	ENSG00000171988
+KLKB1	kallikrein B1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6371	ENSG00000164344
+F11	coagulation factor XI	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3529	ENSG00000088926
+CYP4A11	cytochrome P450 family 4 subfamily A member 11	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2642	ENSG00000187048
+CSN3	casein kappa	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2446	ENSG00000171209
+MUC2	mucin 2, oligomeric mucus/gel-forming	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7512	ENSG00000198788
+C4BPB	complement component 4 binding protein beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1328	ENSG00000123843
+AGR2	anterior gradient 2, protein disulphide isomerase family member	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:328	ENSG00000106541
+GNAQ	G protein subunit alpha q	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4390	ENSG00000156052
+GP1B-FLNA_HUMAN	glycoprotein ib-ix-v-filamin-a complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+GP1B_HUMAN	glycoprotein ib-ix-v complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F8_HUMAN-1	coagulation factor viiia complex, heavy chain variant 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+KLKB1_HUMAN-1	kallikrein complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F13_HUMAN	coagulation factor xiiia complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+FIBRIN-CLOT_HUMAN	fibrin clot	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+FIBRIN_HUMAN	fibrin complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+PROC_HUMAN-1	active protein c complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F2-THBD_HUMAN	thrombin-thrombomodulin complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F2_HUMAN	alpha-thrombin complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+DGKA	diacylglycerol kinase alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2849	ENSG00000065357
+F10_HUMAN	coagulation factor xa complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F7_HUMAN	coagulation factor viia complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F12_HUMAN	coagulation factor xiia complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F11_HUMAN	coagulation factor xia complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F8-F9_HUMAN	coagulation factor viiia-ixa complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+SLC29A1	solute carrier family 29 member 1 (Augustine blood group)	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11003	ENSG00000112759
+CD59	CD59 molecule (CD59 blood group)	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1689	ENSG00000085063
+NFE2	nuclear factor, erythroid 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7780	ENSG00000123405
+VAV3	vav guanine nucleotide exchange factor 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12659	ENSG00000134215
+ANGPTL2	angiopoietin like 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:490	ENSG00000136859
+PRICKLE1	prickle planar cell polarity protein 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:17019	ENSG00000139174
+CDO1	cysteine dioxygenase type 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1795	ENSG00000129596
+P2RY2	purinergic receptor P2Y2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8541	ENSG00000175591
+GUCA1B	guanylate cyclase activator 1B	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4679	ENSG00000112599
+STXBP1	syntaxin binding protein 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11444	ENSG00000136854
+TPH1	tryptophan hydroxylase 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12008	ENSG00000129167
+TUBB1	tubulin beta 1 class VI	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:16257	ENSG00000101162
+GNAS	GNAS complex locus	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4392	ENSG00000087460
+DGKI	diacylglycerol kinase iota	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2855	ENSG00000157680
+THBS1	thrombospondin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11785	ENSG00000137801
+PLAUR	plasminogen activator, urokinase receptor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9053	ENSG00000011422
+PRRG1	proline rich and Gla domain 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9469	ENSG00000130962
+PRRG2	proline rich and Gla domain 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9470	ENSG00000126460
+MAPK14	mitogen-activated protein kinase 14	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6876	ENSG00000112062
+CAD	carbamoyl-phosphate synthetase 2, aspartate transcarbamylase, and dihydroorotase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1424	ENSG00000084774
+SERPINA10	serpin family A member 10	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:15996	ENSG00000140093
+LACRT	lacritin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:16430	ENSG00000135413
+F2RL3	F2R like thrombin or trypsin receptor 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3540	ENSG00000127533
+PLG	plasminogen	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9071	ENSG00000122194
+F10	coagulation factor X	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3528	ENSG00000126218
+F9	coagulation factor IX	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3551	ENSG00000101981
+APLN	apelin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:16665	ENSG00000171388
+BPIFA1	BPI fold containing family A member 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:15749	ENSG00000198183
+MYO5B	myosin VB	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7603	ENSG00000167306
+TMX1	thioredoxin related transmembrane protein 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:15487	ENSG00000139921
+SAA1	serum amyloid A1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:10513	ENSG00000173432
+F8	coagulation factor VIII	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3546	ENSG00000185010
+MT-CO2	mitochondrially encoded cytochrome c oxidase II	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7421	ENSG00000198712
+ACTG1	actin gamma 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:144	ENSG00000184009
+AQP3	aquaporin 3 (Gill blood group)	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:636	ENSG00000165272
+VCL	vinculin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12665	ENSG00000035403
+STXBP3	syntaxin binding protein 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11446	ENSG00000116266
+ADAMTS18	ADAM metallopeptidase with thrombospondin type 1 motif 18	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:17110	ENSG00000140873
+F5_HUMAN	coagulation factor va complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+SCUBE1	signal peptide, CUB domain and EGF like domain containing 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:13441	ENSG00000159307
+F5-F10_HUMAN	coagulation factor va-xa complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+ERBB4	erb-b2 receptor tyrosine kinase 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3432	ENSG00000178568
+CLIC1	CLIC family member 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2062	ENSG00000213719
+HPSE_HUMAN-1	heparanase complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F3	coagulation factor III, tissue factor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3541	ENSG00000117525
+ANGPT4	angiopoietin 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:487	ENSG00000101280
+FOXA2	forkhead box A2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:5022	ENSG00000125798
+HPSE	heparanase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:5164	ENSG00000173083
+ADM5	putative adrenomedullin-5-like protein	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+ANGPTL6	angiopoietin like 6	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:23140	ENSG00000130812
+F8_HUMAN	coagulation factor viiia complex, heavy chain variant 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+F2RL2	coagulation factor II thrombin receptor like 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3539	ENSG00000164220
+FLNA	filamin A	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3754	ENSG00000196924
+NEUROG1	neurogenin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7764	ENSG00000181965
+PDGFRA	platelet derived growth factor receptor alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8803	ENSG00000134853
+GNAS	GNAS complex locus	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4392	ENSG00000087460
+DCANP1	dendritic cell associated nuclear protein 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:24459	ENSG00000251380
+UBASH3B	ubiquitin associated and SH3 domain containing B	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:29884	ENSG00000154127
+HAS2	hyaluronan synthase 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4819	ENSG00000170961
+F3-F7_HUMAN	coagulation factor viia - tissue factor complex	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+VAMP3	vesicle associated membrane protein 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12644	ENSG00000049245
+PRKG1	protein kinase cGMP-dependent 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9414	ENSG00000185532
+VTN	vitronectin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12724	ENSG00000109072
+BLOC1S3	biogenesis of lysosomal organelles complex 1 subunit 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:20914	ENSG00000189114
+UPRT	uracil phosphoribosyltransferase homolog	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:28334	ENSG00000094841
+EMILIN1	elastin microfibril interfacer 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:19880	ENSG00000138080
+ADCY5	adenylate cyclase type 5	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+PRKAR1A	camp-dependent protein kinase type i-alpha regulatory subunit	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+AK3	adenylate kinase 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:17376	ENSG00000147853
+NPR3	natriuretic peptide receptor 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7945	ENSG00000113389
+ANGPTL1	angiopoietin like 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:489	ENSG00000116194
+ALOX12B	arachidonate 12-lipoxygenase, 12R type	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:430	ENSG00000179477
+SERPINE2	serpin family E member 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8951	ENSG00000135919
+AVPR2	arginine vasopressin receptor 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:897	ENSG00000126895
+SLC22A4	solute carrier family 22 member 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:10968	ENSG00000197208
+OXTR	oxytocin receptor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8529	ENSG00000180914
+TREML1	triggering receptor expressed on myeloid cells like 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:20434	ENSG00000161911
+TLN1	talin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11845	ENSG00000137076
+MPIG6B	megakaryocyte and platelet inhibitory receptor G6b	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:13937	ENSG00000204420
+NCOR2	nuclear receptor corepressor 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7673	ENSG00000196498
+ADCY4	adenylate cyclase type 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+NFE2L2	NFE2 like bZIP transcription factor 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:7782	ENSG00000116044
+P2RY1	purinergic receptor P2Y1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8539	ENSG00000169860
+ENPP4	ectonucleotide pyrophosphatase/phosphodiesterase 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3359	ENSG00000001561
+DGKB	diacylglycerol kinase beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2850	ENSG00000136267
+ADTRP	androgen dependent TFPI regulating protein	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:21214	ENSG00000111863
+CPB2	carboxypeptidase B2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2300	ENSG00000080618
+GNAS	GNAS complex locus	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4392	ENSG00000087460
+TYRO3	TYRO3 protein tyrosine kinase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12446	ENSG00000092445
+PRKACA	protein kinase cAMP-activated catalytic subunit alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9380	ENSG00000072062
+CHRM3	cholinergic receptor muscarinic 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1952	ENSG00000133019
+AXL	AXL receptor tyrosine kinase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:905	ENSG00000167601
+ADAMTS13	ADAM metallopeptidase with thrombospondin type 1 motif 13	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1366	ENSG00000160323
+ANO1	anoctamin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:21625	ENSG00000131620
+ANGPTL7	angiopoietin like 7	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:24078	ENSG00000171819
+PLEK	pleckstrin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9070	ENSG00000115956
+FN1	fibronectin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3778	ENSG00000115414
+SCNN1A	sodium channel epithelial 1 subunit alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:10599	ENSG00000111319
+ANGPT1	angiopoietin 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:484	ENSG00000154188
+HBB	hemoglobin subunit beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:4827	ENSG00000244734
+PRLR	prolactin receptor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9446	ENSG00000113494
+EDNRB	endothelin receptor type B	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3180	ENSG00000136160
+DGKD	diacylglycerol kinase delta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2851	ENSG00000077044
+ACTB	actin beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:132	ENSG00000075624
+XBP1	X-box binding protein 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12801	ENSG00000100219
+HPS4	HPS4 biogenesis of lysosomal organelles complex 3 subunit 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:15844	ENSG00000100099
+TRPV5	transient receptor potential cation channel subfamily V member 5	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3145	ENSG00000127412
+STK39	serine/threonine kinase 39	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:17717	ENSG00000198648
+CEACAM1	CEA cell adhesion molecule 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1814	ENSG00000079385
+PPP3CA	protein phosphatase 3 catalytic subunit alpha	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9314	ENSG00000138814
+VAMP2	vesicle associated membrane protein 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12643	ENSG00000220205
+PF4	platelet factor 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8861	ENSG00000163737
+VAMP8	vesicle associated membrane protein 8	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:12647	ENSG00000118640
+AQP1	aquaporin 1 (Colton blood group)	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:633	ENSG00000240583
+CD40LG	CD40 ligand	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11935	ENSG00000102245
+SRC	SRC proto-oncogene, non-receptor tyrosine kinase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11283	ENSG00000197122
+ADCY2	adenylate cyclase type 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+COL3A1	collagen type III alpha 1 chain	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2201	ENSG00000168542
+PROZ	protein Z, vitamin K dependent plasma glycoprotein	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9460	ENSG00000126231
+VKORC1	vitamin K epoxide reductase complex subunit 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:23663	ENSG00000167397
+ANGPTL4	angiopoietin like 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:16039	ENSG00000167772
+SCT	secretin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:10607	ENSG00000070031
+CTSG	cathepsin G	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2532	ENSG00000100448
+ACTN1	actinin alpha 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:163	ENSG00000072110
+INPP5K	inositol polyphosphate-5-phosphatase K	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:33882	ENSG00000132376
+OAS2	2'-5'-oligoadenylate synthetase 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:8087	ENSG00000111335
+FLI1	Fli-1 proto-oncogene, ETS transcription factor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3749	ENSG00000151702
+PRRG3	proline rich and Gla domain 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:30798	ENSG00000130032
+PRRG4	proline rich and Gla domain 4	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:30799	ENSG00000135378
+WNK3	WNK lysine deficient protein kinase 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:14543	ENSG00000196632
+FGL1	fibrinogen like 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3695	ENSG00000104760
+ADCY1	adenylate cyclase type 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+EMILIN2	elastin microfibril interfacer 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:19881	ENSG00000132205
+CEL	carboxyl ester lipase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:1848	ENSG00000170835
+STATH	statherin	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11369	ENSG00000126549
+ENTPD1	ectonucleoside triphosphate diphosphohydrolase 1	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:3363	ENSG00000138185
+TIFAB	TIFA inhibitor	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:34024	ENSG00000255833
+ADCY3	adenylate cyclase type 3	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood		
+MYL12A	myosin light chain 12A	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:16701	ENSG00000101608
+PRKACB	protein kinase cAMP-activated catalytic subunit beta	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:9381	ENSG00000142875
+CYP4F2	cytochrome P450 family 4 subfamily F member 2	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:2645	ENSG00000186115
+SYK	spleen associated tyrosine kinase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:11491	ENSG00000165025
+LCK	LCK proto-oncogene, Src family tyrosine kinase	regulation_of_body_fluid_levels	Sweat and Body Fluids w/o Blood	HGNC:6524	ENSG00000182866
+ADIG	adipogenin	data.tsv	NO GROUP	HGNC:28606	ENSG00000182035
+BCAT2	branched-chain-amino-acid aminotransferase, mitochondrial	data.tsv	NO GROUP		
+PPARG	peroxisome proliferator-activated receptor gamma	data.tsv	NO GROUP		
+YTHDC1	yth domain-containing protein 1	data.tsv	NO GROUP		
+SLC39A13	solute carrier family 39 member 13	data.tsv	NO GROUP	HGNC:20859	ENSG00000165915
+SLC26A6	solute carrier family 26 member 6	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:14472	ENSG00000225697
+PKP1	plakophilin 1	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:9023	ENSG00000081277
+CSF2	colony stimulating factor 2	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:2434	ENSG00000164400
+ITPR1	inositol 1,4,5-trisphosphate receptor type 1	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:6180	ENSG00000150995
+AHCYL1	adenosylhomocysteinase like 1	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:344	ENSG00000168710
+SLC5A1	solute carrier family 5 member 1	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:11036	ENSG00000100170
+CLDN18	claudin 18	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:2039	ENSG00000066405
+EDNRB	endothelin receptor type B	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:3180	ENSG00000136160
+AQP8	aquaporin 8	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:642	ENSG00000103375
+AQP1	aquaporin 1 (Colton blood group)	epithelial_fluid_transport	Sweat and Body Fluids w/o Blood	HGNC:633	ENSG00000240583
+DNAAF11	dynein axonemal assembly factor 11	data.tsv	NO GROUP		
+NHERF1	na(+)/h(+) exchange regulatory cofactor nhe-rf1	data.tsv	NO GROUP		
+VCP	valosin containing protein	data.tsv	NO GROUP	HGNC:12666	ENSG00000165280
+UBR5	ubiquitin protein ligase E3 component n-recognin 5	data.tsv	NO GROUP	HGNC:16806	ENSG00000104517
+RNF126	ring finger protein 126	data.tsv	NO GROUP	HGNC:21151	ENSG00000070423
+UBR4	ubiquitin protein ligase E3 component n-recognin 4	data.tsv	NO GROUP	HGNC:30313	ENSG00000127481
+IER5	immediate early response 5	positive_regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5393	ENSG00000162783
+HSF1	heat shock transcription factor 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5224	ENSG00000185122
+HSP90AB1	heat shock protein 90 alpha family class B member 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5258	ENSG00000096384
+VCP	valosin containing protein	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:12666	ENSG00000165280
+YWHAE	tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein epsilon	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:12851	ENSG00000108953
+DNAJB1	DnaJ heat shock protein family (Hsp40) member B1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5270	ENSG00000132002
+EIF2S1	eukaryotic translation initiation factor 2 subunit alpha	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:3265	ENSG00000134001
+IER5	immediate early response 5	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5393	ENSG00000162783
+HTRA2	HtrA serine peptidase 2	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:14348	ENSG00000115317
+HSP90AA2P	heat shock protein 90 alpha family class A member 2, pseudogene	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5256	ENSG00000224411
+IRAK1	interleukin 1 receptor associated kinase 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:6112	ENSG00000184216
+TPR	translocated promoter region, nuclear basket protein	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:12017	ENSG00000047410
+HSBP1L1	heat shock factor binding protein 1 like 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:37243	ENSG00000226742
+ATXN3	ataxin 3	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:7106	ENSG00000066427
+DNAJA4	DnaJ heat shock protein family (Hsp40) member A4	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:14885	ENSG00000140403
+THBS1	thrombospondin 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:11785	ENSG00000137801
+LYN	LYN proto-oncogene, Src family tyrosine kinase	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:6735	ENSG00000254087
+HSP90AA1	heat shock protein 90 alpha family class A member 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5253	ENSG00000080824
+RBBP7	RB binding protein 7, chromatin remodeling factor	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:9890	ENSG00000102054
+HSBP1	heat shock factor binding protein 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5203	ENSG00000230989
+TRPA1	transient receptor potential cation channel subfamily A member 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:497	ENSG00000104321
+HSP90AB2P	heat shock protein 90 alpha family class B member 2, pseudogene	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:32537	ENSG00000205940
+HSP90AB3P	heat shock protein 90 alpha family class B member 3, pseudogene	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5259	ENSG00000183199
+HSP90AB4P	heat shock protein 90 alpha family class B member 4, pseudogene	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:32538	ENSG00000282100
+SUMO1	small ubiquitin like modifier 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:12502	ENSG00000116030
+HDAC6	histone deacetylase 6	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:14064	ENSG00000094631
+TRPV1	transient receptor potential cation channel subfamily V member 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:12716	ENSG00000196689
+MAPT	microtubule associated protein tau	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:6893	ENSG00000186868
+PDCD6	programmed cell death 6	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:8765	ENSG00000249915
+BAG3	BAG cochaperone 3	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:939	ENSG00000151929
+CLPB	ClpB family mitochondrial disaggregase	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:30664	ENSG00000162129
+SLU7	spliceosome associated SLU7	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:16939	ENSG00000164609
+HSPA6	heat shock protein family A (Hsp70) member 6	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5239	ENSG00000173110
+PRKACA	protein kinase cAMP-activated catalytic subunit alpha	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:9380	ENSG00000072062
+DHX36	DEAH-box helicase 36	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:14410	ENSG00000174953
+ANO1	anoctamin 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:21625	ENSG00000131620
+CXCL10	C-X-C motif chemokine ligand 10	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:10637	ENSG00000169245
+HIKESHI	heat shock protein nuclear import factor hikeshi	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:26938	ENSG00000149196
+TCIM	transcriptional and immune response regulator	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:1357	ENSG00000176907
+STUB1	STIP1 homology and U-box containing protein 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:11427	ENSG00000103266
+DAXX	death domain associated protein	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:2681	ENSG00000204209
+ZFAND1	zinc finger AN1-type containing 1	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:25858	ENSG00000104231
+EEF1D	eukaryotic translation elongation factor 1 delta	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:3211	ENSG00000104529
+DNAJA2	DnaJ heat shock protein family (Hsp40) member A2	cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:14884	ENSG00000069345
+HSF1	heat shock transcription factor 1	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5224	ENSG00000185122
+DNAJB1	DnaJ heat shock protein family (Hsp40) member B1	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5270	ENSG00000132002
+IER5	immediate early response 5	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:5393	ENSG00000162783
+MTOR	mechanistic target of rapamycin kinase	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:3942	ENSG00000198793
+ATR	ATR checkpoint kinase	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:882	ENSG00000175054
+MAPKAPK2	MAPK activated protein kinase 2	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:6887	ENSG00000162889
+EP300	EP300 lysine acetyltransferase	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:3373	ENSG00000100393
+CREBBP	CREB binding lysine acetyltransferase 	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:2348	ENSG00000005339
+DNAJC2	DnaJ heat shock protein family (Hsp40) member C2	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:13192	ENSG00000105821
+MAPT	microtubule associated protein tau	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:6893	ENSG00000186868
+CHORDC1	cysteine and histidine rich domain containing 1	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:14525	ENSG00000110172
+DNAJB6	DnaJ heat shock protein family (Hsp40) member B6	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:14888	ENSG00000105993
+SIRT1	sirtuin 1	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:14929	ENSG00000096717
+DNAJC7	DnaJ heat shock protein family (Hsp40) member C7	regulation_of_cellular_response_to_heat	Reactions to Temperatur - cellular	HGNC:12392	ENSG00000168259
+KCNK4	potassium two pore domain channel subfamily K member 4	temperature-gated_cation_channel_activity	Reactions to Temperatur - cellular	HGNC:6279	ENSG00000182450
+TRPA1	transient receptor potential cation channel subfamily A member 1	temperature-gated_cation_channel_activity	Reactions to Temperatur - cellular	HGNC:497	ENSG00000104321
+GMEB1	glucocorticoid modulatory element binding protein 1	Hsp27_protein_binding	HeatSchockProteins and their Tasks	HGNC:4370	ENSG00000162419
+HSPA9	heat shock protein family A (Hsp70) member 9	data.tsv	NO GROUP	HGNC:5244	ENSG00000113013
+HSPA8	heat shock protein family A (Hsp70) member 8	data.tsv	NO GROUP	HGNC:5241	ENSG00000109971
+FKBP1A	peptidyl-prolyl cis-trans isomerase fkbp1a	data.tsv	NO GROUP		
+HSPA14	heat shock protein family A (Hsp70) member 14	data.tsv	NO GROUP	HGNC:29526	ENSG00000187522
+SDF2L1	stromal cell-derived factor 2-like protein 1	data.tsv	NO GROUP		
+FKBP1B	peptidyl-prolyl cis-trans isomerase fkbp1b	data.tsv	NO GROUP		
+HSPA7	heat shock protein family A (Hsp70) member 7 (pseudogene)	data.tsv	NO GROUP	HGNC:5240	ENSG00000225217
+HSPA13	heat shock protein family A (Hsp70) member 13	data.tsv	NO GROUP	HGNC:11375	ENSG00000155304
+HSPB6	heat shock protein family B (small) member 6	data.tsv	NO GROUP	HGNC:26511	ENSG00000004776
+DNAJA4	DnaJ heat shock protein family (Hsp40) member A4	data.tsv	NO GROUP	HGNC:14885	ENSG00000140403
+HSPD1	heat shock protein family D (Hsp60) member 1	data.tsv	NO GROUP	HGNC:5261	ENSG00000144381
+HSPA2	heat shock protein family A (Hsp70) member 2	data.tsv	NO GROUP	HGNC:5235	ENSG00000126803
+HSP90AA1	heat shock protein 90 alpha family class A member 1	data.tsv	NO GROUP	HGNC:5253	ENSG00000080824
+SDF2	stromal cell-derived factor 2	data.tsv	NO GROUP		
+HSPA6	heat shock protein family A (Hsp70) member 6	data.tsv	NO GROUP	HGNC:5239	ENSG00000173110
+HSPB2	heat shock protein family B (small) member 2	data.tsv	NO GROUP	HGNC:5247	ENSG00000170276
+CRYAA	crystallin alpha A	data.tsv	NO GROUP	HGNC:2388	ENSG00000160202
+CRYAB	crystallin alpha B	data.tsv	NO GROUP	HGNC:2389	ENSG00000109846
+DNAJA2	DnaJ heat shock protein family (Hsp40) member A2	data.tsv	NO GROUP	HGNC:14884	ENSG00000069345
+HSA-MIR-128-3P	homo sapiens (human) hsa-mir-128-3p	data.tsv	NO GROUP		
+PIN1	peptidyl-prolyl cis-trans isomerase nima-interacting 1	data.tsv	NO GROUP		
+EP300	EP300 lysine acetyltransferase	data.tsv	NO GROUP	HGNC:3373	ENSG00000100393
+SLC7A10	solute carrier family 7 member 10	data.tsv	NO GROUP	HGNC:11058	ENSG00000130876
+SIRT1	sirtuin 1	data.tsv	NO GROUP	HGNC:14929	ENSG00000096717
+GRIK2	glutamate ionotropic receptor kainate type subunit 2	data.tsv	NO GROUP	HGNC:4580	ENSG00000164418
+KCNK4	potassium two pore domain channel subfamily K member 4	cellular_response_to_temperature_stimulus	Reactions to Temperatur - cellular	HGNC:6279	ENSG00000182450
+TRPM2	transient receptor potential cation channel subfamily M member 2	cellular_response_to_temperature_stimulus	Reactions to Temperatur - cellular	HGNC:12339	ENSG00000142185
+DNAJA1	DnaJ heat shock protein family (Hsp40) member A1	response_to_heat	Reactions to Temperatur - general	HGNC:5229	ENSG00000086061
+HSPB1	heat shock protein family B (small) member 1	response_to_heat	Reactions to Temperatur - general	HGNC:5246	ENSG00000106211
+EIF2B1	eukaryotic translation initiation factor 2B subunit alpha	response_to_heat	Reactions to Temperatur - general	HGNC:3257	ENSG00000111361
+HSF1	heat shock transcription factor 1	response_to_heat	Reactions to Temperatur - general	HGNC:5224	ENSG00000185122
+HSP90AB1	heat shock protein 90 alpha family class B member 1	response_to_heat	Reactions to Temperatur - general	HGNC:5258	ENSG00000096384
+VCP	valosin containing protein	response_to_heat	Reactions to Temperatur - general	HGNC:12666	ENSG00000165280
+YWHAE	tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein epsilon	response_to_heat	Reactions to Temperatur - general	HGNC:12851	ENSG00000108953
+DNAJB1	DnaJ heat shock protein family (Hsp40) member B1	response_to_heat	Reactions to Temperatur - general	HGNC:5270	ENSG00000132002
+EIF2S1	eukaryotic translation initiation factor 2 subunit alpha	response_to_heat	Reactions to Temperatur - general	HGNC:3265	ENSG00000134001
+IER5	immediate early response 5	response_to_heat	Reactions to Temperatur - general	HGNC:5393	ENSG00000162783
+CRNN	cornulin	response_to_heat	Reactions to Temperatur - general	HGNC:1230	ENSG00000143536
+MTOR	mechanistic target of rapamycin kinase	response_to_heat	Reactions to Temperatur - general	HGNC:3942	ENSG00000198793
+HTRA2	HtrA serine peptidase 2	response_to_heat	Reactions to Temperatur - general	HGNC:14348	ENSG00000115317
+EIF2B2	eukaryotic translation initiation factor 2B subunit beta	response_to_heat	Reactions to Temperatur - general	HGNC:3258	ENSG00000119718
+LRP11	LDL receptor related protein 11	response_to_heat	Reactions to Temperatur - general	HGNC:16936	ENSG00000120256
+AKT1	AKT serine/threonine kinase 1	response_to_heat	Reactions to Temperatur - general	HGNC:391	ENSG00000142208
+HSP90AA2P	heat shock protein 90 alpha family class A member 2, pseudogene	response_to_heat	Reactions to Temperatur - general	HGNC:5256	ENSG00000224411
+IRAK1	interleukin 1 receptor associated kinase 1	response_to_heat	Reactions to Temperatur - general	HGNC:6112	ENSG00000184216
+TPR	translocated promoter region, nuclear basket protein	response_to_heat	Reactions to Temperatur - general	HGNC:12017	ENSG00000047410
+HSBP1L1	heat shock factor binding protein 1 like 1	response_to_heat	Reactions to Temperatur - general	HGNC:37243	ENSG00000226742
+EIF2B5	eukaryotic translation initiation factor 2B subunit epsilon	response_to_heat	Reactions to Temperatur - general	HGNC:3261	ENSG00000145191
+MAP2K7	mitogen-activated protein kinase kinase 7	response_to_heat	Reactions to Temperatur - general	HGNC:6847	ENSG00000076984
+ATXN3	ataxin 3	response_to_heat	Reactions to Temperatur - general	HGNC:7106	ENSG00000066427
+PSIP1	PC4 and SRSF1 interacting protein 1	response_to_heat	Reactions to Temperatur - general	HGNC:9527	ENSG00000164985
+HSPB6	heat shock protein family B (small) member 6	response_to_heat	Reactions to Temperatur - general	HGNC:26511	ENSG00000004776
+DNAJA4	DnaJ heat shock protein family (Hsp40) member A4	response_to_heat	Reactions to Temperatur - general	HGNC:14885	ENSG00000140403
+MICA	MHC class I polypeptide-related sequence A	response_to_heat	Reactions to Temperatur - general	HGNC:7090	ENSG00000204520
+MICB	MHC class I polypeptide-related sequence B	response_to_heat	Reactions to Temperatur - general	HGNC:7091	ENSG00000204516
+HSPA2	heat shock protein family A (Hsp70) member 2	response_to_heat	Reactions to Temperatur - general	HGNC:5235	ENSG00000126803
+EIF2B3	eukaryotic translation initiation factor 2B subunit gamma	response_to_heat	Reactions to Temperatur - general	HGNC:3259	ENSG00000070785
+THBS1	thrombospondin 1	response_to_heat	Reactions to Temperatur - general	HGNC:11785	ENSG00000137801
+LYN	LYN proto-oncogene, Src family tyrosine kinase	response_to_heat	Reactions to Temperatur - general	HGNC:6735	ENSG00000254087
+HSP90AA1	heat shock protein 90 alpha family class A member 1	response_to_heat	Reactions to Temperatur - general	HGNC:5253	ENSG00000080824
+RBBP7	RB binding protein 7, chromatin remodeling factor	response_to_heat	Reactions to Temperatur - general	HGNC:9890	ENSG00000102054
+HSBP1	heat shock factor binding protein 1	response_to_heat	Reactions to Temperatur - general	HGNC:5203	ENSG00000230989
+TRPA1	transient receptor potential cation channel subfamily A member 1	response_to_heat	Reactions to Temperatur - general	HGNC:497	ENSG00000104321
+HSP90AB2P	heat shock protein 90 alpha family class B member 2, pseudogene	response_to_heat	Reactions to Temperatur - general	HGNC:32537	ENSG00000205940
+HSP90AB3P	heat shock protein 90 alpha family class B member 3, pseudogene	response_to_heat	Reactions to Temperatur - general	HGNC:5259	ENSG00000183199
+HSP90AB4P	heat shock protein 90 alpha family class B member 4, pseudogene	response_to_heat	Reactions to Temperatur - general	HGNC:32538	ENSG00000282100
+SUMO1	small ubiquitin like modifier 1	response_to_heat	Reactions to Temperatur - general	HGNC:12502	ENSG00000116030
+HDAC6	histone deacetylase 6	response_to_heat	Reactions to Temperatur - general	HGNC:14064	ENSG00000094631
+SOD1	superoxide dismutase 1	response_to_heat	Reactions to Temperatur - general	HGNC:11179	ENSG00000142168
+TRPV1	transient receptor potential cation channel subfamily V member 1	response_to_heat	Reactions to Temperatur - general	HGNC:12716	ENSG00000196689
+DNAJB4	DnaJ heat shock protein family (Hsp40) member B4	response_to_heat	Reactions to Temperatur - general	HGNC:14886	ENSG00000162616
+MAPT	microtubule associated protein tau	response_to_heat	Reactions to Temperatur - general	HGNC:6893	ENSG00000186868
+PDCD6	programmed cell death 6	response_to_heat	Reactions to Temperatur - general	HGNC:8765	ENSG00000249915
+BAG3	BAG cochaperone 3	response_to_heat	Reactions to Temperatur - general	HGNC:939	ENSG00000151929
+CLPB	ClpB family mitochondrial disaggregase	response_to_heat	Reactions to Temperatur - general	HGNC:30664	ENSG00000162129
+SCN11A	sodium voltage-gated channel alpha subunit 11	response_to_heat	Reactions to Temperatur - general	HGNC:10583	ENSG00000168356
+EIF2B4	eukaryotic translation initiation factor 2B subunit delta	response_to_heat	Reactions to Temperatur - general	HGNC:3260	ENSG00000115211
+DNAJA3	DnaJ heat shock protein family (Hsp40) member A3	response_to_heat	Reactions to Temperatur - general	HGNC:11808	ENSG00000103423
+SLU7	spliceosome associated SLU7	response_to_heat	Reactions to Temperatur - general	HGNC:16939	ENSG00000164609
+HSPA6	heat shock protein family A (Hsp70) member 6	response_to_heat	Reactions to Temperatur - general	HGNC:5239	ENSG00000173110
+HSPB2	heat shock protein family B (small) member 2	response_to_heat	Reactions to Temperatur - general	HGNC:5247	ENSG00000170276
+PRKACA	protein kinase cAMP-activated catalytic subunit alpha	response_to_heat	Reactions to Temperatur - general	HGNC:9380	ENSG00000072062
+DHX36	DEAH-box helicase 36	response_to_heat	Reactions to Temperatur - general	HGNC:14410	ENSG00000174953
+ANO1	anoctamin 1	response_to_heat	Reactions to Temperatur - general	HGNC:21625	ENSG00000131620
+IGF1	insulin like growth factor 1	response_to_heat	Reactions to Temperatur - general	HGNC:5464	ENSG00000017427
+CXCL10	C-X-C motif chemokine ligand 10	response_to_heat	Reactions to Temperatur - general	HGNC:10637	ENSG00000169245
+HIKESHI	heat shock protein nuclear import factor hikeshi	response_to_heat	Reactions to Temperatur - general	HGNC:26938	ENSG00000149196
+TCIM	transcriptional and immune response regulator	response_to_heat	Reactions to Temperatur - general	HGNC:1357	ENSG00000176907
+STUB1	STIP1 homology and U-box containing protein 1	response_to_heat	Reactions to Temperatur - general	HGNC:11427	ENSG00000103266
+DAXX	death domain associated protein	response_to_heat	Reactions to Temperatur - general	HGNC:2681	ENSG00000204209
+ZFAND1	zinc finger AN1-type containing 1	response_to_heat	Reactions to Temperatur - general	HGNC:25858	ENSG00000104231
+TRPM2	transient receptor potential cation channel subfamily M member 2	response_to_heat	Reactions to Temperatur - general	HGNC:12339	ENSG00000142185
+CRYAA	crystallin alpha A	response_to_heat	Reactions to Temperatur - general	HGNC:2388	ENSG00000160202
+EEF1D	eukaryotic translation elongation factor 1 delta	response_to_heat	Reactions to Temperatur - general	HGNC:3211	ENSG00000104529
+CRYAB	crystallin alpha B	response_to_heat	Reactions to Temperatur - general	HGNC:2389	ENSG00000109846
+DNAJA2	DnaJ heat shock protein family (Hsp40) member A2	response_to_heat	Reactions to Temperatur - general	HGNC:14884	ENSG00000069345
+GRIK2	glutamate ionotropic receptor kainate type subunit 2	detection_of_temperature_stimulus_involved_in_thermoception	Perception of Temperature	HGNC:4580	ENSG00000164418
+CD24	signal transducer cd24	Hsp90_protein_binding	HeatSchockProteins and their Tasks		
+STIP1	stress induced phosphoprotein 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:11387	ENSG00000168439
+BMAL1	basic helix-loop-helix ARNT like 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:701	ENSG00000133794
+PPID	peptidylprolyl isomerase D	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:9257	ENSG00000171497
+HSF1	heat shock transcription factor 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:5224	ENSG00000185122
+CDK5	cyclin dependent kinase 5	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:1774	ENSG00000164885
+AHSA1	activator of HSP90 ATPase activity 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:1189	ENSG00000100591
+AHR	aryl hydrocarbon receptor	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:348	ENSG00000106546
+KPNB1	karyopherin subunit beta 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:6400	ENSG00000108424
+TSC2	TSC complex subunit 2	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:12363	ENSG00000103197
+EIF2AK3	eukaryotic translation initiation factor 2 alpha kinase 3	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:3255	ENSG00000172071
+CSNK2A1	casein kinase 2 alpha 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:2457	ENSG00000101266
+PPEF2	protein phosphatase with EF-hand domain 2	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:9244	ENSG00000156194
+PTGES3L	prostaglandin E synthase 3 like	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:43943	ENSG00000267060
+PACRG	parkin coregulated	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:19152	ENSG00000112530
+CDC37	cell division cycle 37, HSP90 cochaperone	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:1735	ENSG00000105401
+ERN1	endoplasmic reticulum to nucleus signaling 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:3449	ENSG00000178607
+USP19	ubiquitin specific peptidase 19	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:12617	ENSG00000172046
+NPAS2	neuronal PAS domain protein 2	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:7895	ENSG00000170485
+PTGES3	prostaglandin E synthase 3	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:16049	ENSG00000110958
+UNC45B	unc-45 myosin chaperone B	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:14304	ENSG00000141161
+HDAC6	histone deacetylase 6	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:14064	ENSG00000094631
+RPS3	ribosomal protein S3	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:10420	ENSG00000149273
+TELO2	telomere maintenance 2	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:29099	ENSG00000100726
+MAPT	microtubule associated protein tau	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:6893	ENSG00000186868
+TTC4	tetratricopeptide repeat domain 4	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:12394	ENSG00000243725
+CHORDC1	cysteine and histidine rich domain containing 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:14525	ENSG00000110172
+FKBP6	FKBP prolyl isomerase family member 6 (inactive)	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:3722	ENSG00000077800
+GBP1	guanylate binding protein 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:4182	ENSG00000117228
+UNC45A	unc-45 myosin chaperone A	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:30594	ENSG00000140553
+STUB1	STIP1 homology and U-box containing protein 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:11427	ENSG00000103266
+TSC1	TSC complex subunit 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:12362	ENSG00000165699
+GUCY1B1	guanylate cyclase 1 soluble subunit beta 1	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:4687	ENSG00000061918
+NUP62	nucleoporin 62	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:8066	ENSG00000213024
+HDAC8	histone deacetylase 8	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:13315	ENSG00000147099
+SLC12A2	solute carrier family 12 member 2	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:10911	ENSG00000064651
+PPP5C	protein phosphatase 5 catalytic subunit	Hsp90_protein_binding	HeatSchockProteins and their Tasks	HGNC:9322	ENSG00000011485
+TPR	translocated promoter region, nuclear basket protein	mRNA_export_from_nucleus_in_response_to_heat_stress	Reactions to Temperatur - cellular	HGNC:12017	ENSG00000047410
+CD24	signal transducer cd24	heat_shock_protein_binding	HeatSchockProteins and their Tasks		
+STIP1	stress induced phosphoprotein 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11387	ENSG00000168439
+HSPA9	heat shock protein family A (Hsp70) member 9	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5244	ENSG00000113013
+DNAJB7	DnaJ heat shock protein family (Hsp40) member B7	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:24986	ENSG00000172404
+DNAJA1	DnaJ heat shock protein family (Hsp40) member A1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5229	ENSG00000086061
+HSPA8	heat shock protein family A (Hsp70) member 8	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5241	ENSG00000109971
+BMAL1	basic helix-loop-helix ARNT like 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:701	ENSG00000133794
+CDC37L1	cell division cycle 37 like 1, HSP90 cochaperone	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:17179	ENSG00000106993
+PPID	peptidylprolyl isomerase D	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:9257	ENSG00000171497
+METTL23	methyltransferase 23, arginine	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:26988	ENSG00000181038
+CAMKMT	calmodulin-lysine N-methyltransferase	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:26276	ENSG00000143919
+HSF1	heat shock transcription factor 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5224	ENSG00000185122
+HSP90AB1	heat shock protein 90 alpha family class B member 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5258	ENSG00000096384
+CDK5	cyclin dependent kinase 5	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:1774	ENSG00000164885
+AHSA1	activator of HSP90 ATPase activity 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:1189	ENSG00000100591
+BCOR	BCL6 corepressor	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:20893	ENSG00000183337
+DNAJB1	DnaJ heat shock protein family (Hsp40) member B1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5270	ENSG00000132002
+ITGB2	integrin subunit beta 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:6155	ENSG00000160255
+AHR	aryl hydrocarbon receptor	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:348	ENSG00000106546
+KPNB1	karyopherin subunit beta 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:6400	ENSG00000108424
+HTT	huntingtin	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:4851	ENSG00000197386
+HSPA14	heat shock protein family A (Hsp70) member 14	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:29526	ENSG00000187522
+TSC2	TSC complex subunit 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:12363	ENSG00000103197
+DNAJB12	DnaJ heat shock protein family (Hsp40) member B12	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:14891	ENSG00000148719
+FKBP5	FKBP prolyl isomerase 5	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:3721	ENSG00000096060
+EIF2AK3	eukaryotic translation initiation factor 2 alpha kinase 3	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:3255	ENSG00000172071
+SACS	sacsin molecular chaperone	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:10519	ENSG00000151835
+HSPA7	heat shock protein family A (Hsp70) member 7 (pseudogene)	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5240	ENSG00000225217
+HSPA13	heat shock protein family A (Hsp70) member 13	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11375	ENSG00000155304
+TFAM	transcription factor A, mitochondrial	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11741	ENSG00000108064
+ITGAM	integrin subunit alpha M	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:6149	ENSG00000169896
+IRAK1	interleukin 1 receptor associated kinase 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:6112	ENSG00000184216
+MIR155HG	MIR155 host gene	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:35460	ENSG00000234883
+METTL18	methyltransferase 18, RPL3 N3(tau)-histidine	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:28793	ENSG00000171806
+METTL21C	methyltransferase 21C, AARS1 lysine	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:33717	ENSG00000139780
+TPR	translocated promoter region, nuclear basket protein	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:12017	ENSG00000047410
+MVD	mevalonate diphosphate decarboxylase	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:7529	ENSG00000167508
+CSNK2A1	casein kinase 2 alpha 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:2457	ENSG00000101266
+PPEF2	protein phosphatase with EF-hand domain 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:9244	ENSG00000156194
+LMAN2	lectin, mannose binding 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:16986	ENSG00000169223
+TOMM34	translocase of outer mitochondrial membrane 34	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:15746	ENSG00000025772
+CDK1	cyclin dependent kinase 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:1722	ENSG00000170312
+METTL21A	methyltransferase 21A, HSPA lysine	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:30476	ENSG00000144401
+DNAJC18	DnaJ heat shock protein family (Hsp40) member C18	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:28429	ENSG00000170464
+DNAJB3	dnaj homolog subfamily b member 3	heat_shock_protein_binding	HeatSchockProteins and their Tasks		
+DNAJA4	DnaJ heat shock protein family (Hsp40) member A4	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:14885	ENSG00000140403
+FKBP4	FKBP prolyl isomerase 4	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:3720	ENSG00000004478
+ST13	ST13 Hsp70 interacting protein	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11343	ENSG00000100380
+STAU2	staufen double-stranded RNA binding protein 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11371	ENSG00000040341
+PGLYRP1	peptidoglycan recognition protein 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:8904	ENSG00000008438
+HSPA2	heat shock protein family A (Hsp70) member 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5235	ENSG00000126803
+PTGES3L	prostaglandin E synthase 3 like	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:43943	ENSG00000267060
+PACRG	parkin coregulated	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:19152	ENSG00000112530
+DNAJC8	DnaJ heat shock protein family (Hsp40) member C8	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:15470	ENSG00000126698
+CDC37	cell division cycle 37, HSP90 cochaperone	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:1735	ENSG00000105401
+ERN1	endoplasmic reticulum to nucleus signaling 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:3449	ENSG00000178607
+USP19	ubiquitin specific peptidase 19	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:12617	ENSG00000172046
+NPAS2	neuronal PAS domain protein 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:7895	ENSG00000170485
+ZFP36	ZFP36 zinc finger CCCH-type	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:12862	ENSG00000128016
+DNAJB14	DnaJ heat shock protein family (Hsp40) member B14	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:25881	ENSG00000164031
+OGDH	oxoglutarate dehydrogenase	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:8124	ENSG00000105953
+SPN	sialophorin	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11249	ENSG00000197471
+ETFBKMT	electron transfer flavoprotein subunit beta lysine methyltransferase	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:28739	ENSG00000139160
+PTGES3	prostaglandin E synthase 3	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:16049	ENSG00000110958
+PRKD1	protein kinase D1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:9407	ENSG00000184304
+DNAJC10	DnaJ heat shock protein family (Hsp40) member C10	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:24637	ENSG00000077232
+UNC45B	unc-45 myosin chaperone B	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:14304	ENSG00000141161
+DNAJB9	DnaJ heat shock protein family (Hsp40) member B9	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:6968	ENSG00000128590
+HDAC6	histone deacetylase 6	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:14064	ENSG00000094631
+DNAJC2	DnaJ heat shock protein family (Hsp40) member C2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:13192	ENSG00000105821
+DNAJC9	DnaJ heat shock protein family (Hsp40) member C9	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:19123	ENSG00000213551
+RPS3	ribosomal protein S3	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:10420	ENSG00000149273
+GPR37	G protein-coupled receptor 37	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:4494	ENSG00000170775
+TELO2	telomere maintenance 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:29099	ENSG00000100726
+GMEB1	glucocorticoid modulatory element binding protein 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:4370	ENSG00000162419
+MAPT	microtubule associated protein tau	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:6893	ENSG00000186868
+SNCA	synuclein alpha	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11138	ENSG00000145335
+DRC9	dynein regulatory complex protein 9	heat_shock_protein_binding	HeatSchockProteins and their Tasks		
+BAG2	BAG cochaperone 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:938	ENSG00000112208
+TTC4	tetratricopeptide repeat domain 4	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:12394	ENSG00000243725
+DNAJA3	DnaJ heat shock protein family (Hsp40) member A3	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11808	ENSG00000103423
+DNAJB8	DnaJ heat shock protein family (Hsp40) member B8	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:23699	ENSG00000179407
+CHORDC1	cysteine and histidine rich domain containing 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:14525	ENSG00000110172
+EEF1AKMT3	EEF1A lysine methyltransferase 3	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:24936	ENSG00000123427
+FKBP6	FKBP prolyl isomerase family member 6 (inactive)	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:3722	ENSG00000077800
+HSPA6	heat shock protein family A (Hsp70) member 6	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:5239	ENSG00000173110
+DNAJC6	DnaJ heat shock protein family (Hsp40) member C6	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:15469	ENSG00000116675
+DNAJB6	DnaJ heat shock protein family (Hsp40) member B6	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:14888	ENSG00000105993
+SGTB	small glutamine rich tetratricopeptide repeat co-chaperone beta	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:23567	ENSG00000197860
+SSUH2	ssu-2 homolog	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:24809	ENSG00000125046
+GBP1	guanylate binding protein 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:4182	ENSG00000117228
+HIKESHI	heat shock protein nuclear import factor hikeshi	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:26938	ENSG00000149196
+DNAJC7	DnaJ heat shock protein family (Hsp40) member C7	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:12392	ENSG00000168259
+UNC45A	unc-45 myosin chaperone A	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:30594	ENSG00000140553
+FAF1	Fas associated factor 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:3578	ENSG00000185104
+STUB1	STIP1 homology and U-box containing protein 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11427	ENSG00000103266
+DAXX	death domain associated protein	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:2681	ENSG00000204209
+TSC1	TSC complex subunit 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:12362	ENSG00000165699
+GUCY1B1	guanylate cyclase 1 soluble subunit beta 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:4687	ENSG00000061918
+EEF1D	eukaryotic translation elongation factor 1 delta	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:3211	ENSG00000104529
+NUP62	nucleoporin 62	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:8066	ENSG00000213024
+PDXP	pyridoxal phosphatase	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:30259	ENSG00000241360
+APAF1	apoptotic peptidase activating factor 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:576	ENSG00000120868
+TFRC	transferrin receptor	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:11763	ENSG00000072274
+METTL22	methyltransferase 22, Kin17 lysine	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:28368	ENSG00000067365
+APOA2	apolipoprotein A2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:601	ENSG00000158874
+BAG6	BAG cochaperone 6	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:13919	ENSG00000204463
+HDAC8	histone deacetylase 8	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:13315	ENSG00000147099
+SLC12A2	solute carrier family 12 member 2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:10911	ENSG00000064651
+RNF207	ring finger protein 207	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:32947	ENSG00000158286
+DNAJA2	DnaJ heat shock protein family (Hsp40) member A2	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:14884	ENSG00000069345
+FICD	FIC domain protein adenylyltransferase	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:18416	ENSG00000198855
+PRKN	parkin RBR E3 ubiquitin protein ligase	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:8607	ENSG00000185345
+LIMK1	LIM domain kinase 1	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:6613	ENSG00000106683
+PPP5C	protein phosphatase 5 catalytic subunit	heat_shock_protein_binding	HeatSchockProteins and their Tasks	HGNC:9322	ENSG00000011485
+USF1	upstream transcription factor 1	data.tsv	NO GROUP	HGNC:12593	ENSG00000158773
+EPHB2	EPH receptor B2	data.tsv	NO GROUP	HGNC:3393	ENSG00000133216
+TBXA2R	thromboxane A2 receptor	data.tsv	NO GROUP	HGNC:11608	ENSG00000006638
+PRDX2	peroxiredoxin 2	data.tsv	NO GROUP	HGNC:9353	ENSG00000167815
+ST3GAL4	ST3 beta-galactoside alpha-2,3-sialyltransferase 4	data.tsv	NO GROUP	HGNC:10864	ENSG00000110080
+TPA-PAI-1_HUMAN	tpa-pai-1 complex	data.tsv	NO GROUP		
+UPA-UPAR_HUMAN	upa-upar complex	data.tsv	NO GROUP		
+UPA-PAI-1_HUMAN	upa-pai-1 complex	data.tsv	NO GROUP		
+VITRONECTIN-PAI-1_HUMAN	vitronectin-pai-1 complex	data.tsv	NO GROUP		
+EMILIN1_HUMAN	emilin-1 complex	data.tsv	NO GROUP		
+FAP	fibroblast activation protein alpha	data.tsv	NO GROUP	HGNC:3590	ENSG00000078098
+HPSE_HUMAN-1	heparanase complex	data.tsv	NO GROUP		
+FOXA2	forkhead box A2	data.tsv	NO GROUP	HGNC:5022	ENSG00000125798
+HPSE	heparanase	data.tsv	NO GROUP	HGNC:5164	ENSG00000173083
+EMILIN1	elastin microfibril interfacer 1	data.tsv	NO GROUP	HGNC:19880	ENSG00000138080
+NFE2L2	NFE2 like bZIP transcription factor 2	data.tsv	NO GROUP	HGNC:7782	ENSG00000116044
+ENPP4	ectonucleotide pyrophosphatase/phosphodiesterase 4	data.tsv	NO GROUP	HGNC:3359	ENSG00000001561
+EMILIN2	elastin microfibril interfacer 2	data.tsv	NO GROUP	HGNC:19881	ENSG00000132205
+ADRA2A	adrenoceptor alpha 2A	thermoception	Perception of Temperature	HGNC:281	ENSG00000150594
+GRM5	metabotropic glutamate receptor 5	thermoception	Perception of Temperature		
+TRPM8	transient receptor potential cation channel subfamily M member 8	thermoception	Perception of Temperature	HGNC:17961	ENSG00000144481
+TRPA1	transient receptor potential cation channel subfamily A member 1	thermoception	Perception of Temperature	HGNC:497	ENSG00000104321
+TRPV1	transient receptor potential cation channel subfamily V member 1	thermoception	Perception of Temperature	HGNC:12716	ENSG00000196689
+GRIK2	glutamate ionotropic receptor kainate type subunit 2	thermoception	Perception of Temperature	HGNC:4580	ENSG00000164418
+CD24	signal transducer cd24	Hsp70_protein_binding	HeatSchockProteins and their Tasks		
+DNAJB7	DnaJ heat shock protein family (Hsp40) member B7	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:24986	ENSG00000172404
+DNAJA1	DnaJ heat shock protein family (Hsp40) member A1	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:5229	ENSG00000086061
+PPID	peptidylprolyl isomerase D	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:9257	ENSG00000171497
+DNAJB1	DnaJ heat shock protein family (Hsp40) member B1	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:5270	ENSG00000132002
+DNAJB12	DnaJ heat shock protein family (Hsp40) member B12	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:14891	ENSG00000148719
+SACS	sacsin molecular chaperone	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:10519	ENSG00000151835
+MIR155HG	MIR155 host gene	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:35460	ENSG00000234883
+MVD	mevalonate diphosphate decarboxylase	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:7529	ENSG00000167508
+PPEF2	protein phosphatase with EF-hand domain 2	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:9244	ENSG00000156194
+CDK1	cyclin dependent kinase 1	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:1722	ENSG00000170312
+METTL21A	methyltransferase 21A, HSPA lysine	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:30476	ENSG00000144401
+DNAJC18	DnaJ heat shock protein family (Hsp40) member C18	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:28429	ENSG00000170464
+DNAJB3	dnaj homolog subfamily b member 3	Hsp70_protein_binding	HeatSchockProteins and their Tasks		
+DNAJA4	DnaJ heat shock protein family (Hsp40) member A4	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:14885	ENSG00000140403
+ST13	ST13 Hsp70 interacting protein	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:11343	ENSG00000100380
+STAU2	staufen double-stranded RNA binding protein 2	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:11371	ENSG00000040341
+PGLYRP1	peptidoglycan recognition protein 1	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:8904	ENSG00000008438
+PACRG	parkin coregulated	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:19152	ENSG00000112530
+DNAJC8	DnaJ heat shock protein family (Hsp40) member C8	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:15470	ENSG00000126698
+ERN1	endoplasmic reticulum to nucleus signaling 1	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:3449	ENSG00000178607
+DNAJB14	DnaJ heat shock protein family (Hsp40) member B14	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:25881	ENSG00000164031
+DNAJC10	DnaJ heat shock protein family (Hsp40) member C10	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:24637	ENSG00000077232
+DNAJB9	DnaJ heat shock protein family (Hsp40) member B9	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:6968	ENSG00000128590
+DNAJC2	DnaJ heat shock protein family (Hsp40) member C2	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:13192	ENSG00000105821
+RPS3	ribosomal protein S3	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:10420	ENSG00000149273
+GPR37	G protein-coupled receptor 37	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:4494	ENSG00000170775
+SNCA	synuclein alpha	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:11138	ENSG00000145335
+DRC9	dynein regulatory complex protein 9	Hsp70_protein_binding	HeatSchockProteins and their Tasks		
+TTC4	tetratricopeptide repeat domain 4	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:12394	ENSG00000243725
+DNAJA3	DnaJ heat shock protein family (Hsp40) member A3	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:11808	ENSG00000103423
+DNAJB8	DnaJ heat shock protein family (Hsp40) member B8	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:23699	ENSG00000179407
+DNAJB6	DnaJ heat shock protein family (Hsp40) member B6	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:14888	ENSG00000105993
+SGTB	small glutamine rich tetratricopeptide repeat co-chaperone beta	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:23567	ENSG00000197860
+HIKESHI	heat shock protein nuclear import factor hikeshi	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:26938	ENSG00000149196
+STUB1	STIP1 homology and U-box containing protein 1	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:11427	ENSG00000103266
+TSC1	TSC complex subunit 1	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:12362	ENSG00000165699
+NUP62	nucleoporin 62	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:8066	ENSG00000213024
+TFRC	transferrin receptor	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:11763	ENSG00000072274
+BAG6	BAG cochaperone 6	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:13919	ENSG00000204463
+HDAC8	histone deacetylase 8	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:13315	ENSG00000147099
+RNF207	ring finger protein 207	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:32947	ENSG00000158286
+DNAJA2	DnaJ heat shock protein family (Hsp40) member A2	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:14884	ENSG00000069345
+FICD	FIC domain protein adenylyltransferase	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:18416	ENSG00000198855
+PRKN	parkin RBR E3 ubiquitin protein ligase	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:8607	ENSG00000185345
+PPP5C	protein phosphatase 5 catalytic subunit	Hsp70_protein_binding	HeatSchockProteins and their Tasks	HGNC:9322	ENSG00000011485
+HSBP1L1	heat shock factor binding protein 1 like 1	heat_acclimation	Temperatur Homeostasis	HGNC:37243	ENSG00000226742
+RBBP7	RB binding protein 7, chromatin remodeling factor	heat_acclimation	Temperatur Homeostasis	HGNC:9890	ENSG00000102054
+HSBP1	heat shock factor binding protein 1	heat_acclimation	Temperatur Homeostasis	HGNC:5203	ENSG00000230989
+HSPA6	heat shock protein family A (Hsp70) member 6	heat_acclimation	Temperatur Homeostasis	HGNC:5239	ENSG00000173110
+UCP2	uncoupling protein 2	temperature_homeostasis	Temperatur Homeostasis	HGNC:12518	ENSG00000175567
+CIDEA	cell death inducing DFFA like effector a	temperature_homeostasis	Temperatur Homeostasis	HGNC:1976	ENSG00000176194
+EGR1	early growth response 1	temperature_homeostasis	Temperatur Homeostasis	HGNC:3238	ENSG00000120738
+ACADL	acyl-CoA dehydrogenase long chain	temperature_homeostasis	Temperatur Homeostasis	HGNC:88	ENSG00000115361
+BMP8A	bone morphogenetic protein 8a	temperature_homeostasis	Temperatur Homeostasis	HGNC:21650	ENSG00000183682
+GRM5	metabotropic glutamate receptor 5	temperature_homeostasis	Temperatur Homeostasis		
+SLC25A5	solute carrier family 25 member 5	temperature_homeostasis	Temperatur Homeostasis	HGNC:10991	ENSG00000005022
+UCP1	uncoupling protein 1	temperature_homeostasis	Temperatur Homeostasis	HGNC:12517	ENSG00000109424
+ACADVL	acyl-CoA dehydrogenase very long chain	temperature_homeostasis	Temperatur Homeostasis	HGNC:92	ENSG00000072778
+SQSTM1	sequestosome 1	temperature_homeostasis	Temperatur Homeostasis	HGNC:11280	ENSG00000161011
+DRD2	dopamine receptor D2	temperature_homeostasis	Temperatur Homeostasis	HGNC:3023	ENSG00000149295
+PM20D1	peptidase M20 domain containing 1	temperature_homeostasis	Temperatur Homeostasis	HGNC:26518	ENSG00000162877
+ZBTB7B	zinc finger and BTB domain containing 7B	temperature_homeostasis	Temperatur Homeostasis	HGNC:18668	ENSG00000160685
+UCP3	uncoupling protein 3	temperature_homeostasis	Temperatur Homeostasis	HGNC:12519	ENSG00000175564
+SLC25A4	solute carrier family 25 member 4	temperature_homeostasis	Temperatur Homeostasis	HGNC:10990	ENSG00000151729
+MC5R	melanocortin receptor 5	temperature_homeostasis	Temperatur Homeostasis		
+NMU	neuromedin U	temperature_homeostasis	Temperatur Homeostasis	HGNC:7859	ENSG00000109255
+FAM210A	protein fam210a	temperature_homeostasis	Temperatur Homeostasis		
+NAPEPLD	N-acyl phosphatidylethanolamine phospholipase D	temperature_homeostasis	Temperatur Homeostasis	HGNC:21683	ENSG00000161048
+FOXO1	forkhead box O1	temperature_homeostasis	Temperatur Homeostasis	HGNC:3819	ENSG00000150907
+SORL1	sortilin related receptor 1	temperature_homeostasis	Temperatur Homeostasis	HGNC:11185	ENSG00000137642
+THADA	THADA armadillo repeat containing	temperature_homeostasis	Temperatur Homeostasis	HGNC:19217	ENSG00000115970
+APPL2	adaptor protein, phosphotyrosine interacting with PH domain and leucine zipper 2	temperature_homeostasis	Temperatur Homeostasis	HGNC:18242	ENSG00000136044
+SCTR	secretin receptor	temperature_homeostasis	Temperatur Homeostasis	HGNC:10608	ENSG00000080293
+OMA1	OMA1 zinc metallopeptidase	temperature_homeostasis	Temperatur Homeostasis	HGNC:29661	ENSG00000162600
+NR1D1	nuclear receptor subfamily 1 group D member 1	temperature_homeostasis	Temperatur Homeostasis	HGNC:7962	ENSG00000126368
+NTSR1	neurotensin receptor 1	temperature_homeostasis	Temperatur Homeostasis	HGNC:8039	ENSG00000101188
+TNFRSF11A	TNF receptor superfamily member 11a	temperature_homeostasis	Temperatur Homeostasis	HGNC:11908	ENSG00000141655
+DNAJC28	dnaj homolog subfamily c member 28	temperature_homeostasis	Temperatur Homeostasis		
+ADISSP	adipose secreted signaling protein	temperature_homeostasis	Temperatur Homeostasis	HGNC:15873	ENSG00000101220
+HNRNPU	heterogeneous nuclear ribonucleoprotein U	temperature_homeostasis	Temperatur Homeostasis	HGNC:5048	ENSG00000153187
+MC3R	melanocortin 3 receptor	temperature_homeostasis	Temperatur Homeostasis	HGNC:6931	ENSG00000124089
+TRPM2	transient receptor potential cation channel subfamily M member 2	temperature_homeostasis	Temperatur Homeostasis	HGNC:12339	ENSG00000142185
+CLSTN3	calsyntenin 3	temperature_homeostasis	Temperatur Homeostasis	HGNC:18371	ENSG00000139182
+SCT	secretin	temperature_homeostasis	Temperatur Homeostasis	HGNC:10607	ENSG00000070031
+KCNK4	potassium two pore domain channel subfamily K member 4	temperature-gated_ion_channel_activity	Reactions to Temperatur - cellular	HGNC:6279	ENSG00000182450
+TRPA1	transient receptor potential cation channel subfamily A member 1	temperature-gated_ion_channel_activity	Reactions to Temperatur - cellular	HGNC:497	ENSG00000104321
+TRPV1	transient receptor potential cation channel subfamily V member 1	temperature-gated_ion_channel_activity	Reactions to Temperatur - cellular	HGNC:12716	ENSG00000196689
+EGR1	early growth response 1	circadian_temperature_homeostasis	Temperatur Homeostasis	HGNC:3238	ENSG00000120738
+NR1D1	nuclear receptor subfamily 1 group D member 1	circadian_temperature_homeostasis	Temperatur Homeostasis	HGNC:7962	ENSG00000126368
+TNFRSF11A	TNF receptor superfamily member 11a	circadian_temperature_homeostasis	Temperatur Homeostasis	HGNC:11908	ENSG00000141655
+TNFSF11	TNF superfamily member 11	positive_regulation_of_heat_generation	Thermogenesis	HGNC:11926	ENSG00000120659
+NMU	neuromedin U	positive_regulation_of_heat_generation	Thermogenesis	HGNC:7859	ENSG00000109255
+PTGER3	prostaglandin E receptor 3	positive_regulation_of_heat_generation	Thermogenesis	HGNC:9595	ENSG00000050628
+ABAT	4-aminobutyrate aminotransferase	positive_regulation_of_heat_generation	Thermogenesis	HGNC:23	ENSG00000183044
+TNFRSF11A	TNF receptor superfamily member 11a	positive_regulation_of_heat_generation	Thermogenesis	HGNC:11908	ENSG00000141655
+HSBP1L1	heat shock factor binding protein 1 like 1	cellular_heat_acclimation	Temperatur Homeostasis	HGNC:37243	ENSG00000226742
+RBBP7	RB binding protein 7, chromatin remodeling factor	cellular_heat_acclimation	Temperatur Homeostasis	HGNC:9890	ENSG00000102054
+HSBP1	heat shock factor binding protein 1	cellular_heat_acclimation	Temperatur Homeostasis	HGNC:5203	ENSG00000230989
+HSPA6	heat shock protein family A (Hsp70) member 6	cellular_heat_acclimation	Temperatur Homeostasis	HGNC:5239	ENSG00000173110
+ADCY9	adenylate cyclase type 9	data.tsv	NO GROUP		
+PTPN1	tyrosine-protein phosphatase non-receptor type 1	data.tsv	NO GROUP		
+EPB41	protein 4.1	data.tsv	NO GROUP		
+CITED2	cbp/p300-interacting transactivator 2	data.tsv	NO GROUP		
+ADCY7	adenylate cyclase type 7	data.tsv	NO GROUP		
+PRKAR2B	camp-dependent protein kinase type ii-beta regulatory subunit	data.tsv	NO GROUP		
+PRKAR1B	camp-dependent protein kinase type i-beta regulatory subunit	data.tsv	NO GROUP		
+GYPC	glycophorin-c	data.tsv	NO GROUP		
+KLF4	krueppel-like factor 4	data.tsv	NO GROUP		
+MTOR	mechanistic target of rapamycin kinase	data.tsv	NO GROUP	HGNC:3942	ENSG00000198793
+PRKACG	protein kinase cAMP-activated catalytic subunit gamma	data.tsv	NO GROUP	HGNC:9382	ENSG00000165059
+PKD2	polycystin-2	data.tsv	NO GROUP		
+HSA-MIR-126-5P	homo sapiens (human) hsa-mir-126-5p	data.tsv	NO GROUP		
+SMAD7	smad family member 7	data.tsv	NO GROUP		
+PDPK1	3-phosphoinositide-dependent protein kinase 1	data.tsv	NO GROUP		
+AKT1	AKT serine/threonine kinase 1	data.tsv	NO GROUP	HGNC:391	ENSG00000142208
+MPP1	55 kda erythrocyte membrane protein	data.tsv	NO GROUP		
+SMAD6	smad family member 6	data.tsv	NO GROUP		
+MTSS1	protein mtss 1	data.tsv	NO GROUP		
+ADCY6	adenylate cyclase 6	data.tsv	NO GROUP	HGNC:237	ENSG00000174233
+MAPK7	mitogen-activated protein kinase 7	data.tsv	NO GROUP		
+PRKAR2A	camp-dependent protein kinase type ii-alpha regulatory subunit	data.tsv	NO GROUP		
+ADCY8	adenylate cyclase type 8	data.tsv	NO GROUP		
+GPR68	g-protein coupled receptor 68	data.tsv	NO GROUP		
+CAPN2	calpain-2 catalytic subunit	data.tsv	NO GROUP		
+P4.1-GPC-P55_HUMAN	actin junctional complex	data.tsv	NO GROUP		
+PTK2	focal adhesion kinase 1	data.tsv	NO GROUP		
+ASS1	argininosuccinate synthase	data.tsv	NO GROUP		
+PKN2	serine/threonine-protein kinase n2	data.tsv	NO GROUP		
+MAP2K5	dual specificity mitogen-activated protein kinase kinase 5	data.tsv	NO GROUP		
+PLEC	plectin	data.tsv	NO GROUP		
+SREBF2	sterol regulatory element-binding protein 2	data.tsv	NO GROUP		
+P2RX4	p2x purinoceptor 4	data.tsv	NO GROUP		
+ABCA1	phospholipid-transporting atpase abca1	data.tsv	NO GROUP		
+SOCS5	suppressor of cytokine signaling 5	data.tsv	NO GROUP		
+ADCY5	adenylate cyclase type 5	data.tsv	NO GROUP		
+KLF2	krueppel-like factor 2	data.tsv	NO GROUP		
+PRKAR1A	camp-dependent protein kinase type i-alpha regulatory subunit	data.tsv	NO GROUP		
+ADCY4	adenylate cyclase type 4	data.tsv	NO GROUP		
+MEF2C	myocyte-specific enhancer factor 2c	data.tsv	NO GROUP		
+PRKACA	protein kinase cAMP-activated catalytic subunit alpha	data.tsv	NO GROUP	HGNC:9380	ENSG00000072062
+ABL1	tyrosine-protein kinase abl1	data.tsv	NO GROUP		
+PPP2CA	serine/threonine-protein phosphatase 2a catalytic subunit alpha isoform	data.tsv	NO GROUP		
+XBP1	X-box binding protein 1	data.tsv	NO GROUP	HGNC:12801	ENSG00000100219
+ADCY2	adenylate cyclase type 2	data.tsv	NO GROUP		
+ADCY1	adenylate cyclase type 1	data.tsv	NO GROUP		
+ADCY3	adenylate cyclase type 3	data.tsv	NO GROUP		
+PRKACB	protein kinase cAMP-activated catalytic subunit beta	data.tsv	NO GROUP	HGNC:9381	ENSG00000142875
+HSA-MIR-92A-3P	homo sapiens (human) hsa-mir-92a-3p	data.tsv	NO GROUP		
+GP1BB	glycoprotein Ib platelet subunit beta	Increased mean platelet volume	Blood	HGNC:4440	ENSG00000203618
+GSTT1	glutathione S-transferase theta 1	Chronic Obstructive Airway Disease	Pulmonary	HGNC:4641	
+CHRM3	cholinergic receptor muscarinic 3	Chronic Obstructive Airway Disease	Pulmonary	HGNC:1952	ENSG00000133019
+CXCL2	C-X-C motif chemokine ligand 2	Chronic Obstructive Airway Disease	Pulmonary	HGNC:4603	ENSG00000081041
+MIR218-2	microRNA 218-2	Chronic Obstructive Airway Disease	Pulmonary	HGNC:31596	ENSG00000207739
+LOC107063610		Chronic Obstructive Airway Disease	Pulmonary		
+SOD1	superoxide dismutase 1	Hypothermia,natural	Hyperthermia	HGNC:11179	ENSG00000142168
+IL12A	interleukin 12A	Hypothermia,natural	Hyperthermia	HGNC:5969	ENSG00000168811
+GCG	glucagon	Hypothermia,natural	Hyperthermia	HGNC:4191	ENSG00000115263
+LOC128598884		DEHYDRATED HEREDITARY STOMATOCYTOSIS 2	NO GROUP		
+HSALR1		DEHYDRATED HEREDITARY STOMATOCYTOSIS 1 WITH OR WITHOUT PSEUDOHYPERKALEMIA AND/OR PERINATAL EDEMA	NO GROUP		
+SOD2	superoxide dismutase 2	Fever	Hyperthermia	HGNC:11180	ENSG00000291237
+LOC129391106		Malignant hyperthermia susceptibility type 1	Hyperthermia		
+LOC126862902		Malignant hyperthermia susceptibility type 1	Hyperthermia		
+LOC130064350		Malignant hyperthermia susceptibility type 1	Hyperthermia		
+LOC130064357		Malignant hyperthermia susceptibility type 1	Hyperthermia		
+PLN	phospholamban	Myocardial Stunning	Myocardial	HGNC:9080	ENSG00000198523
+SOD1	superoxide dismutase 1	Myocardial Infarction	Myocardial	HGNC:11179	ENSG00000142168
+IGF1	insulin like growth factor 1	Myocardial Infarction	Myocardial	HGNC:5464	ENSG00000017427
+MIR145	microRNA 145	Myocardial Infarction	Myocardial	HGNC:31532	ENSG00000276365
+PLN	phospholamban	Myocardial Infarction	Myocardial	HGNC:9080	ENSG00000198523
+SOD2	superoxide dismutase 2	Myocardial Infarction	Myocardial	HGNC:11180	ENSG00000291237
+ND2		Myocardial Infarction	Myocardial		
+BCL2L1	BCL2 like 1	Myocardial Infarction	Myocardial	HGNC:992	ENSG00000171552
+MIR30C1	microRNA 30c-1	Myocardial Infarction	Myocardial	HGNC:31626	ENSG00000207962
+MIR761	microRNA 761	Myocardial Infarction	Myocardial	HGNC:37305	ENSG00000283899
+MIR125B2	microRNA 125b-2	Myocardial Infarction	Myocardial	HGNC:31507	ENSG00000207863
+COX2		Ischemic stroke	Cerebral		
+CYTB		Ischemic stroke	Cerebral		
+H19	H19 imprinted maternally expressed transcript	Cerebral Infarction	Cerebral	HGNC:4713	ENSG00000130600

@@ -1,0 +1,27 @@
+{
+    "flags": {
+        "download_data": false,
+        "threads": 2
+    },
+    "absolute_file_paths": {
+        "config": "/Users/m/Desktop/neue_Ablage/bsc_praktikum/tud/Heat_and_Genetics/config",
+        "data": "/Users/m/Desktop/neue_Ablage/bsc_praktikum/tud/Heat_and_Genetics/data",
+        "results": "/Users/m/Desktop/neue_Ablage/bsc_praktikum/tud/Heat_and_Genetics/results"
+    },
+    "relative_file_paths": {
+        "AmiGo2_overview": "AmiGo2_overview.txt",
+        "Amigo2_inclue_exclude": "AmiGo2_include_exclude.txt",
+        "disgnet_data": "genes",
+        "disgnet_include_exclude": "disgnet_include_exclude.txt",
+        "hgnc_data": "genes",
+        "hgnc_symbol_check": ["hgnc-symbol-check/hgnc-symbol-check_amigo.csv", "hgnc-symbol-check/hgnc-symbol-check_disgnet.csv"]
+    },
+    "populations" : {
+        "afr": "African/African American",
+        "nfe": "European (non-Finnish)",
+
+        "nfe_nwe": "North-western European",
+        "nfe_onf": "Other non-Finnish European",
+        "nfe_seu": "Southern European"
+    }
+}

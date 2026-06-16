@@ -1,3 +1,7 @@
 .DS_Store
-venv/
-*.pyc
+data/*
+!data/HGNC/hgnc-symbol-check/*
+!data/disgnet/genes/*
+# pixi environments
+.pixi/*
+!.pixi/config.toml
