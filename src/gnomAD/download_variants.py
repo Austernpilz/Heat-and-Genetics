@@ -324,6 +324,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
     ensemble_id = ""
     data_path, populations, download = gnomAD_config
     ancestry = list(populations.keys()) + list(populations.values())
+    print("starting gnomAD")
     while (True):
         try:
             ensemble_id = gnomAD_receive.recv()
@@ -339,7 +340,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                     gnomAD_send.send(files)
                     continue
         except Exception as _:
-            sleep(9)
+            sleep(6)
 
         files = []
         try_fetching_(query_variant_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_variants", files)
@@ -355,3 +356,4 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
         print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensemble_id}")
 
     gnomAD_send.send("finished")
+    gnomAD_send.close()

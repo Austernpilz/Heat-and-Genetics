@@ -72,7 +72,7 @@ gnomAD_config_download = var.get_config(config_file)
 threads = new_task(var.download_data, (gnomAD_receive, gnomAD_send, gnomAD_config_download), threads, t)
 
 
-#Step 6 ensemb VEP
+#Step 6 collect gnomAD
 VEP_send, gnomad_filter_receive = Pipe()
 VEP_config = ense.get_config(config_file)
 threads = new_task(ense.extend_data, (VEP_receive, VEP_send, VEP_config), threads, t)
@@ -88,7 +88,7 @@ pipline: CLEAN DATA
 # for t in threads:
 #     t.join()
 
-# dut.save_results(config_file)
+dut.save_results(config_file)
 
 
 # ensemble, data enrichment variant effect predictor

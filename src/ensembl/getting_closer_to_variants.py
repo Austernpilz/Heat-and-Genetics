@@ -59,6 +59,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
     already_visited = set()
     data_path, download = ensembl_config
     ensembl_id = ""
+    print("starting ensembl")
     while (True):
         try:
             ensembl_id = ensembl_receive.recv()
@@ -71,7 +72,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                 already_visited.add(ensembl_id)
                 ensembl_send.send(ensembl_id)
         except Exception as _:
-            sleep(180) #to build up the previous processes
+            sleep(90) #to build up the previous processes
 
         if download:
             _ = fetch_from_ensembl(ensembl_id, data_path)

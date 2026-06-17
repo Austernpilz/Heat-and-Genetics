@@ -34,20 +34,20 @@ def extend_data (VEP_receive, VEP_send, VEP_config):
                 continue
             else:
                 already_visited.add(files)
-                ensemble_id = population_check(files, data_path, download)
-                VEP_send.send(ensemble_id)
+                ensembl_id = population_check(files, data_path, download)
+                VEP_send.send(ensembl_id)
                 #download_VEP_data(variants)
         except Exception as _:
-            sleep(180) #to build up the previous processes
+            sleep(90) #to build up the previous processes
 
-    VEP_receive.send("finished")
-    VEP_receive.close()
+    VEP_send.send("finished")
+    VEP_send.close()
 
 def potential_hgvs_notations(variant):
     notations = []
     chrom = variant.get("chrom", None)
     transcript_id = variant.get("transcript_id", None)
-    gene_id = variant.get("transcript_id", None)
+    gene_id = variant.get("gene_id", None)
 
     hgvsc = variant.get("hgvsc", None)
     hgvsp= variant.get("hgvsp", None)
@@ -67,6 +67,8 @@ def potential_hgvs_notations(variant):
         notations.append(str(chrom) + hgvs)
         notations.append(str(transcript_id) + hgvs)
         notations.append(str(gene_id) + hgvs)
+
+    return potential_hgvs_notations
 
 
 def population_check(files, data_path, download):
@@ -103,7 +105,7 @@ def population_check(files, data_path, download):
                             # for rsid in rsids:
                             #     fetch_pop_data(data_path, rsid)
                             already_run.append(hgvs)
-
+    return os.path.basename(gene_dir)
 
 def translate_to_rsid(path_to_data, hgvs):
     p = os.path.join(path_to_data, f"variant_ids_by_{hgvs}.json")
@@ -168,8 +170,8 @@ def fetch_rsid_data(path_to_data, rsid):
             "REVEL" : 1,
             "SpliceAI" : 1, 
             }
-        ext = f"/vep/homo_sapiens/id/{rsid}?{options}"
-        r = requests.get(server+ext, headers={ "Content-Type" : "application/json"})
+        ext = f"/vep/homo_sapiens/id/{rsid}"
+        r = requests.get(server+ext, params=options,  headers={ "Content-Type" : "application/json"})
 
         # if not r.ok:
         #     print(r.status_code, r.content)

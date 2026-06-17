@@ -1,7 +1,9 @@
 .DS_Store
-data/*
-!data/HGNC/hgnc-symbol-check/*
-!data/disgnet/genes/*
+data/Amigo2/genes/*
+data/ensembl/*
+data/gnomAD/*
+data/HGNC/genes/*
+!data/HGNC/hgnc-symbol-check
+!data/disgnet/*
 # pixi environments
 .pixi/*
-!.pixi/config.toml

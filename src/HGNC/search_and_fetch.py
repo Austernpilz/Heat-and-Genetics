@@ -399,9 +399,11 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
 def download_hgnc_data(hgnc_receive, hgnc_send, disgnet_df, hgnc_config):
     data_path, hgnc, download = hgnc_config
     unambiguouse, ambiguouse = load_hgnc_symbol_check(hgnc)
-
+    print("starting hugo")
     already_visited, advanced_search = fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download)
+    print("disgnet done")
     amigo_disgnet_done, advanced_search = fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguouse, advanced_search, download)
+    print("amigo done")
 
     #TO-DO
     #when I'm here, Amigo has run through, so now i can check amigo and disgnet by hand for advanced search
