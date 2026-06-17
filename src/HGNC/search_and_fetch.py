@@ -255,7 +255,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
             genes == np.nan or 
             genes == "nan" or 
             not isinstance(genes, str) or
-            not "ENSG" in genes
+            not "ENS" in genes
         ):
             continue
         hgnc_send.send(genes)

@@ -4,6 +4,7 @@ import os
 import json
 from time import sleep
 import requests as r
+import numpy as np
 
 from src.helpers.folder_magic import search_for_file
 
@@ -325,6 +326,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
     ensemble_id = ""
     data_path, populations, download = gnomAD_config
     ancestry = list(populations.keys()) + list(populations.values())
+    already_checked = set()
     print("starting gnomAD")
     while (True):
         try:
@@ -332,13 +334,21 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
             if ensemble_id == "finished":
                 gnomAD_receive.close()
                 break
-            if not isinstance(ensemble_id, str):
+            if (
+                ensemble_id == "NO ID" or 
+                ensemble_id == np.nan or 
+                ensemble_id == "nan" or 
+                not isinstance(ensemble_id, str) or
+                not "ENS" in ensemble_id or
+                ensemble_id in already_checked
+                ):
                 continue
             if not download:
                 path_gen = os.path.join(data_path, ensemble_id)
                 files = search_for_file(path_gen, "", "json")
-                if len(files) > 0:
+                if len(files) > 1:
                     gnomAD_send.send(files)
+                    already_checked.add(ensemble_id)
                     continue
         except Exception as _:
             sleep(6)
@@ -353,6 +363,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
         files = try_fetching_(query_exons_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_exons", files)
         files = try_fetching_(query_transcripts_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_transcripts", files)
         gnomAD_send.send(files)
+        already_checked.add(ensemble_id)
         print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensemble_id}")
 
     gnomAD_send.send("finished")
