@@ -82,4 +82,6 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
 
     ensembl_send.send("finished")
     ensembl_send.close()
+    print("ensembl thread done")
+
 

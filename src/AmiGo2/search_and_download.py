@@ -242,3 +242,4 @@ def download_data(amigo_send, amigo_config, go_ids=[]):
 
     amigo_send.send(("finished", "finished"))
     amigo_send.close()
+    print("Amigo thread done")

@@ -43,6 +43,7 @@ def extend_data (VEP_receive, VEP_send, VEP_config):
 
     VEP_send.send("finished")
     VEP_send.close()
+    print("VEP thread done")
 
 def potential_hgvs_notations(variant):
     notations = []

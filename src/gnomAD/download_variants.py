@@ -358,3 +358,4 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
 
     gnomAD_send.send("finished")
     gnomAD_send.close()
+    print("gnomAD thread done")
