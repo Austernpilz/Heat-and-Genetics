@@ -224,7 +224,9 @@ def get_tables (path_to_HGNC):
         except Exception as _:
             continue
     if offline_data:
-        return pd.concat(offline_data).drop_duplicates()
+        df = pd.concat(offline_data).drop_duplicates()
+        print(df.head(10))
+        return df
     else:
         return None
 
@@ -249,22 +251,22 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
     if disgnet_df.empty:
         return offline_data
 
-    for genes in disgnet_df["geneEnsemblIDs"].unique():
+    for ensembl_gene_id in disgnet_df["geneEnsemblIDs"].unique():
         if (
-            genes == "NO ID" or 
-            genes == np.nan or 
-            genes == "nan" or 
-            not isinstance(genes, str) or
-            not "ENS" in genes
+            ensembl_gene_id == "NO ID" or 
+            ensembl_gene_id == np.nan or 
+            ensembl_gene_id == "nan" or 
+            not isinstance(ensembl_gene_id, str) or
+            not "ENS" in ensembl_gene_id
         ):
             continue
-        hgnc_send.send(genes)
-        if genes in already_checked["ensembl_gene_id"]:
+        hgnc_send.send(ensembl_gene_id)
+        if ensembl_gene_id in already_checked["ensembl_gene_id"]:
             continue
 
-        df = fetch_hugo("ensembl_gene_id", genes, data_path)
+        df = fetch_hugo("ensembl_gene_id", ensembl_gene_id, data_path)
         if df is None:
-            advanced_search.append(genes)
+            advanced_search.append(ensembl_gene_id)
             continue
         else:
             sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
@@ -275,6 +277,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
 
 
     symbol_dict = get_rename_dict(unambiguouse)
+    print(symbol_dict)
     for genes in disgnet_df["gene_symbol"].unique():
         if genes in unambiguouse["Input"]:
             genes = symbol_dict[genes] #disgnet only has clean gene symbols
@@ -419,6 +422,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
 def download_hgnc_data(hgnc_receive, hgnc_send, disgnet_df, hgnc_config):
     data_path, hgnc, download = hgnc_config
     unambiguouse, ambiguouse = load_hgnc_symbol_check(hgnc)
+    print(unambiguouse)
     print("starting hugo")
     already_visited, advanced_search = fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download)
     print("disgnet done")
