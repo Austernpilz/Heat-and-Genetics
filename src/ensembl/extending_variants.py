@@ -84,8 +84,10 @@ def population_check(files, data_path, download):
         for variant in variant_list:
             if not isinstance(variant, dict):
                 continue
-            variant_id = variant.get("variant_id", None)
+            variant_id = variant.get("variant_id", "NO ID")
             rsids = variant.get("rsids", [])
+            variant_path = os.path.join(data_path, variant_id)
+            os.makedirs(variant_path, exist_ok=True)
             if found(variant):
                 for rsid in rsids:
                     fetch_rsid_data(data_path, rsid)
@@ -109,7 +111,8 @@ def population_check(files, data_path, download):
     return os.path.basename(gene_dir)
 
 def translate_to_rsid(path_to_data, hgvs):
-    p = os.path.join(path_to_data, f"variant_ids_by_{hgvs}.json")
+    ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
+    p = os.path.join(path_to_data, f"variant_ids_by_{hgvs}_{ts}.json")
     try:
         server = "https://rest.ensembl.org"
         ext = f"/variant_recoder/human/{hgvs}"
@@ -130,7 +133,8 @@ def translate_to_rsid(path_to_data, hgvs):
 potentiel data quests for more information
 """
 def fetch_hgvs_data(path_to_data, hgvs):
-    p = os.path.join(path_to_data, f"variant_by_hgvs_{hgvs}.json")
+    ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
+    p = os.path.join(path_to_data, f"variant_by_hgvs_{hgvs}_{ts}.json")
     try:
         #print('loading_variation_data ', hgvs)
         server = "https://rest.ensembl.org"
@@ -159,7 +163,8 @@ def fetch_hgvs_data(path_to_data, hgvs):
         return None
 
 def fetch_rsid_data(path_to_data, rsid):
-    p = os.path.join(path_to_data, f"variant_by_rsID_{rsid}.json")
+    ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
+    p = os.path.join(path_to_data, f"variant_by_rsID_{rsid}_{ts}.json")
     try:
         server = "https://rest.ensembl.org"
         options = {
@@ -205,7 +210,8 @@ def fetch_pop_data(path_to_data, rsid):
         decoded = r.json()
         id_dir = os.path.join(path_to_data, rsid)
         os.makedirs(id_dir, exist_ok=True)
-        p = os.path.join(id_dir, f"populations_{rsid}.json")
+        ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
+        p = os.path.join(id_dir, f"populations_{rsid}_{ts}.json")
 
         with open(p, 'w') as file:
             json.dump(r.json(), file)

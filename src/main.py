@@ -77,9 +77,9 @@ VEP_send, gnomad_filter_receive = Pipe()
 VEP_config = ense.get_config(config_file)
 threads = new_task(ense.extend_data, (VEP_receive, VEP_send, VEP_config), threads, t)
 
-#Step 7 filter gnomAD data
-gnomAD_config_filter = var.get_config(config_file)
-threads = new_task(var.simplify_df, (gnomad_filter_receive, gnomAD_config_filter), threads, t)
+# #Step 7 filter gnomAD data
+# gnomAD_config_filter = var.get_config(config_file)
+# threads = new_task(var.simplify_df, (gnomad_filter_receive, gnomAD_config_filter), threads, t)
 
 """
 pipline: CLEAN DATA
@@ -88,7 +88,7 @@ pipline: CLEAN DATA
 for t in threads:
     t.join()
 
-dut.save_results(config_file)
+#dut.save_results(config_file)
 
 
 # ensemble, data enrichment variant effect predictor
