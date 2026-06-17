@@ -330,7 +330,6 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
     if not download and offline_data is not None:
         for id in offline_data["ensembl_gene_id"].unique():
             hgnc_send.send(id)
-            sleep(1)
         sub_df = offline_data[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
         already_checked["ensembl_gene_id"] = sub_df["ensembl_gene_id"].tolist()
         already_checked["symbol"] = sub_df["symbol"].tolist()
@@ -346,7 +345,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
                 break
         except Exception as e:
             print(str(e))
-            sleep(60)
+            sleep(180)
 
         """
         Looking up BIOENTITY_LABEL aka Symbol
@@ -371,7 +370,6 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
             if not ensembl_id.empty:
                 for id in ensembl_id["ensembl_gene_id"].unique():
                     hgnc_send.send(id)
-                    sleep(1)
             continue
 
         df = fetch_hugo("symbol", symbol, data_path)
@@ -387,7 +385,6 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
 
         for genes in df["ensembl_gene_id"].unique():
             hgnc_send.send(genes)
-            sleep(1)
 
         """
         Looking up BIOENTITY NAME aka Name
@@ -397,7 +394,6 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
             if not ensembl_id.empty:
                 for id in ensembl_id["ensembl_gene_id"].unique():
                     hgnc_send.send(id)
-                    sleep(1)
             continue
 
         if unambiguouse[(unambiguouse["Approved name"] == name)].empty:
@@ -408,7 +404,6 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
             else:
                 for id in ensembl_id["ensembl_gene_id"].unique():
                     hgnc_send.send(id)
-                    sleep(1)
 
         df = fetch_hugo("name", name, data_path)
         if df is None:
@@ -423,7 +418,6 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
 
         for genes in df["ensembl_gene_id"].unique():
             hgnc_send.send(genes)
-            sleep(1)
 
     amigo_disgnet_done = pd.concat(df_list + [already_visited]).drop_duplicates()
     return amigo_disgnet_done, advanced_search

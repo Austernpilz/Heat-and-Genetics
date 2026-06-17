@@ -133,7 +133,7 @@ def simplify_df(gnomAD_receive, gnomAD_config):
             clean_and_filter(path_to_gene, ancestry, 0.05)
 
         except Exception as _:
-            sleep(90)
+            sleep(180)
 
 
 def extend_and_validate_ancestry_names(ancestry_list):

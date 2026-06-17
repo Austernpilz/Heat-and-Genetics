@@ -362,7 +362,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                     print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensembl_id}")
                     continue
         except Exception as _:
-            sleep(6)
+            sleep(180)
 
         files = try_fetching_(query_variant_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_variants", [])
         if not files:

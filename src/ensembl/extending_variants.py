@@ -50,10 +50,9 @@ def extend_data (VEP_receive, VEP_send, VEP_config):
                 population_check(files, variant_path, download)
                 VEP_send.send(ensembl_id)
                 already_visited.add(ensembl_id)
-                sleep(1)
                 #download_VEP_data(variants)
         except Exception as _:
-            sleep(10) #to build up the previous processes
+            sleep(180) #to build up the previous processes
 
     VEP_send.send("finished")
     VEP_send.close()
@@ -100,7 +99,6 @@ def population_check(files, data_path, download):
             rsids = variant.get("rsids", [])
             variant_path = os.path.join(data_path, variant_id)
             os.makedirs(variant_path, exist_ok=True)
-            print(variant_id)
             if found(variant):
                 for rsid in rsids:
                     fetch_rsid_data(data_path, rsid)
