@@ -130,7 +130,7 @@ def get_single_df_from_path(table_path, columns):
                 df[col] = ""
         return df
     except Exception as e:
-        print("\n\n coulnd't get df from path \n\n", table_path)
+        print("\n\n coulnd't get df from path", table_path)
         print(str(e))
         return None
 

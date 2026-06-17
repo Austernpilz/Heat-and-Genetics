@@ -88,6 +88,15 @@ pipline: CLEAN DATA
 for t in threads:
     t.join()
 
+
+
+
+### TODO
+"""
+simplify code
+- get value(s) from table (why concat at all)
+- simplify requests, most have the same structure
+"""
 #dut.save_results(config_file)
 
 # ensemble, data enrichment variant effect predictor

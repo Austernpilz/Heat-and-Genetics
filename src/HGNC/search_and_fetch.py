@@ -394,7 +394,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
         for genes in df["ensembl_gene_id"].unique():
             hgnc_send.send(genes)
 
-    amigo_disgnet_done = pd.concat([pd.DataFrame.fromdict(already_checked), already_visited]).drop_duplicates()
+    amigo_disgnet_done = pd.concat([pd.DataFrame.from_dict(already_checked), already_visited]).drop_duplicates()
     return amigo_disgnet_done, advanced_search
 
 
