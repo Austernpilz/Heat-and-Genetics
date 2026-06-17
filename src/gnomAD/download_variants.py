@@ -349,6 +349,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 if len(files) > 1:
                     gnomAD_send.send(files)
                     already_checked.add(ensemble_id)
+                    print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensemble_id}")
                     continue
         except Exception as _:
             sleep(6)

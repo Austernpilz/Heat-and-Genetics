@@ -16,25 +16,25 @@ def get_config(config):
     return (data_path, download)
 
 
-def fetch_from_ensembl(id, path_to_ensembl):
+def fetch_from_ensembl(ensembl_id, path_to_ensembl):
     server = "https://rest.ensembl.org"
-    ext = f"/lookup/id/{id}?expand=1"
+    ext = f"/lookup/id/{ensembl_id}?expand=1"
     try:
         r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=180)
         if r.status_code != 200:
-            print("failed to load ",id)
+            print("failed to load ",ensembl_id)
         decoded = r.json()
-        id_dir = os.path.join(path_to_ensembl, id)
+        id_dir = os.path.join(path_to_ensembl, ensembl_id)
         os.makedirs(id_dir, exist_ok=True)
         p = os.path.join(id_dir, "ensembl_data.json")
         with open(p, 'w') as file:
             json.dump(decoded, file)
-        print(f"{datetime.now().strftime('%H%M')} ensembl got: {id}")
+        print(f"{datetime.now().strftime('%H%M')} ensembl got: {ensembl_id}")
         return p
 
     except Exception as e:
         print(f"\n\n fetch failed")
-        print(f"{path_to_ensembl}, {id}")
+        print(f"{path_to_ensembl}, {ensembl_id}")
         print(str(e))
 
     return None
@@ -44,6 +44,7 @@ def get_from_path(ensembl_id, path_to_ensembl):
     path_to_id = os.path.join(path_to_ensembl, ensembl_id, "ensembl_data.json")
     if os.path.isfile(path_to_id):
         try:
+            print(f"{datetime.now().strftime('%H%M')} ensembl got: {ensembl_id}")
             return pd.read_json(path_to_id)
         except Exception as e:
             print(str(e))
