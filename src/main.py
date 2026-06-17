@@ -38,7 +38,7 @@ def new_task(function, function_arguments, threads, task_max = 1):
 """
 load parameters
 """
-config_file = get_config("/Users/m/Desktop/neue_Ablage/bsc_praktikum/tud/Heat_and_Genetics/config/config.json")
+config_file = get_config()#"/Users/m/Desktop/neue_Ablage/bsc_praktikum/tud/Heat_and_Genetics/config/config.json")
 data_storage = config_file.get("absolute_file_paths").get("data")
 config_storage = config_file.get("absolute_file_paths").get("config")
 t = config_file.get("flags").get("threads")
