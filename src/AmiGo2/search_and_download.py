@@ -11,6 +11,8 @@ from src.helpers.folder_magic import search_for_file
 from src.helpers.table_magic import load_include_exclude_txt
 from src.AmiGo2.db import get_tables_from_path, build_full_url_from_go_id, get_col, get_single_df_from_path
 
+SEED = 42
+
 def get_config(config):
     storage = config.get("absolute_file_paths")
     data_path = os.path.join(storage.get("data"), "Amigo2")
@@ -92,6 +94,11 @@ def download_from_amigo2(url, columns, dir_path):
     if r.status_code == 200:
         text = r.text
         try:
+            global SEED
+            SEED ^= SEED << 13
+            SEED ^= SEED >> 7
+            SEED ^= SEED << 17
+            sleep(6 + SEED % 6)
             return pd.read_csv(StringIO(text), 
                             sep="\t", 
                             dtype=str, 
@@ -235,10 +242,6 @@ def download_data(amigo_send, amigo_config, go_ids=[]):
         for name, symbol in check_count(df, count_dict):
             amigo_send.send((name, symbol))
 
-        x ^= x << 13
-        x ^= x >> 7
-        x ^= x << 17
-        sleep(6 + x % 6)
 
     amigo_send.send(("finished", "finished"))
     amigo_send.close()
