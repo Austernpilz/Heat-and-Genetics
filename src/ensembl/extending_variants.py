@@ -34,6 +34,7 @@ def extend_data (VEP_receive, VEP_send, VEP_config):
             elif files in already_visited or not files:
                 continue
             else:
+                print(files)
                 already_visited.add(files)
                 ensembl_id = population_check(files, data_path, download)
                 VEP_send.send(ensembl_id)
@@ -89,6 +90,7 @@ def population_check(files, data_path, download):
             rsids = variant.get("rsids", [])
             variant_path = os.path.join(data_path, variant_id)
             os.makedirs(variant_path, exist_ok=True)
+            print(variant_id)
             if found(variant):
                 for rsid in rsids:
                     fetch_rsid_data(data_path, rsid)
@@ -124,7 +126,7 @@ def translate_to_rsid(path_to_data, hgvs):
             json.dump(r.json(), file)
 
         print(f"{datetime.now().strftime('%H%M')} ensemble got {hgvs}")
-        sleep(0.2)
+        sleep(0.1)
     except Exception as e:
         print("\n\n translation failed")
         print(str(e))
@@ -157,7 +159,7 @@ def fetch_hgvs_data(path_to_data, hgvs):
             json.dump(r.json(), file)
 
         print(f"{datetime.now().strftime('%H%M')} ensemble got {hgvs}")
-        sleep(0.2)
+        sleep(0.1)
 
     except Exception as e:
         print("\n\n hgvs fetch failed")
@@ -188,7 +190,7 @@ def fetch_rsid_data(path_to_data, rsid):
             json.dump(r.json(), file)
     # with open (pth, )json.dump(decoded, pth)
         print(f"{datetime.now().strftime('%H%M')} ensemble got {rsid}")
-        sleep(0.2)
+        sleep(0.1)
 
     except Exception as e:
         print(str(e))
@@ -219,7 +221,7 @@ def fetch_pop_data(path_to_data, rsid):
             json.dump(r.json(), file)
 
         print(f"{datetime.now().strftime('%H%M')} ensemble got {rsid}")
-        sleep(0.2)
+        sleep(0.1)
 
 
     except Exception as e:
