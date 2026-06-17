@@ -90,7 +90,6 @@ for t in threads:
 
 #dut.save_results(config_file)
 
-
 # ensemble, data enrichment variant effect predictor
 # ensemble, what kind of variant?
 # missens, nonsens, .....
