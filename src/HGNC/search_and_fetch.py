@@ -324,6 +324,8 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
         }
 
     if not download and offline_data is not None:
+        for id in offline_data["ensembl_gene_id"].unique():
+            hgnc_send.send(id)
         sub_df = offline_data[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
         already_checked["ensembl_gene_id"] = sub_df["ensembl_gene_id"].tolist()
         already_checked["symbol"] = sub_df["symbol"].tolist()
@@ -433,6 +435,7 @@ def download_hgnc_data(hgnc_receive, hgnc_send, disgnet_df, hgnc_config):
     hgnc_send.send("finished")
     hgnc_send.close()
     print("hgnc thread done")
+    print(advanced_search)
 
 
 # def clean_up(list_of_df, path_to_HGNC, save=True):
