@@ -267,7 +267,7 @@ def fetch_from_ensemble_id_as_json(query, ensemble_id, data_path, name):
 
 def try_fetching_(query, id, data_path, name, files=[]):
     counter_for_fail = 0
-    while counter_for_fail < 3:
+    while counter_for_fail < 4:
         file = fetch_from_ensemble_id_as_json(query, id, data_path, name)
         if file is None:
             counter_for_fail += 1 #download failed
@@ -277,7 +277,7 @@ def try_fetching_(query, id, data_path, name, files=[]):
         else:
             counter_for_fail += 2 #data was empty
         sleep(6)
-
+    return files
 
 def found(variant_path, ancestry, cutoff):
     variant_list = []
@@ -343,16 +343,15 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
         except Exception as _:
             sleep(6)
 
-        files = []
-        try_fetching_(query_variant_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_variants", files)
+        files = try_fetching_(query_variant_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_variants", [])
         if not files:
             #no variants, no population data, no variants to look at
             continue
 
-        try_fetching_(query_gen_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_gene", files)
-        try_fetching_(query_clinvar_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_clinvar", files)
-        try_fetching_(query_exons_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_exons", files)
-        try_fetching_(query_transcripts_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_transcripts", files)
+        files = try_fetching_(query_gen_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_gene", files)
+        files = try_fetching_(query_clinvar_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_clinvar", files)
+        files = try_fetching_(query_exons_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_exons", files)
+        files = try_fetching_(query_transcripts_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_transcripts", files)
         gnomAD_send.send(files)
         print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensemble_id}")
 
