@@ -76,7 +76,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
 
         if download:
             _ = fetch_from_ensembl(ensembl_id, data_path)
-            sleep(0.1)
+            sleep(0.2)
         else:
             _ = get_from_path(ensembl_id, data_path)
 

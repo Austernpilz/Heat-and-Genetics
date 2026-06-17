@@ -246,7 +246,7 @@ def fetch_from_ensemble_id_as_json(query, ensemble_id, data_path, name):
     try:
         response = r.post("https://gnomad.broadinstitute.org/api",
                         json={"query": query},
-                        timeout=60
+                        timeout=120
                         )
         data = response.json().get("data", {}).get("gene", {})
 

@@ -88,7 +88,7 @@ def get_tables(path_to_Amigo_db):
 def download_from_amigo2(url, columns, dir_path):
     #name = url[-40:].split("&fq=")[-1]  #looks a bit ugly, but should print the GO_id and then some
     #print(f"downloading GO ID {name}")
-    r = requests.get(url, timeout=60)
+    r = requests.get(url, timeout=120)
     if r.status_code == 200:
         text = r.text
         try:

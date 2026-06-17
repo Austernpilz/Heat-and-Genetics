@@ -20,6 +20,7 @@ def open_json(path):
         return []
 
 def extend_data (VEP_receive, VEP_send, VEP_config):
+    print("extending variants")
     files = []
     already_visited = set()
     data_path, download = VEP_config
@@ -113,13 +114,13 @@ def translate_to_rsid(path_to_data, hgvs):
         server = "https://rest.ensembl.org"
         ext = f"/variant_recoder/human/{hgvs}"
  
-        r = requests.get(server+ext, headers={ "Content-Type" : "application/json"})
+        r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=120)
         decoded = r.json()
         with open(p, 'w') as file:
             json.dump(r.json(), file)
 
         print(f"{datetime.now().strftime('%H%M')} ensemble got {hgvs}")
-        sleep(0.1)
+        sleep(0.2)
     except Exception as e:
         print(str(e))
 
@@ -143,14 +144,14 @@ def fetch_hgvs_data(path_to_data, hgvs):
             "SpliceAI" : 1, 
             }
         ext = f"/vep/homo_sapiens/hgvs/{hgvs}?{options}"
-        r = requests.get(server+ext, headers={ "Content-Type" : "application/json"})
+        r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=120)
 
         decoded = r.json()
         with open(p, 'w') as file:
             json.dump(r.json(), file)
 
         print(f"{datetime.now().strftime('%H%M')} ensemble got {hgvs}")
-        sleep(0.1)
+        sleep(0.2)
         return pd.json_normalize(decoded)
 
     except Exception as e:
@@ -171,7 +172,7 @@ def fetch_rsid_data(path_to_data, rsid):
             "SpliceAI" : 1, 
             }
         ext = f"/vep/homo_sapiens/id/{rsid}"
-        r = requests.get(server+ext, params=options,  headers={ "Content-Type" : "application/json"})
+        r = requests.get(server+ext, params=options,  headers={ "Content-Type" : "application/json"}, timeout=120)
 
         # if not r.ok:
         #     print(r.status_code, r.content)
@@ -181,7 +182,7 @@ def fetch_rsid_data(path_to_data, rsid):
             json.dump(r.json(), file)
     # with open (pth, )json.dump(decoded, pth)
         print(f"{datetime.now().strftime('%H%M')} ensemble got {rsid}")
-        sleep(0.1)
+        sleep(0.2)
         return pd.json_normalize(decoded)
     except Exception as e:
         print(str(e))
@@ -196,7 +197,7 @@ def fetch_pop_data(path_to_data, rsid):
             "pops" : 1, 
             }
         ext = f"/variation/homo_sapiens/{rsid}?{options}"
-        r = requests.get(server+ext, headers={ "Content-Type" : "application/json"})
+        r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=120)
 
         # if not r.ok:
         #     print(r.status_code, r.content)
@@ -210,7 +211,7 @@ def fetch_pop_data(path_to_data, rsid):
             json.dump(r.json(), file)
 
         print(f"{datetime.now().strftime('%H%M')} ensemble got {rsid}")
-        sleep(0.1)
+        sleep(0.2)
         return pd.json_normalize(decoded)
 
     except Exception as e:

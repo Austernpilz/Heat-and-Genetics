@@ -117,7 +117,7 @@ def get_config(config):
 def search_hugo(search_by, to_be_searched):
     base_url = "https://rest.genenames.org/search/"
     try:
-        r = requests.get(base_url+search_by+'/'+to_be_searched, headers={"Accept":"application/json"}, timeout=60) 
+        r = requests.get(base_url+search_by+'/'+to_be_searched, headers={"Accept":"application/json"}, timeout=120) 
         data = r.json().get("response", {}).get("docs", [])
         return pd.json_normalize(data)
 
