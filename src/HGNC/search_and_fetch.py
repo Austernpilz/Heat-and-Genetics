@@ -223,8 +223,10 @@ def get_tables (path_to_HGNC):
             offline_data.append(df)
         except Exception as _:
             continue
-
-    return pd.concat(offline_data).drop_duplicates()
+    if offline_data:
+        return pd.concat(offline_data).drop_duplicates()
+    else:
+        return None
 
 
 def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
@@ -236,7 +238,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
         }
     advanced_search = []
 
-    if not download:
+    if not download and offline_data is not None:
         #through this i don't need to recheck the download flag, 
         #because I will already look certain things uo
         already_checked["ensembl_gene_id"] = offline_data["ensembl_gene_id"].tolist()
