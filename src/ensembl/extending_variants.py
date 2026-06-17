@@ -133,7 +133,7 @@ def translate_to_rsid(path_to_data, hgvs):
         with open(p, 'w') as file:
             json.dump(r.json(), file)
 
-        print(f"{datetime.now().strftime('%H%M')} ensemble got {hgvs}")
+        print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs}")
         sleep(0.1)
     except Exception as e:
         print("\n\n translation failed")
@@ -166,7 +166,7 @@ def fetch_hgvs_data(path_to_data, hgvs):
         with open(p, 'w') as file:
             json.dump(r.json(), file)
 
-        print(f"{datetime.now().strftime('%H%M')} ensemble got {hgvs}")
+        print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs}")
         sleep(0.1)
 
     except Exception as e:
@@ -197,7 +197,7 @@ def fetch_rsid_data(path_to_data, rsid):
         with open(p, 'w') as file:
             json.dump(r.json(), file)
     # with open (pth, )json.dump(decoded, pth)
-        print(f"{datetime.now().strftime('%H%M')} ensemble got {rsid}")
+        print(f"{datetime.now().strftime('%H%M')} VEP got {rsid}")
         sleep(0.1)
 
     except Exception as e:
@@ -228,7 +228,7 @@ def fetch_pop_data(path_to_data, rsid):
         with open(p, 'w') as file:
             json.dump(r.json(), file)
 
-        print(f"{datetime.now().strftime('%H%M')} ensemble got {rsid}")
+        print(f"{datetime.now().strftime('%H%M')} VEP got {rsid}")
         sleep(0.1)
 
 
