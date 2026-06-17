@@ -311,7 +311,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
         for genes in df["ensembl_gene_id"].unique():
             hgnc_send.send(genes)
 
-    return already_checked, advanced_search
+    return pd.DataFrame.from_dict(already_checked), advanced_search
 
 def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguouse, advanced_search, download):
     name, symbol = "", ""
