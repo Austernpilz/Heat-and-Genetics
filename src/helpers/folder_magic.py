@@ -77,19 +77,26 @@ def get_config(pathpath = False):
     this_folder = os.getcwd()
     config = os.path.join(this_folder, "config")
     data = os.path.join(this_folder, "data")
+    results = os.path.join(this_folder, "results")
+
     return {
         "flags": {
             "download_data": False,
             "force_data_update": False,
             "threads": 10
         },
+        "absolute_file_paths": {
+            "config": config,
+            "data": data,
+            "results": results,
+        },
         "relative_file_paths": {
-            "AmiGo2_overview": search_for_file(config, "AmiGo2_overview", "txt"),
-            "Amigo2_inclue_exclude": search_for_file(config, "AmiGo2_include_exclude", "txt"),
-            "disgnet_data": search_for_dir(data, "disgnet"),
-            "disgnet_include_exclude": search_for_file(config, "disgnet_include_exclude", "txt"),
-            "hgnc_symbol_check": search_for_file(data, "hgnc-symbol-check", "csv"),
-            "data_storage": data
+            "AmiGo2_overview": "AmiGo2_overview.txt",
+            "Amigo2_inclue_exclude": "AmiGo2_include_exclude.txt",
+            "disgnet_data": "genes",
+            "disgnet_include_exclude": "disgnet_include_exclude.txt",
+            "hgnc_data": "genes",
+            "hgnc_symbol_check": ["hgnc-symbol-check/hgnc-symbol-check_amigo.csv", "hgnc-symbol-check/hgnc-symbol-check_disgnet.csv"]
         },
         "populations": {
             "afr": "African/African American",
