@@ -151,7 +151,7 @@ def fetch_hugo(fetch_by, to_be_fetched, path_to_download):
         return df
 
     except Exception as e:
-        print("\n\n fetch_failed \n\n")
+        print("\n\n fetch failed \n\n")
         print(f"{fetch_by}, {to_be_fetched}, {path_to_download}")
         print(str(e))
 

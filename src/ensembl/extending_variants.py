@@ -125,6 +125,7 @@ def translate_to_rsid(path_to_data, hgvs):
         print(f"{datetime.now().strftime('%H%M')} ensemble got {hgvs}")
         sleep(0.2)
     except Exception as e:
+        print("\n\n translation failed")
         print(str(e))
 
     return []
@@ -156,11 +157,10 @@ def fetch_hgvs_data(path_to_data, hgvs):
 
         print(f"{datetime.now().strftime('%H%M')} ensemble got {hgvs}")
         sleep(0.2)
-        return pd.json_normalize(decoded)
 
     except Exception as e:
+        print("\n\n hgvs fetch failed")
         print(str(e))
-        return None
 
 def fetch_rsid_data(path_to_data, rsid):
     ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
@@ -188,10 +188,11 @@ def fetch_rsid_data(path_to_data, rsid):
     # with open (pth, )json.dump(decoded, pth)
         print(f"{datetime.now().strftime('%H%M')} ensemble got {rsid}")
         sleep(0.2)
-        return pd.json_normalize(decoded)
+
     except Exception as e:
         print(str(e))
-        return None
+        print("\n\n rsid fetch failed")
+
 
 
 def fetch_pop_data(path_to_data, rsid):
@@ -218,11 +219,11 @@ def fetch_pop_data(path_to_data, rsid):
 
         print(f"{datetime.now().strftime('%H%M')} ensemble got {rsid}")
         sleep(0.2)
-        return pd.json_normalize(decoded)
+
 
     except Exception as e:
+        print("\n\n pop fetch failed")
         print(str(e))
-        return None
 
 
 def found(variant, ancestry=["afr", "nfe"], cutoff=0.05):

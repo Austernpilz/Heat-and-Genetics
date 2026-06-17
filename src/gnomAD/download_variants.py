@@ -258,6 +258,7 @@ def fetch_from_ensemble_id_as_json(query, ensemble_id, data_path, name):
             return False
 
     except Exception as e:
+        print(f"\n\n fetch {name} failed")
         print(str(e))
 
     return None

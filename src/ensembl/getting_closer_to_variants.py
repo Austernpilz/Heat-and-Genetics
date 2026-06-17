@@ -33,7 +33,7 @@ def fetch_from_ensembl(id, path_to_ensembl):
         return p
 
     except Exception as e:
-        print(f"\n\n fetch failed \n\n")
+        print(f"\n\n fetch failed")
         print(f"{path_to_ensembl}, {id}")
         print(str(e))
 
