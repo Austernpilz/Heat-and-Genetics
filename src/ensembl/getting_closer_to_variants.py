@@ -60,14 +60,23 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
     already_visited = set()
     data_path, download = ensembl_config
     ensembl_id = ""
+    counter = 0
     print("starting ensembl")
     while (True):
         try:
-            ensembl_id = ensembl_receive.recv()
+            if ensembl_receive.poll(timeout=120):
+                ensembl_id = ensembl_receive.recv()
+            else:
+                counter += 1
+                ensembl_id = "NO ID"
+
             if ensembl_id == "finished":
                 ensembl_receive.close()
                 break
-            elif ensembl_id in already_visited or not isinstance(ensembl_id, str) or ensembl_id is np.nan:
+
+            elif ensembl_id in already_visited or not isinstance(ensembl_id, str) or ensembl_id is np.nan or ensembl_id == "NO ID":
+                if counter > 10:
+                    break
                 continue
             else:
                 already_visited.add(ensembl_id)

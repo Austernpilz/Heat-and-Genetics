@@ -38,7 +38,7 @@ def get_overview(path_to_amigo_overview):
         return pd.concat(solution)
 
     try: #in case i ever fix this :D
-        df = pd.DataFrame.from_csv(path_to_amigo_overview)
+        df = pd.read_csv(path_to_amigo_overview)
         return df
 
     except Exception as _:
@@ -122,21 +122,21 @@ def get_term_name(df, dir_path):
     if term_name != "empty":
         return term_name, dir_path
 
-    alternativ = df["has_participant_closure_label"].unique().tolist()
-    if len(alternativ) == 1 and alternativ[0] != "":
-        term_name = alternativ[0].replace(' ', '_')
+    alternativ_term_name = df["has_participant_closure_label"].unique().tolist()
+    if len(alternativ_term_name) == 1 and alternativ_term_name[0] != "":
+        term_name = alternativ_term_name[0].replace(' ', '_')
         return term_name, os.path.join(dir_name, term_name)
 
-    elif len(alternatives) == 2: #here I hope one is empty
-        term_name = (alternativ[0] + alternativ[1]).replace(' ', '_')
+    elif len(alternativ_term_name) == 2: #here I hope one is empty
+        term_name = (alternativ_term_name[0] + alternativ_term_name[1]).replace(' ', '_')
         return term_name, os.path.join(dir_name, term_name)
 
     else:
-        alternatives = df["annotation_extension_class_closure_label"].tolist()
-        alternatives.sort()
+        complicated_term_name = df["annotation_extension_class_closure_label"].tolist()
+        complicated_term_name.sort()
         count_dict = {}
 
-        for s in alternatives:
+        for s in complicated_term_name:
             labels = s.split(',')
             for l in labels:
                 l = l.strip()
@@ -145,16 +145,16 @@ def get_term_name(df, dir_path):
                 else:
                     count_dict[l] = 1
 
-        possible_terms = alternativ
+        possible_terms = alternativ_term_name
         for k, v in sorted(count_dict.items(), key=lambda item: item[1]):
-            if v == len(alternatives):
+            if v == len(complicated_term_name):
                 possible_terms.append(k)
 
         for terf in possible_terms:
-            for s in alternatives:
+            for s in complicated_term_name:
                 labels = s.split(',')
                 if terf == labels[-1] or terf == labels[-2]:
-                    term_name = terf.replac(' ', '_')
+                    term_name = terf.replace(' ', '_')
                     return term_name, os.path.join(dir_name, term_name)
 
     return "NO TERM", dir_path
@@ -184,7 +184,7 @@ def get_single_table(dir_path, url, columns, download, in_ex_group):
     if term_name == "NO TERM":
         i=0
         while os.path.isfile(file_path):
-            file_path = os.path.join(dir_path, "data{i}.tsv")
+            file_path = os.path.join(dir_path, f"data{i}.tsv")
             i+=1
     try:
         df.to_csv(file_path, index=False, sep="\t")
@@ -211,7 +211,9 @@ def check_count(df, count_dict):
 
     return name_symbol
 
-def download_data(amigo_send, amigo_config, go_ids=[]):
+def download_data(amigo_send, amigo_config, go_ids=None):
+    if go_ids is None:
+        go_ids = []
     data_path, overview_file, include_exclude_file, download = amigo_config
     overview_df = get_overview(overview_file)
     offline_data = get_tables_from_path(data_path)

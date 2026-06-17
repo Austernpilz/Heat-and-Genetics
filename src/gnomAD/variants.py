@@ -112,14 +112,22 @@ def simplify_df(gnomAD_receive, gnomAD_config):
     files = []
     data_path, populations, download = gnomAD_config
     ancestry = list(populations.keys()) + list(populations.values())
-
+    ensembl_id = ""
+    counter = 0
     while (True):
         try:
-            ensembl_id = gnomAD_receive.recv()
+            if gnomAD_receive.poll(timeout=120):
+                ensembl_id = gnomAD_receive.recv()
+            else:
+                counter += 1
+                ensembl_id = "NO ID"
+
             if ensembl_id == "finished": #and variants == "finished":
                 gnomAD_receive.close()
                 break
-            if not ensembl_id:
+            if not ensembl_id or ensembl_id == "NO ID":
+                if counter > 10:
+                    break
                 continue
             path_to_gene = os.path.join(data_path, ensembl_id)
             clean_and_filter(path_to_gene, ancestry, 0.05)

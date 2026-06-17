@@ -171,9 +171,9 @@ def load_hgnc_symbol_check(paths_to_hgnc_symbol):
         return None
 
     df = pd.concat(df_list).drop_duplicates()
-    df["Approved symbol"].fillna("NO SYMBOL")
-    df["Approved name"].fillna("NO NAME")
-    df["HGNC ID"].fillna("NO ID")
+    df["Approved symbol"] = df["Approved symbol"].fillna("NO SYMBOL")
+    df["Approved name"] = df["Approved name"].fillna("NO NAME")
+    df["HGNC ID"] = df["HGNC ID"].fillna("NO ID")
     vc = df["Input"].value_counts()
 
     #there is only one approved symbol found, and it has at least a symbol, name or id
@@ -339,11 +339,13 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
     symbol_dict = get_rename_dict(unambiguouse)
     while (True):
         try:
-            name, symbol = hgnc_receive.recv()
+            if hgnc_receive.poll(timeout=120):
+                name, symbol = hgnc_receive.recv()
             if name == "finished" and symbol == "finished":
                 hgnc_receive.close()
                 break
-        except Exception as _:
+        except Exception as e:
+            print(str(e))
             sleep(60)
 
         """

@@ -39,7 +39,7 @@ def build_tables(disgnet_config):
 
     df.rename(columns={"disease_name": "term"}, inplace=True)
     df["group_term"] = df["term"].map(lambda x : in_ex_group["group"].get(x, "NO GROUP"))
-    df["geneEnsemblIDs"].fillna("NO ID")
+    df["geneEnsemblIDs"] = df["geneEnsemblIDs"].fillna("NO ID")
     return df
 
 

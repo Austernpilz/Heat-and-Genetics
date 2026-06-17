@@ -9,11 +9,11 @@ import numpy as np
 from src.helpers.folder_magic import search_for_file
 
 
-def query_gen_ensemble(ensemble_id):
+def query_gen_ensemble(ensembl_id):
     return (f''' 
 query VariantsInGene {{
-    # this is what we are looking for, in ref_g: GRCh38 look for ensemble_id
-    gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
+    # this is what we are looking for, in ref_g: GRCh38 look for ensembl_id
+    gene(gene_id: "{ensembl_id}", reference_genome: GRCh38) {{
     # these are all the datafields we want to get back
     # some will give back lists
         reference_genome
@@ -39,9 +39,9 @@ query VariantsInGene {{
     }}
 }} ''')
 
-def query_variant_ensemble(ensemble_id):
+def query_variant_ensemble(ensembl_id):
     return (f''' query VariantsInGene {{
-        gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
+        gene(gene_id: "{ensembl_id}", reference_genome: GRCh38) {{
             variants(dataset: gnomad_r4) {{
                 variant_id
                 reference_genome
@@ -104,9 +104,9 @@ def query_variant_ensemble(ensemble_id):
         }}
     }} ''')
 
-def query_clinvar_ensemble(ensemble_id):
+def query_clinvar_ensemble(ensembl_id):
     return (f''' query VariantsInGene {{
-        gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
+        gene(gene_id: "{ensembl_id}", reference_genome: GRCh38) {{
             clinvar_variants {{
                 variant_id
                 reference_genome
@@ -126,9 +126,9 @@ def query_clinvar_ensemble(ensemble_id):
         }}
     }} ''')
 
-def query_exons_ensemble(ensemble_id):
+def query_exons_ensemble(ensembl_id):
     return (f''' query VariantsInGene {{
-        gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
+        gene(gene_id: "{ensembl_id}", reference_genome: GRCh38) {{
             exons {{
                 feature_type
                 start
@@ -137,9 +137,9 @@ def query_exons_ensemble(ensemble_id):
         }}
     }} ''')
 
-def query_transcripts_ensemble(ensemble_id):
+def query_transcripts_ensemble(ensembl_id):
     return (f''' query VariantsInGene {{
-        gene(gene_id: "{ensemble_id}", reference_genome: GRCh38) {{
+        gene(gene_id: "{ensembl_id}", reference_genome: GRCh38) {{
             transcripts {{
                 transcript_id
                 start
@@ -233,7 +233,7 @@ def get_unique_name(path_to_data, name="data"):
     ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
     return os.path.join(path_to_data, f"{name}_{ts}.json")
 
-def fetch_from_ensemble_id_as_json(query, ensemble_id, data_path, name):
+def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name):
     """
     very long query string; 
     look up https://gnomad.broadinstitute.org/api to test out querys Strings
@@ -241,7 +241,7 @@ def fetch_from_ensemble_id_as_json(query, ensemble_id, data_path, name):
     # <- mark comments
     # too long, every now and then there are mistakes, so I split it in 5 querys
     """
-    gnomAD_data = os.path.join(data_path, ensemble_id)
+    gnomAD_data = os.path.join(data_path, ensembl_id)
     os.makedirs(gnomAD_data, exist_ok=True)
     file_name = get_unique_name(gnomAD_data, name)
     try:
@@ -266,10 +266,12 @@ def fetch_from_ensemble_id_as_json(query, ensemble_id, data_path, name):
 
 
 
-def try_fetching_(query, id, data_path, name, files=[]):
+def try_fetching_(query, id, data_path, name, files=None):
+    if files is None:
+        files = []
     counter_for_fail = 0
     while counter_for_fail < 4:
-        file = fetch_from_ensemble_id_as_json(query, id, data_path, name)
+        file = fetch_from_ensembl_id_as_json(query, id, data_path, name)
         if file is None:
             counter_for_fail += 1 #download failed
         elif file:
@@ -323,49 +325,57 @@ def found(variant_path, ancestry, cutoff):
 
 
 def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
-    ensemble_id = ""
+    ensembl_id = ""
     data_path, populations, download = gnomAD_config
     ancestry = list(populations.keys()) + list(populations.values())
     already_checked = set()
     print("starting gnomAD")
+    counter = 0
     while (True):
         try:
-            ensemble_id = gnomAD_receive.recv()
-            if ensemble_id == "finished":
+            if gnomAD_receive.poll(timeout=120):
+                ensembl_id = gnomAD_receive.recv()
+            else:
+                counter += 1
+                ensembl_id = "NO ID"
+
+            if ensembl_id == "finished":
                 gnomAD_receive.close()
                 break
             if (
-                ensemble_id == "NO ID" or 
-                ensemble_id == np.nan or 
-                ensemble_id == "nan" or 
-                not isinstance(ensemble_id, str) or
-                not "ENS" in ensemble_id or
-                ensemble_id in already_checked
+                ensembl_id == "NO ID" or 
+                ensembl_id == np.nan or 
+                ensembl_id == "nan" or 
+                not isinstance(ensembl_id, str) or
+                not "ENS" in ensembl_id or
+                ensembl_id in already_checked
                 ):
+                if counter > 10:
+                    break
                 continue
             if not download:
-                path_gen = os.path.join(data_path, ensemble_id)
+                path_gen = os.path.join(data_path, ensembl_id)
                 files = search_for_file(path_gen, "", "json")
                 if len(files) > 1:
                     gnomAD_send.send(files)
-                    already_checked.add(ensemble_id)
-                    print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensemble_id}")
+                    already_checked.add(ensembl_id)
+                    print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensembl_id}")
                     continue
         except Exception as _:
             sleep(6)
 
-        files = try_fetching_(query_variant_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_variants", [])
+        files = try_fetching_(query_variant_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_variants", [])
         if not files:
             #no variants, no population data, no variants to look at
             continue
 
-        files = try_fetching_(query_gen_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_gene", files)
-        files = try_fetching_(query_clinvar_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_clinvar", files)
-        files = try_fetching_(query_exons_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_exons", files)
-        files = try_fetching_(query_transcripts_ensemble(ensemble_id), ensemble_id, data_path, "gnomAD_transcripts", files)
+        files = try_fetching_(query_gen_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_gene", files)
+        files = try_fetching_(query_clinvar_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_clinvar", files)
+        files = try_fetching_(query_exons_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_exons", files)
+        files = try_fetching_(query_transcripts_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_transcripts", files)
         gnomAD_send.send(files)
-        already_checked.add(ensemble_id)
-        print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensemble_id}")
+        already_checked.add(ensembl_id)
+        print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensembl_id}")
 
     gnomAD_send.send("finished")
     gnomAD_send.close()

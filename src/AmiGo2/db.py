@@ -162,7 +162,7 @@ def make_columns_to_string(columns):
 #this is an iterator function, that gives the urls
 def build_full_url_from_go_id(go_ids):
     base_url = "https://golr-aux.geneontology.io/solr/select?defType=edismax&"
-    global REQUEST_ARG
+
     columns = get_col()
     # filter parameters for db request
     filter_fq = { #these : are pseudo headers and our filters
@@ -172,7 +172,9 @@ def build_full_url_from_go_id(go_ids):
     } # because of these pseudo headers, normal request module breaks the url
 
     col = make_columns_to_string(columns)
-    REQUEST_ARG["fl"] = col
+    global REQUEST_ARG
+    request_args = REQUEST_ARG.copy()
+    request_args["fl"] = col
 
     very_long_string = ""
     # and_ = "&" # eq_ = "="

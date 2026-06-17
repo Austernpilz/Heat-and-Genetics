@@ -24,20 +24,32 @@ def extend_data (VEP_receive, VEP_send, VEP_config):
     files = []
     already_visited = set()
     data_path, download = VEP_config
-    data_path = os.path.join(data_path, "variants")
+    counter = 0
     while (True):
         try:
-            files = VEP_receive.recv()
+            if VEP_receive.poll(timeout=120):
+                files = VEP_receive.recv()
+            else:
+                counter += 1
+                files = "NO ID"
+
             if files == "finished":
                 VEP_receive.close()
                 break
-            elif files in already_visited or not files:
+            elif not files or files == "NO ID":
+                if counter > 10:
+                    break
+                continue
+            gene_dir = os.path.commonpath(files)
+            ensembl_id = os.path.basename(gene_dir)
+            if ensembl_id in already_visited:
                 continue
             else:
-                print(files)
-                already_visited.add(files)
-                ensembl_id = population_check(files, data_path, download)
+                variant_path = os.path.join(data_path, ensembl_id, "variants")
+                os.makedirs(variant_path, exist_ok=True)
+                population_check(files, variant_path, download)
                 VEP_send.send(ensembl_id)
+                already_visited.add(ensembl_id)
                 sleep(1)
                 #download_VEP_data(variants)
         except Exception as _:
@@ -77,14 +89,11 @@ def potential_hgvs_notations(variant):
 
 def population_check(files, data_path, download):
     population_check = {}
-    gene_dir = os.path.commonpath(files)
-    data_path = os.path.join(data_path, os.path.basename(gene_dir))
-    os.makedirs(data_path, exist_ok=True)
-    for path in files:
-        variant_list = open_json(path)
-        if not variant_list:
+    for pathpath in files:
+        variant_json = open_json(pathpath)
+        if not variant_json:
             continue
-        for variant in variant_list:
+        for variant in variant_json:
             if not isinstance(variant, dict):
                 continue
             variant_id = variant.get("variant_id", "NO ID")
@@ -112,7 +121,7 @@ def population_check(files, data_path, download):
                             # for rsid in rsids:
                             #     fetch_pop_data(data_path, rsid)
                             already_run.append(hgvs)
-    return os.path.basename(gene_dir)
+
 
 def translate_to_rsid(path_to_data, hgvs):
     ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
