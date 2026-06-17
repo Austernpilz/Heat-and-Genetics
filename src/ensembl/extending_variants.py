@@ -71,7 +71,7 @@ def potential_hgvs_notations(variant):
         notations.append(str(transcript_id) + hgvs)
         notations.append(str(gene_id) + hgvs)
 
-    return potential_hgvs_notations
+    return notations
 
 
 def population_check(files, data_path, download):
