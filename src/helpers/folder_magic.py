@@ -65,31 +65,34 @@ def get_config(pathpath = False):
     #                 description='pipeline for downloading and plotting gene data for heatrelated healthriscs')
     # parser.add_argument('--folder_path', '-p', default=None)
     # inputs = parser.parse_args()
-    config_file = pathpath if pathpath else os.path.join(os.getcwd(), "config/config.json")
-    config = {}
-    try:
-        with open(config_file, 'r') as f:
-            config = json.load(f)
-        return config
-    except Exception as e:
-        print(str(e))
-        #no config, try to build it myself?!?
-        return {
-            "flags": {
-                "download_data": False,
-                "force_data_update": False,
-                "threads": 1
-            },
-            "relative_file_paths": {
-                "AmiGo2_overview": search_for_file(os.getcwd(), "AmiGo2_overview", "txt"),
-                "Amigo2_inclue_exclude": search_for_file(os.getcwd(), "AmiGo2_include_exclude", "txt"),
-                "disgnet_data": search_for_dir(os.getcwd(), "disgnet"),
-                "disgnet_include_exclude": search_for_file(os.getcwd(), "disgnet_include_exclude", "txt"),
-                "hgnc_symbol_check": search_for_file(os.getcwd(), "hgnc-symbol-check", "csv"),
-                "data_storage": search_for_dir(os.getcwd(), "data")
-            },
-            "populations": {
-                "afr": "African/African American",
-                "nfe": "European (non-Finnish)"
-            }
+    if pathpath:
+        config = {}
+        try:
+            with open(pathpath, 'r') as f:
+                config = json.load(f)
+            return config
+        except Exception as e:
+            print(str(e))
+            #no config, try to build it myself?!?
+    this_folder = os.getcwd()
+    config = os.path.join(this_folder, "config")
+    data = os.path.join(this_folder, "data")
+    return {
+        "flags": {
+            "download_data": False,
+            "force_data_update": False,
+            "threads": 10
+        },
+        "relative_file_paths": {
+            "AmiGo2_overview": search_for_file(config, "AmiGo2_overview", "txt"),
+            "Amigo2_inclue_exclude": search_for_file(config, "AmiGo2_include_exclude", "txt"),
+            "disgnet_data": search_for_dir(data, "disgnet"),
+            "disgnet_include_exclude": search_for_file(config, "disgnet_include_exclude", "txt"),
+            "hgnc_symbol_check": search_for_file(data, "hgnc-symbol-check", "csv"),
+            "data_storage": data
+        },
+        "populations": {
+            "afr": "African/African American",
+            "nfe": "European (non-Finnish)"
         }
+    }
