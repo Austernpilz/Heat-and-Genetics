@@ -432,6 +432,7 @@ def download_hgnc_data(hgnc_receive, hgnc_send, disgnet_df, hgnc_config):
 
     hgnc_send.send("finished")
     hgnc_send.close()
+    print("hgnc thread done")
 
 
 # def clean_up(list_of_df, path_to_HGNC, save=True):
