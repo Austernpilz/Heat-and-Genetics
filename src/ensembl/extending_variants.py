@@ -40,7 +40,7 @@ def extend_data (VEP_receive, VEP_send, VEP_config):
                 VEP_send.send(ensembl_id)
                 #download_VEP_data(variants)
         except Exception as _:
-            sleep(90) #to build up the previous processes
+            sleep(10) #to build up the previous processes
 
     VEP_send.send("finished")
     VEP_send.close()

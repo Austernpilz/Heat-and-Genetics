@@ -49,9 +49,9 @@ def get_from_path(ensembl_id, path_to_ensembl):
         except Exception as e:
             print(str(e))
 
-    df = fetch_from_ensembl(ensembl_id, path_to_ensembl)
-    if df is not None:
-        return pd.read_json(path_to_id)
+    path_to_data = fetch_from_ensembl(ensembl_id, path_to_ensembl)
+    if path_to_data is not None:
+        return pd.read_json(path_to_data)
     else:
         return None
 
@@ -77,7 +77,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
 
         if download:
             _ = fetch_from_ensembl(ensembl_id, data_path)
-            sleep(0.2)
+            sleep(0.1)
         else:
             _ = get_from_path(ensembl_id, data_path)
 
