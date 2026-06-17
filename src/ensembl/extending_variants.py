@@ -38,6 +38,7 @@ def extend_data (VEP_receive, VEP_send, VEP_config):
                 already_visited.add(files)
                 ensembl_id = population_check(files, data_path, download)
                 VEP_send.send(ensembl_id)
+                sleep(1)
                 #download_VEP_data(variants)
         except Exception as _:
             sleep(10) #to build up the previous processes

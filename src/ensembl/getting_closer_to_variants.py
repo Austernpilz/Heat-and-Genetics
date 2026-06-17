@@ -72,6 +72,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
             else:
                 already_visited.add(ensembl_id)
                 ensembl_send.send(ensembl_id)
+                sleep(1)
         except Exception as _:
             sleep(90) #to build up the previous processes
 

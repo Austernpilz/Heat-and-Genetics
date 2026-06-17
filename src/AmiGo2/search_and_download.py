@@ -233,6 +233,7 @@ def download_data(amigo_send, amigo_config, go_ids=[]):
             sub_df = offline_data[offline_data["term"] == dir_name]
             for name, symbol in check_count(sub_df, count_dict_2):
                 amigo_send.send((name, symbol))
+                sleep(1)
         df = get_single_table(dir_path, url, columns, download, in_ex_group)
 
         if df is None:
@@ -241,6 +242,7 @@ def download_data(amigo_send, amigo_config, go_ids=[]):
         print(f"{datetime.now().strftime('%H%M')} Amigo2 got {os.path.basename(dir_path)}")
         for name, symbol in check_count(df, count_dict):
             amigo_send.send((name, symbol))
+            sleep(1)
 
 
     amigo_send.send(("finished", "finished"))
