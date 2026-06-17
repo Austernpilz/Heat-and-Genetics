@@ -115,8 +115,8 @@ def simplify_df(gnomAD_receive, gnomAD_config):
 
     while (True):
         try:
-            ensembl_id, variants = gnomAD_receive.recv()
-            if ensembl_id == "finished" and variants == "finished":
+            ensembl_id = gnomAD_receive.recv()
+            if ensembl_id == "finished": #and variants == "finished":
                 gnomAD_receive.close()
                 break
             if not ensembl_id:
