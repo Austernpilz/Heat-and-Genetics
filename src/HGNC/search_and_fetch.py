@@ -237,19 +237,26 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
         "name": [], 
         }
     advanced_search = []
-
+    df_list = []
     if not download and offline_data is not None:
         #through this i don't need to recheck the download flag, 
-        #because I will already look certain things uo
-        already_checked["ensembl_gene_id"] = offline_data["ensembl_gene_id"].tolist()
-        already_checked["symbol"] = offline_data["symbol"].tolist()
-        already_checked["name"] = offline_data["name"].tolist()
+        #because I will already look certain things up
+        sub_df = offline_data[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+        already_checked["ensembl_gene_id"] = sub_df["ensembl_gene_id"].tolist()
+        already_checked["symbol"] = sub_df["symbol"].tolist()
+        already_checked["name"] = sub_df["name"].tolist()
 
     if disgnet_df.empty:
         return offline_data
 
     for genes in disgnet_df["geneEnsemblIDs"].unique():
-        if genes == "NO ID" or genes == np.nan or genes == "nan" or not isinstance(genes, str):
+        if (
+            genes == "NO ID" or 
+            genes == np.nan or 
+            genes == "nan" or 
+            not isinstance(genes, str) or
+            not "ENSG" in genes
+        ):
             continue
         hgnc_send.send(genes)
         if genes in already_checked["ensembl_gene_id"]:
@@ -259,10 +266,12 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
         if df is None:
             advanced_search.append(genes)
             continue
-
-        already_checked["ensembl_gene_id"] += df["ensembl_gene_id"].tolist()
-        already_checked["symbol"] += df["symbol"].tolist()
-        already_checked["name"] += df["name"].tolist()
+        else:
+            sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+            df_list.append(sub_df)
+            already_checked["ensembl_gene_id"] += sub_df["ensembl_gene_id"].tolist()
+            already_checked["symbol"] += sub_df["symbol"].tolist()
+            already_checked["name"] += sub_df["name"].tolist()
 
 
     symbol_dict = get_rename_dict(unambiguouse)
@@ -279,7 +288,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
                 for id in ensembl_id["ensembl_gene_id"].unique():
                     hgnc_send.send(id)
 
-        if genes in already_checked["symbol"]: 
+        if genes in already_checked["symbol"]:
             #it is either already send or I find it in offline, data
             #or both, in which case ensembl needs to filter out the double
             ensembl_id = offline_data[(offline_data["symbol"] == genes)]
@@ -289,13 +298,15 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
             continue
 
         df = fetch_hugo("symbol", genes, data_path)
-        if df.empty:
+        if df is None:
             advanced_search.append(genes)
             continue
-
-        already_checked["ensembl_gene_id"] += df["ensembl_gene_id"].tolist()
-        already_checked["symbol"] += df["symbol"].tolist()
-        already_checked["name"] += df["name"].tolist()
+        else:
+            sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+            df_list.append(sub_df)
+            already_checked["ensembl_gene_id"] += sub_df["ensembl_gene_id"].tolist()
+            already_checked["symbol"] += sub_df["symbol"].tolist()
+            already_checked["name"] += sub_df["name"].tolist()
 
         for genes in df["ensembl_gene_id"].unique():
             hgnc_send.send(genes)
@@ -305,7 +316,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
 def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguouse, advanced_search, download):
     name, symbol = "", ""
     offline_data = get_tables(data_path)
-
+    df_list = []
     already_checked = {
         "ensenmble_id": [],
         "symbol" : [],
@@ -313,9 +324,10 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
         }
 
     if not download and offline_data is not None:
-        already_checked["ensembl_gene_id"] = offline_data["ensembl_gene_id"].tolist()
-        already_checked["symbol"] = offline_data["symbol"].tolist()
-        already_checked["name"] = offline_data["name"].tolist()
+        sub_df = offline_data[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+        already_checked["ensembl_gene_id"] = sub_df["ensembl_gene_id"].tolist()
+        already_checked["symbol"] = sub_df["symbol"].tolist()
+        already_checked["name"] = sub_df["name"].tolist()
 
     symbol_dict = get_rename_dict(unambiguouse)
     while (True):
@@ -355,10 +367,12 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
         if df is None:
             advanced_search.append(symbol)
             continue
-
-        already_checked["ensembl_gene_id"] += df["ensembl_gene_id"].tolist()
-        already_checked["symbol"] += df["symbol"].tolist()
-        already_checked["name"] += df["name"].tolist()
+        else:
+            sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+            df_list.append(sub_df)
+            already_checked["ensembl_gene_id"] += sub_df["ensembl_gene_id"].tolist()
+            already_checked["symbol"] += sub_df["symbol"].tolist()
+            already_checked["name"] += sub_df["name"].tolist()
 
         for genes in df["ensembl_gene_id"].unique():
             hgnc_send.send(genes)
@@ -386,15 +400,17 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
         if df is None:
             advanced_search.append(name)
             continue
-
-        already_checked["ensembl_gene_id"] += df["ensembl_gene_id"].tolist()
-        already_checked["symbol"] += df["symbol"].tolist()
-        already_checked["name"] += df["name"].tolist()
+        else:
+            sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+            df_list.append(sub_df)
+            already_checked["ensembl_gene_id"] += sub_df["ensembl_gene_id"].tolist()
+            already_checked["symbol"] += sub_df["symbol"].tolist()
+            already_checked["name"] += sub_df["name"].tolist()
 
         for genes in df["ensembl_gene_id"].unique():
             hgnc_send.send(genes)
 
-    amigo_disgnet_done = pd.concat([pd.DataFrame.from_dict(already_checked), already_visited]).drop_duplicates()
+    amigo_disgnet_done = pd.concat(df_list + [already_visited]).drop_duplicates()
     return amigo_disgnet_done, advanced_search
 
 
