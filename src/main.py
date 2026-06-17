@@ -85,8 +85,8 @@ threads = new_task(var.simplify_df, (gnomad_filter_receive, gnomAD_config_filter
 pipline: CLEAN DATA
 """
 #Step 6 finished work
-# for t in threads:
-#     t.join()
+for t in threads:
+    t.join()
 
 dut.save_results(config_file)
 

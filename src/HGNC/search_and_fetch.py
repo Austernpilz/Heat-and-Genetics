@@ -312,7 +312,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguous
         "name": [], 
         }
 
-    if not download:
+    if not download and offline_data is not None:
         already_checked["ensembl_gene_id"] = offline_data["ensembl_gene_id"].tolist()
         already_checked["symbol"] = offline_data["symbol"].tolist()
         already_checked["name"] = offline_data["name"].tolist()
