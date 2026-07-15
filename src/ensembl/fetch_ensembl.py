@@ -17,6 +17,9 @@ def fetch_from_ensembl(ensembl_id, path_to_ensembl):
         r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
         if r.status_code != 200:
             print("failed to load ",ensembl_id)
+        if not r.ok:
+            r.raise_for_status()
+
         decoded = r.json()
         id_dir = os.path.join(path_to_ensembl, ensembl_id)
         os.makedirs(id_dir, exist_ok=True)
