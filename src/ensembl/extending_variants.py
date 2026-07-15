@@ -10,15 +10,16 @@ from src.ensembl.fetch_ensembl import fetch_hgvs_data, fetch_rsid_data, fetch_po
 
 def open_json(path):
     if not path.endswith("json"):
-        return []
+        return None
+
     try:
-        v = []
+        v = None
         with open(path, 'r') as f:
-            v = json.load(f).get("variants", [])
+            v = json.load(f).get("variants", None)
         return v
     except Exception as e:
         print(str(e))
-        return []
+        return None
 
 def extend_data (VEP_receive, VEP_config): #VEP_send, 
     print("extending variants")
@@ -67,29 +68,29 @@ def potential_hgvs_notations(variant):
     transcript_id = variant.get("transcript_id", None)
     if transcript_id is not None:
         if hgvsc is not None:
-            return str(transcript_id) + str(hgvsc)
+            return f"{str(transcript_id)}:{str(hgvsc)}"
         elif hgvsp is not None:
-            return str(transcript_id) + str(hgvsp)
+            return f"{str(transcript_id)}:{str(hgvsp)}"
         elif hgvs is not None:
-            return str(transcript_id) + str(hgvs)
+            return f"{str(transcript_id)}:{str(hgvs)}"
 
     gene_id = variant.get("gene_id", None)
     if gene_id is not None:
         if hgvsc is not None:
-            return str(transcript_id) + str(hgvsc)
+            return f"{str(transcript_id)}:{str(hgvsc)}"
         elif hgvsp is not None:
-            return str(transcript_id) + str(hgvsp)
+            return f"{str(transcript_id)}:{str(hgvsp)}"
         elif hgvs is not None:
-            return str(transcript_id) + str(hgvs)
+            return f"{str(transcript_id)}:{str(hgvs)}"
 
     chrom = variant.get("chrom", None)
     if chrom is not None:
         if hgvsc is not None:
-            return str(transcript_id) + str(hgvsc)
+            return f"{str(transcript_id)}:{str(hgvsc)}"
         elif hgvsp is not None:
-            return str(transcript_id) + str(hgvsp)
+            return f"{str(transcript_id)}:{str(hgvsp)}"
         elif hgvs is not None:
-            return str(transcript_id) + str(hgvs)
+            return f"{str(transcript_id)}:{str(hgvs)}"
 
     return None
 
@@ -97,7 +98,7 @@ def potential_hgvs_notations(variant):
 def get_variant_data(files, data_path, download):
     for pathpath in files:
         variant_json = open_json(pathpath)
-        if not variant_json:
+        if variant_json is None:
             continue
         for variant in variant_json:
             if not isinstance(variant, dict):
@@ -109,5 +110,6 @@ def get_variant_data(files, data_path, download):
             hgvs = potential_hgvs_notations(variant)
             rsids = variant.get("rsids", []) + translate_to_rsid(data_path, hgvs)
             for rsid in rsids:
+                fetch_pop_data(data_path, rsid)
                 fetch_rsid_data(data_path, rsid)
             fetch_hgvs_data(data_path, hgvs)
