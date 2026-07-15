@@ -7,7 +7,7 @@ import pandas as pd
 
 from src.helpers.folder_magic import search_for_files
 from src.helpers.table_magic import load_include_exclude_txt
-from AmiGo2.get_Amigo2_API import build_full_url_from_go_id, get_col, download_from_amigo2
+from src.AmiGo2.get_Amigo2_API import build_full_url_from_go_id, get_col, download_from_amigo2
 
 def get_single_df_from_path(table_path, columns):
     if not os.path.isfile(table_path):
