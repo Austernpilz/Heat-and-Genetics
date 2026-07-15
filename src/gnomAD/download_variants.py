@@ -6,7 +6,7 @@ from time import sleep
 import requests as r
 import numpy as np
 
-from src.helpers.folder_magic import search_for_file
+from src.helpers.folder_magic import search_for_files
 
 
 def query_gen_ensemble(ensembl_id):
@@ -354,7 +354,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 continue
             if not download:
                 path_gen = os.path.join(data_path, ensembl_id)
-                files = search_for_file(path_gen, "", "json")
+                files = search_for_files(path_gen, "", "json")
                 if len(files) > 1:
                     gnomAD_send.send(files)
                     already_checked.add(ensembl_id)

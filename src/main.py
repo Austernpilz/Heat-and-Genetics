@@ -89,9 +89,6 @@ pipline: CLEAN DATA
 for t in threads:
     t.join()
 
-
-
-
 #dut.save_results(config_file)
 
 # ensemble, data enrichment variant effect predictor

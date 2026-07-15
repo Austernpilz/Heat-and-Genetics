@@ -2,7 +2,7 @@ from io import StringIO
 import os
 from time import sleep
 
-from src.helpers.folder_magic import search_for_file
+from src.helpers.folder_magic import search_for_files
 
 import requests
 import pandas as pd

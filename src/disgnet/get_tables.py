@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from src.helpers.folder_magic import search_for_file
+from src.helpers.folder_magic import search_for_files
 from src.helpers.table_magic import load_include_exclude_txt
 
 
@@ -24,7 +24,7 @@ def get_config(config):
 def build_tables(disgnet_config):
     data_path, include_exclude_file, download = disgnet_config
     in_ex_group = load_include_exclude_txt(include_exclude_file)
-    resulttsv = search_for_file(data_path, "search_result", "tsv")
+    resulttsv = search_for_files(data_path, "search_result", "tsv")
 
     df_list = []
     for tsv in resulttsv:
