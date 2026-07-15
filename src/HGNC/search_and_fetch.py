@@ -7,7 +7,7 @@ from io import StringIO
 from time import sleep
 from datetime import datetime
 
-from src.helpers.folder_magic import search_for_file
+from src.helpers.folder_magic import search_for_files
 
 # 10/s is the rate at which i can shoot requests 
 
@@ -212,7 +212,7 @@ def get_rename_dict(look_up_table):
 
 
 def get_tables (path_to_HGNC):
-    resulttsv = search_for_file(path_to_HGNC, "hgnc_data", "tsv")
+    resulttsv = search_for_files(path_to_HGNC, "hgnc_data", "tsv")
 
     offline_data = []
     for tsv in resulttsv:
