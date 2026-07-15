@@ -148,7 +148,7 @@ def translate_to_rsid(path_to_data, hgvs):
         print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs} to rsid")
         sleep(0.1)
         rsids = []
-        print(found)
+        print(decoded)
         for found in decoded:
             for base, possible_ids in found.items():
                 rsids += possible_ids.get("id", [])
