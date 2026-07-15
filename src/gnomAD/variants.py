@@ -7,7 +7,7 @@ from datetime import datetime
 import pandas as pd
 
 from src.gnomAD.download_variants import download_data
-from src.helpers.folder_magic import search_for_file
+from src.helpers.folder_magic import search_for_files
 
 # broad_information
 # this is used as the ground truth
@@ -300,8 +300,8 @@ def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off, gen_folder
 
 def get_gnomAD_datapaths_single(path_to_gene):
     gnomAD_data = {
-        "variants" : search_for_file(path_to_gene, "gnomAD_variants", "json"),
-        "clinvar" : search_for_file(path_to_gene, "clinvar", "json"),
+        "variants" : search_for_files(path_to_gene, "gnomAD_variants", "json"),
+        "clinvar" : search_for_files(path_to_gene, "clinvar", "json"),
     }
     return gnomAD_data
 
