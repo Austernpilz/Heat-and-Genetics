@@ -7,7 +7,7 @@ from src.helpers.table_magic import load_include_exclude_txt
 
 def get_config(config):
     storage = config.get("absolute_file_paths")
-    data_path = os.path.join(storage.get("data"), "disgnet", "genes")
+    data_path = os.path.join(storage.get("data"), "disgnet")
     config_path = storage.get("config")
 
     disgnet_data = config.get("relative_file_paths").get("disgnet_data")
