@@ -432,13 +432,17 @@ def download_hgnc_data(hgnc_receive, hgnc_send, disgnet_df, hgnc_config):
     print("disgnet done")
     amigo_disgnet_done, advanced_search = fetch_amigo(hgnc_send, hgnc_receive, already_visited, data_path, unambiguouse, advanced_search, download)
     print("amigo done")
-
+    hgnc_send.send("finished")
+    hgnc_send.close()
     #TO-DO
     #when I'm here, Amigo has run through, so now i can check amigo and disgnet by hand for advanced search
     file_path = os.path.join(data_path, "advanced_search_open.txt")
+    ts = datetime.now().strftime("%Y%m%dT%H")
     with open(file_path, "a+") as f:
+        f.write(f"\n\n\n{str(ts)}")
         for item in advanced_search:
-            f.write(item)
+            f.write(str(item))
+            f.write("\n")
 
     hgnc_send.send("finished")
     hgnc_send.close()
