@@ -10,7 +10,7 @@ import threading
 #from src.helpers.figures import figures as fig
 #utiliti_functions
 
-from src.helpers.folder_magic import search_for_file
+from src.helpers.folder_magic import search_for_files
 from src.HGNC.search_and_fetch import get_tables
 #from src.disgnet.get_tables import build_tables
 
@@ -66,7 +66,7 @@ def get_config(config):
 
 def get_disgnet_df(data_disgnet, in_ex_group_disgnet):
     ieg_disgnet = load_include_exclude_txt(in_ex_group_disgnet)
-    resulttsv = search_for_file(data_disgnet, "search_result", "tsv")
+    resulttsv = search_for_files(data_disgnet, "search_result", "tsv")
     df_list = []
     for tsv in resulttsv:
         try:
@@ -90,7 +90,7 @@ def get_disgnet_df(data_disgnet, in_ex_group_disgnet):
 
 def get_amigo_df(data_amigo, in_ex_group_amigo):
     ieg_amigo = load_include_exclude_txt(in_ex_group_amigo)
-    amigo_tsv = search_for_file(data_amigo, "data", "tsv")
+    amigo_tsv = search_for_files(data_amigo, "data", "tsv")
     amigo_list = []
     for table in amigo_tsv:
         term_name = os.path.basename(os.path.basename(table))
@@ -207,12 +207,12 @@ def focus_on_variants(config):
     data_variants = os.path.join(abs.get("data"), "gnomAD")
     results = abs.get("results")
     list_list = []
-    for look_up in search_for_file(results, "genes_terms_groups", "tsv"):
+    for look_up in search_for_files(results, "genes_terms_groups", "tsv"):
         df = pd.read_csv(look_up, sep='\t')
         for ensembl_id in df["ensembl_gene_id"].unique():
             if isinstance(ensembl_id, float):
                 continue
-            genes = search_for_file(os.path.join(data_variants, ensembl_id), "simple_variants", "tsv")
+            genes = search_for_files(os.path.join(data_variants, ensembl_id), "simple_variants", "tsv")
             if len(genes) >= 1:
                 df = df[df["ensembl_gene_id"] != ensembl_id]
         df.to_csv(look_up, sep='\t', index=False)
@@ -755,7 +755,7 @@ def build_vcf(path_input, path_output):
 
 def save_clinvar_to_csv(data_variants ,save_clinvar):
     list_var = []
-    for clinvar_tsv in search_for_file(data_variants, "simple_clinvar", "tsv"):
+    for clinvar_tsv in search_for_files(data_variants, "simple_clinvar", "tsv"):
         list_var.append(pd.read_csv(clinvar_tsv, sep='\t'))
     df = pd.concat(list_var)
     df.to_csv(save_clinvar, index=False)
