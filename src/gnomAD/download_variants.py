@@ -265,7 +265,6 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name):
     return None
 
 
-
 def try_fetching_(query, id, data_path, name, files=None):
     if files is None:
         files = []

@@ -12,7 +12,7 @@ import pandas as pd
 from src.helpers.folder_magic import get_config
 
 
-from src.AmiGo2 import search_and_download as amigo
+from src.AmiGo2 import mod_Amigo2 as amigo
 from src.disgnet import get_tables as dn
 #from src.helpers import figures as fig
 from src.HGNC import search_and_fetch as hugo
@@ -34,6 +34,7 @@ def new_task(function, function_arguments, threads, task_max = 1):
     threads.append(task)
 
     return threads
+
 
 """
 load parameters
@@ -71,15 +72,15 @@ gnomAD_send, VEP_receive = Pipe()
 gnomAD_config_download = var.get_config(config_file)
 threads = new_task(var.download_data, (gnomAD_receive, gnomAD_send, gnomAD_config_download), threads, t)
 
-
-#Step 6 collect gnomAD
-VEP_send, gnomad_filter_receive = Pipe()
+#Step 6 extend Variants through ensemble
+#VEP_send, gnomad_filter_receive = Pipe()
 VEP_config = ense.get_config(config_file)
-threads = new_task(ense.extend_data, (VEP_receive, VEP_send, VEP_config), threads, t)
+threads = new_task(ense.extend_data, (VEP_receive, VEP_config), threads, t) #VEP_send,
 
-#Step 7 filter gnomAD data
-gnomAD_config_filter = var.get_config(config_file)
-threads = new_task(var.simplify_df, (gnomad_filter_receive, gnomAD_config_filter), threads, t)
+
+# #Step 7 filter ensemble data for population
+# gnomAD_config_filter = var.get_config(config_file)
+# threads = new_task(var.simplify_df, (gnomad_filter_receive, gnomAD_config_filter), threads, t)
 
 """
 pipline: CLEAN DATA
@@ -91,12 +92,6 @@ for t in threads:
 
 
 
-### TODO
-"""
-simplify code
-- get value(s) from table (why concat at all)
-- simplify requests, most have the same structure
-"""
 #dut.save_results(config_file)
 
 # ensemble, data enrichment variant effect predictor

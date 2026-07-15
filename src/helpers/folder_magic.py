@@ -3,7 +3,7 @@ import json
 
 
 
-def search_for_dir(some_path, some_string):
+def search_for_dirs(some_path, some_string):
     if not os.path.isdir(some_path):
         return []
 
@@ -27,7 +27,7 @@ def search_for_dir(some_path, some_string):
     return found_something
 
 
-def search_for_file(some_path, some_string, some_suffix):
+def search_for_files(some_path, some_string, some_suffix):
     if os.path.isfile(some_path):
         file_name = os.path.basename(some_string)
         if some_string in file_name and file_name.endswith(some_suffix):

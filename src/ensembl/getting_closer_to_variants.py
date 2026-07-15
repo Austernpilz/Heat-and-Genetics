@@ -7,7 +7,9 @@ from time import sleep
 from datetime import datetime
 #http://www.ensembl.org/biomart/martview/ad4dbf2f9ae74dbf5b9cda391d970be9?VIRTUALSCHEMANAME=default&ATTRIBUTES=hsapiens_gene_ensembl.default.feature_page.ensembl_gene_id|hsapiens_gene_ensembl.default.feature_page.ensembl_gene_id_version|hsapiens_gene_ensembl.default.feature_page.description|hsapiens_gene_ensembl.default.feature_page.start_position|hsapiens_gene_ensembl.default.feature_page.end_position|hsapiens_gene_ensembl.default.feature_page.chromosome_name|hsapiens_gene_ensembl.default.feature_page.hgnc_id|hsapiens_gene_ensembl.default.feature_page.entrezgene_id|hsapiens_gene_ensembl.default.feature_page.uniprot_gn_id&FILTERS=hsapiens_gene_ensembl.default.filters.hgnc_id."HGNC:5970"&VISIBLEPANEL=resultspanel
 
+from src.ensembl.fetch_ensembl import fetch_from_ensembl
 from src.ensembl.extending_variants import extend_data
+
 def get_config(config):
     storage = config.get("absolute_file_paths")
     data_path = os.path.join(storage.get("data"), "ensembl")
@@ -16,44 +18,18 @@ def get_config(config):
     return (data_path, download)
 
 
-def fetch_from_ensembl(ensembl_id, path_to_ensembl):
-    server = "https://rest.ensembl.org"
-    ext = f"/lookup/id/{ensembl_id}?expand=1"
-    try:
-        r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=180)
-        if r.status_code != 200:
-            print("failed to load ",ensembl_id)
-        decoded = r.json()
-        id_dir = os.path.join(path_to_ensembl, ensembl_id)
-        os.makedirs(id_dir, exist_ok=True)
-        p = os.path.join(id_dir, "ensembl_data.json")
-        with open(p, 'w') as file:
-            json.dump(decoded, file)
-        print(f"{datetime.now().strftime('%H%M')} ensembl got: {ensembl_id}")
-        return p
-
-    except Exception as e:
-        print(f"\n\n fetch failed")
-        print(f"{path_to_ensembl}, {ensembl_id}")
-        print(str(e))
-
-    return None
-
 #this function downloads the data if necessary
 def get_from_path(ensembl_id, path_to_ensembl):
     path_to_id = os.path.join(path_to_ensembl, ensembl_id, "ensembl_data.json")
     if os.path.isfile(path_to_id):
         try:
+            df = pd.read_json(path_to_id)
             print(f"{datetime.now().strftime('%H%M')} ensembl got: {ensembl_id}")
-            return pd.read_json(path_to_id)
+            return df
         except Exception as e:
             print(str(e))
 
-    path_to_data = fetch_from_ensembl(ensembl_id, path_to_ensembl)
-    if path_to_data is not None:
-        return pd.read_json(path_to_data)
-    else:
-        return None
+    return None
 
 
 def download_data(ensembl_receive, ensembl_send, ensembl_config):
@@ -64,32 +40,41 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
     print("starting ensembl")
     while (True):
         try:
-            if ensembl_receive.poll(timeout=120):
+            if ensembl_receive.poll(timeout=600):
                 ensembl_id = ensembl_receive.recv()
             else:
                 counter += 1
                 ensembl_id = "NO ID"
 
-            if ensembl_id == "finished":
+            if ensembl_id in already_visited:
+                continue
+
+            elif ensembl_id == "finished" or (
+                ensembl_id == "NO ID" and counter > 10
+            ):
                 ensembl_receive.close()
                 break
 
-            elif ensembl_id in already_visited or not isinstance(ensembl_id, str) or ensembl_id is np.nan or ensembl_id == "NO ID":
-                if counter > 10:
-                    break
+            elif (
+                not isinstance(ensembl_id, str) or 
+                ensembl_id is np.nan or
+                ensembl_id == "NO ID"
+            ):
                 continue
+
             else:
                 already_visited.add(ensembl_id)
                 ensembl_send.send(ensembl_id)
-                sleep(1)
+
         except Exception as _:
             sleep(90) #to build up the previous processes
 
-        if download:
-            _ = fetch_from_ensembl(ensembl_id, data_path)
-            sleep(0.1)
-        else:
-            _ = get_from_path(ensembl_id, data_path)
+        if not download:
+            df = get_from_path(ensembl_id, data_path)
+            if df is not None:
+                continue
+        #no data found or force download is true
+        _ = fetch_from_ensembl(ensembl_id, data_path)
 
     ensembl_send.send("finished")
     ensembl_send.close()

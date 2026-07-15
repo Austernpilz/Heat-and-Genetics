@@ -3,34 +3,51 @@ import os
 from time import sleep
 from datetime import datetime
 
-from io import StringIO
-
 import pandas as pd
 
-from src.helpers.folder_magic import search_for_file
+from src.helpers.folder_magic import search_for_files
 from src.helpers.table_magic import load_include_exclude_txt
-from src.AmiGo2.db import get_tables_from_path, build_full_url_from_go_id, get_col, get_single_df_from_path
+from AmiGo2.get_Amigo2_API import build_full_url_from_go_id, get_col, download_from_amigo2
 
-SEED = 42
+def get_single_df_from_path(table_path, columns):
+    if not os.path.isfile(table_path):
+        return None
+    try:
+        df = pd.read_csv(table_path, sep="\t", dtype=str)
+        for col in columns:
+            if col in df.columns:
+                continue
+            elif col == "term":
+                term = os.path.basename(os.path.dirname(table_path))
+                df[col] = term
+            else:
+                df[col] = ""
+        new_df = df[columns]
+        return new_df
+    except Exception as e:
+        print("\n\n coulnd't get df from path", table_path)
+        print(str(e))
+        return None
 
-def get_config(config):
-    storage = config.get("absolute_file_paths")
-    data_path = os.path.join(storage.get("data"), "Amigo2")
-    config_path = storage.get("config")
-    os.makedirs(data_path, exist_ok=True)
 
-    overview = config.get("relative_file_paths").get("AmiGo2_overview")
-    overview_file = os.path.join(config_path, overview)
+def get_all_genes_from_path(amigo_data):
+    columns = get_col() + ["term", "group"]
+    path_datatsv = search_for_files(amigo_data, "data", "tsv")
+    df_list = []
+    for data_tsv in path_datatsv:
+        df = get_single_df_from_path(data_tsv, columns)
+        if df is not None:
+            df_list.append(df[columns])
 
-    include_exclude = config.get("relative_file_paths").get("Amigo2_inclue_exclude")
-    include_exclude_file = os.path.join(config_path, include_exclude)
-
-    download = config.get("flags").get("download_data")
-
-    return (data_path, overview_file, include_exclude_file, download)
+    if df_list:
+        return pd.concat(df_list)
+    else:
+        return None
 
 
 def get_overview(path_to_amigo_overview):
+
+    #no idea what i did here ??
     if type(path_to_amigo_overview) == list:
         solution = []
         for p in path_to_amigo_overview:
@@ -84,38 +101,6 @@ def get_overview(path_to_amigo_overview):
         return pd.DataFrame.from_dict(overviewtxt)
 
 
-def get_tables(path_to_Amigo_db):
-    return get_tables_from_path(path_to_Amigo_db)
-
-def download_from_amigo2(url, columns, dir_path):
-    #name = url[-40:].split("&fq=")[-1]  #looks a bit ugly, but should print the GO_id and then some
-    #print(f"downloading GO ID {name}")
-    r = requests.get(url, timeout=120)
-    if r.status_code == 200:
-        text = r.text
-        try:
-            global SEED
-            SEED ^= SEED << 13
-            SEED ^= SEED >> 7
-            SEED ^= SEED << 17
-            sleep(6 + SEED % 6)
-            return pd.read_csv(StringIO(text), 
-                            sep="\t", 
-                            dtype=str, 
-                            header=None,
-                            names=columns)
-        except Exception as e:
-            print(str(e))
-            print("couldn't read response")
-            file_path = os.path.join(dir_path, "text.txt")
-            os.makedirs(dir_path, exist_ok=True)
-            with open(file_path, 'w') as f:
-                f.write(text)
-            print("response saved under: ", file_path)
-
-    print("failed to download from:", url)
-    return None
-
 
 def get_term_name(df, dir_path):
     dir_name, term_name = os.path.split(dir_path)
@@ -157,13 +142,14 @@ def get_term_name(df, dir_path):
                     term_name = terf.replace(' ', '_')
                     return term_name, os.path.join(dir_name, term_name)
 
-    return "NO TERM", dir_path
+    return "NO_TERM", dir_path
 
 
-def get_single_table(dir_path, url, columns, download, in_ex_group):
-    if not download:
+def get_single_table(dir_path, url, columns, force_download, in_ex_group):
+
+    if not force_download:
         file_path = os.path.join(dir_path, "data.tsv")
-        df = get_single_df_from_path(file_path, columns + ["term"] + ["group"])
+        df = get_single_df_from_path(file_path, columns + ["term", "group"])
         if df is not None:
             return df
 
@@ -172,25 +158,29 @@ def get_single_table(dir_path, url, columns, download, in_ex_group):
         return None
 
     term_name, dir_path = get_term_name(df, dir_path)
-    if term_name in in_ex_group["exclude"] or term_name in in_ex_group["plusplus"]:
+    if (
+        term_name in in_ex_group["exclude"] or 
+        term_name in in_ex_group["plusplus"] #or 
+        #term_name == "NO_TERM"
+    ):
         return None
 
-    os.makedirs(dir_path, exist_ok=True)
     df["term"] = term_name
-    df["group"] = in_ex_group["group"][term_name] if term_name in in_ex_group["group"].keys() else "NO GROUP"
+    df["group"] = in_ex_group["group"][term_name] if term_name in in_ex_group["group"].keys() else "NO_GROUP"
+    save_table(df, dir_path, term_name)
+    return df
 
 
+def save_table(df, dir_path, term):
     file_path = os.path.join(dir_path, "data.tsv")
-    if term_name == "NO TERM":
+    os.makedirs(dir_path, exist_ok=True)
+    if term == "NO_TERM":
         i=0
         while os.path.isfile(file_path):
-            file_path = os.path.join(dir_path, f"data{i}.tsv")
+            file_path = os.path.join(dir_path, f"data_{i}.tsv")
             i+=1
-    try:
-        df.to_csv(file_path, index=False, sep="\t")
-        return df
-    except Exception as _:
-        return None
+    df.to_csv(file_path, index=False, sep="\t")
+
 
 def check_count(df, count_dict):
     if df is None:
@@ -214,18 +204,19 @@ def check_count(df, count_dict):
 def download_data(amigo_send, amigo_config, go_ids=None):
     if go_ids is None:
         go_ids = []
-    data_path, overview_file, include_exclude_file, download = amigo_config
+    data_path, overview_file, include_exclude_file, force_download = amigo_config
     overview_df = get_overview(overview_file)
-    offline_data = get_tables_from_path(data_path)
-    go_ids += overview_df["Accession"].tolist()
+    offline_data = get_all_genes_from_path(data_path)
     dir_names = overview_df["Name"].tolist()
+    go_ids += overview_df["Accession"].tolist()
+
     columns = get_col()
     in_ex_group = load_include_exclude_txt(include_exclude_file)
     count_dict = {}
     count_dict_2 = {}
     x = 120
     for url in build_full_url_from_go_id(go_ids):
-        dir_name = "NO TERM"
+        dir_name = "NO_TERM"
         if dir_names:
             dir_name = dir_names.pop()
             if dir_name in in_ex_group["exclude"] or dir_name in in_ex_group["plusplus"]:
@@ -235,15 +226,14 @@ def download_data(amigo_send, amigo_config, go_ids=None):
             sub_df = offline_data[offline_data["term"] == dir_name]
             for name, symbol in check_count(sub_df, count_dict_2):
                 amigo_send.send((name, symbol))
-        df = get_single_table(dir_path, url, columns, download, in_ex_group)
+        df = get_single_table(dir_path, url, columns, force_download, in_ex_group)
 
         if df is None:
-            df = get_single_table(dir_path, url, columns, download, in_ex_group)
+            df = get_single_table(dir_path, url, columns, force_download, in_ex_group)
 
         print(f"{datetime.now().strftime('%H%M')} Amigo2 got {os.path.basename(dir_path)}")
         for name, symbol in check_count(df, count_dict):
             amigo_send.send((name, symbol))
-
 
     amigo_send.send(("finished", "finished"))
     amigo_send.close()

@@ -1,8 +1,20 @@
+from io import StringIO
 import os
-
-import pandas as pd
+from time import sleep
 
 from src.helpers.folder_magic import search_for_file
+
+import requests
+import pandas as pd
+
+SEED = 42
+
+def wait(): #variable ratelimit, because i get blocked sometimes :(
+    global SEED
+    SEED ^= SEED << 13
+    SEED ^= SEED >> 7
+    SEED ^= SEED << 17
+    sleep(6 + SEED % 6)
 
 # sadly, we need to do it by hand, 
 # because we have pseudo headers and requests can't handle them
@@ -117,38 +129,30 @@ def get_col():
     return standard + extension_for_this_purpose
 
 
-def get_single_df_from_path(table_path, columns):
-    try:
-        df = pd.read_csv(table_path, sep="\t", dtype=str)
-        for col in columns:
-            if col in df.columns:
-                continue
-            elif col == "term":
-                term = os.path.basename(os.path.dirname(table_path))
-                df[col] = term
-            else:
-                df[col] = ""
-        return df
-    except Exception as e:
-        print("\n\n coulnd't get df from path", table_path)
-        print(str(e))
-        return None
 
-def get_tables_from_path(amigo_data):
-    columns = get_col() + ["term"] + ["group"]
-    download_path = os.path.join(amigo_data, "genes")
-    path_datatsv = search_for_file(download_path, "data", "tsv")
-    df_list = []
-    for data_tsv in path_datatsv:
-        df = get_single_df_from_path(data_tsv, columns)
-        if df is not None:
-            df_list.append(df[columns])
+def download_from_amigo2(url, columns, dir_path):
+    #name = url[-40:].split("&fq=")[-1]  #looks a bit ugly, but should print the GO_id and then some
+    #print(f"downloading GO ID {name}")
+    r = requests.get(url, timeout=120)
+    if r.status_code == 200:
+        text = r.text
+        try:
+            return pd.read_csv(StringIO(text), 
+                            sep="\t", 
+                            dtype=str, 
+                            header=None,
+                            names=columns)
+        except Exception as e:
+            print(str(e))
+            print("couldn't read response")
+            file_path = os.path.join(dir_path, "text.txt")
+            os.makedirs(dir_path, exist_ok=True)
+            with open(file_path, 'w') as f:
+                f.write(text)
+            print("response saved under: ", file_path)
 
-    try:
-        return pd.concat(df_list)
-
-    except Exception as _:
-        return None
+    print("failed to download from:", url)
+    return None
 
 def make_columns_to_string(columns):
     string_list = []
