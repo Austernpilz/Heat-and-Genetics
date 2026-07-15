@@ -56,6 +56,9 @@ def fetch_hgvs_data(path_to_data, hgvs):
         ext = f"/vep/homo_sapiens/hgvs/{hgvs}?{options}"
         r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
 
+        if not r.ok:
+            r.raise_for_status()
+
         decoded = r.json()
         with open(p, 'w') as file:
             json.dump(r.json(), file)
@@ -88,6 +91,9 @@ def fetch_rsid_data(path_to_data, rsid):
         ext = f"/vep/homo_sapiens/id/{rsid}"
         r = requests.get(server+ext, params=options,  headers={ "Content-Type" : "application/json"}, timeout=600)
 
+        if not r.ok:
+            r.raise_for_status()
+
         decoded = r.json()
         with open(p, 'w') as file:
             json.dump(r.json(), file)
@@ -112,6 +118,9 @@ def fetch_pop_data(path_to_data, rsid):
             }
         ext = f"/variation/homo_sapiens/{rsid}?{options}"
         r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
+
+        if not r.ok:
+            r.raise_for_status()
 
         decoded = r.json()
         id_dir = os.path.join(path_to_data, rsid)
@@ -141,6 +150,10 @@ def translate_to_rsid(path_to_data, hgvs):
         ext = f"/variant_recoder/human/{hgvs}"
  
         r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
+
+        if not r.ok:
+            r.raise_for_status()
+
         decoded = r.json()
         with open(p, 'w') as file:
             json.dump(decoded, file)
