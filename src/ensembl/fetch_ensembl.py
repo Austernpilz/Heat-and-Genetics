@@ -1,6 +1,6 @@
 import json
 import os
-#from time import sleep
+from time import sleep
 from datetime import datetime
 
 import requests
@@ -27,7 +27,7 @@ def fetch_from_ensembl(ensembl_id, path_to_ensembl):
         with open(p, 'w') as file:
             json.dump(decoded, file)
         print(f"{datetime.now().strftime('%H%M')} ensembl got: {ensembl_id}")
-        #sleep(0.1)
+        sleep(0.1)
         return p
 
     except Exception as e:
