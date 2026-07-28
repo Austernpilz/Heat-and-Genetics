@@ -8,7 +8,6 @@ import numpy as np
 
 from src.helpers.folder_magic import search_for_files
 
-
 def query_gen_ensemble(ensembl_id):
     return (f''' 
 query VariantsInGene {{
@@ -230,8 +229,8 @@ query VariantsInGene {{
 
 #unique names in case we don't get an gene id or symbol
 def get_unique_name(path_to_data, name="data"):
-    ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
-    return os.path.join(path_to_data, f"{name}_{ts}.json")
+    #ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
+    return os.path.join(path_to_data, f"{name}.json")
 
 def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name):
     """
@@ -245,10 +244,15 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name):
     os.makedirs(gnomAD_data, exist_ok=True)
     file_name = get_unique_name(gnomAD_data, name)
     try:
+        time_start = datetime.now()
         response = r.post("https://gnomad.broadinstitute.org/api",
                         json={"query": query},
-                        timeout=120
+                        timeout=180
                         )
+        time_elapsed = (time_start - datetime.now()).total_seconds
+        if time_elapsed < 5:
+            sleep(5 - time_elapsed)
+
         data = response.json().get("data", {}).get("gene", {})
 
         if data:
@@ -265,9 +269,7 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name):
     return None
 
 
-def try_fetching_(query, id, data_path, name, files=None):
-    if files is None:
-        files = []
+def try_fetching_(query, id, data_path, name, files=[]):
     counter_for_fail = 0
     while counter_for_fail < 4:
         file = fetch_from_ensembl_id_as_json(query, id, data_path, name)
@@ -278,7 +280,6 @@ def try_fetching_(query, id, data_path, name, files=None):
             files.append(file)
         else:
             counter_for_fail += 2 #data was empty
-        sleep(6)
     return files
 
 def found(variant_path, ancestry, cutoff):
@@ -341,7 +342,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
             if ensembl_id == "finished":
                 gnomAD_receive.close()
                 break
-            if (
+            elif (
                 ensembl_id == "NO ID" or 
                 ensembl_id == np.nan or 
                 ensembl_id == "nan" or 
@@ -351,11 +352,12 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 ):
                 if counter > 10:
                     break
-                continue
+                else:
+                    continue
             if not download:
                 path_gen = os.path.join(data_path, ensembl_id)
                 files = search_for_files(path_gen, "", "json")
-                if len(files) > 1:
+                if len(files) > 4:
                     gnomAD_send.send(files)
                     already_checked.add(ensembl_id)
                     print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensembl_id}")

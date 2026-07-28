@@ -5,11 +5,21 @@ import os
 import numpy as np
 from time import sleep
 from datetime import datetime
+import threading
 
 from src.ensembl.fetch_ensembl import fetch_hgvs_data, fetch_rsid_data, fetch_pop_data, translate_to_rsid
 
+def lamma(funct, args, threads=[]):
+    task = threading.Thread(
+        target = funct, 
+        args = args
+        )
+    task.start()
+    threads.append(task)
+    return threads
+
 def open_json(path):
-    if not path.endswith("json"):
+    if not path.endswith("json") or "gnomAD_variants" not in path:
         return None
 
     try:
@@ -104,12 +114,18 @@ def get_variant_data(files, data_path, download):
             if not isinstance(variant, dict):
                 continue
             variant_id = variant.get("variant_id", "NO ID")
-            rsids = variant.get("rsids", [])
             variant_path = os.path.join(data_path, variant_id)
             os.makedirs(variant_path, exist_ok=True)
+
             hgvs = potential_hgvs_notations(variant)
             rsids = variant.get("rsids", []) + translate_to_rsid(data_path, hgvs)
-            for rsid in rsids:
-                fetch_pop_data(data_path, rsid)
-                fetch_rsid_data(data_path, rsid)
-            fetch_hgvs_data(data_path, hgvs)
+            unique = list(set(rsids))
+
+            threads = lamma(fetch_hgvs_data, (data_path, hgvs, download))
+
+            for rsid in unique:
+                threads = lamma(fetch_pop_data, (data_path, rsid, download))
+                threads = lamma(fetch_rsid_data, (data_path, rsid, download))
+
+            for t in threads:
+                t.join()

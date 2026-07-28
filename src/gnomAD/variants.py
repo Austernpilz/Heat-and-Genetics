@@ -301,7 +301,7 @@ def filter_variants_by_ancestry(variant_path, ancestry_list, cut_off, gen_folder
 def get_gnomAD_datapaths_single(path_to_gene):
     gnomAD_data = {
         "variants" : search_for_files(path_to_gene, "gnomAD_variants", "json"),
-        "clinvar" : search_for_files(path_to_gene, "clinvar", "json"),
+        "clinvar" : search_for_files(path_to_gene, "gnomAD_clinvar", "json"),
     }
     return gnomAD_data
 

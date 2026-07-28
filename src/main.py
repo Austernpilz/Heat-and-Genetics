@@ -20,14 +20,14 @@ from src.ensembl import getting_closer_to_variants as ense
 from src.gnomAD import variants as var
 import src.helpers.table_magic as dut
 
-def new_task(function, function_arguments, threads, task_max = 1):
+def new_task(funct, function_arguments, threads, task_max = 1):
 
     while (len(threads) >= task_max):
         finish_task = threads.pop(0)
         finish_task.join()
 
     task = threading.Thread(
-        target = function, 
+        target = funct, 
         args = function_arguments
         )
     task.start()

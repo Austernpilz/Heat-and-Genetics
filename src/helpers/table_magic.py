@@ -15,6 +15,7 @@ from src.HGNC.search_and_fetch import get_tables
 #from src.disgnet.get_tables import build_tables
 
 
+
 def unique_fname(name, ext, outdir="results/figures"):
     outdir= os.path.join(outdir, "data")
     os.makedirs(outdir, exist_ok=True)
@@ -28,7 +29,7 @@ def save_figure(fig, name, outdir="results/figures"):
     """
     # Get the base module name of the figure object (e.g., 'matplotlib' or 'plotly')
     fig_module = type(fig).__module__.split('.')[0]
-    
+
     if fig_module == 'matplotlib':
         # --- Handle Matplotlib (saves as PNG) ---
         import matplotlib.pyplot as plt
@@ -36,12 +37,12 @@ def save_figure(fig, name, outdir="results/figures"):
         fig.savefig(png_path, dpi=300, bbox_inches="tight")
         plt.close(fig)  # Free memory (critical for multithreading)
         print(f"Saved Matplotlib: {png_path}")
-        
+
     elif fig_module == 'plotly':
         # --- Handle Plotly (saves as interactive HTML) ---
         import plotly.io as pio
         html_path = unique_fname(name, "html")
-        
+
         # NOTE: auto_open=False is crucial here. If it is True in a threaded 
         # environment, your script will aggressively open 20+ browser tabs at once.
         pio.write_html(fig, file=html_path, include_plotlyjs='cdn', auto_open=False)
