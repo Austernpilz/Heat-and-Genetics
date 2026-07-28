@@ -169,7 +169,7 @@ def translate_to_rsid(args):
             server = "https://rest.ensembl.org"
             ext = f"/variant_recoder/human/{hgvs}"
 
-            r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
+            r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=120)
 
             if not r.ok:
                 r.raise_for_status()
