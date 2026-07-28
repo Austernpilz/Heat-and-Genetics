@@ -328,7 +328,7 @@ def found(variant_path, ancestry, cutoff):
 def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
     ensembl_id = ""
     data_path, populations, download = gnomAD_config
-    ancestry = list(populations.keys()) + list(populations.values())
+    #ancestry = list(populations.keys()) + list(populations.values())
     already_checked = set()
     print("starting gnomAD")
     counter = 0
@@ -352,13 +352,14 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 ensembl_id in already_checked
                 ):
                 if counter > 10:
+                    gnomAD_receive.close()
                     break
                 else:
                     continue
             if not download:
                 path_gen = os.path.join(data_path, ensembl_id)
                 files = search_for_files(path_gen, "", "json")
-                if len(files) > 4:
+                if len(files) > 1:
                     gnomAD_send.send(files)
                     already_checked.add(ensembl_id)
                     print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensembl_id}")
