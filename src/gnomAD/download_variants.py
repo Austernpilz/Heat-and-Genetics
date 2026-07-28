@@ -240,7 +240,6 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
     # <- mark comments
     # too long, every now and then there are mistakes, so I split it in 5 querys
     """
-    print("gnomad hängt?")
     gnomAD_data = os.path.join(data_path, ensembl_id)
     os.makedirs(gnomAD_data, exist_ok=True)
     file_name = get_unique_name(gnomAD_data, name)
@@ -283,6 +282,7 @@ def try_fetching_(query, id, data_path, name, files=[]):
             files.append(file)
         else:
             counter_for_fail += 2 #data was empty
+    print("Gnomad hängt nicht")
     return files
 
 def found(variant_path, ancestry, cutoff):
