@@ -1,6 +1,6 @@
 {
     "flags": {
-        "download_data": true,
+        "download_data": false,
         "threads": 10
     },
     "absolute_file_paths": {
