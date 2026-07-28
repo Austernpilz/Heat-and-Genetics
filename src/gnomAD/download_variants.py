@@ -245,15 +245,15 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
     file_name = get_unique_name(gnomAD_data, name)
     if not os.path.isfile(file_name) or download:
         try:
-            time_start = datetime.now()
+            #time_start = datetime.now()
             response = r.post("https://gnomad.broadinstitute.org/api",
                             json={"query": query},
                             timeout=180
                             )
-            time_elapsed = (time_start - datetime.now()).total_seconds()
-            if time_elapsed < 6:
-                sleep(6 - time_elapsed)
-
+            #time_elapsed = (time_start - datetime.now()).total_seconds()
+            #if time_elapsed < 6:
+            #    sleep(6 - time_elapsed)
+            sleep(6)
             data = response.json().get("data", {}).get("gene", {})
 
             if data:
@@ -334,7 +334,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
     counter = 0
     while (True):
         try:
-            if gnomAD_receive.poll(timeout=120):
+            if gnomAD_receive.poll(timeout=60):
                 ensembl_id = gnomAD_receive.recv()
             else:
                 counter += 1
@@ -365,7 +365,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                     print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensembl_id}")
                     continue
         except Exception as _:
-            sleep(180)
+            sleep(1)
 
         files = try_fetching_(query_variant_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_variants", [])
         if not files:
