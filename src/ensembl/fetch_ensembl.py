@@ -48,7 +48,7 @@ def fetch_hgvs_data(args):
     #ts = datetime.now().strftime("%Y%m%dT%H")
     p0 = os.path.join(path_to_data, f"variant_by_hgvs_{hgvs}.json")
     p1 = os.path.join(id_dir, f"variant_by_hgvs_{hgvs}.json")
-    if not (os.path.isfile(p0) | os.path.isfile(p1)) | download:
+    if not (os.path.isfile(p0) or os.path.isfile(p1)) or download:
         try:
             #print('loading_variation_data ', hgvs)
             server = "https://rest.ensembl.org"
@@ -89,7 +89,7 @@ def fetch_rsid_data(args):
 
     p0 = os.path.join(path_to_data, f"variant_by_rsID_{rsid}.json")
     p1 = os.path.join(id_dir, f"variant_by_rsID_{rsid}.json")
-    if not (os.path.isfile(p0) | os.path.isfile(p1)) | download:
+    if not (os.path.isfile(p0) or os.path.isfile(p1)) or download:
         try:
             server = "https://rest.ensembl.org"
             options = {
@@ -128,7 +128,7 @@ def fetch_pop_data(args):
     #ts = datetime.now().strftime("%Y%m%dT%H")
     p0 = os.path.join(path_to_data, f"populations_{rsid}.json")
     p1 = os.path.join(id_dir, f"populations_{rsid}.json")
-    if not (os.path.isfile(p0) | os.path.isfile(p1)) | download:
+    if not (os.path.isfile(p0) or os.path.isfile(p1)) or download:
         try:
             server = "https://rest.ensembl.org"
             options = {
@@ -163,7 +163,7 @@ def translate_to_rsid(args):
     os.makedirs(id_dir, exist_ok=True)
     p0 = os.path.join(path_to_data, f"aternative_names_for_{hgvs}.json")
     p1 = os.path.join(id_dir, f"aternative_names_for_{hgvs}.json")
-    if not (os.path.isfile(p0) | os.path.isfile(p1)) | download:
+    if not (os.path.isfile(p0) or os.path.isfile(p1)) or download:
 
         try:
             server = "https://rest.ensembl.org"

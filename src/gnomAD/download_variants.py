@@ -243,7 +243,7 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
     gnomAD_data = os.path.join(data_path, ensembl_id)
     os.makedirs(gnomAD_data, exist_ok=True)
     file_name = get_unique_name(gnomAD_data, name)
-    if not os.path.isfile(file_name) | download:
+    if not os.path.isfile(file_name) or download:
         try:
             time_start = datetime.now()
             response = r.post("https://gnomad.broadinstitute.org/api",
