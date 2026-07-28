@@ -38,7 +38,8 @@ def fetch_from_ensembl(ensembl_id, path_to_ensembl):
     return None
 
 
-def fetch_hgvs_data(path_to_data, hgvs, download=False):
+def fetch_hgvs_data(args):
+    path_to_data, hgvs, download = args
     if hgvs is None:
         return
 
@@ -67,7 +68,7 @@ def fetch_hgvs_data(path_to_data, hgvs, download=False):
                 r.raise_for_status()
 
             decoded = r.json()
-            with open(p, 'w') as file:
+            with open(p1, 'w') as file:
                 json.dump(r.json(), file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs}")
@@ -78,7 +79,8 @@ def fetch_hgvs_data(path_to_data, hgvs, download=False):
             print(str(e))
 
 
-def fetch_rsid_data(path_to_data, rsid, download=False):
+def fetch_rsid_data(args):
+    path_to_data, rsid, download = args
     if rsid is None:
         return
 
@@ -106,7 +108,7 @@ def fetch_rsid_data(path_to_data, rsid, download=False):
                 r.raise_for_status()
 
             decoded = r.json()
-            with open(p, 'w') as file:
+            with open(p1, 'w') as file:
                 json.dump(r.json(), file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got {rsid}")
@@ -117,7 +119,8 @@ def fetch_rsid_data(path_to_data, rsid, download=False):
             print("\n\n rsid fetch failed")
 
 
-def fetch_pop_data(path_to_data, rsid, download=False):
+def fetch_pop_data(args):
+    path_to_data, rsid, download = args
     if rsid is None:
         return
     id_dir = os.path.join(path_to_data, rsid)
@@ -139,7 +142,7 @@ def fetch_pop_data(path_to_data, rsid, download=False):
                 r.raise_for_status()
 
             decoded = r.json()
-            with open(p, 'w') as file:
+            with open(p1, 'w') as file:
                 json.dump(r.json(), file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got POP data from {rsid}")
@@ -150,7 +153,8 @@ def fetch_pop_data(path_to_data, rsid, download=False):
             print(str(e))
 
 
-def translate_to_rsid(path_to_data, hgvs, download=False):
+def translate_to_rsid(args):
+    path_to_data, hgvs, download = args
     if hgvs is None:
         return []
 
@@ -171,7 +175,7 @@ def translate_to_rsid(path_to_data, hgvs, download=False):
                 r.raise_for_status()
 
             decoded = r.json()
-            with open(p, 'w') as file:
+            with open(p1, 'w') as file:
                 json.dump(decoded, file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs} to rsid")
