@@ -69,7 +69,7 @@ def fetch_hgvs_data(args):
 
             decoded = r.json()
             with open(p1, 'w') as file:
-                json.dump(r.json(), file)
+                json.dump(decoded, file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs}")
             sleep(0.1)
@@ -109,10 +109,10 @@ def fetch_rsid_data(args):
 
             decoded = r.json()
             with open(p1, 'w') as file:
-                json.dump(r.json(), file)
+                json.dump(decoded, file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got {rsid}")
-            #sleep(0.1)
+            sleep(0.1)
 
         except Exception as e:
             print(str(e))
@@ -143,10 +143,10 @@ def fetch_pop_data(args):
 
             decoded = r.json()
             with open(p1, 'w') as file:
-                json.dump(r.json(), file)
+                json.dump(decoded, file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got POP data from {rsid}")
-            #sleep(0.1)
+            sleep(0.1)
 
         except Exception as e:
             print("\n\n pop fetch failed")
@@ -179,7 +179,7 @@ def translate_to_rsid(args):
                 json.dump(decoded, file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs} to rsid")
-            #sleep(0.1)
+            sleep(0.1)
             # rsids = []
             # #print(decoded)
             # for found in decoded:
@@ -190,12 +190,12 @@ def translate_to_rsid(args):
             print("\n\n translation failed")
             print(str(e))
     elif os.path.isfile(p1):
-        rsids = []
+        rsids, translate_hgvs = [], []
         with open(p1, 'r') as f:
             translate_hgvs = json.load(f)
-            for found in translate_hgvs:
-                for base, possible_ids in found.items():
-                    rsids += possible_ids.get("id", [])
+        for found in translate_hgvs:
+            for base, possible_ids in found.items():
+                rsids += possible_ids.get("id", [])
         return rsids
 
     return []
