@@ -341,9 +341,9 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
             else:
                 counter += 1
                 ensembl_id = "NO ID"
+                print("NO ID")
 
             if ensembl_id == "finished":
-                gnomAD_receive.close()
                 break
             elif (
                 ensembl_id == "NO ID" or 
@@ -353,8 +353,8 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 not "ENS" in ensembl_id or
                 ensembl_id in already_checked
                 ):
+                print("NO ID")
                 if counter > 10:
-                    gnomAD_receive.close()
                     break
                 else:
                     continue
