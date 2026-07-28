@@ -232,7 +232,7 @@ def get_unique_name(path_to_data, name="data"):
     #ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
     return os.path.join(path_to_data, f"{name}.json")
 
-def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name):
+def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=False):
     """
     very long query string; 
     look up https://gnomad.broadinstitute.org/api to test out querys Strings
@@ -243,30 +243,31 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name):
     gnomAD_data = os.path.join(data_path, ensembl_id)
     os.makedirs(gnomAD_data, exist_ok=True)
     file_name = get_unique_name(gnomAD_data, name)
-    try:
-        time_start = datetime.now()
-        response = r.post("https://gnomad.broadinstitute.org/api",
-                        json={"query": query},
-                        timeout=180
-                        )
-        time_elapsed = (time_start - datetime.now()).total_seconds()
-        if time_elapsed < 5:
-            sleep(5 - time_elapsed)
+    if not os.path.isfile(file_name) | download:
+        try:
+            time_start = datetime.now()
+            response = r.post("https://gnomad.broadinstitute.org/api",
+                            json={"query": query},
+                            timeout=180
+                            )
+            time_elapsed = (time_start - datetime.now()).total_seconds()
+            if time_elapsed < 5:
+                sleep(5 - time_elapsed)
 
-        data = response.json().get("data", {}).get("gene", {})
+            data = response.json().get("data", {}).get("gene", {})
 
-        if data:
-            with open(file_name, 'w') as file:
-                json.dump(data, file)
-            return file_name
-        else:
-            return False
+            if data:
+                with open(file_name, 'w') as file:
+                    json.dump(data, file)
+                return file_name
+            else:
+                return False
 
-    except Exception as e:
-        print(f"\n\n fetch {name} failed")
-        print(str(e))
+        except Exception as e:
+            print(f"\n\n fetch {name} failed")
+            print(str(e))
 
-    return None
+        return None
 
 
 def try_fetching_(query, id, data_path, name, files=[]):
