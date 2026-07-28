@@ -9,7 +9,7 @@ import threading
 
 from src.ensembl.fetch_ensembl import fetch_hgvs_data, fetch_rsid_data, fetch_pop_data, translate_to_rsid
 
-def lamma(funct, args, threads=[], task_max=10):
+def lamma(funct, args, threads=[], task_max=1):
     while (len(threads) >= task_max):
             finish_task = threads.pop(0)
             finish_task.join()
@@ -125,16 +125,22 @@ def get_variant_data(files, data_path, download):
             rsids += variant.get("rsids", []) + translate_to_rsid(data_path, hgvs_single)
     unique_rsids = list(set(rsids))
     unique_hgvs = list(set(hgvs))
-    threads = lamma(fetch_hgvs_data, (data_path, hgvs, download))
+    #threads = lamma(fetch_hgvs_data, (data_path, hgvs, download))
 
     for rsid in unique_rsids:
-        threads = lamma(fetch_pop_data, (data_path, rsid, download), threads)
+        #threads = lamma(
+        fetch_pop_data(data_path, rsid, download)
+        #, threads)
 
     for rsid in unique_rsids:
-        threads = lamma(fetch_rsid_data, (data_path, rsid, download), threads)
+        #threads = lamma(
+        fetch_rsid_data(data_path, rsid, download)
+        #, threads)
 
     for hgvs in unique_hgvs:
-        threads = lamma(fetch_hgvs_data, (data_path, hgvs, download), threads)
+        #threads = lamma(
+        fetch_hgvs_data(data_path, hgvs, download)
+        #, threads)
 
-    for t in threads:
-        t.join()
+    # for t in threads:
+    #     t.join()

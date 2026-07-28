@@ -47,6 +47,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                 ensembl_id = "NO ID"
 
             if ensembl_id in already_visited:
+                already_visited.add(ensembl_id)
                 continue
 
             elif ensembl_id == "finished" or (

@@ -261,6 +261,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
         ):
             continue
         hgnc_send.send(ensembl_gene_id)
+        hgnc_send.send(ensembl_gene_id)
         if ensembl_gene_id in already_checked["ensembl_gene_id"]:
             continue
 
@@ -291,6 +292,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
             else:
                 for id in ensembl_id["ensembl_gene_id"].unique():
                     hgnc_send.send(id)
+                    hgnc_send.send(id)
 
         if genes in already_checked["symbol"]:
             #it is either already send or I find it in offline, data
@@ -298,6 +300,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
             ensembl_id = offline_data[(offline_data["symbol"] == genes)]
             if not ensembl_id.empty:
                 for id in ensembl_id["ensembl_gene_id"].unique():
+                    hgnc_send.send(id)
                     hgnc_send.send(id)
             continue
 

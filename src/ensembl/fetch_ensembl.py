@@ -72,7 +72,7 @@ def fetch_hgvs_data(args):
                 json.dump(r.json(), file)
 
             print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs}")
-            #sleep(0.1)
+            sleep(0.1)
 
         except Exception as e:
             print("\n\n hgvs fetch failed")
@@ -180,18 +180,18 @@ def translate_to_rsid(args):
 
             print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs} to rsid")
             #sleep(0.1)
-            rsids = []
-            #print(decoded)
-            for found in decoded:
-                for base, possible_ids in found.items():
-                    rsids += possible_ids.get("id", [])
-            return rsids
+            # rsids = []
+            # #print(decoded)
+            # for found in decoded:
+            #     for base, possible_ids in found.items():
+            #         rsids += possible_ids.get("id", [])
+            # return rsids
         except Exception as e:
             print("\n\n translation failed")
             print(str(e))
-    elif os.path.isfile(p):
+    elif os.path.isfile(p1):
         rsids = []
-        with open(p, 'r') as f:
+        with open(p1, 'r') as f:
             translate_hgvs = json.load(f)
             for found in translate_hgvs:
                 for base, possible_ids in found.items():
