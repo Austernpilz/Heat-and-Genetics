@@ -240,6 +240,7 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
     # <- mark comments
     # too long, every now and then there are mistakes, so I split it in 5 querys
     """
+    print("gnomad hängt?")
     gnomAD_data = os.path.join(data_path, ensembl_id)
     os.makedirs(gnomAD_data, exist_ok=True)
     file_name = get_unique_name(gnomAD_data, name)
@@ -254,6 +255,7 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
             #if time_elapsed < 6:
             #    sleep(6 - time_elapsed)
             sleep(6)
+            print("sleep was succesful")
             data = response.json().get("data", {}).get("gene", {})
 
             if data:
@@ -362,7 +364,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 if len(files) > 1:
                     gnomAD_send.send(files)
                     already_checked.add(ensembl_id)
-                    print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensembl_id}")
+                    print(f"{datetime.now().strftime('%H%M')} gnomAD already got {ensembl_id}")
                     continue
         except Exception as _:
             sleep(1)
