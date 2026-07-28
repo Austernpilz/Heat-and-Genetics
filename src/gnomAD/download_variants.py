@@ -251,8 +251,8 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
                             timeout=180
                             )
             time_elapsed = (time_start - datetime.now()).total_seconds()
-            if time_elapsed < 5:
-                sleep(5 - time_elapsed)
+            if time_elapsed < 6:
+                sleep(6 - time_elapsed)
 
             data = response.json().get("data", {}).get("gene", {})
 
