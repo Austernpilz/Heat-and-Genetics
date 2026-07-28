@@ -246,16 +246,10 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
     file_name = get_unique_name(gnomAD_data, name)
     if not os.path.isfile(file_name) or download:
         try:
-            #time_start = datetime.now()
             response = r.post("https://gnomad.broadinstitute.org/api",
                             json={"query": query},
                             timeout=180
                             )
-            #time_elapsed = (time_start - datetime.now()).total_seconds()
-            #if time_elapsed < 6:
-            #    sleep(6 - time_elapsed)
-            sleep(6)
-            print("sleep was succesful")
             data = response.json().get("data", {}).get("gene", {})
 
             if data:
@@ -274,8 +268,14 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
 
 def try_fetching_(query, id, data_path, name, files=[]):
     counter_for_fail = 0
+    time_start = datetime.now()
+    time_elapsed = 6
     while counter_for_fail < 4:
+        if time_elapsed < 6:
+            sleep(6 - time_elapsed)
+        time_elapsed = (time_start - datetime.now()).total_seconds() + 1
         file = fetch_from_ensembl_id_as_json(query, id, data_path, name)
+        time_start = datetime.now()
         if file is None:
             counter_for_fail += 1 #download failed
         elif file:
