@@ -277,7 +277,6 @@ def try_fetching_(query, id, data_path, name, files=[]):
             files.append(file)
         else:
             counter_for_fail += 2 #data was empty
-    print("Gnomad hängt nicht")
     return files
 
 def found(variant_path, ancestry, cutoff):
