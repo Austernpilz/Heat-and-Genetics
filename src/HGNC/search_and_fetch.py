@@ -297,12 +297,11 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, unambiguouse, download):
                     continue
 
             if df is not None:
-                # sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
-                # already_checked["ensembl_gene_id"] += sub_df["ensembl_gene_id"].tolist()
-                # already_checked["symbol"] += sub_df["symbol"].tolist()
-                # already_checked["name"] += sub_df["name"].tolist()
-
-                for genes in df["ensembl_gene_id"].unique():
+                sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+                already_checked["ensembl_gene_id"] += sub_df["ensembl_gene_id"].tolist()
+                already_checked["symbol"] += sub_df["symbol"].tolist()
+                already_checked["name"] += sub_df["name"].tolist()
+                for genes in sub_df["ensembl_gene_id"].unique():
                     hgnc_send.send(genes)
 
     return advanced_search
@@ -362,6 +361,9 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
                 df = fetch_hugo("name", symbol, data_path)
             if df is not None:
                 sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+                already_checked["ensembl_gene_id"] += sub_df["ensembl_gene_id"].tolist()
+                already_checked["symbol"] += sub_df["symbol"].tolist()
+                already_checked["name"] += sub_df["name"].tolist()
                 for ensembl_id in sub_df["ensembl_gene_id"].unique():
                     count_dict[ensembl_id] += 1
             else:
@@ -390,6 +392,9 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
                 df = fetch_hugo("symbol", name, data_path)
             if df is not None:
                 sub_df = df[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
+                already_checked["ensembl_gene_id"] += sub_df["ensembl_gene_id"].tolist()
+                already_checked["symbol"] += sub_df["symbol"].tolist()
+                already_checked["name"] += sub_df["name"].tolist()
                 for ensembl_id in sub_df["ensembl_gene_id"].unique():
                     count_dict[ensembl_id] += 1
             else:
