@@ -132,6 +132,13 @@ def search_hugo(search_by, to_be_searched):
 
 
 def fetch_hugo(fetch_by, to_be_fetched, path_to_download):
+    if (
+        to_be_fetched is None or
+        not isinstance(to_be_fetched, str) or
+        to_be_fetched is np.nan or 
+        to_be_fetched is "nan"
+        ):
+        return None
     base_url = "https://rest.genenames.org/fetch/"
     try:
         r = requests.get(base_url+fetch_by+'/'+to_be_fetched, headers={"Accept":"application/json"}, timeout=60)
