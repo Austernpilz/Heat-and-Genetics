@@ -129,17 +129,17 @@ def get_variant_data(files, data_path, download):
 
     for rsid in unique_rsids:
         #threads = lamma(
-        fetch_pop_data(data_path, rsid, download)
+        fetch_pop_data((data_path, rsid, download))
         #, threads)
 
     for rsid in unique_rsids:
         #threads = lamma(
-        fetch_rsid_data(data_path, rsid, download)
+        fetch_rsid_data((data_path, rsid, download))
         #, threads)
 
     for hgvs in unique_hgvs:
         #threads = lamma(
-        fetch_hgvs_data(data_path, hgvs, download)
+        fetch_hgvs_data((data_path, hgvs, download))
         #, threads)
 
     # for t in threads:

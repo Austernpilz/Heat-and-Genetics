@@ -337,7 +337,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 ensembl_id = "NO ID"
                 print("NO ID")
 
-            if ensembl_id == "finished":
+            if ensembl_id == "finished" or counter > 10:
                 break
             elif (
                 ensembl_id == "NO ID" or 
@@ -347,15 +347,12 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 not "ENS" in ensembl_id or
                 ensembl_id in already_checked
                 ):
-                print("NO ID")
-                if counter > 10:
-                    break
-                else:
-                    continue
+                continue
             if not download:
                 path_gen = os.path.join(data_path, ensembl_id)
-                files = search_for_files(path_gen, "", "json")
-                if len(files) > 1:
+                os.makedirs(path_gen, exist_ok=True)
+                files = search_for_files(path_gen, "gnomAD_variants", "json")
+                if files:
                     gnomAD_send.send(files)
                     already_checked.add(ensembl_id)
                     print(f"{datetime.now().strftime('%H%M')} gnomAD already got {ensembl_id}")

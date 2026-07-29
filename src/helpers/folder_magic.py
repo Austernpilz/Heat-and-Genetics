@@ -29,7 +29,7 @@ def search_for_dirs(some_path, some_string):
 
 def search_for_files(some_path, some_string, some_suffix):
     if os.path.isfile(some_path):
-        file_name = os.path.basename(some_string)
+        file_name = os.path.basename(some_path)
         if some_string in file_name and file_name.endswith(some_suffix):
             return [some_path]
 

@@ -35,40 +35,33 @@ def get_from_path(ensembl_id, path_to_ensembl):
 def download_data(ensembl_receive, ensembl_send, ensembl_config):
     already_visited = set()
     data_path, download = ensembl_config
-    ensembl_id = ""
+    ensembl_id = "NO ID"
     counter = 0
     print("starting ensembl")
     while (True):
         try:
-            if ensembl_receive.poll(timeout=600):
+            if ensembl_receive.poll(timeout=180):
                 ensembl_id = ensembl_receive.recv()
             else:
                 counter += 1
                 ensembl_id = "NO ID"
 
-            if ensembl_id in already_visited:
-                already_visited.add(ensembl_id)
-                continue
-
-            elif ensembl_id == "finished" or (
-                ensembl_id == "NO ID" and counter > 10
-            ):
+            if ensembl_id == "finished" or counter > 10:
                 ensembl_receive.close()
                 break
-
             elif (
+                ensembl_id in already_visited or 
                 not isinstance(ensembl_id, str) or 
                 ensembl_id is np.nan or
                 ensembl_id == "NO ID"
             ):
                 continue
-
             else:
                 already_visited.add(ensembl_id)
                 ensembl_send.send(ensembl_id)
 
         except Exception as _:
-            sleep(90) #to build up the previous processes
+            sleep(180) #to build up the previous processes
 
         if not download:
             df = get_from_path(ensembl_id, data_path)

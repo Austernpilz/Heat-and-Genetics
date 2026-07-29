@@ -189,7 +189,8 @@ def translate_to_rsid(args):
         except Exception as e:
             print("\n\n translation failed")
             print(str(e))
-    elif os.path.isfile(p1):
+
+    if os.path.isfile(p1):
         rsids, translate_hgvs = [], []
         with open(p1, 'r') as f:
             translate_hgvs = json.load(f)

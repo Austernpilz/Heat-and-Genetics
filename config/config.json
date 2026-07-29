@@ -1,7 +1,8 @@
 {
     "flags": {
         "download_data": false,
-        "threads": 10
+        "threads": 10,
+        "top_genes": 200
     },
     "absolute_file_paths": {
         "config": "/Users/m/Desktop/neue_Ablage/bsc_praktikum/tud/Heat_and_Genetics/config",
