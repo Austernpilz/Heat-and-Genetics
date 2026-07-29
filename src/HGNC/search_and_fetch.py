@@ -157,7 +157,7 @@ def fetch_hugo(fetch_by, to_be_fetched, path_to_download):
 
         print(f"{datetime.now().strftime('%H%M')} hgnc got: {to_be_fetched}")
         # print("saved  to", file_path)
-        sleep(0.2)
+        sleep(0.1)
         return df
 
     except Exception as e:
