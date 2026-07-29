@@ -366,6 +366,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
                 already_checked["name"] += sub_df["name"].tolist()
                 for ensembl_id in sub_df["ensembl_gene_id"].unique():
                     count_dict[ensembl_id] += 1
+                continue
             else:
                 advanced_search.append(symbol)
 
@@ -376,6 +377,8 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
             else:
                 for ensembl_id in ensembl_id_list["ensembl_gene_id"].unique():
                     count_dict[ensembl_id] += 1
+                if not download:
+                    continue
         """
         Looking up BIOENTITY NAME aka Name
         """
@@ -397,6 +400,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
                 already_checked["name"] += sub_df["name"].tolist()
                 for ensembl_id in sub_df["ensembl_gene_id"].unique():
                     count_dict[ensembl_id] += 1
+                continue
             else:
                 advanced_search.append(name)
 
