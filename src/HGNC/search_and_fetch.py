@@ -420,7 +420,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
                         count_dict[ensembl_id] += 1
 
 
-    for ensembl_id, _ in count_dict.most_common(200):
+    for ensembl_id, _ in count_dict.most_common(5):
         hgnc_send.send(ensembl_id)
     #amigo_disgnet_done = pd.concat(df_list + [already_visited]).drop_duplicates()
     print(set(advanced_search))
