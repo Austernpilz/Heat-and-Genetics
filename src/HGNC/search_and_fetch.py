@@ -319,9 +319,9 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
     df_list = []
     count_dict = Counter()
     already_checked = {
-        "ensembl_gene_id" : [], 
+        "ensembl_gene_id" : [],
         "symbol" : [], 
-        "name" : []
+        "name" : [],
     }
     if not download and offline_data is not None:
         sub_df = offline_data[["ensembl_gene_id", "symbol", "name"]].dropna().drop_duplicates()
@@ -377,15 +377,6 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
             else:
                 advanced_search.append(symbol)
 
-        elif offline_data is not None:
-            ensembl_id_list = offline_data[(offline_data["symbol"] == symbol)]
-            if ensembl_id_list.empty:
-                advanced_search.append(symbol)
-            else:
-                for ensembl_id in ensembl_id_list["ensembl_gene_id"].unique():
-                    count_dict[ensembl_id] += 1
-                if not download:
-                    continue
         """
         Looking up BIOENTITY NAME aka Name
         """
@@ -411,18 +402,28 @@ def fetch_amigo(hgnc_send, hgnc_receive, data_path, unambiguouse, advanced_searc
             else:
                 advanced_search.append(name)
 
-        elif unambiguouse[(unambiguouse["Approved name"] == name)].empty and offline_data is not None:
-            ensembl_id_list = offline_data[(offline_data["name"] == name)]
+
+        if offline_data is not None:
+            ensembl_id_list = offline_data[(offline_data["symbol"] == symbol)]
             if ensembl_id_list.empty:
-                advanced_search.append(name)
+                advanced_search.append(symbol)
             else:
                 for ensembl_id in ensembl_id_list["ensembl_gene_id"].unique():
                     count_dict[ensembl_id] += 1
+                continue
+            if unambiguouse[(unambiguouse["Approved name"] == name)].empty:
+                ensembl_id_list = offline_data[(offline_data["name"] == name)]
+                if ensembl_id_list.empty:
+                    advanced_search.append(name)
+                else:
+                    for ensembl_id in ensembl_id_list["ensembl_gene_id"].unique():
+                        count_dict[ensembl_id] += 1
 
 
     for ensembl_id, _ in count_dict.most_common(200):
         hgnc_send.send(ensembl_id)
     #amigo_disgnet_done = pd.concat(df_list + [already_visited]).drop_duplicates()
+    print(set(advanced_search))
     return advanced_search
 
 

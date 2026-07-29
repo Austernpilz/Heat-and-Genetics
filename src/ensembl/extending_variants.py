@@ -121,8 +121,9 @@ def get_variant_data(files, data_path, download):
                 continue
 
             hgvs_single = potential_hgvs_notations(variant)
+            print(hgvs_single)
             hgvs.append(hgvs_single)
-            rsids += variant.get("rsids", []) + translate_to_rsid(data_path, hgvs_single)
+            rsids += variant.get("rsids", []) + translate_to_rsid((data_path, hgvs_single))
     unique_rsids = list(set(rsids))
     unique_hgvs = list(set(hgvs))
     #threads = [] lamma(fetch_hgvs_data, (data_path, hgvs, download))
