@@ -207,6 +207,8 @@ def look_up_variant(variant, variant_path, populations, download):
 
 def look_up_variant_data(files, not_sure, variant_path, populations, download):
     processed = set()
+    if not not_sure:
+        return processed
     variant_json = open_json(files)
     if variant_json is None:
         return processed
@@ -239,6 +241,8 @@ def get_variant(variant, variant_path, download):
 
 def get_variant_data(files, found, variant_path, download):
     processed = set()
+    if not found:
+        return processed
     variant_json = open_json(files)
     if variant_json is None:
         return processed
