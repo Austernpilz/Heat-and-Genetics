@@ -135,9 +135,6 @@ def fetch_hugo(fetch_by, to_be_fetched, path_to_download, throw=True):
         os.makedirs(hugo_gen_dir, exist_ok=True)
         file_path = os.path.join(hugo_gen_dir, "hgnc_data.tsv")
         df.to_csv(file_path ,sep='\t', index=False)
-
-        send_message(f"got {to_be_fetched}", 0, "hgnc")
-        send_message(1,1,"hgnc")
         sleep(0.1)
         return df
 
