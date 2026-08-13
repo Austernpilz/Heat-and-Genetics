@@ -94,7 +94,6 @@ def get_config_amigo(config):
     if not overview_file:
         overview_file = search_for_file(config_path, "overview", ".txt")
     overview_df = get_overview(config_path, overview_file)
-    send_message(overview_df.head(10))
 
     return (overview_df, group_in_ex, data_path, result_path, download, extra)
 
@@ -173,6 +172,43 @@ def get_config_vep(config):
 2. GO ID's & disgnet
 """
 def get_overview(config, path_to_amigo_overview):
+    if isinstance(path_to_amigo_overview, str) and os.path.isfile(path_to_amigo_overview):
+        try:
+            df = pd.read_csv(path_to_amigo_overview, sep="\t", dtype=str)
+            return df
+        except Exception as _:
+            print("No overview table found, looking for txt")
+
+
+        overviewtxt = { "Accession" : [], "Name" : [], "Ontology" : [], "Synonyms" : [], "Alternate IDs" : [], "Definition" : [], "not_found" : [] }
+        with open(path_to_amigo_overview, 'r') as f:
+            last_line = ""
+            for line in f:
+                if line.startswith('#'):
+                    continue
+                elif last_line == "":
+                    last_line = line.strip()
+                    continue
+                elif last_line in overviewtxt:
+                    overviewtxt[last_line].append(line.strip())
+                    last_line = ""
+                else:
+                    print(last_line, line)
+                    overviewtxt["not_found"].append(line.strip())
+                    last_line = ""
+
+        not_found = overviewtxt.pop("not_found")
+        if not_found:
+            print("These Strings are unknown for the Amigo overview:")
+            print(not_found)
+
+        norm_accession = [ go_id.replace("GO:", "").strip() for go_id in overviewtxt["Accession"] ]
+        overviewtxt["Accession"] = norm_accession
+
+        df = pd.DataFrame.from_dict(overviewtxt)
+        save_table(df, config, path_to_amigo_overview)
+        return df
+
     if isinstance(path_to_amigo_overview, list):
         solution = []
         for p in path_to_amigo_overview:
@@ -183,45 +219,11 @@ def get_overview(config, path_to_amigo_overview):
         return df
 
     if not os.path.isfile(path_to_amigo_overview):
-        how_often = len(path_to_amigo_overview)
         overviewtxt = { "Accession" : [path_to_amigo_overview.replace("GO:", "").strip()], 
                        "Name" : ["NO_NAME"], "Ontology" : ["NO Ontology"], "Synonyms" : ["NO Synonym"],  "Alternate IDs" : ["NO alt ID"], "Definition" : ["NO Definition"] }
         return pd.DataFrame.from_dict(overviewtxt)
 
-    try:
-        df = pd.read_csv(path_to_amigo_overview, sep="\t", dtype=str)
-        return df
-    except Exception as _:
-        print("No overview table found, looking for txt")
 
-    overviewtxt = { "Accession" : [], "Name" : [], "Ontology" : [], "Synonyms" : [], "Alternate IDs" : [], "Definition" : [], "not_found" : [] }
-    with open(path_to_amigo_overview, 'r') as f:
-        last_line = ""
-        for line in f:
-            if line.startswith('#'):
-                continue
-            elif last_line == "":
-                last_line = line.strip()
-                continue
-            elif last_line in overviewtxt:
-                overviewtxt[last_line].append(line.strip())
-                last_line = ""
-            else:
-                print(last_line, line)
-                overviewtxt["not_found"].append(line.strip())
-                last_line = ""
-
-    not_found = overviewtxt.pop("not_found")
-    if not_found:
-        print("These Strings are unknown for the Amigo overview:")
-        print(not_found)
-
-    norm_accession = [ go_id.replace("GO:", "").strip() for go_id in overviewtxt["Accession"] ]
-    overviewtxt["Accession"] = norm_accession
-
-    df = pd.DataFrame.from_dict(overviewtxt)
-    save_table(df, config, path_to_amigo_overview)
-    return df
 
 
 def load_include_exclude_txt(path):
