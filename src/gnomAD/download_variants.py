@@ -440,12 +440,12 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 send_message(1,1,"gnomad")
 
             else:
-                sleep(180)
+                sleep(60)
                 counter += 1
 
         except Exception as _:
             counter += 1
-            sleep(10)
+            sleep(180)
 
     gnomAD_send.put("finished")
     print("gnomAD thread done")

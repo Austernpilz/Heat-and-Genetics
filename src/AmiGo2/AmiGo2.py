@@ -25,6 +25,8 @@ def get_data(amigo_send, amigo_config, go_id_list=None):
             continue
 
         name_symbol = df[["bioentity_name", "bioentity_label"]].drop_duplicates(ignore_index=True)
+        if df.empty:
+            continue
         amigo_send.put(name_symbol)
 
         term = df["term"].iat[0]
