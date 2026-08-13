@@ -87,7 +87,7 @@ def get_config_amigo(config):
     os.makedirs(result_path, exist_ok=True)
 
     config_path = storage.get("config")
-    include_exclude_file = search_for_file(config_path, "Amigo2_include_exclude", ".txt")
+    include_exclude_file = search_for_file(config_path, "AmiGo2_include_exclude", ".txt")
     group_in_ex = load_include_exclude_txt(include_exclude_file)
 
     overview_file = search_for_file(config_path, "overview", ".tsv")
