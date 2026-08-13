@@ -6,7 +6,49 @@ from time import sleep
 import requests as r
 import numpy as np
 
-from src.helpers.folder_magic import search_for_files
+from src.helpers.folder_magic import search_for_files, search_for_file, check_string
+from src.helpers.std_out import send_message
+
+
+GNOMAD_POPULATION_NAMES = {
+    'afr': 'African/African American',
+    'ami': 'Amish',
+    'amr': 'Admixed American',
+    'asj': 'Ashkenazi Jewish',
+    'eas': 'East Asian',
+    'mid': 'Middle Eastern',
+    'eur': 'European',
+    'nfe': 'European (non-Finnish)',
+    'fin': 'European (Finnish)',
+    'oth': 'Remaining individuals',
+    'sas': 'South Asian',
+    'rmi': 'Remaining',
+    'remaining': 'Remaining',
+
+    # EAS subpopulations
+    'eas_jpn': 'Japanese',
+    'eas_kor': 'Korean',
+    'eas_oea': 'Other East Asian',
+
+    # NFE subpopulations
+    'nfe_bgr': 'Bulgarian',
+    'nfe_est': 'Estonian',
+    'nfe_nwe': 'North-western European',
+    'nfe_onf': 'Other non-Finnish European',
+    'nfe_seu': 'Southern European',
+    'nfe_swe': 'Swedish',
+}
+
+def extend_and_validate_ancestry_names(ancestry_list):
+    new_ancestry_list = set()
+    global GNOMAD_POPULATION_NAMES
+    for short_id, full_name in GNOMAD_POPULATION_NAMES.items():
+        if short_id in ancestry_list:
+            new_ancestry_list.add(short_id)
+        if full_name in ancestry_list:
+            new_ancestry_list.add(short_id)
+    return new_ancestry_list
+
 
 def query_gen_ensemble(ensembl_id):
     return (f''' 
@@ -229,10 +271,10 @@ query VariantsInGene {{
 
 #unique names in case we don't get an gene id or symbol
 def get_unique_name(path_to_data, name="data"):
-    #ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
-    return os.path.join(path_to_data, f"{name}.json")
+    ts = datetime.now().strftime("%Y%m%dT%H%M%SZ")
+    return os.path.join(path_to_data, f"{name}_{ts}.json")
 
-def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=False):
+def fetch_from_ensembl_id_as_json(query, gene_path, name):
     """
     very long query string; 
     look up https://gnomad.broadinstitute.org/api to test out querys Strings
@@ -240,139 +282,170 @@ def fetch_from_ensembl_id_as_json(query, ensembl_id, data_path, name, download=F
     # <- mark comments
     # too long, every now and then there are mistakes, so I split it in 5 querys
     """
-    gnomAD_data = os.path.join(data_path, ensembl_id)
-    os.makedirs(gnomAD_data, exist_ok=True)
-    file_name = get_unique_name(gnomAD_data, name)
-    if not os.path.isfile(file_name) or download:
-        try:
-            response = r.post("https://gnomad.broadinstitute.org/api",
-                            json={"query": query},
-                            timeout=180
-                            )
-            data = response.json().get("data", {}).get("gene", {})
-            sleep(6)
-            if data:
-                with open(file_name, 'w') as file:
-                    json.dump(data, file)
-                return file_name
-            else:
-                return False
+    try:
+        response = r.post("https://gnomad.broadinstitute.org/api",
+                        json={"query": query},
+                        timeout=180
+                        )
+        if response.status_code != 200:
+            return None
 
-        except Exception as e:
-            print(f"\n\n fetch {name} failed")
-            print(str(e))
+        data = response.json().get("data", {}).get("gene", {})
+        if data:
+            file_name = get_unique_name(gene_path, name)
+            with open(file_name, 'w') as file:
+                json.dump(data, file)
+            return file_name
+        else:
+            return False
 
-        return None
+    except Exception as e:
+        send_message(f" - fetch {gene_path}/{name} failed\n{str(e)}\n")
+
+    return None
 
 
-def try_fetching_(query, id, data_path, name, files=[]):
+def try_fetching_(query, gene_path, name, first=False):
     counter_for_fail = 0
-    time_elapsed = 6
     while counter_for_fail < 4:
-        file = fetch_from_ensembl_id_as_json(query, id, data_path, name)
+        file = fetch_from_ensembl_id_as_json(query, gene_path, name)
         if file is None:
             counter_for_fail += 1 #download failed
+            sleep(6)
         elif file:
             counter_for_fail = 99
-            files.append(file)
         else:
             counter_for_fail += 2 #data was empty
-    return files
+            sleep(6)
+    if not first:
+        sleep(6)
 
-def found(variant_path, ancestry, cutoff):
-    variant_list = []
-    try:
-        with open(variant_path, 'r') as f:
-            variant_list = json.load(f).get("variants", None)
-            if variant_list is None:
-                return False
-    except Exception as e:
-        print(str(e))
-        return False
 
-    for variant in variant_list:
-        for item in ["joint", "genome", "exome"]:
-            populations_an_ac = variant.get(item, None)
-            if populations_an_ac is None:
+def load_variants(files):
+    variants = []
+    for variant_json in files:
+        if not variant_json.endswith("json") or "gnomAD_variants" not in variant_json:
+            continue
+        try:
+            with open(variant_json, 'r') as f:
+                variants += json.load(f).get("variants", None)
+        except Exception as e:
+            send_message(f" - couldn't load variant_file {variant_json}\n{str(e)}\n")
+            continue
+    return variants
+
+
+def find_diff_cutoff(variant, ancestry, cutoff=0.05):
+    for item in ["joint", "genome", "exome"]:
+        populations_an_ac = variant.get(item, None)
+        if populations_an_ac is None:
+            continue
+
+        populations = populations_an_ac.get("populations", [])
+        if not populations:
+            continue
+
+        pop_af = []
+        for population in populations:
+            pop_id = population.get("id", None)
+            if pop_id not in ancestry:
                 continue
 
-            populations = populations_an_ac.get("populations", [])
-            for population in populations:
-                pop_id = population.get("id", None)
-                if pop_id not in ancestry:
-                    continue
+            ac = population.get("ac", None)
+            if ac is None:
+                pop_af.append(0)
+                continue
 
-                ac = population.get("ac", 0)
-                if ac == 0:
-                    continue
+            an = population.get("an", None)
+            if an is None:
+                pop_af.append(0)
+                continue
 
-                an = population.get("an", 0)
-                if an == 0:
-                    continue
+            try:
+                af = float(ac) / float(an)
+                pop_af.append(af)
+            except Exception as _:
+                pop_af.append(0)
+                continue
 
-                try:
-                    af = float(ac) / float(an)
-                    # the variant exists in our population with the specific cutoff
-                    if af >= cutoff:
-                        return True
-                except Exception as _:
-                    continue
+        if max(pop_af) - min(pop_af) >= cutoff:
+            return True
 
     return False
 
 
+def filter_variants(variants, population):
+    long_list = extend_and_validate_ancestry_names(population)
+    found = set()
+    not_sure = set()
+    for v in variants:
+        if not isinstance(v, dict):
+            continue
+        variant_id = v.get("variant_id", "NO_ID")
+        if find_diff_cutoff(v, long_list):
+            found.add(variant_id)
+        else:
+            not_sure.add(variant_id)
+
+    return found, not_sure
+
+
+def send_to_VEP(gnomAD_send, files, populations, ensemble_id):
+    gnomad_variants = load_variants(files)
+    found, not_sure = filter_variants(gnomad_variants, populations)
+    gnomAD_send.put((files, populations, found, not_sure, ensemble_id))
+    send_message(len(found)+len(not_sure), 2, "vep")
+
+def load_or_fetch(query, gene_path, file_name, download):
+    if search_for_file(gene_path, file_name, ".json") is None or download:
+        try_fetching_(query, gene_path, file_name)
+
+def load_rest(already_checked, gene_path, ensembl_id, download):
+    load_or_fetch(query_gen_ensemble(ensembl_id), gene_path, "gnomAD_gene", download)
+    load_or_fetch(query_clinvar_ensemble(ensembl_id), gene_path, "gnomAD_clinvar", download)
+    load_or_fetch(query_exons_ensemble(ensembl_id), gene_path, "gnomAD_exons", download)
+    load_or_fetch(query_transcripts_ensemble(ensembl_id), gene_path, "gnomAD_transcripts", download)
+    already_checked.add(ensembl_id)
+    return already_checked
+
 def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
-    ensembl_id = ""
+    send_message("starting",0,"gnomad")
     data_path, populations, download = gnomAD_config
-    #ancestry = list(populations.keys()) + list(populations.values())
     already_checked = set()
-    print("starting gnomAD")
     counter = 0
     while (True):
         try:
-            if gnomAD_receive.poll(timeout=60):
-                ensembl_id = gnomAD_receive.recv()
-            else:
-                counter += 1
-                ensembl_id = "NO ID"
-                print("NO ID")
+            if not gnomAD_receive.empty():
+                ensembl_id = gnomAD_receive.get()
+                if check_string(ensembl_id):
+                    continue
+                if ensembl_id in already_checked:
+                    continue
+                if ensembl_id == "finished" or counter > 200:
+                    break
 
-            if ensembl_id == "finished" or counter > 10:
-                break
-            elif (
-                ensembl_id == "NO ID" or 
-                ensembl_id == np.nan or 
-                ensembl_id == "nan" or 
-                not isinstance(ensembl_id, str) or
-                not "ENS" in ensembl_id or
-                ensembl_id in already_checked
-                ):
-                continue
-            if not download:
                 path_gen = os.path.join(data_path, ensembl_id)
                 os.makedirs(path_gen, exist_ok=True)
+                if download:
+                    try_fetching_(query_variant_ensemble(ensembl_id), path_gen, "gnomAD_variants", True)
+
                 files = search_for_files(path_gen, "gnomAD_variants", "json")
-                if files:
-                    gnomAD_send.send(files)
-                    already_checked.add(ensembl_id)
-                    print(f"{datetime.now().strftime('%H%M')} gnomAD already got {ensembl_id}")
+
+                if not files:
                     continue
+                else:
+                    send_to_VEP(gnomAD_send, files, populations, ensembl_id)
+
+                already_checked = load_rest(already_checked, path_gen, ensembl_id, download)
+                send_message(1,1,"gnomad")
+
+            else:
+                sleep(180)
+                counter += 1
+
         except Exception as _:
-            sleep(1)
+            counter += 1
+            sleep(10)
 
-        files = try_fetching_(query_variant_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_variants", [])
-        if not files:
-            #no variants, no population data, no variants to look at
-            continue
-
-        files = try_fetching_(query_gen_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_gene", files)
-        files = try_fetching_(query_clinvar_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_clinvar", files)
-        files = try_fetching_(query_exons_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_exons", files)
-        files = try_fetching_(query_transcripts_ensemble(ensembl_id), ensembl_id, data_path, "gnomAD_transcripts", files)
-        gnomAD_send.send(files)
-        already_checked.add(ensembl_id)
-        print(f"{datetime.now().strftime('%H%M')} gnomAD got {ensembl_id}")
-
-    gnomAD_send.send("finished")
-    gnomAD_send.close()
+    gnomAD_send.put("finished")
     print("gnomAD thread done")

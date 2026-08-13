@@ -523,41 +523,6 @@ def run_analysis_pipeline(df_variants, df_clinvar, df_genes):
     get_cadd_sankey(all_negativ)
     get_biggest_outliers(all_negativ)
 
-def load_include_exclude_txt(path):
-    in_out_txt = {
-        "group" : {},
-        "exclude" : [],
-        "plusplus" : []
-    }
-    with open(path, 'r') as f:
-        group = ""
-        for line in f:
-            line = line.strip()
-            if line.startswith('#'):
-                continue
-            elif line.startswith('<'): 
-                line = line[1:-1].strip()
-                group = line
-                continue
-            elif line.startswith('--'): 
-                line = line[2:].strip()
-                in_out_txt["exclude"].append(line)
-            elif line.startswith('++'): 
-                line = line[2:].strip()
-                in_out_txt["plusplus"].append(line)
-                in_out_txt["group"][line] = group
-            else:
-                in_out_txt["group"][line] = group
-
-    # df = exclude_col(df, colum, in_out_txt["exclude"]).copy()
-    # df["group_term"] = df[colum].map(lambda x : in_out_txt["group"].get(x, "NO_GROUP_TERM"))
-    # print(df[df["group_term"] == "NO_GROUP_TERM"][colum].unique().tolist())
-
-    # # .copy() to make sure, we don't corrupt the original data, 
-    # # when performing later transformations
-    # df_reduced = exclude_col(df, colum, in_out_txt["plusplus"]).copy()
-
-    return in_out_txt
 
 def plot_any_deleterious_burden(df, title="Any Deleterious: Burden Score"):
     """

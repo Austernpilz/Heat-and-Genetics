@@ -2,23 +2,21 @@
 # import argparse
 # import os
 # import json
-from multiprocessing import Pipe
+# from multiprocessing import Pipe
 import threading
+import os
+import queue
 
 #global modules
 import pandas as pd
 
 #local modules
-from src.helpers.folder_magic import get_config
-
-
-from src.AmiGo2 import mod_Amigo2 as amigo
-from src.disgnet import get_tables as dn
-#from src.helpers import figures as fig
+from src.AmiGo2 import AmiGo2 as amigo
 from src.HGNC import search_and_fetch as hugo
 from src.ensembl import getting_closer_to_variants as ense
 from src.gnomAD import variants as var
-import src.helpers.table_magic as dut
+from src.helpers.config import get_config
+from src.helpers.std_out import run_io, stop
 
 def new_task(funct, function_arguments, threads, task_max = 1):
 
@@ -28,7 +26,7 @@ def new_task(funct, function_arguments, threads, task_max = 1):
 
     task = threading.Thread(
         target = funct, 
-        args = function_arguments
+        args = function_arguments,
         )
     task.start()
     threads.append(task)
@@ -37,57 +35,54 @@ def new_task(funct, function_arguments, threads, task_max = 1):
 
 
 """
-load parameters
+load parameters & start output
 """
+
 config_file = get_config()#"/Users/m/Desktop/neue_Ablage/bsc_praktikum/tud/Heat_and_Genetics/config/config.json")
-data_storage = config_file.get("absolute_file_paths").get("data")
-config_storage = config_file.get("absolute_file_paths").get("config")
 t = config_file.get("flags").get("threads")
+result = config_file.get("absolute_file_paths").get("results")
+io_txt = os.path.join(result, "io.txt")
+_ = new_task(run_io, (io_txt,), [], t)
+
 
 """
 pipeline : DOWNLOAD
 """
-amigo_send, hgnc_receive = Pipe()
+amigo_hgnc = queue.Queue()
 
 #Step 1 Download Amigo Data 
-amigo_config = amigo.get_config(config_file)
-threads = new_task(amigo.download_data, (amigo_send, amigo_config), [], t)
+amigo_config = get_config(config_file, "amigo")
+threads = new_task(amigo.get_data, (amigo_hgnc, amigo_config), [], t)
 
-#Step 2 Load Disgnet Data
-disgnet_config = dn.get_config(config_file)
-disgnet_df = dn.build_tables(disgnet_config)
+#Step 2 hgnc
+hgnc_ensembl = queue.Queue()
+hgnc_config = get_config(config_file, "hgnc")
+threads = new_task(hugo.download_hgnc_data, (amigo_hgnc, hgnc_ensembl, hgnc_config), threads, t)
 
-#Step 3 hgnc
-hgnc_send, ensembl_receive = Pipe()
-hgnc_config = hugo.get_config(config_file)
-threads = new_task(hugo.download_hgnc_data, (hgnc_receive, hgnc_send, disgnet_df, hgnc_config), threads, t)
+#Step 3 ensembl
+ensembl_gnomAD = queue.Queue()
+ensembl_config = get_config(config_file, "ensembl")
+threads = new_task(ense.download_data, (hgnc_ensembl, ensembl_gnomAD, ensembl_config), threads, t)
 
-#Step 4 ensembl
-ensembl_send, gnomAD_receive = Pipe()
-ensembl_config = ense.get_config(config_file)
-threads = new_task(ense.download_data, (ensembl_receive, ensembl_send, ensembl_config), threads, t)
+#Step 4 gnomAD
+gnomAD_VEP = queue.Queue()
+gnomAD_config_download = get_config(config_file, "gnomad")
+threads = new_task(var.download_data, (ensembl_gnomAD, gnomAD_VEP, gnomAD_config_download), threads, t)
 
-#Step 5 gnomAD
-gnomAD_send, VEP_receive = Pipe()
-gnomAD_config_download = var.get_config(config_file)
-threads = new_task(var.download_data, (gnomAD_receive, gnomAD_send, gnomAD_config_download), threads, t)
-
-#Step 6 extend Variants through ensemble
+#Step 5 extend Variants through ensembl
 #VEP_send, gnomad_filter_receive = Pipe()
-VEP_config = ense.get_config(config_file)
-threads = new_task(ense.extend_data, (VEP_receive, VEP_config), threads, t) #VEP_send,
+VEP_config = get_config(config_file, "vep")
+threads = new_task(ense.extend_data, (gnomAD_VEP, VEP_config), threads, t) #VEP_send,
 
-
-# #Step 7 filter ensemble data for population
-# gnomAD_config_filter = var.get_config(config_file)
-# threads = new_task(var.simplify_df, (gnomad_filter_receive, gnomAD_config_filter), threads, t)
 
 """
 pipline: CLEAN DATA
 """
 #Step 6 finished work
-for t in threads:
-    t.join()
+for thread in threads:
+    if thread.is_alive():
+        thread.join()
+stop()
 
 #dut.save_results(config_file)
 

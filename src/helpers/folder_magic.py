@@ -1,6 +1,47 @@
-import os
-import json
 
+import os
+import numpy as np
+
+
+def check_string(some_string):
+    if some_string is None:
+        return True
+    if not isinstance(some_string, str):
+        return True
+    if some_string in ["", "nan", "Nan", "NaN", "NAN", "empty", " ", "_", "None", "-", np.nan, "NO_GROUP", "NO_SYMBOL", "NO_NAME", "NO_ID", "time_out"]:
+        return True
+    return False
+
+def save_table(df, some_path, name):
+    os.makedirs(some_path, exist_ok=True)
+    file_path = os.path.join(some_path, f"{name}.tsv")
+    i=0
+    while os.path.isfile(file_path):
+        file_path = os.path.join(some_path, f"{name}_{i}.tsv")
+        i+=1
+    df.to_csv(file_path, index=False, sep="\t")
+
+
+def search_for_dir(some_path, some_string):
+    if not os.path.isdir(some_path):
+        return False
+
+    dir_to_visit = [some_path]
+    while dir_to_visit:
+        current = dir_to_visit.pop()
+        try: #in case i get a permission denied
+            for entry in os.scandir(current):
+                if entry.is_dir():
+                    dir_path = os.path.join(current, entry.name)
+                    if some_string in entry.name:
+                        return dir_path
+                    else:
+                        dir_to_visit.append(dir_path)
+
+        except Exception as _:
+            continue
+
+    return False
 
 
 def search_for_dirs(some_path, some_string):
@@ -13,9 +54,7 @@ def search_for_dirs(some_path, some_string):
         current = dir_to_visit.pop()
         try: #in case i get a permission denied
             for entry in os.scandir(current):
-                if entry.is_file():
-                    continue
-                elif entry.is_dir():
+                if entry.is_dir():
                     dir_path = os.path.join(current, entry.name)
                     dir_to_visit.append(dir_path)
                     if some_string in entry.name:
@@ -25,6 +64,35 @@ def search_for_dirs(some_path, some_string):
             continue
 
     return found_something
+
+
+def search_for_file(some_path, some_string, some_suffix):
+    if os.path.isfile(some_path):
+        file_name = os.path.basename(some_path)
+        if some_string in file_name and file_name.endswith(some_suffix):
+            return some_path
+
+    if not os.path.isdir(some_path):
+        return None
+
+    dir_to_visit = [some_path]
+    while dir_to_visit:
+        current = dir_to_visit.pop()
+        try: #in case i get a permission denied
+            for entry in os.scandir(current):
+                if entry.is_dir():
+                    dir_to_visit.append(os.path.join(current, entry.name))
+                elif (
+                    entry.is_file() and 
+                    some_string in entry.name and 
+                    entry.name.endswith(some_suffix)
+                ):
+                    return os.path.join(current, entry.name)
+
+        except Exception as _:
+            continue
+
+    return None
 
 
 def search_for_files(some_path, some_string, some_suffix):
@@ -55,51 +123,3 @@ def search_for_files(some_path, some_string, some_suffix):
             continue
 
     return found_something
-
-
-def get_config(pathpath = False):
-    # this excpects you to start from the Heat_and_Genetics_Folder 
-    # or give the config path as argument
-    # parser = argparse.ArgumentParser(
-    #                 prog='heat_and_genetics',
-    #                 description='pipeline for downloading and plotting gene data for heatrelated healthriscs')
-    # parser.add_argument('--folder_path', '-p', default=None)
-    # inputs = parser.parse_args()
-    if pathpath:
-        config = {}
-        try:
-            with open(pathpath, 'r') as f:
-                config = json.load(f)
-            return config
-        except Exception as e:
-            print(str(e))
-            #no config, try to build it myself?!?
-    this_folder = os.getcwd()
-    config = os.path.join(this_folder, "config")
-    data = os.path.join(this_folder, "data")
-    results = os.path.join(this_folder, "results")
-
-    return {
-        "flags": {
-            "download_data": False,
-            "force_data_update": False,
-            "threads": 10
-        },
-        "absolute_file_paths": {
-            "config": config,
-            "data": data,
-            "results": results,
-        },
-        "relative_file_paths": {
-            "AmiGo2_overview": "AmiGo2_overview.txt",
-            "Amigo2_inclue_exclude": "AmiGo2_include_exclude.txt",
-            "disgnet_data": "genes",
-            "disgnet_include_exclude": "disgnet_include_exclude.txt",
-            "hgnc_data": "genes",
-            "hgnc_symbol_check": ["hgnc-symbol-check/hgnc-symbol-check_amigo.csv", "hgnc-symbol-check/hgnc-symbol-check_disgnet.csv"]
-        },
-        "populations": {
-            "afr": "African/African American",
-            "nfe": "European (non-Finnish)"
-        }
-    }

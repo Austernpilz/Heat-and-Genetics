@@ -7,16 +7,18 @@ import requests
 import pandas as pd
 import numpy as np
 
+from src.helpers.std_out import send_message
+from src.helpers.folder_magic import check_string
 
 def fetch_from_ensembl(ensembl_id, path_to_ensembl):
-    if ensembl_id is None:
-        return
+    if check_string(ensembl_id):
+        return None
+
     server = "https://rest.ensembl.org"
     ext = f"/lookup/id/{ensembl_id}?expand=1"
     try:
         r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
-        if r.status_code != 200:
-            print("failed to load ",ensembl_id)
+
         if not r.ok:
             r.raise_for_status()
 
@@ -26,29 +28,25 @@ def fetch_from_ensembl(ensembl_id, path_to_ensembl):
         p = os.path.join(id_dir, "ensembl_data.json")
         with open(p, 'w') as file:
             json.dump(decoded, file)
-        print(f"{datetime.now().strftime('%H%M')} ensembl got: {ensembl_id}")
+
+        send_message(1,1,"ensembl")
+        send_message(f"got {ensembl_id}",0,"ensembl")
         sleep(0.1)
         return p
 
     except Exception as e:
-        print(f"\n\n fetch failed")
-        print(f"{path_to_ensembl}, {ensembl_id}")
-        print(str(e))
+        send_message(f" - fetch failed {path_to_ensembl}, {ensembl_id}\n{str(e)}\n")
 
     return None
 
 
-def fetch_hgvs_data(args):
-    path_to_data, hgvs, download = args
-    if hgvs is None:
-        return
+def fetch_hgvs_data(path_to_data, hgvs, download):
+    if check_string(hgvs):
+        return False
 
-    id_dir = os.path.join(path_to_data, hgvs)
-    os.makedirs(id_dir, exist_ok=True)
-    #ts = datetime.now().strftime("%Y%m%dT%H")
-    p0 = os.path.join(path_to_data, f"variant_by_hgvs_{hgvs}.json")
-    p1 = os.path.join(id_dir, f"variant_by_hgvs_{hgvs}.json")
-    if not (os.path.isfile(p0) or os.path.isfile(p1)) or download:
+    os.makedirs(path_to_data, exist_ok=True)
+    p = os.path.join(path_to_data, f"variant_by_hgvs_{hgvs}.json")
+    if not os.path.isfile(p) or download:
         try:
             #print('loading_variation_data ', hgvs)
             server = "https://rest.ensembl.org"
@@ -61,35 +59,36 @@ def fetch_hgvs_data(args):
                 "REVEL" : 1,
                 "SpliceAI" : 1, 
                 }
-            ext = f"/vep/homo_sapiens/hgvs/{hgvs}?{options}"
-            r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
+            ext = f"/vep/homo_sapiens/hgvs/{hgvs}?"
+            r = requests.get(server+ext, params=options, headers={ "Content-Type" : "application/json"}, timeout=600)
 
             if not r.ok:
                 r.raise_for_status()
 
             decoded = r.json()
-            with open(p1, 'w') as file:
+            with open(p, 'w') as file:
                 json.dump(decoded, file)
-
-            print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs}")
+            send_message(1,1,"vep")
+            send_message(f"got {hgvs}",0,"vep")
             sleep(0.1)
 
         except Exception as e:
-            print("\n\n hgvs fetch failed")
-            print(str(e))
+            send_message(f" - hgvs fetch failed\n{str(e)}\n")
+            return False
+    return True
 
+def fetch_rsid_data(path_to_data, rsid, download):
+    if isinstance(rsid, list):
+        worked = False
+        for r in rsid:
+            worked |= fetch_rsid_data(path_to_data, r, download)
+        return worked
 
-def fetch_rsid_data(args):
-    path_to_data, rsid, download = args
-    if rsid is None:
-        return
+    if check_string(rsid):
+        return False
 
-    id_dir = os.path.join(path_to_data, rsid)
-    os.makedirs(id_dir, exist_ok=True)
-
-    p0 = os.path.join(path_to_data, f"variant_by_rsID_{rsid}.json")
-    p1 = os.path.join(id_dir, f"variant_by_rsID_{rsid}.json")
-    if not (os.path.isfile(p0) or os.path.isfile(p1)) or download:
+    p = os.path.join(path_to_data, f"variant_by_rsID_{rsid}.json")
+    if not os.path.isfile(p) or download:
         try:
             server = "https://rest.ensembl.org"
             options = {
@@ -108,63 +107,60 @@ def fetch_rsid_data(args):
                 r.raise_for_status()
 
             decoded = r.json()
-            with open(p1, 'w') as file:
+            with open(p, 'w') as file:
                 json.dump(decoded, file)
 
-            print(f"{datetime.now().strftime('%H%M')} VEP got {rsid}")
+            send_message(1,1,"vep")
+            send_message(f"got {rsid}", 0, "vep")
             sleep(0.1)
-
         except Exception as e:
-            print(str(e))
-            print("\n\n rsid fetch failed")
+            send_message(f"- rsid fetch failed {rsid}\n{str(e)}\n")
+            return False
+
+    return True
 
 
-def fetch_pop_data(args):
-    path_to_data, rsid, download = args
-    if rsid is None:
-        return
-    id_dir = os.path.join(path_to_data, rsid)
-    os.makedirs(id_dir, exist_ok=True)
-    #ts = datetime.now().strftime("%Y%m%dT%H")
-    p0 = os.path.join(path_to_data, f"populations_{rsid}.json")
-    p1 = os.path.join(id_dir, f"populations_{rsid}.json")
-    if not (os.path.isfile(p0) or os.path.isfile(p1)) or download:
+
+def fetch_pop_data(path_to_data, rsid, download):
+    if isinstance(rsid, list):
+        results = []
+        for r in rsid:
+            results.extend(fetch_pop_data(path_to_data, r, download))
+        return results
+
+    if check_string(rsid):
+        return []
+
+    p = os.path.join(path_to_data, f"populations_{rsid}.json")
+    if not os.path.isfile(p) or download:
         try:
             server = "https://rest.ensembl.org"
-            options = {
-                "phenotypes" : 1, 
-                "pops" : 1, 
-                }
-            ext = f"/variation/homo_sapiens/{rsid}?{options}"
+            ext = f"/variation/homo_sapiens/{rsid}?pops=1"
             r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
 
             if not r.ok:
                 r.raise_for_status()
 
             decoded = r.json()
-            with open(p1, 'w') as file:
+            with open(p, 'w') as file:
                 json.dump(decoded, file)
 
-            print(f"{datetime.now().strftime('%H%M')} VEP got POP data from {rsid}")
+            send_message(f" - got POP data from {rsid}", 0, "vep")
             sleep(0.1)
 
         except Exception as e:
-            print("\n\n pop fetch failed")
-            print(str(e))
+            send_message(f" - pop fetch failed {rsid}\n{str(e)}\n")
+            return []
+
+    return [p]
 
 
-def translate_to_rsid(args):
-    path_to_data, hgvs, download = args
-    if hgvs is None:
-        return []
+def translate_to_rsid(path_to_data, hgvs, download):
+    if check_string(hgvs):
+        return None
 
-    #ts = datetime.now().strftime("%Y%m%dT%H")
-    id_dir = os.path.join(path_to_data, hgvs)
-    os.makedirs(id_dir, exist_ok=True)
-    p0 = os.path.join(path_to_data, f"aternative_names_for_{hgvs}.json")
-    p1 = os.path.join(id_dir, f"aternative_names_for_{hgvs}.json")
-    if not (os.path.isfile(p0) or os.path.isfile(p1)) or download:
-
+    p = os.path.join(path_to_data, f"aternative_names_for_{hgvs}.json")
+    if not os.path.isfile(p) or download:
         try:
             server = "https://rest.ensembl.org"
             ext = f"/variant_recoder/human/{hgvs}"
@@ -175,29 +171,15 @@ def translate_to_rsid(args):
                 r.raise_for_status()
 
             decoded = r.json()
-            with open(p1, 'w') as file:
+            with open(p, 'w') as file:
                 json.dump(decoded, file)
 
-            print(f"{datetime.now().strftime('%H%M')} VEP got {hgvs} to rsid")
+            send_message(f"got {hgvs} to rsid", 0, "vep")
             sleep(0.1)
-            # rsids = []
-            # #print(decoded)
-            # for found in decoded:
-            #     for base, possible_ids in found.items():
-            #         rsids += possible_ids.get("id", [])
-            # return rsids
+
         except Exception as e:
-            print("\n\n translation failed")
-            print(str(e))
+            send_message(f" - translation failed {hgvs}\n{str(e)}\n")
+            return None
 
-    if os.path.isfile(p1):
-        rsids, translate_hgvs = [], []
-        with open(p1, 'r') as f:
-            translate_hgvs = json.load(f)
-        for found in translate_hgvs:
-            for base, possible_ids in found.items():
-                rsids += possible_ids.get("id", [])
-        return rsids
-
-    return []
+    return p
 

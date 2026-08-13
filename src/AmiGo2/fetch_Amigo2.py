@@ -1,240 +1,286 @@
-import requests
+from collections import Counter
+from io import StringIO
 import os
 from time import sleep
-from datetime import datetime
 
+import requests
 import pandas as pd
+import random
 
-from src.helpers.folder_magic import search_for_files
-from src.helpers.table_magic import load_include_exclude_txt
-from src.AmiGo2.get_Amigo2_API import build_full_url_from_go_id, get_col, download_from_amigo2
+from src.helpers.folder_magic import check_string
+from src.helpers.std_out import send_message
 
-def get_single_df_from_path(table_path, columns):
-    if not os.path.isfile(table_path):
-        return None
+
+
+def wait(): #variable ratelimit, because i get blocked sometimes :(
+    sleep(random.uniform(5, 35))
+
+
+# sadly, we need to do it by hand, 
+# because we have pseudo headers and requests can't handle them
+REQUEST_ARG = {
+    "qt" : "standard",
+    "indent" : "on",
+    "wt" : "csv",
+    "rows" : "1000",
+    "start" : "0",
+    #list of colummns we want #if you give that as list you get an array of the single columns,
+    # so just transformed I guess
+    "fl" : "", 
+    "facet" : "true" , 
+    "facet.mincount" : "1" , 
+    "facet.sort" : "count" , 
+    "json.nl" : "arrarr" ,
+    "facet.limit" : "25",   #i think this is responsible for the max number of ch
+    "hl" : "true" , 
+    "hl.simple.pre" : "%3Cem%22class%22=%22hilite%22%3E" , # '<em"class"="hilite">' : probably some formatting
+    "hl.snippets" : "1000" , 
+    "csv.encapsulator" : "" , 
+    "csv.separator" : "%09" , 
+    "csv.header" : "false" , #default is false, if true, only loads the headers
+    "csv.mv.separator" : "%2C",
+    "fq" : [] , #this is our filter option, can be empty
+    "facet.field" : [ #pretty sure these are other possible filters
+        "aspect" ,  #something onthology
+        "type" , #protein, gene_product, mRNA, ... 
+        "evidence_subset_closure_label" ,  #no idea
+        "regulates_closure_label" , 
+        "isa_partof_closure_label" , 
+        "annotation_class_label" , 
+        "qualifier" , 
+        "annotation_extension_class_closure_label" , 
+        "assigned_by" , 
+        "panther_family_label" ,
+        ],
+    "q" : "%2A%3A%2A", #no idea just *:*    <- supposed to look cute, 
+    #maybe this also decides on the pseude-header signs
+}
+
+
+list_of_possible_columns = [
+    #completly useless
+    "id" , 
+
+    #probably good identifiers
+    "bioentity" , "bioentity_name" , "bioentity_label", "bioentity_internal_id",
+
+    #taxons
+    "taxon" , "taxon_label" , 
+    "taxon_closure" , "taxon_closure_label", 
+    "taxon_subset_closure" , "taxon_subset_closure_label" ,
+    "secondary_taxon" , "secondary_taxon_label" ,
+    "secondary_taxon_closure" , "secondary_taxon_closure_label" , 
+
+    "qualifier" , #sometimes protein, sometimes just NOT ???
+
+    #describtions for the data i haven't looked at yet
+    "panther_family" , "type" , "reference" , "date",
+    "isa_partof_closure_label" , "synonym" , "aspect" , "source" ,
+    "panther_family_label" , 
+    "has_participant_closure" , "regulates_closure_label" ,
+    "has_participant_closure_label" , 
+    "regulates_closure" , 
+    "isa_partof_closure" , "assigned_by" , 
+
+    "evidence" , "evidence_type_closure" , 
+    "evidence_subset_closure_label" , "evidence_label" , "evidence_subset_closure" , 
+    "evidence_closure_label" , "evidence_closure" , "evidence_type" , "evidence_with" ,
+
+    "annotation_extension_class_label" , "annotation_extension_class_closure_label" ,
+    "annotation_extension_class" , "annotation_class" , "annotation_extension_class_closure" ,
+    "annotation_extension_json" , "annotation_class_label" ,
+    #mostly empty so far
+    "bioentity_isoform", "geospatial_x" , "geospatial_y" , "geospatial_z" , "is_redundant_for"
+]
+
+standard = [
+    "bioentity" ,
+    "bioentity_name" ,
+    "qualifier" ,
+    "annotation_class" ,
+    "annotation_extension_json" ,
+    "assigned_by" ,
+    "taxon" ,
+    "evidence_type" ,
+    "evidence_with" ,
+    "panther_family" ,
+    "type" ,
+    "bioentity_isoform" ,
+    "reference" ,
+    "date"
+]
+
+extension_for_this_purpose = [
+     #labels are easier for me the rest is codes you need to look up :(
+    "bioentity_label",
+    "taxon_label",
+    #"taxon_subset_closure_label",
+    "isa_partof_closure_label" ,
+    "regulates_closure_label" , 
+    "annotation_class_label" ,
+    "annotation_extension_class_label",
+    "annotation_extension_class_closure_label",
+    "has_participant_closure_label" , #for future reference
+    #"panther_family_label"
+    ]
+
+
+def get_col():
+    return standard + extension_for_this_purpose
+
+
+def download_from_amigo2(url, columns, dir_path):
+    #name = url[-40:].split("&fq=")[-1]  #looks a bit ugly, but should print the GO_id and then some
+    #print(f"downloading GO ID {name}")
+
     try:
-        df = pd.read_csv(table_path, sep="\t", dtype=str)
-        for col in columns:
-            if col in df.columns:
-                continue
-            elif col == "term":
-                term = os.path.basename(os.path.dirname(table_path))
-                df[col] = term
-            else:
-                df[col] = ""
-        new_df = df[columns]
-        return new_df
+        r = requests.get(url, timeout=180)
+        text = r.text
+        if r.status_code == 200:
+            df = pd.read_csv(StringIO(text), 
+                            sep="\t", 
+                            dtype=str, 
+                            header=None,
+                            names=columns)
+            return df
+        else:
+            send_message(f"AmiGo2 returned HTTP {r.status_code}")
+            file_path = os.path.join(dir_path, "text.txt")
+            os.makedirs(dir_path, exist_ok=True)
+            with open(file_path, 'w') as f:
+                f.write(text)
+            send_message(f" - response saved under: {file_path}\n")
+
     except Exception as e:
-        print("\n\n coulnd't get df from path", table_path)
-        print(str(e))
-        return None
+        send_message(f"- couldn't read response from AmiGo2\n{str(e)}\n")
+        wait()
+    return None
 
 
-def get_all_genes_from_path(amigo_data):
-    columns = get_col() + ["term", "group"]
-    path_datatsv = search_for_files(amigo_data, "data", "tsv")
-    df_list = []
-    for data_tsv in path_datatsv:
-        df = get_single_df_from_path(data_tsv, columns)
-        if df is not None:
-            df_list.append(df[columns])
+def make_columns_to_string(columns):
+    string_list = []
+    seperator_encoding = "%2C"
+    for item in columns:
+        string_list.append(item + seperator_encoding)
 
-    if df_list:
-        return pd.concat(df_list)
-    else:
-        return None
+    return "".join(string_list)[:-3] #delete the last sign
 
+def get_request_args():
+    very_long_string = ""
 
-def get_overview(path_to_amigo_overview):
+    global REQUEST_ARG
+    request_args = REQUEST_ARG.copy()
+    columns = get_col()
+    request_args["fl"] = make_columns_to_string(columns)
 
-    #no idea what i did here ??
-    if type(path_to_amigo_overview) == list:
-        solution = []
-        for p in path_to_amigo_overview:
-            solution.append(get_overview(p))
-        return pd.concat(solution)
+    for key, value in request_args.items():
+        if key == "fq":
+            continue
+        elif isinstance(value, list):
+            for item in value:
+                very_long_string += f"&{key}={item}"
+        else:
+            very_long_string += f"&{key}={value}"
 
-    try: #in case i ever fix this :D
-        df = pd.read_csv(path_to_amigo_overview)
-        return df
+    return very_long_string
 
-    except Exception as _:
-
-        overviewtxt = {
-            "Accession" : [],
-            "Name" : [],
-            "Ontology" : [],
-            "Synonyms" : [], 
-            "Alternate IDs" : [],
-            "Definition" : [],
-            "not_found" : []
-        }
-
-        with open(path_to_amigo_overview, 'r') as f:
-            last_line = ""
-            for line in f:
-                #print(line)
-                if line.startswith('#'):
-                    continue
-
-                elif last_line == "":
-                    last_line = line.strip()
-                    continue
-
-                elif last_line in overviewtxt:
-                    overviewtxt[last_line].append(line.strip())
-                    last_line = ""
-
-                else:
-                    print(last_line, line)
-                    overviewtxt["not_found"].append(line.strip())
-                    last_line = ""
-
-        print(overviewtxt.pop("not_found"))
-
-        norm_accession = [ 
-            go_id.replace("GO:", "").strip()
-            for go_id in overviewtxt["Accession"]
+def get_filter(go_id):
+    filter_fq = [
+            "document_category:%22annotation%22", 
+            "taxon_subset_closure_label:%22Homo%20sapiens%22",
+            f"isa_partof_closure:%22GO%3A{go_id}%22",
             ]
-        overviewtxt["Accession"] = norm_accession
+    return "".join( f"&fq={item}" for item in filter_fq )
 
-        return pd.DataFrame.from_dict(overviewtxt)
+#this is an iterator function, that gives the urls
+def build_full_url_from_go_id(go_id):
+    # filter parameters for db request
+    # filter_fq = { #these : are pseudo headers and our filters
+    #     "genes" : "document_category:%22annotation%22", 
+    #     "humans" : "taxon_subset_closure_label:%22Homo%20sapiens%22",
+    #     "GO_NR" : lambda go_id : f"isa_partof_closure:%22GO%3A{go_id}%22",
+    # } # because of these pseudo headers, normal request module breaks the url
+    base_url = "https://golr-aux.geneontology.io/solr/select?defType=edismax&"
+    request_args = get_request_args()
+    filter_fq = get_filter(go_id)
+
+    return base_url + request_args + filter_fq
 
 
-
-def get_term_name(df, dir_path):
-    dir_name, term_name = os.path.split(dir_path)
-    if term_name != "empty":
-        return term_name, dir_path
+def get_term_name(df, dir_path=None):
+    if dir_path is not None:
+        dir_name, term_name = os.path.split(dir_path)
+        if check_string(term_name):
+            return term_name
 
     alternativ_term_name = df["has_participant_closure_label"].unique().tolist()
-    if len(alternativ_term_name) == 1 and alternativ_term_name[0] != "":
-        term_name = alternativ_term_name[0].replace(' ', '_')
-        return term_name, os.path.join(dir_name, term_name)
+    if len(alternativ_term_name) == 1 and not check_string(alternativ_term_name[0]):
+        term_name = alternativ_term_name[0].strip().replace(' ', '_')
+        return term_name
 
-    elif len(alternativ_term_name) == 2: #here I hope one is empty
-        term_name = (alternativ_term_name[0] + alternativ_term_name[1]).replace(' ', '_')
-        return term_name, os.path.join(dir_name, term_name)
+    elif len(alternativ_term_name) == 2 and (check_string(alternativ_term_name[0]) or check_string(alternativ_term_name[1])):
+        #here I hope one is empty
+        term_name = (alternativ_term_name[0] + alternativ_term_name[1]).strip().replace(' ', '_')
+        return term_name
 
     else:
         complicated_term_name = df["annotation_extension_class_closure_label"].tolist()
         complicated_term_name.sort()
-        count_dict = {}
+        count_dict = Counter()
 
         for s in complicated_term_name:
             labels = s.split(',')
             for l in labels:
-                l = l.strip()
-                if l in count_dict:
-                    count_dict[l] += 1
-                else:
-                    count_dict[l] = 1
+                count_dict[l.strip()] += 1
 
         possible_terms = alternativ_term_name
         for k, v in sorted(count_dict.items(), key=lambda item: item[1]):
             if v == len(complicated_term_name):
                 possible_terms.append(k)
 
-        for terf in possible_terms:
+        for term_name in possible_terms:
             for s in complicated_term_name:
                 labels = s.split(',')
-                if terf == labels[-1] or terf == labels[-2]:
-                    term_name = terf.replace(' ', '_')
-                    return term_name, os.path.join(dir_name, term_name)
+                if labels and term_name == labels[-1]:
+                    return term_name.strip().replace(' ', '_')
+                if len(labels) >= 1:
+                    if term_name == labels[-1] or term_name == labels[-2]:
+                        return term_name.strip().replace(' ', '_')
 
-    return "NO_TERM", dir_path
-
-
-def get_single_table(dir_path, url, columns, force_download, in_ex_group):
-
-    if not force_download:
-        file_path = os.path.join(dir_path, "data.tsv")
-        df = get_single_df_from_path(file_path, columns + ["term", "group"])
-        if df is not None:
-            return df
-
-    df = download_from_amigo2(url, columns, dir_path)
-    if df is None:
-        return None
-
-    term_name, dir_path = get_term_name(df, dir_path)
-    if (
-        term_name in in_ex_group["exclude"] or 
-        term_name in in_ex_group["plusplus"] #or 
-        #term_name == "NO_TERM"
-    ):
-        return None
-
-    df["term"] = term_name
-    df["group"] = in_ex_group["group"][term_name] if term_name in in_ex_group["group"].keys() else "NO_GROUP"
-    save_table(df, dir_path, term_name)
-    return df
+    return None
 
 
-def save_table(df, dir_path, term):
-    file_path = os.path.join(dir_path, "data.tsv")
+def save_table(df, dir_path):
     os.makedirs(dir_path, exist_ok=True)
-    if term == "NO_TERM":
-        i=0
-        while os.path.isfile(file_path):
-            file_path = os.path.join(dir_path, f"data_{i}.tsv")
-            i+=1
-    df.to_csv(file_path, index=False, sep="\t")
+    try:
+        file_path = os.path.join(dir_path, "data.tsv")
+        if os.path.isfile(file_path):
+            old_df = pd.read_csv(file_path, sep="\t", dtype=str)
+            try:
+                df = pd.concat([df, old_df], ignore_index=True).drop_duplicates(ignore_index=True)
+            except Exception as e:
+                i = 0
+                while os.path.isfile(file_path):
+                    file_path = os.path.join(dir_path, f"data_{i}.tsv")
+                    i+=1
+                send_message(f" - table already exists {file_path}\n{str(e)}\n - table saved under {file_path}")
 
+        df.to_csv(file_path, index=False, sep="\t")
 
-def check_count(df, count_dict):
+        return file_path
+    except Exception as e:
+        send_message(f"couldn't save table to dir_path {dir_path}\n{str(e)}\n")
+        return None
+
+def download_table_from_go_id(data_path, go_id, term_name=None):
+    if check_string(term_name):
+        term_name = f"GO_ID_{go_id}"
+    url = build_full_url_from_go_id(go_id)
+    dir_path = os.path.join(data_path, term_name)
+    df = download_from_amigo2(url, get_col(), dir_path)
     if df is None:
-        return []
-    name_symbol = []
-    for name, symbol in zip(df["bioentity_label"], df["bioentity_name"]):
-        i = count_dict.get(name, 0)
-        j = count_dict.get(symbol, 0)
-        if i == 0:
-            count_dict[name] = 0
-        if j == 0:
-            count_dict[symbol] = 0
+        return None
 
-        count_dict[name] += 1
-        count_dict[symbol] += 1
-        if i > 0 or j > 0:
-            name_symbol.append((name, symbol))
-
-    return name_symbol
-
-def download_data(amigo_send, amigo_config, go_ids=None):
-    if go_ids is None:
-        go_ids = []
-    data_path, overview_file, include_exclude_file, force_download = amigo_config
-    overview_df = get_overview(overview_file)
-    offline_data = get_all_genes_from_path(data_path)
-    dir_names = overview_df["Name"].tolist()
-    go_ids += overview_df["Accession"].tolist()
-
-    columns = get_col()
-    in_ex_group = load_include_exclude_txt(include_exclude_file)
-    count_dict = {}
-    count_dict_2 = {}
-    x = 120
-    for url in build_full_url_from_go_id(go_ids):
-        dir_name = "NO_TERM"
-        if dir_names:
-            dir_name = dir_names.pop()
-            if dir_name in in_ex_group["exclude"] or dir_name in in_ex_group["plusplus"]:
-                continue
-        dir_path = os.path.join(data_path, "genes", dir_name)
-        if offline_data is not None:
-            sub_df = offline_data[offline_data["term"] == dir_name]
-            for name, symbol in check_count(sub_df, count_dict_2):
-                amigo_send.send((name, symbol))
-        df = get_single_table(dir_path, url, columns, force_download, in_ex_group)
-
-        if df is None:
-            df = get_single_table(dir_path, url, columns, force_download, in_ex_group)
-
-        print(f"{datetime.now().strftime('%H%M')} Amigo2 got {os.path.basename(dir_path)}")
-        for name, symbol in check_count(df, count_dict):
-            amigo_send.send((name, symbol))
-
-    amigo_send.send(("finished", "finished"))
-    amigo_send.close()
-    print("Amigo thread done")
+    file_path = save_table(df, dir_path)
+    wait()
+    return file_path
