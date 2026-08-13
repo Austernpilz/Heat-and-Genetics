@@ -143,7 +143,7 @@ def get_config_ensembl(config):
     top_genes = config.get("flags",{}).get("top_genes", 200)
     download = config.get("flags", {}).get("download_data", False)
     storage = config.get("absolute_file_paths")
-    data_path = os.path.join(storage.get("data"), "ensembl", "genes")
+    data_path = os.path.join(storage.get("data"), "ensembl")
     #result_path = os.path.join(storage.get("results"), "ensembl")
 
     os.makedirs(data_path, exist_ok=True)
@@ -163,7 +163,7 @@ def get_config_gnomad(config):
 
 def get_config_vep(config):
     storage = config.get("absolute_file_paths")
-    data_path = os.path.join(storage.get("data"), "gnomAD")
+    data_path = os.path.join(storage.get("data"), "ensembl")
     os.makedirs(data_path, exist_ok=True)
     download = config.get("flags", {}).get("download_data", False)
     return (data_path, download)

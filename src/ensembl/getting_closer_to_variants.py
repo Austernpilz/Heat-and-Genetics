@@ -31,7 +31,6 @@ def get_from_path(ensembl_id, path_to_ensembl):
 def download_data(ensembl_receive, ensembl_send, ensembl_config):
     send_message("starting", 0, "ensembl")
     data_path, top_genes, download = ensembl_config
-    already_visited = set()
     amigo_count = Counter()
     c = False
     while (True):
@@ -54,18 +53,6 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                     ensembl_send.put(ensembl_id)
                     amigo_count[ensembl_id] += 1000
                     send_message(1, 2, "gnomad")
-
-                if ensembl_id in already_visited:
-                    continue
-
-                if not download and check_if_exists(data_path, ensembl_id):
-                    send_message(1,1,"ensembl")
-                    send_message(f"got {ensembl_id}",0,"ensembl")
-                    already_visited.add(ensembl_id)
-                    continue
-
-                _ = fetch_from_ensembl(ensembl_id, data_path)
-                already_visited.add(ensembl_id)
 
             else:
                 amigo_count["time_out"] += 1

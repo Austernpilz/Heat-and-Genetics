@@ -1,13 +1,15 @@
 import requests
 import pandas as pd
 import json
+import queue
 import os
 import numpy as np
 from time import sleep
 from datetime import datetime
 import threading
 
-from src.ensembl.fetch_ensembl import fetch_hgvs_data, fetch_rsid_data, fetch_pop_data, translate_to_rsid
+from src.ensembl.fetch_ensembl import fetch_hgvs_data, fetch_rsid_data, fetch_pop_data, translate_to_rsid, fetch_from_ensembl
+from src.ensembl.getting_closer_to_variants import check_if_exists
 from src.helpers.std_out import send_message
 
 def lamma(funct, args, threads=[], task_max=1):
@@ -53,6 +55,7 @@ def update_visited(already_visited, processed):
 def extend_data (VEP_receive, VEP_config): #VEP_send, 
     send_message("starting", 0, "vep")
     already_visited = set()
+    load_while_waiting = queue.Queue()
     data_path, download = VEP_config
     counter = 0
     while (True):
@@ -65,11 +68,25 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                 files, populations, found, not_sure, ensembl_id = item
                 variant_path = os.path.join(data_path, ensembl_id)
                 os.makedirs(variant_path, exist_ok=True)
+                load_while_waiting.put(ensembl_id)
                 processed = get_variant_data(files, found, not_sure, variant_path, already_visited, populations, download)
                 already_visited = update_visited(already_visited, processed)
             else:
-                sleep(1)
+                while not load_while_waiting.empty():
+                    ensembl_id = load_while_waiting.get()
+                    if ensembl_id in already_visited:
+                        continue
+
+                    if not download and check_if_exists(data_path, ensembl_id):
+                        send_message(1,1,"ensembl")
+                        send_message(f"got {ensembl_id}",0,"ensembl")
+                        already_visited.add(ensembl_id)
+                        continue
+
+                    _ = fetch_from_ensembl(ensembl_id, data_path)
+                    already_visited.add(ensembl_id)
                 counter += 1
+                sleep(1)
 
         except Exception as _:
             counter += 1
