@@ -70,8 +70,8 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                 os.makedirs(variant_path, exist_ok=True)
                 load_while_waiting.put(ensembl_id)
                 look_up_waiting.put((files, populations, not_sure, variant_path))
-                processed = get_variant_data(files, found, not_sure, variant_path, already_visited, populations, download)
-                already_visited = update_visited(already_visited, processed)
+                processed = get_variant_data(files, found, variant_path, download)
+                # already_visited = update_visited(already_visited, processed)
 
                 while not load_while_waiting.empty():
                     ensembl_id = load_while_waiting.get()
@@ -90,7 +90,7 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                 while not look_up_waiting.empty():
                     files, populations, not_sure, variant_path = look_up_waiting.get()
                     processed = look_up_variant_data(files, not_sure, variant_path, populations, download)
-                    already_visited = update_visited(already_visited, processed)
+                    # already_visited = update_visited(already_visited, processed)
             else:
                 counter += 1
                 sleep(1)
