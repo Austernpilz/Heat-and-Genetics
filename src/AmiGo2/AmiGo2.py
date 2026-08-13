@@ -3,9 +3,9 @@ from src.helpers.std_out import send_message
 
 def get_data(amigo_send, amigo_config, go_id_list=None):
     send_message("started", 0, "amigo")
-
+    term_names = []
     if go_id_list is None:
-        go_id_list, term_names = [], []
+        go_id_list = []
     else:
         term_names = [None] * len(go_id_list)
     overview_df, group_in_ex, data_path, result_path, download, extra = amigo_config

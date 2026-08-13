@@ -284,7 +284,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, result_path, unambigious, do
             if missed:
                 advanced_search.add(ensembl_gene_id)
                 continue
-        send_message(f"finished {ensembl_gene_id}", 0, "hgnc")
+        send_message(f"got {ensembl_gene_id}", 0, "hgnc")
         send_message(1,1,"hgnc")
 
     disgnet_unique = disgnet_df["gene_symbol"].unique()
@@ -302,7 +302,7 @@ def fetch_disgnet(hgnc_send, disgnet_df, data_path, result_path, unambigious, do
                 missed, already_checked = fetch_and_check(hgnc_send, already_checked, data_path, "name", symbol, False)
                 if missed:
                     advanced_search.add(symbol)
-        send_message(f"finished {symbol}", 0, "hgnc")
+        send_message(f"got {symbol}", 0, "hgnc")
         send_message(1,1,"hgnc")
     return advanced_search, already_checked
 
@@ -342,7 +342,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_checked, advanced_search, data_
                             missed, already_checked = fetch_and_check(hgnc_send, already_checked, data_path, "name", symbol, False)
                             if missed:
                                 advanced_search.add(symbol)
-                    send_message(f"finished {symbol}", 0, "hgnc")
+                    send_message(f"got {symbol}", 0, "hgnc")
                     send_message(1,1,"hgnc")
 
                 amigo_unique = amigo_df["bioentity_name"].unique()
@@ -356,7 +356,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_checked, advanced_search, data_
                             missed, already_checked = fetch_and_check(hgnc_send, already_checked, data_path, "symbol", name, False)
                             if missed:
                                 advanced_search.add(name)
-                    send_message(f"finished {name}", 0, "hgnc")
+                    send_message(f"got {name}", 0, "hgnc")
                     send_message(1,1,"hgnc")
             else:
                 count_dict["NO_ID"] +=1
