@@ -30,6 +30,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
     send_message("starting", 0, "ensembl")
     data_path, top_genes, download = ensembl_config
     amigo_count = Counter()
+    already_send = set()
     c = False
     while (True):
         try:
@@ -48,9 +49,12 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                 if c:
                     amigo_count[ensembl_id] += 1
                 else:
+                    if ensembl_id in already_send:
+                        continue
                     ensembl_send.put(ensembl_id)
                     amigo_count[ensembl_id] += 1000
                     send_message(1, 2, "gnomad")
+                    already_send.add(ensembl_id)
 
             else:
                 amigo_count["time_out"] += 1
@@ -62,18 +66,20 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
     top_amigo = amigo_count.most_common()
     last_count, i = 0, 0
     for ensembl_id, count in top_amigo:
+        i += 1
         if check_string(ensembl_id):
             continue
-        i += 1
+        if ensembl_id in already_send:
+            continue
         if i >= top_genes and last_count > count:
             break
-
         ensembl_send.put(ensembl_id)
-        ensembl_receive.put(ensembl_id)
+        already_send.add(ensembl_id)
+        #ensembl_receive.put(ensembl_id)
         send_message(1, 2, "gnomad")
         last_count = count
 
     ensembl_send.put("finished")
-    ensembl_receive.put("finished")
+    #ensembl_receive.put("finished")
 
     send_message("finished", 0, "ensembl")

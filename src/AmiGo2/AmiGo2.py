@@ -15,10 +15,10 @@ def get_data(amigo_send, amigo_config, go_id_list=None):
     send_message(len(go_id_list), 2, "amigo")
 
     for go_id, term in zip(go_id_list, term_names):
-        if term in group_in_ex["exclude"]:
+        if term in group_in_ex["exclude"] or term in group_in_ex["extra"]:
             continue
-        if not extra and term in group_in_ex["extra"]:
-            continue
+        # if not extra and term in group_in_ex["extra"]:
+        #     continue
         df = get_table(data_path, go_id, term, download)
         if df is None:
             send_message(f"{term} missing", 0, "amigo")

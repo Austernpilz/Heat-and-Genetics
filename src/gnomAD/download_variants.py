@@ -311,13 +311,10 @@ def try_fetching_(query, gene_path, name, first=False):
         file = fetch_from_ensembl_id_as_json(query, gene_path, name)
         if file is None:
             counter_for_fail += 1 #download failed
-            sleep(6)
         elif file:
             counter_for_fail = 99
         else:
             counter_for_fail += 2 #data was empty
-            sleep(6)
-    if not first:
         sleep(6)
 
 

@@ -396,38 +396,38 @@ def download_hgnc_data(hgnc_receive, hgnc_send, hgnc_config):
         send_message(f"hgnc_coulnd't identify these {file_path}", 0, "hgnc")
 
     send_message("waiting for clean_up", 0, "hgnc")
-    counter = 0
-    final_list = set()
-    while (True):
-        try:
-            if not hgnc_send.empty():
-                ensembl_id = hgnc_receive.get()
+    # counter = 0
+    # final_list = set()
+    # while (True):
+    #     try:
+    #         if not hgnc_receive.empty():
+    #             ensembl_id = hgnc_receive.get()
 
-                if check_string(ensembl_id):
-                    continue
+    #             if check_string(ensembl_id):
+    #                 continue
 
-                if ensembl_id == "finished" or counter > 60:
-                    hgnc_send.close()
-                    break
+    #             if ensembl_id == "finished" or counter > 60:
+    #                 hgnc_send.close()
+    #                 break
 
-                final_list.add(ensembl_id)
+    #             final_list.add(ensembl_id)
 
-            else:
-                counter += 1
-                sleep(180)
+    #         else:
+    #             counter += 1
+    #             sleep(180)
 
-        except Exception as e:
-            counter +=1
-            if counter > 60:
-                send_message(f" - something broke in hgnc final loop\n{str(e)}\n")
-                break
-            sleep(300)
+    #     except Exception as e:
+    #         counter +=1
+    #         if counter > 60:
+    #             send_message(f" - something broke in hgnc final loop\n{str(e)}\n")
+    #             break
+    #         sleep(300)
 
 
     df = build_tables(data_path)
-    if df is not None and final_list:
+    if df is not None: # and final_list:
         #all relevant look_up_data
-        final_hugo = df[df["ensembl_gene_id"].isin(final_list)].drop_duplicates(ignore_index=True)
+        final_hugo = df.drop_duplicates(ignore_index=True)
         best_hugo = os.path.join(result_path, "hgnc_df.tsv")
         final_hugo.to_csv(best_hugo, sep="\t", index=False)
 
