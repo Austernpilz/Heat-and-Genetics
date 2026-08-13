@@ -40,7 +40,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                 if check_string(ensembl_id):
                     continue
 
-                if ensembl_id == "finished" or amigo_count["time_out"] > 3600:
+                if ensembl_id == "finished" or amigo_count["time_out"] > 36000:
                     break
 
                 if ensembl_id == "amigo":

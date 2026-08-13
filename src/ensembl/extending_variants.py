@@ -85,17 +85,20 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
 
                     _ = fetch_from_ensembl(ensembl_id, data_path)
                     already_visited.add(ensembl_id)
-                counter += 1
 
                 while not look_up_waiting.empty():
                     files, populations, not_sure, variant_path = look_up_waiting.get()
                     processed = look_up_variant_data(files, not_sure, variant_path, populations, download)
                     already_visited = update_visited(already_visited, processed)
+
+                counter += 1
+                sleep(1)
+
         except Exception as _:
             counter += 1
             sleep(1) #to build up the previous processes
 
-    send_message("done", 0, "VEP")
+    send_message("finished", 0, "VEP")
 
 def potential_hgvs_notations(variant):
     hgvsc = variant.get("hgvsc", None)

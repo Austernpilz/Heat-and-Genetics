@@ -418,7 +418,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                     continue
                 if ensembl_id in already_checked:
                     continue
-                if ensembl_id == "finished" or counter > 3600:
+                if ensembl_id == "finished" or counter > 36000:
                     break
 
                 path_gen = os.path.join(data_path, ensembl_id)
