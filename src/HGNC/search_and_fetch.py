@@ -182,8 +182,8 @@ def load_hgnc_symbol_check(path_to_hgnc_symbol):
     vc = df["Input"].value_counts()
 
     unambiguous = df[ 
-        df["Input"] == df["Approved symbol"] | #Input is identical to the approved symbol
-        df["Input"].isin(vc.index[vc.eq(1)]) &  #there is only one approved symbol found, and it has at least a symbol, name or id
+        (df["Input"] == df["Approved symbol"]) | #Input is identical to the approved symbol
+        (df["Input"].isin(vc.index[vc.eq(1)])) &  #there is only one approved symbol found, and it has at least a symbol, name or id
         (
             (df["Approved symbol"] != "NO_SYMBOL") |
             (df["Approved name"] != "NO_NAME") |
