@@ -15,7 +15,7 @@ from src.helpers.std_out import send_message
 """
 1. config functions
 """
-def get_config(config_item, what=None):
+def get_config(config_item=None, what=None):
     match what:
         case 1 | "Amigo" | "amigo" | "AmiGo" | "AmiGo2" | "amigo2" | "Amigo2":
             return get_config_amigo(config_item)
