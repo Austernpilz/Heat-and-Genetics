@@ -29,7 +29,6 @@ def get_data(amigo_send, amigo_config, go_id_list=None):
             continue
         amigo_send.put(name_symbol)
 
-        term = df["term"].iat[0]
         send_message(1, 1, "amigo")
         send_message(f"got {term}", 0, "amigo")
 
