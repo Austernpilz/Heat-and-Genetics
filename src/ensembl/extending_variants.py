@@ -59,7 +59,7 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
         try:
             if not VEP_receive.empty():
                 item = VEP_receive.get()
-                if item == "finished" or counter > 120:
+                if item == "finished" or counter > 36000:
                     break
 
                 files, populations, found, not_sure, ensembl_id = item
@@ -68,12 +68,12 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                 processed = get_variant_data(files, found, not_sure, variant_path, already_visited, populations, download)
                 already_visited = update_visited(already_visited, processed)
             else:
-                sleep(60)
+                sleep(1)
                 counter += 1
 
         except Exception as _:
             counter += 1
-            sleep(180) #to build up the previous processes
+            sleep(1) #to build up the previous processes
 
     send_message("done", 0, "VEP")
 
