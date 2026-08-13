@@ -72,7 +72,7 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                 look_up_waiting.put((files, populations, not_sure, variant_path))
                 processed = get_variant_data(files, found, not_sure, variant_path, already_visited, populations, download)
                 already_visited = update_visited(already_visited, processed)
-            else:
+
                 while not load_while_waiting.empty():
                     ensembl_id = load_while_waiting.get()
                     if ensembl_id in already_visited:
@@ -91,7 +91,7 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                     files, populations, not_sure, variant_path = look_up_waiting.get()
                     processed = look_up_variant_data(files, not_sure, variant_path, populations, download)
                     already_visited = update_visited(already_visited, processed)
-
+            else:
                 counter += 1
                 sleep(1)
 
