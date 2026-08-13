@@ -74,7 +74,7 @@ def fetch_hgvs_data(path_to_data, hgvs, download):
             send_message(f" - hgvs fetch failed\n{str(e)}\n")
             return False
     send_message(1,1,"vep")
-    send_message(f"got {rsid}", 0, "vep")
+    send_message(f"got {hgvs}", 0, "vep")
     return True
 
 def fetch_rsid_data(path_to_data, rsid, download):
@@ -151,6 +151,7 @@ def fetch_pop_data(path_to_data, rsid, download):
             send_message(f" - pop fetch failed {rsid}\n{str(e)}\n")
             return []
 
+    send_message(f" - got POP data from {rsid}", 0, "vep")
     return [p]
 
 
@@ -173,12 +174,12 @@ def translate_to_rsid(path_to_data, hgvs, download):
             with open(p, 'w') as file:
                 json.dump(decoded, file)
 
-            send_message(f"got {hgvs} to rsid", 0, "vep")
             sleep(0.1)
 
         except Exception as e:
             send_message(f" - translation failed {hgvs}\n{str(e)}\n")
             return None
 
+    send_message(f"got {hgvs} to rsid", 0, "vep")
     return p
 
