@@ -90,9 +90,9 @@ def get_config_amigo(config):
     include_exclude_file = search_for_file(config_path, "AmiGo2_include_exclude", ".txt")
     group_in_ex = load_include_exclude_txt(include_exclude_file)
 
-    overview_file = search_for_file(config_path, "overview", ".tsv")
-    if not overview_file:
-        overview_file = search_for_file(config_path, "overview", ".txt")
+    # overview_file = search_for_file(config_path, "overview", ".tsv")
+    # if not overview_file:
+    overview_file = search_for_file(config_path, "overview", ".txt")
     overview_df = get_overview(config_path, overview_file)
     # print(overview_df)
     # send_message(overview_df)
@@ -174,12 +174,12 @@ def get_config_vep(config):
 """
 def get_overview(config, path_to_amigo_overview):
 
-    try:
-        if path_to_amigo_overview.ends_with("tsv"):
-            df = pd.read_csv(path_to_amigo_overview, sep="\t", dtype=str)
-            return df
-    except Exception as _:
-        print("No overview table found, looking for txt")
+    # try:
+    #     if path_to_amigo_overview.ends_with("tsv"):
+    #         df = pd.read_csv(path_to_amigo_overview, sep="\t", dtype=str)
+    #         return df
+    # except Exception as _:
+    #     print("No overview table found, looking for txt")
 
 
     overviewtxt = { "Accession" : [], "Name" : [], "Ontology" : [], "Synonyms" : [], "Alternate IDs" : [], "Definition" : [], "not_found" : [] }
@@ -208,7 +208,7 @@ def get_overview(config, path_to_amigo_overview):
     overviewtxt["Accession"] = norm_accession
 
     df = pd.DataFrame.from_dict(overviewtxt)
-    save_table(df, config, path_to_amigo_overview)
+    #save_table(df, config, path_to_amigo_overview)
     return df
 
     # if isinstance(path_to_amigo_overview, list):
