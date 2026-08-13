@@ -66,7 +66,7 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                     break
 
                 files, populations, found, not_sure, ensembl_id = item
-                variant_path = os.path.join(data_path, ensembl_id)
+                variant_path = os.path.join(data_path, ensembl_id, "variants")
                 os.makedirs(variant_path, exist_ok=True)
                 load_while_waiting.put(ensembl_id)
                 processed = get_variant_data(files, found, not_sure, variant_path, already_visited, populations, download)
