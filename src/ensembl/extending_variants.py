@@ -70,7 +70,7 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                 os.makedirs(variant_path, exist_ok=True)
                 load_while_waiting.put(ensembl_id)
                 look_up_waiting.put((files, populations, not_sure, variant_path))
-                processed = get_variant_data(files, found, variant_path, download)
+                get_variant_data(files, found, variant_path, download)
                 # already_visited = update_visited(already_visited, processed)
 
                 while not load_while_waiting.empty():
@@ -89,7 +89,7 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
 
                 while not look_up_waiting.empty():
                     files, populations, not_sure, variant_path = look_up_waiting.get()
-                    processed = look_up_variant_data(files, not_sure, variant_path, populations, download)
+                    look_up_variant_data(files, not_sure, variant_path, populations, download)
                     # already_visited = update_visited(already_visited, processed)
             else:
                 counter += 1
@@ -206,12 +206,12 @@ def look_up_variant(variant, variant_path, populations, download):
     return check_pop(results, populations)
 
 def look_up_variant_data(files, not_sure, variant_path, populations, download):
-    processed = set()
     if not not_sure:
-        return processed
+        return
     variant_json = open_json(files)
     if variant_json is None:
-        return processed
+        return
+    processed = set()
     for variant in variant_json:
         if not isinstance(variant, dict):
             continue
@@ -240,12 +240,13 @@ def get_variant(variant, variant_path, download):
     return False
 
 def get_variant_data(files, found, variant_path, download):
-    processed = set()
     if not found:
-        return processed
+        return
     variant_json = open_json(files)
     if variant_json is None:
-        return processed
+        return
+
+    processed = set()
     for variant in variant_json:
         if not isinstance(variant, dict):
             continue
@@ -260,5 +261,3 @@ def get_variant_data(files, found, variant_path, download):
             send_message(f"{variant_id} not found", 0, "vep")
         send_message(1, 1, "vep")
         processed.add(variant_id)
-
-    return processed

@@ -17,7 +17,7 @@ def save_output(file_path):
     global output
     txt = ""
 
-    while len(txt) < 1000:
+    while len(txt) < 10000:
         try:
             message = output.get_nowait()
         except queue.Empty:
@@ -167,8 +167,8 @@ def run_io(file_path):
             counter += 1
         else:
             sleep(10)
-            counter += 10
-        if counter > 100:
+            counter += 100
+        if counter > 1000:
             global running
             print_out()
             _ = save_output(file_path)
