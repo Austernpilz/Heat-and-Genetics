@@ -158,14 +158,12 @@ def load_table(path_to_table):
                 if dff.empty:
                     continue
                 df_list.append(dff)
-            if df_list and len(df_list) > 1:
+            if df_list:
                 df = pd.concat(df_list)
-            elif len(df_list) == 1:
-                df = df_list[0]
         elif path_to_table.endswith("csv"):
             df = pd.read_csv(path_to_table, sep=',', dtype=str)
         elif path_to_table.endswith("tsv"):
-            df = pd.read_csv(path_to_table, sep='\n', dtype=str)
+            df = pd.read_csv(path_to_table, sep='\t', dtype=str)
     except Exception as e:
         send_message(f" - couldn't load {path_to_table}\n{str(e)}\n")
 
