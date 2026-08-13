@@ -435,6 +435,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
 
                 already_checked = load_rest(already_checked, path_gen, ensembl_id, download)
                 send_message(1,1,"gnomad")
+                send_message(f"got {ensembl_id}",0,"gnomad")
 
             else:
                 sleep(1)
@@ -445,4 +446,4 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
             sleep(1)
 
     gnomAD_send.put("finished")
-    print("gnomAD thread done")
+    send_message(f"finished",0,"gnomad")

@@ -49,13 +49,13 @@ def open_json(path):
 def update_visited(already_visited, processed):
     for item in processed:
         already_visited.add(item)
-        send_message(1,1,"vep")
     return already_visited
 
 def extend_data (VEP_receive, VEP_config): #VEP_send, 
     send_message("starting", 0, "vep")
     already_visited = set()
     load_while_waiting = queue.Queue()
+    look_up_waiting = queue.Queue()
     data_path, download = VEP_config
     counter = 0
     while (True):
@@ -86,8 +86,11 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                     _ = fetch_from_ensembl(ensembl_id, data_path)
                     already_visited.add(ensembl_id)
                 counter += 1
-                sleep(1)
 
+                while not look_up_waiting.empty():
+                    files, populations, not_sure, variant_path = look_up_waiting.get()
+                    processed = look_up_variant_data(files, not_sure, variant_path, populations, download)
+                    already_visited = update_visited(already_visited, processed)
         except Exception as _:
             counter += 1
             sleep(1) #to build up the previous processes
@@ -189,43 +192,65 @@ def check_pop(results, pop_ids):
 
     return False
 
-def get_variant_data(files, found, not_sure, variant_path, populations, already_checked, download):
-    processed = []
-    for pathpath in files:
-        variant_json = open_json(pathpath)
-        if variant_json is None:
+def look_up_variant(variant, variant_path, populations, download):
+    hgvs = potential_hgvs_notations(variant)
+    rsids = variant.get("rsids", [])
+    if not rsids:
+        translate = translate_to_rsid(variant_path, hgvs, download)
+        rsids += get_rsids(translate)
+    results = fetch_pop_data(variant_path, rsids, download)
+    return check_pop(results, populations)
+
+def look_up_variant_data(files, not_sure, variant_path, populations, download):
+    processed = set()
+    variant_json = open_json(files)
+    if variant_json is None:
+        return processed
+    for variant in variant_json:
+        if not isinstance(variant, dict):
             continue
-        for variant in variant_json:
-            if not isinstance(variant, dict):
-                continue
-            variant_id = variant.get("variant_id", "NO_ID")
-            if variant_id not in found or variant_id in already_checked or variant_id in processed:
-                continue
+        variant_id = variant.get("variant_id", "NO_ID")
+        if variant_id not in not_sure or variant_id in processed:
+            continue
 
-            hgvs = potential_hgvs_notations(variant)
-            rsids = variant.get("rsids", [])
-            if fetch_rsid_data(variant_path, rsids, download):
-                continue
-            if not fetch_hgvs_data(variant_path, hgvs, download):
-                continue
-            processed.append(variant_id)
-        for variant in variant_json:
-            if not isinstance(variant, dict):
-                continue
-            variant_id = variant.get("variant_id", "NO_ID")
-            if variant_id not in not_sure or variant_id in already_checked or variant_id in processed:
-                continue
-            hgvs = potential_hgvs_notations(variant)
-            rsids = variant.get("rsids", [])
+        if look_up_variant(variant, variant_path, download):
+            if get_variant(variant, variant_path, download):
+                send_message(f"got {variant_id}", 0, "vep")
+            else:
+                send_message(f"{variant_id} not found", 0, "vep")
+        else:
+            send_message(f"{variant_id} not relevant", 0, "vep")
+        send_message(1, 1, "vep")
+        processed.add(variant_id)
 
-            if not rsids:
-                translate = translate_to_rsid(variant_path, hgvs, download)
-                rsids += get_rsids(translate)
-            results = fetch_pop_data(variant_path, rsids, download)
-            if not check_pop(results, populations):
-                continue
-            if not fetch_rsid_data(variant_path, rsids, download):
-                continue
-            processed.append(variant_id)
+
+def get_variant(variant, variant_path, download):
+    hgvs = potential_hgvs_notations(variant)
+    rsids = variant.get("rsids", [])
+    if fetch_hgvs_data(variant_path, hgvs, download):
+        return True
+    if fetch_rsid_data(variant_path, rsids, download):
+        return True
+    return False
+
+def get_variant_data(files, found, variant_path, download):
+    processed = set()
+    variant_json = open_json(files)
+    if variant_json is None:
+        return processed
+    for variant in variant_json:
+        if not isinstance(variant, dict):
+            continue
+
+        variant_id = variant.get("variant_id", "NO_ID")
+        if variant_id not in found or variant_id in processed:
+            continue
+
+        if get_variant(variant, variant_path, download):
+            send_message(f"got {variant_id}", 0, "vep")
+        else:
+            send_message(f"{variant_id} not found", 0, "vep")
+        send_message(1, 1, "vep")
+        processed.add(variant_id)
 
     return processed
