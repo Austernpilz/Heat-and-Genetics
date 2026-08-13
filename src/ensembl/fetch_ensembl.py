@@ -68,13 +68,13 @@ def fetch_hgvs_data(path_to_data, hgvs, download):
             decoded = r.json()
             with open(p, 'w') as file:
                 json.dump(decoded, file)
-            send_message(1,1,"vep")
-            send_message(f"got {hgvs}",0,"vep")
             sleep(0.1)
 
         except Exception as e:
             send_message(f" - hgvs fetch failed\n{str(e)}\n")
             return False
+    send_message(1,1,"vep")
+    send_message(f"got {rsid}", 0, "vep")
     return True
 
 def fetch_rsid_data(path_to_data, rsid, download):
@@ -110,13 +110,12 @@ def fetch_rsid_data(path_to_data, rsid, download):
             with open(p, 'w') as file:
                 json.dump(decoded, file)
 
-            send_message(1,1,"vep")
-            send_message(f"got {rsid}", 0, "vep")
             sleep(0.1)
         except Exception as e:
             send_message(f"- rsid fetch failed {rsid}\n{str(e)}\n")
             return False
-
+    send_message(1,1,"vep")
+    send_message(f"got {rsid}", 0, "vep")
     return True
 
 
