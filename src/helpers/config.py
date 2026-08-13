@@ -94,6 +94,7 @@ def get_config_amigo(config):
     if not overview_file:
         overview_file = search_for_file(config_path, "overview", ".txt")
     overview_df = get_overview(config_path, overview_file)
+    send_message(overview_df.head(10))
 
     return (overview_df, group_in_ex, data_path, result_path, download, extra)
 

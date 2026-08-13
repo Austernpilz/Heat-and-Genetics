@@ -7,7 +7,7 @@ def get_data(amigo_send, amigo_config, go_id_list=None):
     if go_id_list is None:
         go_id_list = []
     else:
-        term_names = [None] * len(go_id_list)
+        term_names = [""] * len(go_id_list)
     overview_df, group_in_ex, data_path, result_path, download, extra = amigo_config
     #offline_data = get_all_genes_from_path(data_path)
     term_names += overview_df["Name"].tolist()
