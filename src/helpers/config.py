@@ -50,7 +50,7 @@ def get_config_from_path(config_path = None):
     if not config:
         config = {
             "flags": {
-                "download_data": True,
+                "download_data": False,
                 "threads": 10,
                 "top_genes": 200,
                 "extra": False,

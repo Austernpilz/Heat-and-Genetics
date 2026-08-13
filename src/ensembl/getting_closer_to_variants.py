@@ -39,7 +39,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                 if check_string(ensembl_id):
                     continue
 
-                if ensembl_id == "finished" or amigo_count["time_out"] > 60:
+                if ensembl_id == "finished" or amigo_count["time_out"] > 3600:
                     break
 
                 if ensembl_id == "amigo":
@@ -54,10 +54,10 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
 
             else:
                 amigo_count["time_out"] += 1
-                sleep(180)
+                sleep(1)
         except Exception as _:
             amigo_count["time_out"] += 1
-            sleep(180) #to build up the previous processes
+            sleep(1) #to build up the previous processes
 
     top_amigo = amigo_count.most_common()
     last_count, i = 0, 0

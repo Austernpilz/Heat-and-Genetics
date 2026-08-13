@@ -421,7 +421,7 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                     continue
                 if ensembl_id in already_checked:
                     continue
-                if ensembl_id == "finished" or counter > 200:
+                if ensembl_id == "finished" or counter > 3600:
                     break
 
                 path_gen = os.path.join(data_path, ensembl_id)
@@ -440,12 +440,12 @@ def download_data(gnomAD_receive, gnomAD_send, gnomAD_config):
                 send_message(1,1,"gnomad")
 
             else:
-                sleep(60)
+                sleep(1)
                 counter += 1
 
         except Exception as _:
             counter += 1
-            sleep(180)
+            sleep(1)
 
     gnomAD_send.put("finished")
     print("gnomAD thread done")
