@@ -13,7 +13,7 @@ import pandas as pd
 #local modules
 from src.AmiGo2 import AmiGo2 as amigo
 from src.HGNC import search_and_fetch as hugo
-from src.ensembl import getting_closer_to_variants as ense
+from src.ensembl import extending_variants as ense
 from src.gnomAD import variants as var
 from src.helpers.config import get_config
 from src.helpers.std_out import run_io, stop
