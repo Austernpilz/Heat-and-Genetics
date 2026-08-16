@@ -180,22 +180,24 @@ def check_pop(results, pop_ids):
                 continue
             pop_af = {}
             populations = v.get("populations", [])
-            send_message(populations)
+            #send_message(populations)
             for p in populations:
                 if not isinstance(p, dict):
                     continue
                 p_id = p.get("population", "NO_ID")
-                send_message(p_id)
-                if any( [f":{pop_id}" in p_id for pop_id in pop_ids] ):
-                    allele = p.get("allele", None)
-                    frequency = p.get("frequency", 0)
-                    if allele is None:
-                        allele = "null"
+                if not any( [f":{pop_id}" in p_id for pop_id in pop_ids] ):
+                    continue
+
+                allele = p.get("allele", None)
+                frequency = p.get("frequency", 0)
+                if allele is None:
+                    allele = "null"
+                if allele not in pop_af.keys():
+                    pop_af[allele] = [frequency]
+                else:
                     pop_af[allele].append(frequency)
 
             for allele, frequency in pop_af.items():
-                send_message(allele)
-                send_message(frequency)
                 if max(frequency) - min(frequency) >= 0.05:
                     return True
 
@@ -268,3 +270,6 @@ def get_variant_data(files, found, variant_path, download):
             send_message(f"{variant_id} not found", 0, "vep")
         send_message(1, 1, "vep")
         processed.add(variant_id)
+
+
+
