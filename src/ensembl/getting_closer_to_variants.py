@@ -41,7 +41,7 @@ def build_amigo_disgnt_hgnc(already_send, result_path):
 
 def download_data(ensembl_receive, ensembl_send, ensembl_config):
     send_message("starting", 0, "ensembl")
-    data_path, result_path, top_genes,  = ensembl_config
+    data_path, result_path, top_genes, download = ensembl_config
     amigo_count = Counter()
     already_send = set()
     c = False
