@@ -6,7 +6,7 @@ import json
 #http://www.ensembl.org/biomart/martview/ad4dbf2f9ae74dbf5b9cda391d970be9?VIRTUALSCHEMANAME=default&ATTRIBUTES=hsapiens_gene_ensembl.default.feature_page.ensembl_gene_id|hsapiens_gene_ensembl.default.feature_page.ensembl_gene_id_version|hsapiens_gene_ensembl.default.feature_page.description|hsapiens_gene_ensembl.default.feature_page.start_position|hsapiens_gene_ensembl.default.feature_page.end_position|hsapiens_gene_ensembl.default.feature_page.chromosome_name|hsapiens_gene_ensembl.default.feature_page.hgnc_id|hsapiens_gene_ensembl.default.feature_page.entrezgene_id|hsapiens_gene_ensembl.default.feature_page.uniprot_gn_id&FILTERS=hsapiens_gene_ensembl.default.filters.hgnc_id."HGNC:5970"&VISIBLEPANEL=resultspanel
 
 from src.helpers.std_out import send_message
-from src.helpers.folder_magic import check_string
+from src.helpers.folder_magic import check_string, search_for_file
 
 def check_if_exists(path_to_ensembl, ensembl_id):
     path_to_id = os.path.join(path_to_ensembl, ensembl_id, "ensembl_data.json")
@@ -26,9 +26,22 @@ def get_from_path(ensembl_id, path_to_ensembl):
     return None
 
 
+def build_amigo_disgnt_hgnc(already_send, result_path):
+    h = search_for_file(result_path, "hgnc_df", ".tsv")
+    hgnc_df = pd.read_csv(h, sep="\t", dtype=str)
+
+    a = search_for_file(result_path, "amigo_df", ".tsv")
+    amigo_df = pd.read_csv(a, sep="\t", dtype=str)
+
+    d = search_for_file(result_path, "disgnet_df", ".tsv")
+    disgnet_df = pd.read_csv(d, sep="\t", dtype=str)
+    disgnet_df.rename(columns={"disease_name" : "term"})
+
+    return
+
 def download_data(ensembl_receive, ensembl_send, ensembl_config):
     send_message("starting", 0, "ensembl")
-    data_path, top_genes, download = ensembl_config
+    data_path, result_path, top_genes,  = ensembl_config
     amigo_count = Counter()
     already_send = set()
     c = False

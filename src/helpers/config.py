@@ -2,7 +2,7 @@ import os
 import json
 import pandas as pd
 
-from src.helpers.folder_magic import search_for_file, search_for_files, save_table
+from src.helpers.folder_magic import search_for_file, search_for_files#, save_table
 from src.helpers.std_out import send_message
 #######################################
 # all functions in this document are 
@@ -144,12 +144,12 @@ def get_config_ensembl(config):
     download = config.get("flags", {}).get("download_data", False)
     storage = config.get("absolute_file_paths")
     data_path = os.path.join(storage.get("data"), "ensembl")
-    #result_path = os.path.join(storage.get("results"), "ensembl")
+    result_path = storage.get("results")
 
     os.makedirs(data_path, exist_ok=True)
     #os.makedirs(result_path, exist_ok=True)
 
-    return (data_path, top_genes, download)
+    return (data_path, result_path, top_genes, download)
 
 
 def get_config_gnomad(config):

@@ -355,6 +355,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_checked, advanced_search, data_
                                 advanced_search.add(name)
                     send_message(f"got {name}", 0, "hgnc")
                     send_message(1,1,"hgnc")
+                    count_dict["NO_ID"] = 0
             else:
                 count_dict["NO_ID"] +=1
                 sleep(1)

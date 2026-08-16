@@ -73,6 +73,12 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                 get_variant_data(files, found, variant_path, download)
                 # already_visited = update_visited(already_visited, processed)
 
+                counter = 0
+            else:
+                counter += 1
+                sleep(1)
+
+            if VEP_receive.empty() and not load_while_waiting.empty():
                 while not load_while_waiting.empty():
                     ensembl_id = load_while_waiting.get()
                     if ensembl_id in already_visited:
@@ -87,13 +93,11 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                     _ = fetch_from_ensembl(ensembl_id, data_path)
                     already_visited.add(ensembl_id)
 
+            if VEP_receive.empty() and not look_up_waiting.empty():
                 while not look_up_waiting.empty():
                     files, populations, not_sure, variant_path = look_up_waiting.get()
                     look_up_variant_data(files, not_sure, variant_path, populations, download)
-                    # already_visited = update_visited(already_visited, processed)
-            else:
-                counter += 1
-                sleep(1)
+                    #already_visited = update_visited(already_visited, processed)
 
         except Exception as _:
             counter += 1
@@ -219,7 +223,7 @@ def look_up_variant_data(files, not_sure, variant_path, populations, download):
         if variant_id not in not_sure or variant_id in processed:
             continue
 
-        if look_up_variant(variant, variant_path, download):
+        if look_up_variant(variant, variant_path, populations, download):
             if get_variant(variant, variant_path, download):
                 send_message(f"got {variant_id}", 0, "vep")
             else:
@@ -245,7 +249,6 @@ def get_variant_data(files, found, variant_path, download):
     variant_json = open_json(files)
     if variant_json is None:
         return
-
     processed = set()
     for variant in variant_json:
         if not isinstance(variant, dict):
