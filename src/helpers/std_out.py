@@ -1,6 +1,7 @@
 import queue
 from datetime import datetime
 from time import sleep
+import os
 
 
 stdoutpipe = queue.Queue()
@@ -158,8 +159,10 @@ def get_message():
 def stop():
     global running
     running = False
-
+ 
 def run_io(file_path):
+    if os.path.isfile(file_path):
+        os.rename(file_path, f"{file_path}_old.txt")
     counter = 0
     run = True
     while run:

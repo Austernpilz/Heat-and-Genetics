@@ -180,10 +180,12 @@ def check_pop(results, pop_ids):
                 continue
             pop_af = {}
             populations = v.get("populations", [])
+            send_message(populations)
             for p in populations:
                 if not isinstance(p, dict):
                     continue
                 p_id = p.get("population", "NO_ID")
+                send_message(p_id)
                 if any( [f":{pop_id}" in p_id for pop_id in pop_ids] ):
                     allele = p.get("allele", None)
                     frequency = p.get("frequency", 0)
@@ -192,8 +194,8 @@ def check_pop(results, pop_ids):
                     pop_af[allele].append(frequency)
 
             for allele, frequency in pop_af.items():
-                print(allele)
-                print(frequency)
+                send_message(allele)
+                send_message(frequency)
                 if max(frequency) - min(frequency) >= 0.05:
                     return True
 
