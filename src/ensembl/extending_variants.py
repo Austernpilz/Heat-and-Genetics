@@ -192,6 +192,8 @@ def check_pop(results, pop_ids):
                     pop_af[allele].append(frequency)
 
             for allele, frequency in pop_af.items():
+                print(allele)
+                print(frequency)
                 if max(frequency) - min(frequency) >= 0.05:
                     return True
 
