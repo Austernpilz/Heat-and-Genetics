@@ -17,6 +17,8 @@ def fetch_from_ensembl(ensembl_id, path_to_ensembl):
     server = "https://rest.ensembl.org"
     ext = f"/lookup/id/{ensembl_id}?expand=1"
     try:
+        sleep(0.1)
+
         r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
 
         if not r.ok:
@@ -31,7 +33,6 @@ def fetch_from_ensembl(ensembl_id, path_to_ensembl):
 
         send_message(1,1,"ensembl")
         send_message(f"got {ensembl_id}",0,"ensembl")
-        sleep(0.1)
         return p
 
     except Exception as e:
@@ -48,6 +49,8 @@ def fetch_hgvs_data(path_to_data, hgvs, download):
     p = os.path.join(path_to_data, f"variant_by_hgvs_{hgvs}.json")
     if not os.path.isfile(p) or download:
         try:
+            sleep(0.1)
+
             #print('loading_variation_data ', hgvs)
             server = "https://rest.ensembl.org"
             options = {
@@ -68,7 +71,6 @@ def fetch_hgvs_data(path_to_data, hgvs, download):
             decoded = r.json()
             with open(p, 'w') as file:
                 json.dump(decoded, file)
-            sleep(0.1)
 
         except Exception as e:
             send_message(f" - hgvs fetch failed\n{str(e)}\n")
@@ -90,6 +92,7 @@ def fetch_rsid_data(path_to_data, rsid, download):
     p = os.path.join(path_to_data, f"variant_by_rsID_{rsid}.json")
     if not os.path.isfile(p) or download:
         try:
+            sleep(0.1)
             server = "https://rest.ensembl.org"
             options = {
                 "AlphaMissense" : 1, 
@@ -110,7 +113,6 @@ def fetch_rsid_data(path_to_data, rsid, download):
             with open(p, 'w') as file:
                 json.dump(decoded, file)
 
-            sleep(0.1)
         except Exception as e:
             send_message(f"- rsid fetch failed {rsid}\n{str(e)}\n")
             return False
@@ -133,6 +135,8 @@ def fetch_pop_data(path_to_data, rsid, download):
     p = os.path.join(path_to_data, f"populations_{rsid}.json")
     if not os.path.isfile(p) or download:
         try:
+            sleep(0.1)
+
             server = "https://rest.ensembl.org"
             ext = f"/variation/homo_sapiens/{rsid}?pops=1"
             r = requests.get(server+ext, headers={ "Content-Type" : "application/json"}, timeout=600)
@@ -145,7 +149,6 @@ def fetch_pop_data(path_to_data, rsid, download):
                 json.dump(decoded, file)
 
             send_message(f" - got POP data from {rsid}", 0, "vep")
-            sleep(0.1)
 
         except Exception as e:
             send_message(f" - pop fetch failed {rsid}\n{str(e)}\n")
@@ -162,6 +165,8 @@ def translate_to_rsid(path_to_data, hgvs, download):
     p = os.path.join(path_to_data, f"aternative_names_for_{hgvs}.json")
     if not os.path.isfile(p) or download:
         try:
+            sleep(0.1)
+
             server = "https://rest.ensembl.org"
             ext = f"/variant_recoder/human/{hgvs}"
 
@@ -173,8 +178,6 @@ def translate_to_rsid(path_to_data, hgvs, download):
             decoded = r.json()
             with open(p, 'w') as file:
                 json.dump(decoded, file)
-
-            sleep(0.1)
 
         except Exception as e:
             send_message(f" - translation failed {hgvs}\n{str(e)}\n")
