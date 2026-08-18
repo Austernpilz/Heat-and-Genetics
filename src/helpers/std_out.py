@@ -15,19 +15,25 @@ running = True
 output = queue.Queue()
 
 def save_output(file_path):
-    global output
+    global output, amigo, disgnet, hgnc, ensembl, gnomad, vep
+
     txt = ""
 
-    while len(txt) < 10000:
+    while len(txt) < 100000:
         try:
             message = output.get_nowait()
         except queue.Empty:
             break
 
         txt += message
+
     if txt:
+        time_stamp = datetime.now().strftime('%H%M')
         with open(file_path, "a") as f:
             f.write(txt)
+            f.write(f"\n{time_stamp} current Pipeline status")
+            for m in [amigo, disgnet, hgnc, ensembl, gnomad, vep]:
+                f.write(f'{m["name"]} datasets: {m["collected"]}/{m["total"]} status: {m["last_update"]} {m["status"]}')
 
     return output.empty()
 

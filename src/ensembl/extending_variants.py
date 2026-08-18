@@ -51,11 +51,23 @@ def update_visited(already_visited, processed):
         already_visited.add(item)
     return already_visited
 
-def extend_data (VEP_receive, VEP_config): #VEP_send, 
+def ensemble_now_(data_path, ensembl_id, already_visited, download):
+    if ensembl_id in already_visited:
+        return already_visited
+
+    if not download and check_if_exists(data_path, ensembl_id):
+        send_message(1,1,"ensembl")
+        send_message(f"got {ensembl_id}",0,"ensembl")
+        already_visited.add(ensembl_id)
+        return already_visited
+
+    _ = fetch_from_ensembl(ensembl_id, data_path)
+    already_visited.add(ensembl_id)
+    return already_visited
+
+def extend_data (VEP_receive, VEP_send, VEP_config): #VEP_send, 
     send_message("starting", 0, "vep")
     already_visited = set()
-    load_while_waiting = queue.Queue()
-    look_up_waiting = queue.Queue()
     data_path, download = VEP_config
     counter = 0
     while (True):
@@ -68,36 +80,14 @@ def extend_data (VEP_receive, VEP_config): #VEP_send,
                 files, populations, found, not_sure, ensembl_id = item
                 variant_path = os.path.join(data_path, ensembl_id, "variants")
                 os.makedirs(variant_path, exist_ok=True)
-                load_while_waiting.put(ensembl_id)
-                look_up_waiting.put((files, populations, not_sure, variant_path))
                 get_variant_data(files, found, variant_path, download)
-                # already_visited = update_visited(already_visited, processed)
-
+                found.update(look_up_variant_data(files, not_sure, variant_path, populations, download))
+                VEP_send.put((found, files, variant_path, data_path, ensembl_id))
+                ensemble_now_(data_path, ensembl_id, already_visited, download)
                 counter = 0
             else:
                 counter += 1
                 sleep(1)
-
-            if VEP_receive.empty() and not load_while_waiting.empty():
-                while not load_while_waiting.empty():
-                    ensembl_id = load_while_waiting.get()
-                    if ensembl_id in already_visited:
-                        continue
-
-                    if not download and check_if_exists(data_path, ensembl_id):
-                        send_message(1,1,"ensembl")
-                        send_message(f"got {ensembl_id}",0,"ensembl")
-                        already_visited.add(ensembl_id)
-                        continue
-
-                    _ = fetch_from_ensembl(ensembl_id, data_path)
-                    already_visited.add(ensembl_id)
-
-            if VEP_receive.empty() and not look_up_waiting.empty():
-                while not look_up_waiting.empty():
-                    files, populations, not_sure, variant_path = look_up_waiting.get()
-                    look_up_variant_data(files, not_sure, variant_path, populations, download)
-                    #already_visited = update_visited(already_visited, processed)
 
         except Exception as _:
             counter += 1
@@ -222,6 +212,7 @@ def look_up_variant_data(files, not_sure, variant_path, populations, download):
     if variant_json is None:
         return
     processed = set()
+    found = set()
     for variant in variant_json:
         if not isinstance(variant, dict):
             continue
@@ -231,6 +222,7 @@ def look_up_variant_data(files, not_sure, variant_path, populations, download):
 
         if look_up_variant(variant, variant_path, populations, download):
             if get_variant(variant, variant_path, download):
+                found.add(variant_id)
                 send_message(f"got {variant_id}", 0, "vep")
             else:
                 send_message(f"{variant_id} not found", 0, "vep")
@@ -238,7 +230,7 @@ def look_up_variant_data(files, not_sure, variant_path, populations, download):
             send_message(f"{variant_id} not relevant", 0, "vep")
         send_message(1, 1, "vep")
         processed.add(variant_id)
-
+    return found
 
 def get_variant(variant, variant_path, download):
     hgvs = potential_hgvs_notations(variant)
@@ -270,6 +262,3 @@ def get_variant_data(files, found, variant_path, download):
             send_message(f"{variant_id} not found", 0, "vep")
         send_message(1, 1, "vep")
         processed.add(variant_id)
-
-
-

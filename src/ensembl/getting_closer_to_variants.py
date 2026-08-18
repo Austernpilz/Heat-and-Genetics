@@ -7,6 +7,7 @@ import json
 
 from src.helpers.std_out import send_message
 from src.helpers.folder_magic import check_string, search_for_file
+from src.helpers.figures import plot_first_results
 
 def check_if_exists(path_to_ensembl, ensembl_id):
     path_to_id = os.path.join(path_to_ensembl, ensembl_id, "ensembl_data.json")
@@ -55,7 +56,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                     amigo_count[ensembl_id] += 1000
                     send_message(1, 2, "gnomad")
                     already_send.add(ensembl_id)
-
+                amigo_count["time_out"] = 0
             else:
                 amigo_count["time_out"] += 1
                 sleep(1)
@@ -75,10 +76,11 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
             break
         ensembl_send.put(ensembl_id)
         already_send.add(ensembl_id)
-        #ensembl_receive.put(ensembl_id)
         send_message(1, 2, "gnomad")
         last_count = count
 
+    send_message("plotting", 0, "ensembl")
+    plot_first_results(result_path)
     ensembl_send.put("finished")
     #ensembl_receive.put("finished")
 
