@@ -71,8 +71,9 @@ threads = new_task(var.download_data, (ensembl_gnomAD, gnomAD_VEP, gnomAD_config
 
 #Step 5 extend Variants through ensembl
 #VEP_send, gnomad_filter_receive = Pipe()
+VEP_variants = queue.Queue()
 VEP_config = get_config(config_file, "vep")
-threads = new_task(ense.extend_data, (gnomAD_VEP, VEP_config), threads, t) #VEP_send,
+threads = new_task(ense.extend_data, (gnomAD_VEP, VEP_variants, VEP_config), threads, t) #VEP_send,
 
 
 """
