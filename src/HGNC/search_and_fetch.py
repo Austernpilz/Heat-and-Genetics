@@ -424,8 +424,6 @@ def download_hgnc_data(hgnc_receive, hgnc_send, hgnc_config):
     advanced_search, already_checked = fetch_disgnet(hgnc_send, disgnet_df, data_path, result_path, unambiguouse, download)
     advanced_search, already_checked = fetch_amigo(hgnc_send, hgnc_receive, already_checked, advanced_search, data_path, unambiguouse, download)
 
-    hgnc_send.put("finished")
-
     file_path = clean_advanced_search(advanced_search, already_checked, data_path, result_path)
     if file_path is not None:
         send_message(f"hgnc_coulnd't identify these {file_path}", 0, "hgnc")
@@ -440,4 +438,5 @@ def download_hgnc_data(hgnc_receive, hgnc_send, hgnc_config):
         final_hugo.to_csv(best_hugo, sep="\t", index=False)
         build_look_up(result_path, symbol_checker, final_hugo)
 
+    hgnc_send.put("finished")
     send_message("finished", 0, "hgnc")
