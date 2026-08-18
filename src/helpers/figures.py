@@ -23,10 +23,13 @@ def plot_first_results(result_path):
 
 
 def load_and_plot_simple(luh, amigo, disgnet, hgnc, plots, name):
-    amigo_df, disgnet_df = clean_symbols(luh, amigo, disgnet)
-    df = build_combined_table(hgnc, amigo_df, disgnet_df)
-    file_name = os.path.join(plots, name)
-    plot_plot(df, name=file_name)
+    try:
+        amigo_df, disgnet_df = clean_symbols(luh, amigo, disgnet)
+        df = build_combined_table(hgnc, amigo_df, disgnet_df)
+        file_name = os.path.join(plots, name)
+        plot_plot(df, name=file_name)
+    except Exception as e:
+        send_message(f" - couldn't plot {name}\n{str(e)}\n")
 
 
 def plot_plot(df, name=""):
@@ -68,7 +71,6 @@ def clean_symbols(look_up_hugo, amigo_path, disgnet_path):
     amigo["bioentity_label"] = amigo["bioentity_label"].replace(luh)
     disgnet["gene_symbol"] = disgnet["gene_symbol"].replace(luh)
     return amigo, disgnet
-
 
 
 def build_combined_table(hgnc_complete, amigo, disgnet):

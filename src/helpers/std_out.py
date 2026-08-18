@@ -31,9 +31,9 @@ def save_output(file_path):
         time_stamp = datetime.now().strftime('%H%M')
         with open(file_path, "a") as f:
             f.write(txt)
-            f.write(f"\n{time_stamp} current Pipeline status")
+            f.write(f"\n{time_stamp} current Pipeline status\n")
             for m in [amigo, disgnet, hgnc, ensembl, gnomad, vep]:
-                f.write(f'{m["name"]} datasets: {m["collected"]}/{m["total"]} status: {m["last_update"]} {m["status"]}')
+                f.write(f'{m["name"]} datasets: {m["collected"]}/{m["total"]} status: {m["last_update"]} {m["status"]}\n')
 
     return output.empty()
 
