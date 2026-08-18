@@ -18,8 +18,13 @@ from src.helpers.std_out import send_message
 
 def plot_first_results(result_path):
     result_path, plots, hgnc_complete, look_up_hugo, amigo_sub, amigo_complete, disgnet_complete, disgnet_sub = get_config_results(result_path)
-    load_and_plot_simple(look_up_hugo, amigo_complete, disgnet_complete, hgnc_complete, plots, "complete_dataset")
-    load_and_plot_simple(look_up_hugo, amigo_sub, disgnet_sub, hgnc_complete, plots, "reduced_dataset")
+    for _ in range(4):
+        if load_and_plot_simple(look_up_hugo, amigo_complete, disgnet_complete, hgnc_complete, plots, "complete_dataset"):
+            break
+
+    for _ in range(4):
+        if load_and_plot_simple(look_up_hugo, amigo_sub, disgnet_sub, hgnc_complete, plots, "reduced_dataset"):
+            break
 
 
 def load_and_plot_simple(luh, amigo, disgnet, hgnc, plots, name):
@@ -28,9 +33,10 @@ def load_and_plot_simple(luh, amigo, disgnet, hgnc, plots, name):
         df = build_combined_table(hgnc, amigo_df, disgnet_df)
         file_name = os.path.join(plots, name)
         plot_plot(df, name=file_name)
+        return True
     except Exception as e:
         send_message(f" - couldn't plot {name}\n{str(e)}\n")
-
+        return False
 
 def plot_plot(df, name=""):
     sankey_genes_groups(df, max_genes=10, max_groups=10, max_term=10, name=name)
@@ -39,7 +45,6 @@ def plot_plot(df, name=""):
     sankey_genes_groups(df, max_genes=40, max_groups=20, max_term=30, name=name)
     sankey_genes_groups(df, max_genes=50, max_groups=20, max_term=30, name=name)
     sankey_genes_groups(df, max_genes=50, max_groups=10, max_term=10, name=name)
-
 
     plot_bipartite_network(df, max_genes=20, max_groups=10, name=name)
     plot_bipartite_network(df, max_genes=30, max_groups=10, name=name)
@@ -160,7 +165,7 @@ def plot_bipartite_network(df, max_genes=50, max_groups=10, gene_col="symbol", g
 
     genes_keep = df_sub[gene_col].value_counts().index[:max_genes].tolist()
     groups_keep = df_sub[group_col].value_counts().index[:max_groups].tolist()
-    df_sub = df[df[gene_col].isin(genes_keep) & df[group_col].isin(groups_keep)]
+    df_sub = df[df[gene_col].isin(genes_keep) | df[group_col].isin(groups_keep)]
 
     G = nx.Graph()
     # add nodes with bipartite attribute
@@ -214,9 +219,8 @@ def sankey_genes_groups(df, max_genes=30, max_groups=10, max_term=20, gen_column
     genes_keep = df_sub[gen_column].value_counts().index[:max_genes].tolist()
     groups_keep = df_sub[group_col].value_counts().index[:max_groups].tolist()
     terms_keep = df_sub[term_col].value_counts().index[:max_term].tolist()
-    df_sub = df[df[gen_column].isin(genes_keep) & df[group_col].isin(groups_keep) & df[term_col].isin(terms_keep)]
+    df_sub = df[df[gen_column].isin(genes_keep) | df[group_col].isin(groups_keep) | df[term_col].isin(terms_keep)]
     df_sub = df[[gen_column, group_col, term_col]]
-   
 
     # build nodes
     nodes = genes_keep + groups_keep + terms_keep

@@ -314,7 +314,7 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_checked, advanced_search, data_
         try:
             if not hgnc_receive.empty():
                 amigo_df = hgnc_receive.get()
-                if isinstance(amigo_df, str) and amigo_df == "finished" or count_dict["NO_ID"] > 36000:
+                if isinstance(amigo_df, str) and amigo_df == "finished":
                     break
                 if amigo_df.empty:
                     continue
@@ -355,15 +355,18 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_checked, advanced_search, data_
                                 advanced_search.add(name)
                     send_message(f"got {name}", 0, "hgnc")
                     send_message(1,1,"hgnc")
-                    count_dict["NO_ID"] = 0
+                count_dict["NO_ID"] = 0
             else:
                 count_dict["NO_ID"] +=1
-                sleep(2)
+                sleep(1)
 
         except Exception as e:
             send_message(f" - something broke in hgnc loop\n{str(e)}\n")
             count_dict["NO_ID"] +=1
-            sleep(2)
+            sleep(1)
+
+        if count_dict["NO_ID"] > 600 and hgnc_receive.empty():
+            break
 
     return advanced_search, already_checked
 
