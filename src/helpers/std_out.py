@@ -34,7 +34,7 @@ def save_output(file_path):
 def send_message(mes, status=None, sender=None):
     global output, stdoutpipe
     time_stamp = datetime.now().strftime('%H%M')
-    if sender is None:
+    if sender is None and status is None:
         e = f"{time_stamp} Error\n{mes}\n"
         print(e)
         output.put(e)
@@ -62,7 +62,9 @@ def sort_message(message):
         case 2:
             update_total(sender, information, ts)
         case 3:
-            running = False
+            e = f"{ts} results message: {information}\n"
+            print(e)
+            output.put(e)
         case _:
             e = f"{ts} {sender} unknown! status: {status} message: {information}\n"
             print(e)

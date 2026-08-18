@@ -1,6 +1,8 @@
 import os
 import json
 import pandas as pd
+from datetime import datetime
+
 
 from src.helpers.folder_magic import search_for_file, search_for_files#, save_table
 from src.helpers.std_out import send_message
@@ -29,6 +31,8 @@ def get_config(config_item=None, what=None):
             return get_config_gnomad(config_item)
         case 6 | "vep":
             return get_config_vep(config_item)
+        case 7 | "figure" | "plots":
+            return get_config_results(config_item)
         case _:
             return get_config_from_path(config_item)
 
@@ -125,14 +129,13 @@ def get_config_hgnc(config):
     os.makedirs(result_path, exist_ok=True)
 
     config_path = storage.get("config")
-    look_up_hugo = search_for_file(result_path, "look_up_hugo", ".tsv")
-    if not look_up_hugo or download:
-        look_up_hugo = search_for_file(config_path, "look_up_hugo", ".tsv")
     symbol_checker = [
-        look_up_hugo,
-        search_for_file(config_path, "check_amigo", ".csv"), 
-        search_for_file(config_path, "check_disgnet", ".csv"), 
-    ]
+            search_for_file(config_path, "look_up_hugo", ".tsv"),
+            search_for_file(config_path, "check_amigo", ".csv"), 
+            search_for_file(config_path, "check_disgnet", ".csv"), 
+        ]
+    if not download:
+        symbol_checker.extend(search_for_file(result_path, "look_up_hugo", ".tsv"),)
 
     disgnet_df = prepare_disgnet_hgnc(config)
 
@@ -168,7 +171,17 @@ def get_config_vep(config):
     download = config.get("flags", {}).get("download_data", False)
     return (data_path, download)
 
+def get_config_results(result_path):
+    ts = datetime.now().strftime("%Y%m%dT%H")
+    plots = os.path.join(result_path, f"{ts}_plots")
+    hgnc_complete = search_for_file(result_path, "hgnc_df_complete", ".tsv")
+    look_up_hugo = search_for_file(result_path, "look_up_hugo", ".tsv")
+    amigo_sub = search_for_file(result_path, "amigo_df_sub", ".tsv")
+    amigo_complete = search_for_file(result_path, "amigo_df_complete", ".tsv")
+    disgnet_complete = search_for_file(result_path, "disgnet_df_complete", ".tsv")
+    disgnet_sub = search_for_file(result_path, "disgnet_df_sub", ".tsv")
 
+    return (result_path, plots, hgnc_complete, look_up_hugo, amigo_sub, amigo_complete, disgnet_complete, disgnet_sub)
 """
 2. GO ID's & disgnet
 """
@@ -282,14 +295,17 @@ def build_disgnet_tables(disgnet_config):
     if df.empty:
         return df
 
+    df["group"] = df["disease_name"].map(lambda x : group_in_ex["group"].get(x, "NO GROUP"))
+    file_name = os.path.join(result_path, "disgnet_df_complete.tsv")
+    df.to_csv(file_name, sep="\t", index=False)
+
     if extra:
         df = df[df["disease_name"].isin(group_in_ex["include"] + group_in_ex["extra"])]
     else:
         df = df[df["disease_name"].isin(group_in_ex["include"])]
 
     df = df.drop_duplicates(ignore_index=True)
-    df["group"] = df["disease_name"].map(lambda x : group_in_ex["group"].get(x, "NO GROUP"))
-    file_name = os.path.join(result_path, "disgnet_df.tsv")
+    file_name = os.path.join(result_path, "disgnet_df_sub.tsv")
     df.to_csv(file_name, sep="\t", index=False)
     return df
 

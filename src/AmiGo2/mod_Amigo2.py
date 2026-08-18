@@ -44,19 +44,33 @@ def get_all_genes_from_path(amigo_data):
         send_message(" - couldn't load amigo tables: no tables found")
         return None
 
-    return pd.concat(df_list, ignore_index=True)
+    return pd.concat(df_list, ignore_index=True).drop_duplicates(ignore_index =True)
 
+def check_in_ex(term, group_in_ex):
+    if term in group_in_ex["include"]:
+        return "include"
+    elif term in group_in_ex["exclude"]:
+        return "exclude"
+    elif term in group_in_ex["extra"]:
+        return "extra"
+    else:
+        return "not_found"
 
 def build_amigo_tables(data_path, result_path, group_in_ex, extra):
     df = get_all_genes_from_path(data_path)
     if df is None:
         return None
-    elif extra:
+    df["group"] = df["term"].map(lambda x : group_in_ex["group"].get(x, "NO_GROUP"))
+    df["in_ex"] = df["term"].map(lambda x : check_in_ex(x, group_in_ex))
+    file_name = os.path.join(result_path, "amigo_df_complete.tsv")
+    df.to_csv(file_name, sep="\t", index=False)
+
+    if extra:
         df = df[df["term"].isin(group_in_ex["include"] + group_in_ex["extra"])]
     else:
         df = df[df["term"].isin(group_in_ex["include"])]
-    df["group"] = df["term"].map(lambda x : group_in_ex["group"].get(x, "NO_GROUP"))
-    file_name = os.path.join(result_path, "amigo_df.tsv")
+
+    file_name = os.path.join(result_path, "amigo_df_sub.tsv")
     df.to_csv(file_name, sep="\t", index=False)
     return df
 

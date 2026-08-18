@@ -26,19 +26,6 @@ def get_from_path(ensembl_id, path_to_ensembl):
     return None
 
 
-def build_amigo_disgnt_hgnc(already_send, result_path):
-    h = search_for_file(result_path, "hgnc_df", ".tsv")
-    hgnc_df = pd.read_csv(h, sep="\t", dtype=str)
-
-    a = search_for_file(result_path, "amigo_df", ".tsv")
-    amigo_df = pd.read_csv(a, sep="\t", dtype=str)
-
-    d = search_for_file(result_path, "disgnet_df", ".tsv")
-    disgnet_df = pd.read_csv(d, sep="\t", dtype=str)
-    disgnet_df.rename(columns={"disease_name" : "term"})
-
-    return
-
 def download_data(ensembl_receive, ensembl_send, ensembl_config):
     send_message("starting", 0, "ensembl")
     data_path, result_path, top_genes, download = ensembl_config

@@ -15,27 +15,22 @@ def get_data(amigo_send, amigo_config, go_id_list=None):
     send_message(len(go_id_list), 2, "amigo")
 
     for go_id, term in zip(go_id_list, term_names):
-        if term in group_in_ex["exclude"] or term in group_in_ex["extra"]:
-            continue
-        # if not extra and term in group_in_ex["extra"]:
-        #     continue
         df = get_table(data_path, go_id, term, download)
         if df is None:
             send_message(f"{term} missing", 0, "amigo")
             continue
 
-        name_symbol = df[["bioentity_name", "bioentity_label"]].drop_duplicates(ignore_index=True)
-        if df.empty:
-            continue
-        amigo_send.put(name_symbol)
+        if (extra and term in group_in_ex["extra"]) or term in group_in_ex["include"]:
+            name_symbol = df[["bioentity_name", "bioentity_label"]].drop_duplicates(ignore_index=True)
+            if not df.empty:
+                amigo_send.put(name_symbol)
 
         send_message(1, 1, "amigo")
         send_message(f"got {term}", 0, "amigo")
 
-    amigo_send.put("finished")
-    send_message("finished", 0, "amigo")
     df = build_amigo_tables(data_path, result_path, group_in_ex, extra)
     if df is None:
         send_message("Final Amigo table not build")
 
-
+    amigo_send.put("finished")
+    send_message("finished", 0, "amigo")

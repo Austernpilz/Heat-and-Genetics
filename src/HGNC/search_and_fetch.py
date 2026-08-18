@@ -164,7 +164,7 @@ def load_table(path_to_table):
     except Exception as e:
         send_message(f" - couldn't load {path_to_table}\n{str(e)}\n")
 
-    return df
+    return df.drop_duplicates(ignore_index=True)
 
 def load_hgnc_symbol_check(path_to_hgnc_symbol):
     df = load_table(path_to_hgnc_symbol)
@@ -358,12 +358,12 @@ def fetch_amigo(hgnc_send, hgnc_receive, already_checked, advanced_search, data_
                     count_dict["NO_ID"] = 0
             else:
                 count_dict["NO_ID"] +=1
-                sleep(1)
+                sleep(2)
 
         except Exception as e:
             send_message(f" - something broke in hgnc loop\n{str(e)}\n")
             count_dict["NO_ID"] +=1
-            sleep(1)
+            sleep(2)
 
     return advanced_search, already_checked
 
@@ -382,6 +382,40 @@ def clean_advanced_search(advanced_search, already_checked, data_path, result_pa
         return file_path
     return None
 
+def build_look_up_row(row):
+    new_row = {
+        "Input" : [row["symbol"]],
+        "Match type" : ["Approved symbol"],
+        "Approved symbol" : [row["symbol"]],
+        "Approved name" : [row["name"]],
+        "HGNC ID" : [row["hgnc_id"]],
+        "Location" : [row["location"]],
+    }
+    for item in row["alias_symbol"]:
+        new_row["Input"].append(item)
+        new_row["Match type"].append("Previous symbol")
+        new_row["Approved symbol"].append(row["symbol"])
+        new_row["Approved name"].append(row["name"])
+        new_row["HGNC ID"].append(row["hgnc_id"])
+        new_row["Location"].append(row["location"])
+    try:
+        return pd.DataFrame.from_dict(new_row)
+    except Exception as e:
+        send_message(f" - couldn't build new row {new_row}\n{str(e)}\n")
+        return None
+
+def build_look_up(result_path, symbol_checker, final_hugo):
+    df = load_table(symbol_checker)
+    df_list = [df]
+    for item in final_hugo.itertuples(index=False):
+        new_row = build_look_up_row(item)
+        if new_row:
+            df_list.append(new_row)
+
+    look_up_hugo = pd.concat(df_list).drop_duplicates(ignore_index=True)
+    best_look_up_hugo = os.path.join(result_path, "look_up_hugo.tsv")
+    look_up_hugo.to_csv(best_look_up_hugo, sep="\t", index=False)
+
 def download_hgnc_data(hgnc_receive, hgnc_send, hgnc_config):
     send_message("started", 0, "hgnc")
     disgnet_df, symbol_checker, data_path, result_path, download = hgnc_config
@@ -397,45 +431,13 @@ def download_hgnc_data(hgnc_receive, hgnc_send, hgnc_config):
         send_message(f"hgnc_coulnd't identify these {file_path}", 0, "hgnc")
 
     send_message("waiting for clean_up", 0, "hgnc")
-    # counter = 0
-    # final_list = set()
-    # while (True):
-    #     try:
-    #         if not hgnc_receive.empty():
-    #             ensembl_id = hgnc_receive.get()
-
-    #             if check_string(ensembl_id):
-    #                 continue
-
-    #             if ensembl_id == "finished" or counter > 60:
-    #                 hgnc_send.close()
-    #                 break
-
-    #             final_list.add(ensembl_id)
-
-    #         else:
-    #             counter += 1
-    #             sleep(180)
-
-    #     except Exception as e:
-    #         counter +=1
-    #         if counter > 60:
-    #             send_message(f" - something broke in hgnc final loop\n{str(e)}\n")
-    #             break
-    #         sleep(300)
-
 
     df = build_tables(data_path)
-    if df is not None: # and final_list:
+    if df is not None:
         #all relevant look_up_data
         final_hugo = df.drop_duplicates(ignore_index=True)
-        best_hugo = os.path.join(result_path, "hgnc_df.tsv")
+        best_hugo = os.path.join(result_path, "hgnc_df_complete.tsv")
         final_hugo.to_csv(best_hugo, sep="\t", index=False)
+        build_look_up(result_path, symbol_checker, final_hugo)
 
-        look_up_hugo = final_hugo[["ensembl_gene_id", "hgnc_id", "symbol", "name"]]
-        look_up_hugo["Input"] = final_hugo["symbol"]
-        look_up_hugo = look_up_hugo.rename(columns={"symbol": "Approved symbol", "name": "Approved name"})
-        best_look_up_hugo = os.path.join(result_path, "look_up_hugo.tsv")
-        look_up_hugo = look_up_hugo[["Input", "Approved symbol", "Approved name", "ensembl_gene_id", "hgnc_id"]].drop_duplicates(ignore_index=True)
-        look_up_hugo.to_csv(best_look_up_hugo, sep="\t", index=False)
     send_message("finished", 0, "hgnc")
