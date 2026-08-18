@@ -167,7 +167,7 @@ def get_message():
 def stop():
     global running
     running = False
- 
+
 def run_io(file_path):
     if os.path.isfile(file_path):
         os.rename(file_path, f"{file_path}_old.txt")

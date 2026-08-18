@@ -33,25 +33,25 @@ def load_and_plot_simple(luh, amigo, disgnet, hgnc, plots, name):
 
 
 def plot_plot(df, name=""):
-    sankey_genes_groups(df, max_genes=10, max_group=10, max_term=10, name=name)
-    sankey_genes_groups(df, max_genes=20, max_group=10, max_term=20, name=name)
-    sankey_genes_groups(df, max_genes=30, max_group=10, max_term=20, name=name)
-    sankey_genes_groups(df, max_genes=40, max_group=20, max_term=30, name=name)
-    sankey_genes_groups(df, max_genes=50, max_group=20, max_term=30, name=name)
-    sankey_genes_groups(df, max_genes=50, max_group=10, max_term=10, name=name)
+    sankey_genes_groups(df, max_genes=10, max_groups=10, max_term=10, name=name)
+    sankey_genes_groups(df, max_genes=20, max_groups=10, max_term=20, name=name)
+    sankey_genes_groups(df, max_genes=30, max_groups=10, max_term=20, name=name)
+    sankey_genes_groups(df, max_genes=40, max_groups=20, max_term=30, name=name)
+    sankey_genes_groups(df, max_genes=50, max_groups=20, max_term=30, name=name)
+    sankey_genes_groups(df, max_genes=50, max_groups=10, max_term=10, name=name)
 
 
-    plot_bipartite_network(df, max_genes=20, max_group=10, name=name)
-    plot_bipartite_network(df, max_genes=30, max_group=10, name=name)
-    plot_bipartite_network(df, max_genes=40, max_group=20, name=name)
-    plot_bipartite_network(df, max_genes=50, max_group=20, name=name)
-    plot_bipartite_network(df, max_genes=50, max_group=10, name=name)
+    plot_bipartite_network(df, max_genes=20, max_groups=10, name=name)
+    plot_bipartite_network(df, max_genes=30, max_groups=10, name=name)
+    plot_bipartite_network(df, max_genes=40, max_groups=20, name=name)
+    plot_bipartite_network(df, max_genes=50, max_groups=20, name=name)
+    plot_bipartite_network(df, max_genes=50, max_groups=10, name=name)
 
-    plot_bipartite_network(df, max_genes=20, max_group=10, group_col="term", name=name)
-    plot_bipartite_network(df, max_genes=30, max_group=10, group_col="term", name=name)
-    plot_bipartite_network(df, max_genes=40, max_group=20, group_col="term", name=name)
-    plot_bipartite_network(df, max_genes=50, max_group=20, group_col="term", name=name)
-    plot_bipartite_network(df, max_genes=50, max_group=10, group_col="term", name=name)
+    plot_bipartite_network(df, max_genes=20, max_groups=10, group_col="term", name=name)
+    plot_bipartite_network(df, max_genes=30, max_groups=10, group_col="term", name=name)
+    plot_bipartite_network(df, max_genes=40, max_groups=20, group_col="term", name=name)
+    plot_bipartite_network(df, max_genes=50, max_groups=20, group_col="term", name=name)
+    plot_bipartite_network(df, max_genes=50, max_groups=10, group_col="term", name=name)
 
 
 def clean_symbols(look_up_hugo, amigo_path, disgnet_path):
