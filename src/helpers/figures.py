@@ -24,7 +24,7 @@ def plot_first_results(result_path):
 
 def load_and_plot_simple(luh, amigo, disgnet, hgnc, plots, name):
     amigo_df, disgnet_df = clean_symbols(luh, amigo, disgnet)
-    df = build_combinded_table(hgnc, amigo_df, disgnet_df)
+    df = build_combined_table(hgnc, amigo_df, disgnet_df)
     file_name = os.path.join(plots, name)
     plot_plot(df, name=file_name)
 
@@ -55,6 +55,7 @@ def clean_symbols(look_up_hugo, amigo_path, disgnet_path):
     amigo = pd.read_csv(amigo_path, sep="\t", dtype=str)
     disgnet = pd.read_csv(disgnet_path, sep="\t", dtype=str)
     look_up_hugo = pd.read_csv(look_up_hugo, sep="\t", dtype=str)
+    look_up_hugo = look_up_hugo.dropna(subset=["Input", "Approved symbol"])
 
     luh = {
         input_symbol : gene_symbol
@@ -64,17 +65,22 @@ def clean_symbols(look_up_hugo, amigo_path, disgnet_path):
             )
         if not (check_string(input_symbol) or check_string(gene_symbol))
         }
-    return amigo.replace(luh), disgnet.replace(luh)
+    amigo["bioentity_label"] = amigo["bioentity_label"].replace(luh)
+    disgnet["gene_symbol"] = disgnet["gene_symbol"].replace(luh)
+    return amigo, disgnet
 
 
 
-def build_combinded_table(hgnc_complete, amigo, disgnet):
+def build_combined_table(hgnc_complete, amigo, disgnet):
     hgnc_df_complete = pd.read_csv(hgnc_complete, sep="\t", dtype=str)
     hgnc_part = hgnc_df_complete[["symbol", "name", "ensembl_gene_id", "hgnc_id"]]
+
     amigo_df = amigo[["bioentity_label", "term", "group"]].rename(columns={"bioentity_label": "symbol"})
     disgnet_df = disgnet[["gene_symbol", "disease_name", "group"]].rename(columns={"gene_symbol" : "symbol", "disease_name": "term"})
+
     df = pd.concat([amigo_df, disgnet_df], ignore_index=True).drop_duplicates(ignore_index=True)
-    return df.merge(hgnc_part, on="symbol", how="left").dropna()
+
+    return df.merge(hgnc_part, on="symbol", how="left")
 
 
 # fig is a plotly.graph_objects.Figure or plotly.express figure
