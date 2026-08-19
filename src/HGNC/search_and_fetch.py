@@ -379,9 +379,12 @@ def clean_advanced_search(advanced_search, already_checked, data_path, result_pa
         final_search.append(item)
     if final_search:
         file_path = os.path.join(result_path, "hgnc_not_found.txt")
-        with open(file_path, "a") as f:
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+        with open(file_path, "w") as f:
             for item in final_search:
-                f.write(item)
+                f.write(f"{item}, ")
+            f.write("\n")
         return file_path
     return None
 
@@ -409,15 +412,19 @@ def build_look_up_row(row):
 
 def build_look_up(result_path, symbol_checker, final_hugo):
     df = load_table(symbol_checker)
+    send_message("symbol_checker_build",0,"hgnc")
     df_list = [df]
     for item in final_hugo.itertuples(index=False):
         new_row = build_look_up_row(item)
         if new_row:
             df_list.append(new_row)
-
+    send_message("build_rows",0,"hgnc")
     look_up_hugo = pd.concat(df_list).drop_duplicates(ignore_index=True)
+    send_message("build look_up",0,"hgnc")
     best_look_up_hugo = os.path.join(result_path, "look_up_hugo.tsv")
     look_up_hugo.to_csv(best_look_up_hugo, sep="\t", index=False)
+    send_message("saved look_up",0,"hgnc")
+    return True
 
 def download_hgnc_data(hgnc_receive, hgnc_send, hgnc_config):
     send_message("started", 0, "hgnc")
@@ -429,12 +436,15 @@ def download_hgnc_data(hgnc_receive, hgnc_send, hgnc_config):
 
     send_message("waiting for clean_up", 0, "hgnc")
     df = build_tables(data_path)
+    send_message("hanging here 1",0,"hgnc")
     if df is not None:
         #all relevant look_up_data
+        send_message("hanging here 2",0,"hgnc")
         final_hugo = df.drop_duplicates(ignore_index=True)
         best_hugo = os.path.join(result_path, "hgnc_df_complete.tsv")
         final_hugo.to_csv(best_hugo, sep="\t", index=False)
-        build_look_up(result_path, symbol_checker, final_hugo)
+        if build_look_up(result_path, symbol_checker, final_hugo):
+            send_message("should now build plots", 0, "hgnc")
 
     hgnc_send.put("finished")
 

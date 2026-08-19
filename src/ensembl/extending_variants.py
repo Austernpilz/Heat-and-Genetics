@@ -9,7 +9,7 @@ from datetime import datetime
 import threading
 
 from src.ensembl.fetch_ensembl import fetch_hgvs_data, fetch_rsid_data, fetch_pop_data, translate_to_rsid, fetch_from_ensembl
-from src.ensembl.getting_closer_to_variants import check_if_exists, download_data
+from src.ensembl.getting_closer_to_variants import check_if_exists
 from src.helpers.std_out import send_message
 from src.helpers.folder_magic import check_string
 
@@ -75,16 +75,18 @@ def extend_data (VEP_receive, VEP_send, VEP_config): #VEP_send,
         try:
             if not VEP_receive.empty():
                 item = VEP_receive.get()
-                if item == "finished" or counter > 36000:
+                if item == "finished":
                     break
 
                 files, populations, found, not_sure, ensembl_id = item
                 variant_path = os.path.join(data_path, ensembl_id, "variants")
                 os.makedirs(variant_path, exist_ok=True)
+
                 get_variant_data(files, found, variant_path, download)
                 found.update(look_up_variant_data(files, not_sure, variant_path, populations, download))
-                VEP_send.put((found, files, variant_path, data_path, ensembl_id))
                 ensemble_now_(data_path, ensembl_id, already_visited, download)
+
+                VEP_send.put((found, files, variant_path, data_path, ensembl_id))
                 counter = 0
             else:
                 counter += 1
@@ -94,15 +96,28 @@ def extend_data (VEP_receive, VEP_send, VEP_config): #VEP_send,
             counter += 1
             sleep(1) #to build up the previous processes
 
-    send_message("finished", 0, "VEP")
+        if counter > 3600 and VEP_receive.empty():
+            break
 
-def potential_hgvs_notations(variant):
+    send_message("finished", 0, "VEP")
+    send_message("finished", 0, "ensembl")
+
+def potential_hgvs_notations(variant, first=True):
     hgvsc = variant.get("hgvsc", None)
     hgvsp= variant.get("hgvsp", None)
     hgvs = variant.get("hgvs", None)
 
     transcript_id = variant.get("transcript_id", None)
-    if transcript_id is not None:
+    transcript_version = variant.get("transcript_version", None)
+    if transcript_id is not None and transcript_version is not None and first:
+        if hgvsc is not None:
+            return f"{str(transcript_id)}.{str(transcript_version)}:{str(hgvsc)}"
+        elif hgvsp is not None:
+            return f"{str(transcript_id)}.{str(transcript_version)}:{str(hgvsp)}"
+        elif hgvs is not None:
+            return f"{str(transcript_id)}.{str(transcript_version)}:{str(hgvs)}"
+
+    if transcript_id is not None and first:
         if hgvsc is not None:
             return f"{str(transcript_id)}:{str(hgvsc)}"
         elif hgvsp is not None:
@@ -111,7 +126,7 @@ def potential_hgvs_notations(variant):
             return f"{str(transcript_id)}:{str(hgvs)}"
 
     gene_id = variant.get("gene_id", None)
-    if gene_id is not None:
+    if gene_id is not None and first:
         if hgvsc is not None:
             return f"{str(gene_id)}:{str(hgvsc)}"
         elif hgvsp is not None:
@@ -130,8 +145,18 @@ def potential_hgvs_notations(variant):
 
     return None
 
+def get_rsids(variant, variant_path, download):
+    rsids = variant.get("rsids", [])
+    if not rsids:
+        hgvs = potential_hgvs_notations(variant)
+        translate = translate_to_rsid(variant_path, hgvs, download)
+        if not translate:
+            hgvs = potential_hgvs_notations(variant, False)
+            translate = translate_to_rsid(variant_path, hgvs, download)
+        rsids += get_rsids_from_translate(translate)
+    return rsids
 
-def get_rsids(translate):
+def get_rsids_from_translate(translate):
     if check_string(translate):
         return []
     try:
@@ -191,7 +216,7 @@ def check_pop(results, pop_ids):
                     pop_af[allele].append(frequency)
 
             for allele, frequency in pop_af.items():
-                if max(frequency) - min(frequency) >= 0.05:
+                if max(frequency) >= 0.05:
                     return True
 
         except Exception as e:
@@ -200,11 +225,7 @@ def check_pop(results, pop_ids):
     return False
 
 def look_up_variant(variant, variant_path, populations, download):
-    hgvs = potential_hgvs_notations(variant)
-    rsids = variant.get("rsids", [])
-    if not rsids:
-        translate = translate_to_rsid(variant_path, hgvs, download)
-        rsids += get_rsids(translate)
+    rsids = get_rsids(variant, variant_path, download)
     results = fetch_pop_data(variant_path, rsids, download)
     return check_pop(results, populations)
 
@@ -224,8 +245,8 @@ def look_up_variant_data(files, not_sure, variant_path, populations, download):
             continue
 
         if look_up_variant(variant, variant_path, populations, download):
+            found.add(variant_id)
             if get_variant(variant, variant_path, download):
-                found.add(variant_id)
                 send_message(f"got {variant_id}", 0, "vep")
             else:
                 send_message(f"{variant_id} not found", 0, "vep")
@@ -237,11 +258,17 @@ def look_up_variant_data(files, not_sure, variant_path, populations, download):
 
 def get_variant(variant, variant_path, download):
     hgvs = potential_hgvs_notations(variant)
-    rsids = variant.get("rsids", [])
     if fetch_hgvs_data(variant_path, hgvs, download):
         return True
+
+    hgvs = potential_hgvs_notations(variant, False)
+    if fetch_hgvs_data(variant_path, hgvs, download):
+        return True
+
+    rsids = get_rsids(variant, variant_path, download)
     if fetch_rsid_data(variant_path, rsids, download):
         return True
+
     return False
 
 def get_variant_data(files, found, variant_path, download):

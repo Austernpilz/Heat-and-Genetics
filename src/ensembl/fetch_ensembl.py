@@ -27,12 +27,14 @@ def fetch_from_ensembl(ensembl_id, path_to_ensembl):
         decoded = r.json()
         id_dir = os.path.join(path_to_ensembl, ensembl_id)
         os.makedirs(id_dir, exist_ok=True)
+
         p = os.path.join(id_dir, "ensembl_data.json")
         with open(p, 'w') as file:
             json.dump(decoded, file)
 
         send_message(1,1,"ensembl")
         send_message(f"got {ensembl_id}",0,"ensembl")
+
         return p
 
     except Exception as e:
@@ -47,11 +49,11 @@ def fetch_hgvs_data(path_to_data, hgvs, download):
 
     os.makedirs(path_to_data, exist_ok=True)
     p = os.path.join(path_to_data, f"variant_by_hgvs_{hgvs}.json")
+
     if not os.path.isfile(p) or download:
         try:
             sleep(0.1)
 
-            #print('loading_variation_data ', hgvs)
             server = "https://rest.ensembl.org"
             options = {
                 "AlphaMissense" : 1, 
@@ -62,6 +64,7 @@ def fetch_hgvs_data(path_to_data, hgvs, download):
                 "REVEL" : 1,
                 "SpliceAI" : 1, 
                 }
+
             ext = f"/vep/homo_sapiens/hgvs/{hgvs}?"
             r = requests.get(server+ext, params=options, headers={ "Content-Type" : "application/json"}, timeout=600)
 
@@ -75,20 +78,22 @@ def fetch_hgvs_data(path_to_data, hgvs, download):
         except Exception as e:
             send_message(f" - hgvs fetch failed\n{str(e)}\n")
             return False
+
     # send_message(1,1,"vep")
     # send_message(f"got {hgvs}", 0, "vep")
-    return True
+    return p
 
 def fetch_rsid_data(path_to_data, rsid, download):
     if isinstance(rsid, list):
-        worked = False
+        worked = []
         for r in rsid:
-            worked |= fetch_rsid_data(path_to_data, r, download)
+            worked.extend(fetch_rsid_data(path_to_data, r, download))
         return worked
 
     if check_string(rsid):
-        return False
+        return []
 
+    os.makedirs(path_to_data, exist_ok=True)
     p = os.path.join(path_to_data, f"variant_by_rsID_{rsid}.json")
     if not os.path.isfile(p) or download:
         try:
@@ -115,11 +120,10 @@ def fetch_rsid_data(path_to_data, rsid, download):
 
         except Exception as e:
             send_message(f"- rsid fetch failed {rsid}\n{str(e)}\n")
-            return False
+            return []
     # send_message(1,1,"vep")
     # send_message(f"got {rsid}", 0, "vep")
-    return True
-
+    return [p]
 
 
 def fetch_pop_data(path_to_data, rsid, download):
@@ -160,8 +164,9 @@ def fetch_pop_data(path_to_data, rsid, download):
 
 def translate_to_rsid(path_to_data, hgvs, download):
     if check_string(hgvs):
-        return None
+        return False
 
+    os.makedirs(path_to_data, exist_ok=True)
     p = os.path.join(path_to_data, f"aternative_names_for_{hgvs}.json")
     if not os.path.isfile(p) or download:
         try:
@@ -181,7 +186,7 @@ def translate_to_rsid(path_to_data, hgvs, download):
 
         except Exception as e:
             send_message(f" - translation failed {hgvs}\n{str(e)}\n")
-            return None
+            return False
 
     send_message(f"got {hgvs} to rsid", 0, "vep")
     return p

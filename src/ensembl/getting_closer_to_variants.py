@@ -38,7 +38,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
             if not ensembl_receive.empty():
                 ensembl_id = ensembl_receive.get()
 
-                if check_string(ensembl_id):
+                if check_string(ensembl_id) or ensembl_id in already_send:
                     continue
 
                 if ensembl_id == "finished":
@@ -50,11 +50,10 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                 if c:
                     amigo_count[ensembl_id] += 1
                 else:
-                    if ensembl_id in already_send:
-                        continue
                     ensembl_send.put(ensembl_id)
                     amigo_count[ensembl_id] += 1000
                     send_message(1, 2, "gnomad")
+                    send_message(1, 2, "ensembl")
                     already_send.add(ensembl_id)
                 amigo_count["time_out"] = 0
             else:
@@ -65,7 +64,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
             amigo_count["time_out"] += 1
             sleep(1) #to build up the previous processes
 
-        if amigo_count["time_out"] > 600 and ensembl_receive.empty():
+        if amigo_count["time_out"] > 3600 and ensembl_receive.empty():
             break
 
     top_amigo = amigo_count.most_common()
@@ -76,16 +75,16 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
             continue
         if ensembl_id in already_send:
             continue
-        if i >= top_genes and last_count > count:
+        if i > top_genes and last_count > count:
             break
         ensembl_send.put(ensembl_id)
         already_send.add(ensembl_id)
-        send_message(1, 2, "gnomad")
         last_count = count
+        send_message(1, 2, "gnomad")
+        send_message(1, 2, "ensembl")
+
 
     send_message("plotting", 0, "ensembl")
     plot_first_results(result_path)
     ensembl_send.put("finished")
-    #ensembl_receive.put("finished")
-
-    send_message("finished", 0, "ensembl")
+    send_message("waiting", 0, "ensembl")
