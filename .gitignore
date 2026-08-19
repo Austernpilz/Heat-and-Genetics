@@ -3,7 +3,7 @@ data/Amigo2/genes/*
 data/ensembl/*
 data/gnomAD/*
 data/HGNC/genes/*
-!data/HGNC/hgnc-symbol-check
 !data/disgnet/*
+results/*
 # pixi environments
 .pixi/*
