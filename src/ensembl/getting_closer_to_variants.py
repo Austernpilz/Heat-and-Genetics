@@ -38,7 +38,7 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
             if not ensembl_receive.empty():
                 ensembl_id = ensembl_receive.get()
 
-                if check_string(ensembl_id) or ensembl_id in already_send:
+                if check_string(ensembl_id):
                     continue
 
                 if ensembl_id == "finished":
@@ -50,6 +50,8 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
                 if c:
                     amigo_count[ensembl_id] += 1
                 else:
+                    if ensembl_id in already_send:
+                        continue
                     ensembl_send.put(ensembl_id)
                     amigo_count[ensembl_id] += 1000
                     send_message(1, 2, "gnomad")
@@ -71,15 +73,16 @@ def download_data(ensembl_receive, ensembl_send, ensembl_config):
     last_count, i = 0, 0
     for ensembl_id, count in top_amigo:
         i += 1
-        if check_string(ensembl_id):
-            continue
-        if ensembl_id in already_send:
-            continue
         if i > top_genes and last_count > count:
             break
+        else:
+            last_count = count
+
+        if check_string(ensembl_id) or ensembl_id in already_send:
+            continue
+
         ensembl_send.put(ensembl_id)
         already_send.add(ensembl_id)
-        last_count = count
         send_message(1, 2, "gnomad")
         send_message(1, 2, "ensembl")
 
