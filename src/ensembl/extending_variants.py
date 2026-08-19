@@ -9,7 +9,7 @@ from datetime import datetime
 import threading
 
 from src.ensembl.fetch_ensembl import fetch_hgvs_data, fetch_rsid_data, fetch_pop_data, translate_to_rsid, fetch_from_ensembl
-from src.ensembl.getting_closer_to_variants import check_if_exists
+from src.ensembl.getting_closer_to_variants import check_if_exists, download_data
 from src.helpers.std_out import send_message
 from src.helpers.folder_magic import check_string
 
